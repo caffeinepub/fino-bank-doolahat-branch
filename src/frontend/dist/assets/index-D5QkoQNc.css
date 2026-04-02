@@ -512,8 +512,8 @@ video {
     /* Popover: white */
     --popover: 1 0 0;
     --popover-foreground: 0.209 0.022 264;
-    /* Primary: deep red #B91C1C */
-    --primary: 0.44 0.19 21;
+    /* Primary: purple #462980 */
+    --primary: 0.369 0.139 293.8;
     --primary-foreground: 1 0 0;
     /* Secondary: light gray */
     --secondary: 0.96 0.004 247;
@@ -521,18 +521,18 @@ video {
     /* Muted */
     --muted: 0.96 0.004 247;
     --muted-foreground: 0.556 0.012 264;
-    /* Accent: light red tint */
-    --accent: 0.97 0.012 21;
-    --accent-foreground: 0.44 0.19 21;
+    /* Accent: light purple tint */
+    --accent: 0.97 0.012 293.8;
+    --accent-foreground: 0.369 0.139 293.8;
     /* Destructive */
     --destructive: 0.44 0.19 21;
     --destructive-foreground: 1 0 0;
     /* Border: #E5E7EB */
     --border: 0.918 0.006 264;
     --input: 0.918 0.006 264;
-    --ring: 0.44 0.19 21;
+    --ring: 0.369 0.139 293.8;
     /* Charts */
-    --chart-1: 0.44 0.19 21;
+    --chart-1: 0.369 0.139 293.8;
     --chart-2: 0.52 0.15 145;
     --chart-3: 0.65 0.18 55;
     --chart-4: 0.55 0.18 250;
@@ -546,18 +546,18 @@ video {
     /* Sidebar */
     --sidebar: 1 0 0;
     --sidebar-foreground: 0.209 0.022 264;
-    --sidebar-primary: 0.44 0.19 21;
+    --sidebar-primary: 0.369 0.139 293.8;
     --sidebar-primary-foreground: 1 0 0;
     --sidebar-accent: 0.96 0.004 247;
     --sidebar-accent-foreground: 0.209 0.022 264;
     --sidebar-border: 0.918 0.006 264;
-    --sidebar-ring: 0.44 0.19 21;
+    --sidebar-ring: 0.369 0.139 293.8;
 
     /* Brand colors as direct CSS vars */
-    --brand-red: oklch(0.44 0.19 21);
-    --brand-red-light: oklch(0.55 0.22 21);
-    --brand-red-dark: oklch(0.36 0.16 21);
-    --brand-red-tint: oklch(0.97 0.012 21);
+    --brand-red: oklch(0.369 0.139 293.8);
+    --brand-red-light: oklch(0.48 0.16 293.8);
+    --brand-red-dark: oklch(0.29 0.12 293.8);
+    --brand-red-tint: oklch(0.97 0.018 293.8);
     --profit-green: oklch(0.52 0.16 145);
     --loss-red: oklch(0.44 0.19 21);
     --page-bg: oklch(0.965 0.004 247);
