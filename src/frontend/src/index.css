@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Page background: light gray #F4F6F8 */
+    --background: 0.965 0.004 247;
+    /* Foreground: #111827 */
+    --foreground: 0.209 0.022 264;
+    /* Card: white */
+    --card: 1 0 0;
+    --card-foreground: 0.209 0.022 264;
+    /* Popover: white */
+    --popover: 1 0 0;
+    --popover-foreground: 0.209 0.022 264;
+    /* Primary: deep red #B91C1C */
+    --primary: 0.44 0.19 21;
+    --primary-foreground: 1 0 0;
+    /* Secondary: light gray */
+    --secondary: 0.96 0.004 247;
+    --secondary-foreground: 0.209 0.022 264;
+    /* Muted */
+    --muted: 0.96 0.004 247;
+    --muted-foreground: 0.556 0.012 264;
+    /* Accent: light red tint */
+    --accent: 0.97 0.012 21;
+    --accent-foreground: 0.44 0.19 21;
+    /* Destructive */
+    --destructive: 0.44 0.19 21;
+    --destructive-foreground: 1 0 0;
+    /* Border: #E5E7EB */
+    --border: 0.918 0.006 264;
+    --input: 0.918 0.006 264;
+    --ring: 0.44 0.19 21;
+    /* Charts */
+    --chart-1: 0.44 0.19 21;
+    --chart-2: 0.52 0.15 145;
+    --chart-3: 0.65 0.18 55;
+    --chart-4: 0.55 0.18 250;
+    --chart-5: 0.62 0.16 190;
+    /* Success green #15803D */
+    --success: 0.52 0.16 145;
+    --success-foreground: 1 0 0;
+    /* Warning amber */
+    --warning: 0.78 0.18 72;
+    --warning-foreground: 0.2 0 0;
+    /* Sidebar */
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.209 0.022 264;
+    --sidebar-primary: 0.44 0.19 21;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.96 0.004 247;
+    --sidebar-accent-foreground: 0.209 0.022 264;
+    --sidebar-border: 0.918 0.006 264;
+    --sidebar-ring: 0.44 0.19 21;
+
+    /* Brand colors as direct CSS vars */
+    --brand-red: oklch(0.44 0.19 21);
+    --brand-red-light: oklch(0.55 0.22 21);
+    --brand-red-dark: oklch(0.36 0.16 21);
+    --brand-red-tint: oklch(0.97 0.012 21);
+    --profit-green: oklch(0.52 0.16 145);
+    --loss-red: oklch(0.44 0.19 21);
+    --page-bg: oklch(0.965 0.004 247);
+    --surface: oklch(1 0 0);
+    --border-color: oklch(0.918 0.006 264);
+    --text-primary: oklch(0.209 0.022 264);
+    --text-secondary: oklch(0.556 0.012 264);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+}
+
+@layer utilities {
+  .text-profit {
+    color: var(--profit-green);
+  }
+  .text-loss {
+    color: var(--loss-red);
+  }
+  .bg-brand-red {
+    background-color: var(--brand-red);
+  }
+  .text-brand-red {
+    color: var(--brand-red);
+  }
+  .border-brand-red {
+    border-color: var(--brand-red);
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: oklch(0.85 0.006 264);
+    border-radius: 99px;
+  }
+}
