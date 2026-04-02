@@ -62,6 +62,7 @@ export interface backendInterface {
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
     addPaymentHead(name: string, headType: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
+    deleteDailyPL(id: bigint): Promise<void>;
     deleteFixedDeposit(id: bigint): Promise<void>;
     deletePaymentHead(id: bigint): Promise<void>;
     deleteTransaction(id: bigint): Promise<void>;

@@ -105,6 +105,20 @@ export function useSaveDailyPL() {
   });
 }
 
+export function useDeleteDailyPL() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: bigint) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteDailyPL(id);
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["dailyPLs"] });
+    },
+  });
+}
+
 export function useFixedDeposits() {
   const { actor, isFetching } = useActor();
   return useQuery<FixedDeposit[]>({

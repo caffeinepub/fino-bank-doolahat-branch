@@ -192,6 +192,12 @@ actor {
     dailyPLs.values().toArray().sort(DailyPL.compareById);
   };
 
+  // 2. Daily P&L - Delete Entry
+  public shared ({ caller }) func deleteDailyPL(id : Nat) : async () {
+    if (not dailyPLs.containsKey(id)) { Runtime.trap("Daily P&L entry not found") };
+    dailyPLs.remove(id);
+  };
+
   // 3. FDs - Add FD
   public shared ({ caller }) func addFixedDeposit(
     customerName : Text,

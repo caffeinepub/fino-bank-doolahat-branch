@@ -81,6 +81,7 @@ export interface _SERVICE {
   >,
   'addPaymentHead' : ActorMethod<[string, string], bigint>,
   'addTransaction' : ActorMethod<[Transaction], bigint>,
+  'deleteDailyPL' : ActorMethod<[bigint], undefined>,
   'deleteFixedDeposit' : ActorMethod<[bigint], undefined>,
   'deletePaymentHead' : ActorMethod<[bigint], undefined>,
   'deleteTransaction' : ActorMethod<[bigint], undefined>,
