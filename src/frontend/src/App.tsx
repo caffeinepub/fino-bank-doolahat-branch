@@ -5,6 +5,7 @@ import NavTabs from "./components/NavTabs";
 import DailyPLEntry from "./pages/DailyPLEntry";
 import Dashboard from "./pages/Dashboard";
 import FixedDeposits from "./pages/FixedDeposits";
+import Merchants from "./pages/Merchants";
 import PLReports from "./pages/PLReports";
 import PaymentHeads from "./pages/PaymentHeads";
 import Transactions from "./pages/Transactions";
@@ -15,7 +16,8 @@ export type TabId =
   | "pl-reports"
   | "fixed-deposits"
   | "transactions"
-  | "payment-heads";
+  | "payment-heads"
+  | "merchants";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>("dashboard");
@@ -34,6 +36,8 @@ export default function App() {
         return <Transactions />;
       case "payment-heads":
         return <PaymentHeads />;
+      case "merchants":
+        return <Merchants />;
       default:
         return <Dashboard onNavigate={setActiveTab} />;
     }
@@ -100,6 +104,7 @@ export default function App() {
                     ["pl-reports", "P&L Reports"],
                     ["fixed-deposits", "Fixed Deposit"],
                     ["transactions", "Transactions"],
+                    ["merchants", "Merchants"],
                   ] as [TabId, string][]
                 ).map(([tab, label]) => (
                   <li key={tab}>
@@ -122,13 +127,13 @@ export default function App() {
               </h4>
               <ul className="space-y-1">
                 <li className="text-xs text-muted-foreground">
-                  Helpline: 1800-XXX-XXXX
+                  Helpline: 91938-7411-594
                 </li>
                 <li className="text-xs text-muted-foreground">
-                  Email: support@finobank.com
+                  Email: customercare@finobankpartner.com
                 </li>
                 <li className="text-xs text-muted-foreground">
-                  Mon–Fri, 9:00 AM – 6:00 PM
+                  Mon–Fri, 10:00 AM – 6:00 PM
                 </li>
               </ul>
             </div>

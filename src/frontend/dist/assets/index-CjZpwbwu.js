@@ -17873,18 +17873,18 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$l = [
+const __iconNode$m = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$l);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$m);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$k = [
+const __iconNode$l = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -17894,31 +17894,42 @@ const __iconNode$k = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$k);
+const Bell = createLucideIcon("bell", __iconNode$l);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$j = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$j);
+const __iconNode$k = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$i = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$i);
+const __iconNode$j = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$j);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$h = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$h);
+const __iconNode$i = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$i);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$h = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17927,9 +17938,10 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$h);
  */
 const __iconNode$g = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$g);
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17937,11 +17949,10 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
 ];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$f);
+const CreditCard = createLucideIcon("credit-card", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17949,10 +17960,11 @@ const CirclePlus = createLucideIcon("circle-plus", __iconNode$f);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$e = [
-  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
-  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const CreditCard = createLucideIcon("credit-card", __iconNode$e);
+const Download = createLucideIcon("download", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17960,11 +17972,13 @@ const CreditCard = createLucideIcon("credit-card", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M12 15V3", key: "m9g1x1" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const Download = createLucideIcon("download", __iconNode$d);
+const FileText = createLucideIcon("file-text", __iconNode$d);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17972,20 +17986,6 @@ const Download = createLucideIcon("download", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$c);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$b = [
   ["path", { d: "M10 18v-7", key: "wt116b" }],
   [
     "path",
@@ -17999,15 +17999,27 @@ const __iconNode$b = [
   ["path", { d: "M3 22h18", key: "8prr45" }],
   ["path", { d: "M6 18v-7", key: "1ivflk" }]
 ];
-const Landmark = createLucideIcon("landmark", __iconNode$b);
+const Landmark = createLucideIcon("landmark", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$a = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$a);
+const __iconNode$b = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$b);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$a = [
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+];
+const LogOut = createLucideIcon("log-out", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18015,18 +18027,6 @@ const LoaderCircle = createLucideIcon("loader-circle", __iconNode$a);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$9 = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
-];
-const LogOut = createLucideIcon("log-out", __iconNode$9);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$8 = [
   [
     "path",
     {
@@ -18036,14 +18036,14 @@ const __iconNode$8 = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$8);
+const Pencil = createLucideIcon("pencil", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [
+const __iconNode$8 = [
   [
     "path",
     { d: "M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z", key: "q3az6g" }
@@ -18051,14 +18051,14 @@ const __iconNode$7 = [
   ["path", { d: "M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8", key: "1h4pet" }],
   ["path", { d: "M12 17.5v-11", key: "1jc1ny" }]
 ];
-const Receipt = createLucideIcon("receipt", __iconNode$7);
+const Receipt = createLucideIcon("receipt", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$6 = [
+const __iconNode$7 = [
   [
     "path",
     {
@@ -18069,7 +18069,18 @@ const __iconNode$6 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$6);
+const Save = createLucideIcon("save", __iconNode$7);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$6 = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+const Search = createLucideIcon("search", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18077,17 +18088,6 @@ const Save = createLucideIcon("save", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
-];
-const Search = createLucideIcon("search", __iconNode$5);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$4 = [
   [
     "path",
     {
@@ -18097,7 +18097,21 @@ const __iconNode$4 = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const ShieldCheck = createLucideIcon("shield-check", __iconNode$4);
+const ShieldCheck = createLucideIcon("shield-check", __iconNode$5);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$4 = [
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+];
+const Trash2 = createLucideIcon("trash-2", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18105,13 +18119,10 @@ const ShieldCheck = createLucideIcon("shield-check", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  ["path", { d: "M16 17h6v-6", key: "t6n2it" }],
+  ["path", { d: "m22 17-8.5-8.5-5 5L2 7", key: "x473p" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$3);
+const TrendingDown = createLucideIcon("trending-down", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18119,10 +18130,10 @@ const Trash2 = createLucideIcon("trash-2", __iconNode$3);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$2 = [
-  ["path", { d: "M16 17h6v-6", key: "t6n2it" }],
-  ["path", { d: "m22 17-8.5-8.5-5 5L2 7", key: "x473p" }]
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
 ];
-const TrendingDown = createLucideIcon("trending-down", __iconNode$2);
+const TrendingUp = createLucideIcon("trending-up", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18130,10 +18141,12 @@ const TrendingDown = createLucideIcon("trending-down", __iconNode$2);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$1 = [
-  ["path", { d: "M16 7h6v6", key: "box55l" }],
-  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
+  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
+  ["path", { d: "M16 3.128a4 4 0 0 1 0 7.744", key: "16gr8j" }],
+  ["path", { d: "M22 21v-2a4 4 0 0 0-3-3.87", key: "kshegd" }],
+  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
 ];
-const TrendingUp = createLucideIcon("trending-up", __iconNode$1);
+const Users = createLucideIcon("users", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18243,12 +18256,13 @@ const tabs = [
   { id: "pl-reports", label: "P&L Reports" },
   { id: "fixed-deposits", label: "Fixed Deposit" },
   { id: "transactions", label: "Transactions" },
-  { id: "payment-heads", label: "Payment Heads" }
+  { id: "payment-heads", label: "Payment Heads" },
+  { id: "merchants", label: "Merchants" }
 ];
 function NavTabs({ activeTab, onTabChange }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "bg-white border-b border-border sticky top-16 z-30", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center px-6 gap-0", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "bg-white border-b border-border sticky top-16 z-30", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center px-6 gap-0 overflow-x-auto", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-sm font-semibold text-muted-foreground mr-6 shrink-0 py-3", children: "Doolahat Branch" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-px h-5 bg-border mr-4" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-px h-5 bg-border mr-4 shrink-0" }),
     tabs.map((tab) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       "button",
       {
@@ -62495,6 +62509,7 @@ function Dashboard({ onNavigate }) {
       const found = pls == null ? void 0 : pls.find((p2) => p2.date === iso);
       days2.push({
         date: formatDate(iso).slice(0, 5),
+        isoDate: iso,
         pl: found ? found.totalProfitLoss : 0
       });
     }
@@ -62614,15 +62629,13 @@ function Dashboard({ onNavigate }) {
                   contentStyle: { fontSize: 12, borderRadius: 8 }
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Bar,
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Bar, { dataKey: "pl", radius: [4, 4, 0, 0], name: "Profit/Loss", children: chartData.map((entry) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Cell,
                 {
-                  dataKey: "pl",
-                  fill: "oklch(0.44 0.19 21)",
-                  radius: [4, 4, 0, 0],
-                  name: "Profit/Loss"
-                }
-              )
+                  fill: entry.pl >= 0 ? "#15803D" : "#B91C1C"
+                },
+                entry.isoDate
+              )) })
             ]
           }
         ) }) })
@@ -62654,6 +62667,11 @@ function Dashboard({ onNavigate }) {
             label: "Manage Heads",
             tab: "payment-heads",
             desc: "Payment head config"
+          },
+          {
+            label: "Manage Merchants",
+            tab: "merchants",
+            desc: "Merchant registrations"
           }
         ].map(({ label, tab, desc }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button,
@@ -88756,6 +88774,33 @@ function downloadTransactions(transactions, label = "All") {
     `Transactions_${label}_${(/* @__PURE__ */ new Date()).toISOString().split("T")[0]}.xlsx`
   );
 }
+function downloadMerchants(merchants) {
+  const rows = [
+    ["Fino Small Finance Bank - Doolahat Branch"],
+    ["IFSC: FINO0001599"],
+    ["Merchant Report"],
+    [`Generated: ${(/* @__PURE__ */ new Date()).toLocaleString("en-IN")}`],
+    [],
+    ["#", "Name", "Merchant ID", "Mobile No", "Address"]
+  ];
+  merchants.forEach((m2, i) => {
+    rows.push([i + 1, m2.name, m2.merchantId, m2.mobileNo, m2.address]);
+  });
+  const ws = utils.aoa_to_sheet(rows);
+  ws["!cols"] = [
+    { wch: 4 },
+    { wch: 24 },
+    { wch: 18 },
+    { wch: 16 },
+    { wch: 36 }
+  ];
+  const wb = utils.book_new();
+  utils.book_append_sheet(wb, ws, "Merchants");
+  writeFileSync(
+    wb,
+    `Merchants_Report_${(/* @__PURE__ */ new Date()).toISOString().split("T")[0]}.xlsx`
+  );
+}
 const TENURES = [1, 2, 3, 4, 5];
 function FDForm({ onClose }) {
   const [form, setForm] = reactExports.useState({
@@ -89185,6 +89230,574 @@ function FixedDeposits() {
     )
   ] });
 }
+function Dialog({
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$2, { "data-slot": "dialog", ...props });
+}
+function DialogPortal({
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-slot": "dialog-portal", ...props });
+}
+function DialogOverlay({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Overlay,
+    {
+      "data-slot": "dialog-overlay",
+      className: cn(
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function DialogContent({
+  className,
+  children,
+  showCloseButton = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-slot": "dialog-portal", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Content$2,
+      {
+        "data-slot": "dialog-content",
+        className: cn(
+          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
+          className
+        ),
+        ...props,
+        children: [
+          children,
+          showCloseButton && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Close,
+            {
+              "data-slot": "dialog-close",
+              className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, {}),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: "Close" })
+              ]
+            }
+          )
+        ]
+      }
+    )
+  ] });
+}
+function DialogHeader({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": "dialog-header",
+      className: cn("flex flex-col gap-2 text-center sm:text-left", className),
+      ...props
+    }
+  );
+}
+function DialogFooter({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": "dialog-footer",
+      className: cn(
+        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function DialogTitle({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Title,
+    {
+      "data-slot": "dialog-title",
+      className: cn("text-lg leading-none font-semibold", className),
+      ...props
+    }
+  );
+}
+function Table({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": "table-container",
+      className: "relative w-full overflow-x-auto",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "table",
+        {
+          "data-slot": "table",
+          className: cn("w-full caption-bottom text-sm", className),
+          ...props
+        }
+      )
+    }
+  );
+}
+function TableHeader({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "thead",
+    {
+      "data-slot": "table-header",
+      className: cn("[&_tr]:border-b", className),
+      ...props
+    }
+  );
+}
+function TableBody({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "tbody",
+    {
+      "data-slot": "table-body",
+      className: cn("[&_tr:last-child]:border-0", className),
+      ...props
+    }
+  );
+}
+function TableRow({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "tr",
+    {
+      "data-slot": "table-row",
+      className: cn(
+        "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TableHead({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "th",
+    {
+      "data-slot": "table-head",
+      className: cn(
+        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TableCell({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "td",
+    {
+      "data-slot": "table-cell",
+      className: cn(
+        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+const STORAGE_KEY = "fino_merchants";
+function loadMerchants() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+function saveMerchants(merchants) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(merchants));
+}
+const emptyForm = { name: "", merchantId: "", mobileNo: "", address: "" };
+function Merchants() {
+  const [merchants, setMerchants] = reactExports.useState(loadMerchants);
+  const [addOpen, setAddOpen] = reactExports.useState(false);
+  const [editTarget, setEditTarget] = reactExports.useState(null);
+  const [deleteTarget, setDeleteTarget] = reactExports.useState(null);
+  const [form, setForm] = reactExports.useState(emptyForm);
+  const [editForm, setEditForm] = reactExports.useState(emptyForm);
+  const updateMerchants = (updated) => {
+    setMerchants(updated);
+    saveMerchants(updated);
+  };
+  const handleAdd = (e3) => {
+    e3.preventDefault();
+    if (!form.name.trim() || !form.merchantId.trim()) {
+      ue.error("Name and Merchant ID are required.");
+      return;
+    }
+    const newMerchant = {
+      id: Date.now().toString(),
+      name: form.name.trim(),
+      merchantId: form.merchantId.trim(),
+      mobileNo: form.mobileNo.trim(),
+      address: form.address.trim()
+    };
+    updateMerchants([...merchants, newMerchant]);
+    ue.success("Merchant added");
+    setForm(emptyForm);
+    setAddOpen(false);
+  };
+  const openEdit = (merchant) => {
+    setEditTarget(merchant);
+    setEditForm({
+      name: merchant.name,
+      merchantId: merchant.merchantId,
+      mobileNo: merchant.mobileNo,
+      address: merchant.address
+    });
+  };
+  const handleEdit = (e3) => {
+    e3.preventDefault();
+    if (!editTarget) return;
+    if (!editForm.name.trim() || !editForm.merchantId.trim()) {
+      ue.error("Name and Merchant ID are required.");
+      return;
+    }
+    const updated = merchants.map(
+      (m2) => m2.id === editTarget.id ? {
+        ...m2,
+        name: editForm.name.trim(),
+        merchantId: editForm.merchantId.trim(),
+        mobileNo: editForm.mobileNo.trim(),
+        address: editForm.address.trim()
+      } : m2
+    );
+    updateMerchants(updated);
+    ue.success("Merchant updated");
+    setEditTarget(null);
+  };
+  const handleDelete = () => {
+    if (!deleteTarget) return;
+    const updated = merchants.filter((m2) => m2.id !== deleteTarget);
+    updateMerchants(updated);
+    ue.success("Merchant deleted");
+    setDeleteTarget(null);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -8 },
+        animate: { opacity: 1, y: 0 },
+        className: "flex items-center justify-between flex-wrap gap-3",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "w-10 h-10 rounded-lg flex items-center justify-center",
+                style: { backgroundColor: "oklch(0.44 0.19 21 / 0.1)" },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-5 h-5", style: { color: "var(--brand-red)" } })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-foreground", children: "Merchants" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage merchant registrations for Doolahat Branch" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-wrap", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                variant: "outline",
+                className: "gap-2",
+                onClick: () => downloadMerchants(merchants),
+                disabled: merchants.length === 0,
+                "data-ocid": "merchants.download.button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { className: "w-4 h-4" }),
+                  "Download Excel"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                className: "gap-2 text-white",
+                style: { backgroundColor: "var(--brand-red)" },
+                onClick: () => {
+                  setForm(emptyForm);
+                  setAddOpen(true);
+                },
+                "data-ocid": "merchants.add.open_modal_button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-4 h-4" }),
+                  "Add Merchant"
+                ]
+              }
+            )
+          ] })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-card border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: merchants.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "py-16 text-center text-muted-foreground",
+        "data-ocid": "merchants.empty_state",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-10 h-10 mx-auto mb-3 opacity-30" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "No merchants registered yet." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm mt-1", children: 'Click "Add Merchant" to get started.' })
+        ]
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "bg-secondary/50", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground w-12", children: "#" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Name" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Merchant ID" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Mobile No" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Address" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Actions" })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: merchants.map((merchant, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        TableRow,
+        {
+          className: "hover:bg-secondary/30",
+          "data-ocid": `merchants.item.${i + 1}`,
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-muted-foreground font-mono", children: i + 1 }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium", children: merchant.name }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-sm", children: merchant.merchantId }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm", children: merchant.mobileNo || "-" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm max-w-xs truncate", children: merchant.address || "-" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  size: "sm",
+                  variant: "outline",
+                  className: "h-7 px-2 gap-1 text-xs",
+                  onClick: () => openEdit(merchant),
+                  "data-ocid": `merchants.edit_button.${i + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-3 h-3" }),
+                    " Edit"
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  size: "sm",
+                  variant: "outline",
+                  className: "h-7 px-2 text-xs border-red-200 text-red-600 hover:bg-red-50",
+                  onClick: () => setDeleteTarget(merchant.id),
+                  "data-ocid": `merchants.delete_button.${i + 1}`,
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" })
+                }
+              )
+            ] }) })
+          ]
+        },
+        merchant.id
+      )) })
+    ] }) }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: addOpen, onOpenChange: setAddOpen, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-ocid": "merchants.add.dialog", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Add Merchant" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleAdd, className: "space-y-4 mt-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-name", children: "Name *" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "add-name",
+              value: form.name,
+              onChange: (e3) => setForm((f2) => ({ ...f2, name: e3.target.value })),
+              placeholder: "e.g. Ramesh Traders",
+              className: "mt-1",
+              "data-ocid": "merchants.name.input"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-mid", children: "Merchant ID *" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "add-mid",
+              value: form.merchantId,
+              onChange: (e3) => setForm((f2) => ({ ...f2, merchantId: e3.target.value })),
+              placeholder: "e.g. MID-20230001",
+              className: "mt-1",
+              "data-ocid": "merchants.merchant_id.input"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-mobile", children: "Mobile No" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "add-mobile",
+              value: form.mobileNo,
+              onChange: (e3) => setForm((f2) => ({ ...f2, mobileNo: e3.target.value })),
+              placeholder: "e.g. 9876543210",
+              className: "mt-1",
+              "data-ocid": "merchants.mobile.input"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-address", children: "Address" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "add-address",
+              value: form.address,
+              onChange: (e3) => setForm((f2) => ({ ...f2, address: e3.target.value })),
+              placeholder: "e.g. Main Bazar, Doolahat",
+              className: "mt-1",
+              "data-ocid": "merchants.address.input"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              type: "button",
+              variant: "outline",
+              onClick: () => setAddOpen(false),
+              "data-ocid": "merchants.add.cancel_button",
+              children: "Cancel"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              type: "submit",
+              className: "text-white",
+              style: { backgroundColor: "var(--brand-red)" },
+              "data-ocid": "merchants.add.submit_button",
+              children: "Add Merchant"
+            }
+          )
+        ] })
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: !!editTarget,
+        onOpenChange: (open) => !open && setEditTarget(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-ocid": "merchants.edit.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Edit Merchant" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleEdit, className: "space-y-4 mt-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "edit-name", children: "Name *" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "edit-name",
+                  value: editForm.name,
+                  onChange: (e3) => setEditForm((f2) => ({ ...f2, name: e3.target.value })),
+                  className: "mt-1",
+                  "data-ocid": "merchants.edit_name.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "edit-mid", children: "Merchant ID *" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "edit-mid",
+                  value: editForm.merchantId,
+                  onChange: (e3) => setEditForm((f2) => ({ ...f2, merchantId: e3.target.value })),
+                  className: "mt-1",
+                  "data-ocid": "merchants.edit_merchant_id.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "edit-mobile", children: "Mobile No" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "edit-mobile",
+                  value: editForm.mobileNo,
+                  onChange: (e3) => setEditForm((f2) => ({ ...f2, mobileNo: e3.target.value })),
+                  className: "mt-1",
+                  "data-ocid": "merchants.edit_mobile.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "edit-address", children: "Address" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "edit-address",
+                  value: editForm.address,
+                  onChange: (e3) => setEditForm((f2) => ({ ...f2, address: e3.target.value })),
+                  className: "mt-1",
+                  "data-ocid": "merchants.edit_address.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  type: "button",
+                  variant: "outline",
+                  onClick: () => setEditTarget(null),
+                  "data-ocid": "merchants.edit.cancel_button",
+                  children: "Cancel"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  type: "submit",
+                  className: "text-white",
+                  style: { backgroundColor: "var(--brand-red)" },
+                  "data-ocid": "merchants.edit.save_button",
+                  children: "Save Changes"
+                }
+              )
+            ] })
+          ] })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialog,
+      {
+        open: deleteTarget !== null,
+        onOpenChange: (open) => !open && setDeleteTarget(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "merchants.delete.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete Merchant?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This will permanently remove the merchant from your records. This action cannot be undone." })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "merchants.delete.cancel_button", children: "Cancel" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AlertDialogAction,
+              {
+                onClick: handleDelete,
+                className: "text-white",
+                style: { backgroundColor: "var(--brand-red)" },
+                "data-ocid": "merchants.delete.confirm_button",
+                children: "Delete"
+              }
+            )
+          ] })
+        ] })
+      }
+    )
+  ] });
+}
 const CHART_COLORS = [
   "#B91C1C",
   "#2563EB",
@@ -89579,103 +90192,6 @@ function PLReports() {
       ] })
     ] })
   ] });
-}
-function Dialog({
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$2, { "data-slot": "dialog", ...props });
-}
-function DialogPortal({
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-slot": "dialog-portal", ...props });
-}
-function DialogOverlay({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Overlay,
-    {
-      "data-slot": "dialog-overlay",
-      className: cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function DialogContent({
-  className,
-  children,
-  showCloseButton = true,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-slot": "dialog-portal", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      Content$2,
-      {
-        "data-slot": "dialog-content",
-        className: cn(
-          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
-          className
-        ),
-        ...props,
-        children: [
-          children,
-          showCloseButton && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Close,
-            {
-              "data-slot": "dialog-close",
-              className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, {}),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: "Close" })
-              ]
-            }
-          )
-        ]
-      }
-    )
-  ] });
-}
-function DialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "data-slot": "dialog-header",
-      className: cn("flex flex-col gap-2 text-center sm:text-left", className),
-      ...props
-    }
-  );
-}
-function DialogFooter({ className, ...props }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "data-slot": "dialog-footer",
-      className: cn(
-        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function DialogTitle({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Title,
-    {
-      "data-slot": "dialog-title",
-      className: cn("text-lg leading-none font-semibold", className),
-      ...props
-    }
-  );
 }
 const HEAD_TYPES = ["Opening", "Closing", "Both"];
 function PaymentHeads() {
@@ -91023,6 +91539,8 @@ function App() {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Transactions, {});
       case "payment-heads":
         return /* @__PURE__ */ jsxRuntimeExports.jsx(PaymentHeads, {});
+      case "merchants":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Merchants, {});
       default:
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, { onNavigate: setActiveTab });
     }
@@ -91079,7 +91597,8 @@ function App() {
                 ["daily-pl", "Daily P&L Entry"],
                 ["pl-reports", "P&L Reports"],
                 ["fixed-deposits", "Fixed Deposit"],
-                ["transactions", "Transactions"]
+                ["transactions", "Transactions"],
+                ["merchants", "Merchants"]
               ].map(([tab, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "button",
                 {
@@ -91093,9 +91612,9 @@ function App() {
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-foreground mb-3", children: "Support" }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "space-y-1", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "text-xs text-muted-foreground", children: "Helpline: 1800-XXX-XXXX" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "text-xs text-muted-foreground", children: "Email: support@finobank.com" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "text-xs text-muted-foreground", children: "Mon–Fri, 9:00 AM – 6:00 PM" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "text-xs text-muted-foreground", children: "Helpline: 91938-7411-594" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "text-xs text-muted-foreground", children: "Email: customercare@finobankpartner.com" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "text-xs text-muted-foreground", children: "Mon–Fri, 10:00 AM – 6:00 PM" })
               ] })
             ] })
           ] }),

@@ -219,3 +219,39 @@ export function downloadTransactions(
     `Transactions_${label}_${new Date().toISOString().split("T")[0]}.xlsx`,
   );
 }
+
+export interface Merchant {
+  id: string;
+  name: string;
+  merchantId: string;
+  mobileNo: string;
+  address: string;
+}
+
+export function downloadMerchants(merchants: Merchant[]) {
+  const rows: (string | number)[][] = [
+    ["Fino Small Finance Bank - Doolahat Branch"],
+    ["IFSC: FINO0001599"],
+    ["Merchant Report"],
+    [`Generated: ${new Date().toLocaleString("en-IN")}`],
+    [],
+    ["#", "Name", "Merchant ID", "Mobile No", "Address"],
+  ];
+  merchants.forEach((m, i) => {
+    rows.push([i + 1, m.name, m.merchantId, m.mobileNo, m.address]);
+  });
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"] = [
+    { wch: 4 },
+    { wch: 24 },
+    { wch: 18 },
+    { wch: 16 },
+    { wch: 36 },
+  ];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Merchants");
+  XLSX.writeFile(
+    wb,
+    `Merchants_Report_${new Date().toISOString().split("T")[0]}.xlsx`,
+  );
+}

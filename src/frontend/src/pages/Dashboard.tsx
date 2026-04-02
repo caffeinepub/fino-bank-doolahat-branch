@@ -15,6 +15,7 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -131,7 +132,7 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
   }, [txs]);
 
   const chartData = useMemo(() => {
-    const days: { date: string; pl: number }[] = [];
+    const days: { date: string; isoDate: string; pl: number }[] = [];
     for (let i = 6; i >= 0; i--) {
       const d = new Date();
       d.setDate(d.getDate() - i);
@@ -139,6 +140,7 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
       const found = pls?.find((p) => p.date === iso);
       days.push({
         date: formatDate(iso).slice(0, 5),
+        isoDate: iso,
         pl: found ? found.totalProfitLoss : 0,
       });
     }
@@ -257,12 +259,14 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
                     formatter={(v: number) => [formatINR(v), "P&L"]}
                     contentStyle={{ fontSize: 12, borderRadius: 8 }}
                   />
-                  <Bar
-                    dataKey="pl"
-                    fill="oklch(0.44 0.19 21)"
-                    radius={[4, 4, 0, 0]}
-                    name="Profit/Loss"
-                  />
+                  <Bar dataKey="pl" radius={[4, 4, 0, 0]} name="Profit/Loss">
+                    {chartData.map((entry) => (
+                      <Cell
+                        key={entry.isoDate}
+                        fill={entry.pl >= 0 ? "#15803D" : "#B91C1C"}
+                      />
+                    ))}
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             )}
@@ -302,6 +306,11 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
                 label: "Manage Heads",
                 tab: "payment-heads" as TabId,
                 desc: "Payment head config",
+              },
+              {
+                label: "Manage Merchants",
+                tab: "merchants" as TabId,
+                desc: "Merchant registrations",
               },
             ].map(({ label, tab, desc }) => (
               <Button

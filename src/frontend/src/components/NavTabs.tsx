@@ -13,19 +13,20 @@ const tabs: { id: TabId; label: string }[] = [
   { id: "fixed-deposits", label: "Fixed Deposit" },
   { id: "transactions", label: "Transactions" },
   { id: "payment-heads", label: "Payment Heads" },
+  { id: "merchants", label: "Merchants" },
 ];
 
 export default function NavTabs({ activeTab, onTabChange }: NavTabsProps) {
   return (
     <nav className="bg-white border-b border-border sticky top-16 z-30">
-      <div className="flex items-center px-6 gap-0">
+      <div className="flex items-center px-6 gap-0 overflow-x-auto">
         {/* Branch label */}
         <div className="text-sm font-semibold text-muted-foreground mr-6 shrink-0 py-3">
           Doolahat Branch
         </div>
 
         {/* Divider */}
-        <div className="w-px h-5 bg-border mr-4" />
+        <div className="w-px h-5 bg-border mr-4 shrink-0" />
 
         {/* Tabs */}
         {tabs.map((tab) => (

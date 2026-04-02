@@ -986,6 +986,9 @@ video {
 .w-10 {
   width: 2.5rem;
 }
+.w-12 {
+  width: 3rem;
+}
 .w-2 {
   width: 0.5rem;
 }
@@ -1105,6 +1108,9 @@ video {
 }
 .max-w-sm {
   max-width: 24rem;
+}
+.max-w-xs {
+  max-width: 20rem;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1921,6 +1927,9 @@ video {
 }
 .opacity-0 {
   opacity: 0;
+}
+.opacity-30 {
+  opacity: 0.3;
 }
 .opacity-50 {
   opacity: 0.5;
