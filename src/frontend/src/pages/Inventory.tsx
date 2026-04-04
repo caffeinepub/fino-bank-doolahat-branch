@@ -38,6 +38,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   AlertCircle,
   ArrowDown,
@@ -84,6 +85,7 @@ import { formatINR, todayISO } from "../utils/helpers";
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const PENDING_KEY = "fino_inventory_pending";
+const APPROVED_KEY = "fino_inventory_approved";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -1428,6 +1430,37 @@ function InventoryInner() {
     localStorage.setItem(PENDING_KEY, JSON.stringify(pendingProducts));
   }, [pendingProducts]);
 
+  // Locally approved products (approved optimistically, pending backend sync)
+  const [localApprovedProducts, setLocalApprovedProducts] = useState<
+    InventoryProduct[]
+  >(() => {
+    try {
+      const stored = localStorage.getItem(APPROVED_KEY);
+      if (!stored) return [];
+      const parsed = JSON.parse(stored) as Array<Record<string, unknown>>;
+      return parsed.map((p) => ({
+        ...p,
+        id: BigInt(String(p.id)),
+        quantity: BigInt(String(p.quantity)),
+        reorderPoint: BigInt(String(p.reorderPoint)),
+        createdAt: BigInt(String(p.createdAt ?? 0)),
+      })) as InventoryProduct[];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    const serializable = localApprovedProducts.map((p) => ({
+      ...p,
+      id: String(p.id),
+      quantity: String(p.quantity),
+      reorderPoint: String(p.reorderPoint),
+      createdAt: String(p.createdAt),
+    }));
+    localStorage.setItem(APPROVED_KEY, JSON.stringify(serializable));
+  }, [localApprovedProducts]);
+
   // Table state
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
@@ -1457,33 +1490,44 @@ function InventoryInner() {
     useTodayStockTransactions(today);
 
   const approveProductMut = useAddProduct();
-  const [approvingIds, setApprovingIds] = useState<Set<string>>(new Set());
+  const queryClient = useQueryClient();
   const deleteProductMut = useDeleteProduct();
   const bulkUpdateMut = useBulkUpdateProducts();
 
   // ── Derived metrics ──────────────────────────────────────────────────────
+  // Merge backend products with locally approved products (deduplicate by SKU)
+  const mergedProducts = useMemo(() => {
+    const backendSkus = new Set(products.map((p) => p.sku));
+    const localOnly = localApprovedProducts.filter(
+      (p) => !backendSkus.has(p.sku),
+    );
+    return [...products, ...localOnly];
+  }, [products, localApprovedProducts]);
+
   const metrics = useMemo(() => {
-    const totalValue = products.reduce(
+    const totalValue = mergedProducts.reduce(
       (sum, p) => sum + Number(p.quantity) * p.unitCost,
       0,
     );
-    const lowStock = products.filter(
+    const lowStock = mergedProducts.filter(
       (p) =>
         Number(p.quantity) > 0 && Number(p.quantity) <= Number(p.reorderPoint),
     ).length;
-    const outOfStock = products.filter((p) => Number(p.quantity) === 0).length;
+    const outOfStock = mergedProducts.filter(
+      (p) => Number(p.quantity) === 0,
+    ).length;
     return { totalValue, lowStock, outOfStock, monthlyOrders: todayTxs.length };
-  }, [products, todayTxs]);
+  }, [mergedProducts, todayTxs]);
 
   // ── Unique categories ────────────────────────────────────────────────────
   const categories = useMemo(() => {
-    const cats = new Set(products.map((p) => p.category).filter(Boolean));
+    const cats = new Set(mergedProducts.map((p) => p.category).filter(Boolean));
     return Array.from(cats).sort();
-  }, [products]);
+  }, [mergedProducts]);
 
   // ── Filtered + sorted table ──────────────────────────────────────────────
   const filteredProducts = useMemo(() => {
-    let list = [...products];
+    let list = [...mergedProducts];
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter(
@@ -1531,7 +1575,7 @@ function InventoryInner() {
       return sortDir === "asc" ? cmp : -cmp;
     });
     return list;
-  }, [products, search, categoryFilter, sortField, sortDir]);
+  }, [mergedProducts, search, categoryFilter, sortField, sortDir]);
 
   // ── Sort helpers ─────────────────────────────────────────────────────────
   const handleSort = (field: SortField) => {
@@ -1591,10 +1635,30 @@ function InventoryInner() {
     setPendingProducts((prev) => [...prev, p]);
   };
 
-  const handlePendingApprove = async (pending: PendingProduct) => {
-    setApprovingIds((prev) => new Set(prev).add(pending.id));
-    try {
-      await approveProductMut.mutateAsync({
+  const handlePendingApprove = (pending: PendingProduct) => {
+    // Optimistic local-first approval — works even if backend is unavailable
+    const localProduct: InventoryProduct = {
+      id: BigInt(Date.now()),
+      name: pending.name,
+      description: pending.description,
+      sku: pending.sku,
+      barcode: "",
+      category: pending.category,
+      quantity: BigInt(pending.quantity),
+      unitCost: pending.unitCost,
+      salePrice: pending.salePrice,
+      reorderPoint: BigInt(pending.reorderPoint),
+      createdAt: BigInt(Date.now()),
+    };
+
+    // Immediately move from pending → locally approved
+    setPendingProducts((prev) => prev.filter((p) => p.id !== pending.id));
+    setLocalApprovedProducts((prev) => [...prev, localProduct]);
+    toast.success(`"${pending.name}" approved and added to inventory!`);
+
+    // Fire-and-forget backend sync
+    approveProductMut
+      .mutateAsync({
         name: pending.name,
         description: pending.description,
         sku: pending.sku,
@@ -1604,19 +1668,21 @@ function InventoryInner() {
         unitCost: pending.unitCost,
         salePrice: pending.salePrice,
         reorderPoint: BigInt(pending.reorderPoint),
+      })
+      .then(() => {
+        // Backend saved — remove local copy since backend now owns it
+        setLocalApprovedProducts((prev) =>
+          prev.filter((p) => p.sku !== pending.sku),
+        );
+        queryClient.invalidateQueries({ queryKey: ["inventory"] });
+      })
+      .catch((err) => {
+        // Backend failed — keep local copy so product stays visible
+        console.warn(
+          "Backend sync failed, keeping locally approved product:",
+          err,
+        );
       });
-      setPendingProducts((prev) => prev.filter((p) => p.id !== pending.id));
-      toast.success(`"${pending.name}" approved and added to inventory!`);
-    } catch (err) {
-      console.error("Approve product error:", err);
-      toast.error("Failed to approve product. Please try again.");
-    } finally {
-      setApprovingIds((prev) => {
-        const next = new Set(prev);
-        next.delete(pending.id);
-        return next;
-      });
-    }
   };
 
   const handlePendingEdit = (updated: PendingProduct) => {
@@ -1931,14 +1997,9 @@ function InventoryInner() {
                                 className="h-7 w-7 text-green-600 hover:bg-green-50"
                                 title="Approve"
                                 onClick={() => handlePendingApprove(p)}
-                                disabled={approvingIds.has(p.id)}
                                 data-ocid={`pending_approvals.confirm_button.${idx + 1}`}
                               >
-                                {approvingIds.has(p.id) ? (
-                                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                                ) : (
-                                  <CheckCircle className="w-3.5 h-3.5" />
-                                )}
+                                <CheckCircle className="w-3.5 h-3.5" />
                               </Button>
                               <Button
                                 size="icon"

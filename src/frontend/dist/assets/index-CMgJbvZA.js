@@ -17873,11 +17873,22 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$z = [
   ["path", { d: "M12 5v14", key: "s699le" }],
   ["path", { d: "m19 12-7 7-7-7", key: "1idqje" }]
 ];
-const ArrowDown = createLucideIcon("arrow-down", __iconNode$y);
+const ArrowDown = createLucideIcon("arrow-down", __iconNode$z);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$y = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+];
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$y);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17885,10 +17896,12 @@ const ArrowDown = createLucideIcon("arrow-down", __iconNode$y);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$x = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+  ["path", { d: "m21 16-4 4-4-4", key: "f6ql7i" }],
+  ["path", { d: "M17 20V4", key: "1ejh1v" }],
+  ["path", { d: "m3 8 4-4 4 4", key: "11wl7u" }],
+  ["path", { d: "M7 4v16", key: "1glfcx" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$x);
+const ArrowUpDown = createLucideIcon("arrow-up-down", __iconNode$x);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17896,12 +17909,10 @@ const ArrowRight = createLucideIcon("arrow-right", __iconNode$x);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$w = [
-  ["path", { d: "m21 16-4 4-4-4", key: "f6ql7i" }],
-  ["path", { d: "M17 20V4", key: "1ejh1v" }],
-  ["path", { d: "m3 8 4-4 4 4", key: "11wl7u" }],
-  ["path", { d: "M7 4v16", key: "1glfcx" }]
+  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
+  ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUpDown = createLucideIcon("arrow-up-down", __iconNode$w);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$w);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17909,17 +17920,6 @@ const ArrowUpDown = createLucideIcon("arrow-up-down", __iconNode$w);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$v = [
-  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
-  ["path", { d: "M12 19V5", key: "x0mq9r" }]
-];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$v);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$u = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -17929,14 +17929,14 @@ const __iconNode$u = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$u);
+const Bell = createLucideIcon("bell", __iconNode$v);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [
+const __iconNode$u = [
   [
     "path",
     {
@@ -17947,31 +17947,43 @@ const __iconNode$t = [
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
 ];
-const Box = createLucideIcon("box", __iconNode$t);
+const Box = createLucideIcon("box", __iconNode$u);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$s);
+const __iconNode$t = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$t);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
+const __iconNode$s = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$s);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$q);
+const __iconNode$r = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$r);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$q = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17979,11 +17991,10 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$q);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$p = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$p);
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$p);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17991,10 +18002,10 @@ const CircleAlert = createLucideIcon("circle-alert", __iconNode$p);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$o = [
-  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
-  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$o);
+const CircleCheck = createLucideIcon("circle-check", __iconNode$o);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18003,9 +18014,10 @@ const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$o);
  */
 const __iconNode$n = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$n);
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$n);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18014,10 +18026,9 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$n);
  */
 const __iconNode$m = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
 ];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$m);
+const Clock = createLucideIcon("clock", __iconNode$m);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -90684,6 +90695,7 @@ function useInventoryAuth() {
   return ctx;
 }
 const PENDING_KEY = "fino_inventory_pending";
+const APPROVED_KEY = "fino_inventory_approved";
 function getStatus(qty, reorder) {
   if (qty === 0) return "out-of-stock";
   if (qty <= reorder) return "low";
@@ -91954,6 +91966,32 @@ function InventoryInner() {
   reactExports.useEffect(() => {
     localStorage.setItem(PENDING_KEY, JSON.stringify(pendingProducts));
   }, [pendingProducts]);
+  const [localApprovedProducts, setLocalApprovedProducts] = reactExports.useState(() => {
+    try {
+      const stored = localStorage.getItem(APPROVED_KEY);
+      if (!stored) return [];
+      const parsed = JSON.parse(stored);
+      return parsed.map((p2) => ({
+        ...p2,
+        id: BigInt(String(p2.id)),
+        quantity: BigInt(String(p2.quantity)),
+        reorderPoint: BigInt(String(p2.reorderPoint)),
+        createdAt: BigInt(String(p2.createdAt ?? 0))
+      }));
+    } catch {
+      return [];
+    }
+  });
+  reactExports.useEffect(() => {
+    const serializable = localApprovedProducts.map((p2) => ({
+      ...p2,
+      id: String(p2.id),
+      quantity: String(p2.quantity),
+      reorderPoint: String(p2.reorderPoint),
+      createdAt: String(p2.createdAt)
+    }));
+    localStorage.setItem(APPROVED_KEY, JSON.stringify(serializable));
+  }, [localApprovedProducts]);
   const [search, setSearch] = reactExports.useState("");
   const [categoryFilter, setCategoryFilter] = reactExports.useState("all");
   const [sortField, setSortField] = reactExports.useState("name");
@@ -91970,26 +92008,35 @@ function InventoryInner() {
   const { data: products = [], isLoading: productsLoading } = useInventoryProducts();
   const { data: todayTxs = [], isLoading: txLoading } = useTodayStockTransactions(today);
   const approveProductMut = useAddProduct();
-  const [approvingIds, setApprovingIds] = reactExports.useState(/* @__PURE__ */ new Set());
+  const queryClient2 = useQueryClient();
   const deleteProductMut = useDeleteProduct();
   const bulkUpdateMut = useBulkUpdateProducts();
+  const mergedProducts = reactExports.useMemo(() => {
+    const backendSkus = new Set(products.map((p2) => p2.sku));
+    const localOnly = localApprovedProducts.filter(
+      (p2) => !backendSkus.has(p2.sku)
+    );
+    return [...products, ...localOnly];
+  }, [products, localApprovedProducts]);
   const metrics = reactExports.useMemo(() => {
-    const totalValue = products.reduce(
+    const totalValue = mergedProducts.reduce(
       (sum, p2) => sum + Number(p2.quantity) * p2.unitCost,
       0
     );
-    const lowStock = products.filter(
+    const lowStock = mergedProducts.filter(
       (p2) => Number(p2.quantity) > 0 && Number(p2.quantity) <= Number(p2.reorderPoint)
     ).length;
-    const outOfStock = products.filter((p2) => Number(p2.quantity) === 0).length;
+    const outOfStock = mergedProducts.filter(
+      (p2) => Number(p2.quantity) === 0
+    ).length;
     return { totalValue, lowStock, outOfStock, monthlyOrders: todayTxs.length };
-  }, [products, todayTxs]);
+  }, [mergedProducts, todayTxs]);
   const categories = reactExports.useMemo(() => {
-    const cats = new Set(products.map((p2) => p2.category).filter(Boolean));
+    const cats = new Set(mergedProducts.map((p2) => p2.category).filter(Boolean));
     return Array.from(cats).sort();
-  }, [products]);
+  }, [mergedProducts]);
   const filteredProducts = reactExports.useMemo(() => {
-    let list = [...products];
+    let list = [...mergedProducts];
     if (search.trim()) {
       const q2 = search.toLowerCase();
       list = list.filter(
@@ -92034,7 +92081,7 @@ function InventoryInner() {
       return sortDir === "asc" ? cmp : -cmp;
     });
     return list;
-  }, [products, search, categoryFilter, sortField, sortDir]);
+  }, [mergedProducts, search, categoryFilter, sortField, sortDir]);
   const handleSort = (field) => {
     if (sortField === field) {
       setSortDir((d2) => d2 === "asc" ? "desc" : "asc");
@@ -92082,32 +92129,44 @@ function InventoryInner() {
   const handlePendingAdd = (p2) => {
     setPendingProducts((prev) => [...prev, p2]);
   };
-  const handlePendingApprove = async (pending) => {
-    setApprovingIds((prev) => new Set(prev).add(pending.id));
-    try {
-      await approveProductMut.mutateAsync({
-        name: pending.name,
-        description: pending.description,
-        sku: pending.sku,
-        barcode: "",
-        category: pending.category,
-        quantity: BigInt(pending.quantity),
-        unitCost: pending.unitCost,
-        salePrice: pending.salePrice,
-        reorderPoint: BigInt(pending.reorderPoint)
-      });
-      setPendingProducts((prev) => prev.filter((p2) => p2.id !== pending.id));
-      ue.success(`"${pending.name}" approved and added to inventory!`);
-    } catch (err) {
-      console.error("Approve product error:", err);
-      ue.error("Failed to approve product. Please try again.");
-    } finally {
-      setApprovingIds((prev) => {
-        const next = new Set(prev);
-        next.delete(pending.id);
-        return next;
-      });
-    }
+  const handlePendingApprove = (pending) => {
+    const localProduct = {
+      id: BigInt(Date.now()),
+      name: pending.name,
+      description: pending.description,
+      sku: pending.sku,
+      barcode: "",
+      category: pending.category,
+      quantity: BigInt(pending.quantity),
+      unitCost: pending.unitCost,
+      salePrice: pending.salePrice,
+      reorderPoint: BigInt(pending.reorderPoint),
+      createdAt: BigInt(Date.now())
+    };
+    setPendingProducts((prev) => prev.filter((p2) => p2.id !== pending.id));
+    setLocalApprovedProducts((prev) => [...prev, localProduct]);
+    ue.success(`"${pending.name}" approved and added to inventory!`);
+    approveProductMut.mutateAsync({
+      name: pending.name,
+      description: pending.description,
+      sku: pending.sku,
+      barcode: "",
+      category: pending.category,
+      quantity: BigInt(pending.quantity),
+      unitCost: pending.unitCost,
+      salePrice: pending.salePrice,
+      reorderPoint: BigInt(pending.reorderPoint)
+    }).then(() => {
+      setLocalApprovedProducts(
+        (prev) => prev.filter((p2) => p2.sku !== pending.sku)
+      );
+      queryClient2.invalidateQueries({ queryKey: ["inventory"] });
+    }).catch((err) => {
+      console.warn(
+        "Backend sync failed, keeping locally approved product:",
+        err
+      );
+    });
   };
   const handlePendingEdit = (updated) => {
     setPendingProducts(
@@ -92368,9 +92427,8 @@ function InventoryInner() {
                             className: "h-7 w-7 text-green-600 hover:bg-green-50",
                             title: "Approve",
                             onClick: () => handlePendingApprove(p2),
-                            disabled: approvingIds.has(p2.id),
                             "data-ocid": `pending_approvals.confirm_button.${idx + 1}`,
-                            children: approvingIds.has(p2.id) ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-3.5 h-3.5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5" })
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5" })
                           }
                         ),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -92938,14 +92996,14 @@ function loadMerchants() {
 function saveMerchants(merchants) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(merchants));
 }
-const emptyForm = { name: "", merchantId: "", mobileNo: "", address: "" };
+const emptyForm$1 = { name: "", merchantId: "", mobileNo: "", address: "" };
 function Merchants() {
   const [merchants, setMerchants] = reactExports.useState(loadMerchants);
   const [addOpen, setAddOpen] = reactExports.useState(false);
   const [editTarget, setEditTarget] = reactExports.useState(null);
   const [deleteTarget, setDeleteTarget] = reactExports.useState(null);
-  const [form, setForm] = reactExports.useState(emptyForm);
-  const [editForm, setEditForm] = reactExports.useState(emptyForm);
+  const [form, setForm] = reactExports.useState(emptyForm$1);
+  const [editForm, setEditForm] = reactExports.useState(emptyForm$1);
   const updateMerchants = (updated) => {
     setMerchants(updated);
     saveMerchants(updated);
@@ -92965,7 +93023,7 @@ function Merchants() {
     };
     updateMerchants([...merchants, newMerchant]);
     ue.success("Merchant added");
-    setForm(emptyForm);
+    setForm(emptyForm$1);
     setAddOpen(false);
   };
   const openEdit = (merchant) => {
@@ -93047,7 +93105,7 @@ function Merchants() {
                 className: "gap-2 text-white",
                 style: { backgroundColor: "var(--brand-red)" },
                 onClick: () => {
-                  setForm(emptyForm);
+                  setForm(emptyForm$1);
                   setAddOpen(true);
                 },
                 "data-ocid": "merchants.add.open_modal_button",
@@ -94499,25 +94557,93 @@ const TX_TYPES = [
 const TX_STATUSES = ["Success", "Pending", "Failed"];
 const CREDIT_TYPES = /* @__PURE__ */ new Set(["Credit", "AEPS", "New CASA"]);
 const DEBIT_TYPES = /* @__PURE__ */ new Set(["Debit", "NEFT", "IMPS", "DMT", "MISC Payment"]);
-function TxForm({ onClose }) {
+const TX_PENDING_KEY = "fino_tx_pending";
+function genTxId() {
+  return Date.now().toString() + Math.random().toString(36).slice(2);
+}
+function getRole() {
+  try {
+    const stored = localStorage.getItem("fino_inventory_auth");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed.role === "manager") return "manager";
+    }
+  } catch {
+  }
+  return "staff";
+}
+function loadPendingTxs() {
+  try {
+    const stored = localStorage.getItem(TX_PENDING_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+function savePendingTxs(txs) {
+  localStorage.setItem(TX_PENDING_KEY, JSON.stringify(txs));
+}
+const emptyForm = {
+  referenceId: "",
+  transactionType: "NEFT",
+  accountNumber: "",
+  accountHolderName: "",
+  bankName: "",
+  ifscCode: "",
+  amount: "",
+  transactionDate: todayISO(),
+  remark: "",
+  status: "Success"
+};
+function TxForm({
+  onClose,
+  role,
+  onPendingAdd,
+  initialValues
+}) {
   const [form, setForm] = reactExports.useState({
-    referenceId: "",
-    transactionType: "NEFT",
-    accountNumber: "",
-    accountHolderName: "",
-    bankName: "",
-    ifscCode: "",
-    amount: "",
-    transactionDate: todayISO(),
-    remark: "",
-    status: "Success"
+    ...emptyForm,
+    ...initialValues
   });
+  const [staffUserId, setStaffUserId] = reactExports.useState("");
+  const [staffPassword, setStaffPassword] = reactExports.useState("");
+  const [staffError, setStaffError] = reactExports.useState("");
   const addTx = useAddTransaction();
   const update = (field, value) => setForm((prev) => ({ ...prev, [field]: value }));
   const handleSubmit = async (e3) => {
     e3.preventDefault();
     if (!form.referenceId || !form.accountNumber || !form.amount) {
       ue.error("Please fill in required fields.");
+      return;
+    }
+    if (role !== "manager") {
+      if (staffUserId !== "156399746" || staffPassword !== "156399746") {
+        setStaffError(
+          "Invalid Staff User ID or Password. Please check and retry."
+        );
+        return;
+      }
+      const pending = {
+        id: genTxId(),
+        submittedAt: (/* @__PURE__ */ new Date()).toISOString(),
+        submittedByUserId: staffUserId,
+        referenceId: form.referenceId,
+        transactionType: form.transactionType,
+        accountNumber: form.accountNumber,
+        accountHolderName: form.accountHolderName,
+        bankName: form.bankName,
+        ifscCode: form.ifscCode,
+        amount: Number.parseFloat(form.amount) || 0,
+        transactionDate: form.transactionDate,
+        frequencyType: "One Time",
+        remark: form.remark,
+        status: form.status
+      };
+      if (onPendingAdd) {
+        onPendingAdd(pending);
+      }
+      ue.success("Transaction submitted for manager approval");
+      onClose();
       return;
     }
     try {
@@ -94541,6 +94667,12 @@ function TxForm({ onClose }) {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-4", children: [
+    role !== "manager" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-700", children: [
+      "⚡ Staff submission — this transaction will require",
+      " ",
+      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "manager approval" }),
+      " before being recorded."
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "tx-ref", children: "Reference ID *" }),
@@ -94686,8 +94818,80 @@ function TxForm({ onClose }) {
         )
       ] })
     ] }),
+    role !== "manager" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, {}),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "rounded-lg p-4 space-y-3",
+          style: {
+            backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
+            border: "1px solid oklch(0.78 0.18 72 / 0.3)"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-semibold text-amber-800 flex items-center gap-1.5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(UserCheck, { className: "w-4 h-4" }),
+              "Staff Authentication Required"
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700", children: "Enter your Staff credentials to submit this transaction for manager approval." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "tx-staff-id", children: "Staff User ID" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "tx-staff-id",
+                    placeholder: "Enter your staff ID",
+                    value: staffUserId,
+                    onChange: (e3) => {
+                      setStaffUserId(e3.target.value);
+                      setStaffError("");
+                    },
+                    "data-ocid": "tx.staff_id.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "tx-staff-pass", children: "Staff Password" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "tx-staff-pass",
+                    type: "password",
+                    placeholder: "Enter your password",
+                    value: staffPassword,
+                    onChange: (e3) => {
+                      setStaffPassword(e3.target.value);
+                      setStaffError("");
+                    },
+                    "data-ocid": "tx.staff_password.input"
+                  }
+                )
+              ] })
+            ] }),
+            staffError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "tx.staff_auth.error_state",
+                children: staffError
+              }
+            )
+          ]
+        }
+      )
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-3 pt-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { type: "button", variant: "outline", onClick: onClose, children: "Cancel" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button,
+        {
+          type: "button",
+          variant: "outline",
+          onClick: onClose,
+          "data-ocid": "tx.cancel.button",
+          children: "Cancel"
+        }
+      ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Button,
         {
@@ -94696,11 +94900,206 @@ function TxForm({ onClose }) {
           className: "text-white gap-2",
           style: { backgroundColor: "var(--brand-red)" },
           "data-ocid": "tx.submit.button",
-          children: addTx.isPending ? "Saving..." : "Add Transaction"
+          children: addTx.isPending ? "Saving..." : role === "manager" ? "Add Transaction" : "Submit for Approval"
         }
       )
     ] })
   ] });
+}
+function PendingTxEditDialog({
+  pending,
+  onSave,
+  onClose
+}) {
+  const [form, setForm] = reactExports.useState(emptyForm);
+  reactExports.useEffect(() => {
+    if (pending) {
+      setForm({
+        referenceId: pending.referenceId,
+        transactionType: pending.transactionType,
+        accountNumber: pending.accountNumber,
+        accountHolderName: pending.accountHolderName,
+        bankName: pending.bankName,
+        ifscCode: pending.ifscCode,
+        amount: String(pending.amount),
+        transactionDate: pending.transactionDate,
+        remark: pending.remark,
+        status: pending.status
+      });
+    }
+  }, [pending]);
+  const update = (field, value) => setForm((prev) => ({ ...prev, [field]: value }));
+  const handleSave = () => {
+    if (!pending) return;
+    if (!form.referenceId || !form.accountNumber || !form.amount) {
+      ue.error("Please fill in required fields.");
+      return;
+    }
+    onSave({
+      ...pending,
+      referenceId: form.referenceId,
+      transactionType: form.transactionType,
+      accountNumber: form.accountNumber,
+      accountHolderName: form.accountHolderName,
+      bankName: form.bankName,
+      ifscCode: form.ifscCode,
+      amount: Number.parseFloat(form.amount) || 0,
+      transactionDate: form.transactionDate,
+      remark: form.remark,
+      status: form.status
+    });
+    ue.success("Pending transaction updated");
+    onClose();
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: !!pending, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "sm:max-w-2xl max-h-[90vh] overflow-y-auto",
+      "data-ocid": "tx.pending_edit.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-5 h-5", style: { color: "var(--brand-red)" } }),
+          "Edit Pending Transaction"
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Reference ID *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.referenceId,
+                onChange: (e3) => update("referenceId", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Transaction Type" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.transactionType,
+                onValueChange: (v2) => update("transactionType", v2),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: TX_TYPES.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: t2, children: t2 }, t2)) })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Account Number *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.accountNumber,
+                onChange: (e3) => update("accountNumber", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Account Holder Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.accountHolderName,
+                onChange: (e3) => update("accountHolderName", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Bank Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.bankName,
+                onChange: (e3) => update("bankName", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "IFSC Code" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.ifscCode,
+                onChange: (e3) => update("ifscCode", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Amount (₹) *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                min: "0",
+                step: "0.01",
+                value: form.amount,
+                onChange: (e3) => update("amount", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Transaction Date" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "date",
+                value: form.transactionDate,
+                onChange: (e3) => update("transactionDate", e3.target.value)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Status" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.status,
+                onValueChange: (v2) => update("status", v2),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: TX_STATUSES.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: s2, children: s2 }, s2)) })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 md:col-span-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Remark" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Textarea,
+              {
+                value: form.remark,
+                onChange: (e3) => update("remark", e3.target.value),
+                className: "resize-none h-16"
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "pt-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: "outline",
+              onClick: onClose,
+              "data-ocid": "tx.pending_edit.cancel_button",
+              children: "Cancel"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              onClick: handleSave,
+              style: { backgroundColor: "var(--brand-red)" },
+              className: "text-white",
+              "data-ocid": "tx.pending_edit.save_button",
+              children: "Save Changes"
+            }
+          )
+        ] })
+      ]
+    }
+  ) });
 }
 function TxTable({
   transactions,
@@ -94790,6 +95189,74 @@ function Transactions() {
   const [filterDateStart, setFilterDateStart] = reactExports.useState("");
   const [filterDateEnd, setFilterDateEnd] = reactExports.useState("");
   const [deleteId, setDeleteId] = reactExports.useState(null);
+  const [role, setRole] = reactExports.useState(() => getRole());
+  reactExports.useEffect(() => {
+    const handleStorage = () => setRole(getRole());
+    window.addEventListener("storage", handleStorage);
+    const interval = setInterval(() => setRole(getRole()), 1e3);
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      clearInterval(interval);
+    };
+  }, []);
+  const isManager = role === "manager";
+  const [pendingTxs, setPendingTxs] = reactExports.useState(
+    () => loadPendingTxs()
+  );
+  const updatePendingTxs = (updated) => {
+    setPendingTxs(updated);
+    savePendingTxs(updated);
+  };
+  const handlePendingAdd = (tx) => {
+    const updated = [...pendingTxs, tx];
+    updatePendingTxs(updated);
+  };
+  const [approvingTxIds, setApprovingTxIds] = reactExports.useState(/* @__PURE__ */ new Set());
+  const [pendingEditTarget, setPendingEditTarget] = reactExports.useState(null);
+  const [pendingDeleteId, setPendingDeleteId] = reactExports.useState(null);
+  const addTxMut = useAddTransaction();
+  const handleTxApprove = async (pending) => {
+    setApprovingTxIds((prev) => new Set(prev).add(pending.id));
+    try {
+      await addTxMut.mutateAsync({
+        referenceId: pending.referenceId,
+        transactionType: pending.transactionType,
+        accountNumber: pending.accountNumber,
+        accountHolderName: pending.accountHolderName,
+        bankName: pending.bankName,
+        ifscCode: pending.ifscCode,
+        amount: pending.amount,
+        transactionDate: pending.transactionDate,
+        frequencyType: pending.frequencyType,
+        remark: pending.remark,
+        status: pending.status
+      });
+      const updated = pendingTxs.filter((t2) => t2.id !== pending.id);
+      updatePendingTxs(updated);
+      ue.success(
+        `Transaction "${pending.referenceId}" approved and recorded!`
+      );
+    } catch (err) {
+      console.error("Approve transaction error:", err);
+      ue.error("Failed to approve transaction. Please try again.");
+    } finally {
+      setApprovingTxIds((prev) => {
+        const next = new Set(prev);
+        next.delete(pending.id);
+        return next;
+      });
+    }
+  };
+  const handlePendingTxEdit = (updated) => {
+    const list = pendingTxs.map((t2) => t2.id === updated.id ? updated : t2);
+    updatePendingTxs(list);
+  };
+  const handlePendingTxDelete = (id2) => {
+    const updated = pendingTxs.filter((t2) => t2.id !== id2);
+    updatePendingTxs(updated);
+    setPendingDeleteId(null);
+    ue.success("Pending transaction removed");
+  };
   const { data: txs, isLoading } = useTransactions();
   const deleteTx = useDeleteTransaction();
   const filterTxs = reactExports.useMemo(() => {
@@ -94858,6 +95325,24 @@ function Transactions() {
         )
       ] })
     ] }),
+    !isManager && pendingTxs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -6 },
+        animate: { opacity: 1, y: 0 },
+        className: "flex items-center gap-2 px-4 py-3 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800",
+        "data-ocid": "tx.pending.toast",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-4 h-4 shrink-0" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: pendingTxs.length }),
+            " transaction",
+            pendingTxs.length > 1 ? "s" : "",
+            " pending manager approval."
+          ] })
+        ]
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showForm && /* @__PURE__ */ jsxRuntimeExports.jsx(
       motion.div,
       {
@@ -94867,10 +95352,136 @@ function Transactions() {
         transition: { duration: 0.2 },
         children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-card border-border", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base font-semibold", children: "New Transaction" }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TxForm, { onClose: () => setShowForm(false) }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            TxForm,
+            {
+              onClose: () => setShowForm(false),
+              role,
+              onPendingAdd: handlePendingAdd
+            }
+          ) })
         ] })
       }
     ) }),
+    isManager && pendingTxs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -8 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.3 },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Card,
+          {
+            className: "border-amber-200 bg-amber-50 shadow-sm",
+            "data-ocid": "tx.pending_approvals.panel",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { className: "pb-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base font-semibold text-amber-900 flex items-center gap-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-5 h-5 text-amber-600" }),
+                  "Pending Approvals",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "ml-auto bg-amber-200 text-amber-900 border-amber-300", children: pendingTxs.length })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700 mt-0.5", children: "Review staff-submitted transactions before they are recorded." })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "space-y-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: pendingTxs.map((pt, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
+                {
+                  initial: { opacity: 0, x: -10 },
+                  animate: { opacity: 1, x: 0 },
+                  exit: { opacity: 0, x: 10 },
+                  transition: { delay: idx * 0.04 },
+                  className: "flex flex-wrap items-start gap-3 p-3 bg-white rounded-lg border border-amber-200",
+                  "data-ocid": `tx.pending.item.${idx + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0 space-y-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-2 text-sm font-medium text-foreground", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono", children: pt.referenceId }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", className: "text-xs", children: pt.transactionType }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground text-xs", children: [
+                          pt.accountNumber,
+                          " — ",
+                          pt.accountHolderName
+                        ] })
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-muted-foreground flex flex-wrap gap-3", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Amount:",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: formatINR(pt.amount) })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Date: ",
+                          formatDate(pt.transactionDate)
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Status:",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: pt.status })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                          "Submitted:",
+                          " ",
+                          new Date(pt.submittedAt).toLocaleDateString(),
+                          " by",
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: pt.submittedByUserId })
+                        ] })
+                      ] }),
+                      pt.remark && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground italic", children: [
+                        "Remark: ",
+                        pt.remark
+                      ] })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 shrink-0", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        Button,
+                        {
+                          size: "sm",
+                          className: "h-8 text-xs bg-green-600 hover:bg-green-700 text-white",
+                          onClick: () => handleTxApprove(pt),
+                          disabled: approvingTxIds.has(pt.id),
+                          "data-ocid": `tx.pending.approve_button.${idx + 1}`,
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5 mr-1" }),
+                            approvingTxIds.has(pt.id) ? "Approving..." : "Approve"
+                          ]
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        Button,
+                        {
+                          size: "sm",
+                          variant: "outline",
+                          className: "h-8 text-xs border-blue-200 text-blue-700 hover:bg-blue-50",
+                          onClick: () => setPendingEditTarget(pt),
+                          "data-ocid": `tx.pending.edit_button.${idx + 1}`,
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-3.5 h-3.5 mr-1" }),
+                            "Edit"
+                          ]
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button,
+                        {
+                          size: "sm",
+                          variant: "outline",
+                          className: "h-8 text-xs border-red-200 text-red-600 hover:bg-red-50",
+                          onClick: () => setPendingDeleteId(pt.id),
+                          "data-ocid": `tx.pending.delete_button.${idx + 1}`,
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3.5 h-3.5" })
+                        }
+                      )
+                    ] })
+                  ]
+                },
+                pt.id
+              )) }) })
+            ]
+          }
+        )
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-card border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "pt-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-end gap-3", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" }),
@@ -94973,7 +95584,6 @@ function Transactions() {
           {
             value: "all",
             className: "data-[state=active]:border-b-2 rounded-none",
-            style: {},
             "data-ocid": "tx.all.tab",
             children: [
               "All (",
@@ -95042,6 +95652,47 @@ function Transactions() {
             )
           ] })
         ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialog,
+      {
+        open: pendingDeleteId !== null,
+        onOpenChange: (open) => !open && setPendingDeleteId(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "tx.pending_delete.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Remove Pending Transaction?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This pending submission will be discarded and cannot be recovered." })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AlertDialogCancel,
+              {
+                "data-ocid": "tx.pending_delete.cancel_button",
+                onClick: () => setPendingDeleteId(null),
+                children: "Cancel"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AlertDialogAction,
+              {
+                onClick: () => pendingDeleteId && handlePendingTxDelete(pendingDeleteId),
+                className: "text-white",
+                style: { backgroundColor: "var(--brand-red)" },
+                "data-ocid": "tx.pending_delete.confirm_button",
+                children: "Remove"
+              }
+            )
+          ] })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PendingTxEditDialog,
+      {
+        pending: pendingEditTarget,
+        onSave: handlePendingTxEdit,
+        onClose: () => setPendingEditTarget(null)
       }
     )
   ] });

@@ -8,8 +8,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -19,18 +27,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  CheckCircle,
   ChevronDown,
   ChevronUp,
+  Clock,
   Download,
+  Pencil,
   PlusCircle,
   Search,
   Trash2,
+  UserCheck,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import type { Transaction } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -42,6 +55,8 @@ import {
 } from "../hooks/useQueries";
 import { downloadTransactions } from "../utils/excelExport";
 import { formatDate, formatINR, todayISO } from "../utils/helpers";
+
+// ── Constants ────────────────────────────────────────────────────────────────
 
 const TX_TYPES = [
   "NEFT",
@@ -56,6 +71,9 @@ const TX_TYPES = [
 const TX_STATUSES = ["Success", "Pending", "Failed"];
 const CREDIT_TYPES = new Set(["Credit", "AEPS", "New CASA"]);
 const DEBIT_TYPES = new Set(["Debit", "NEFT", "IMPS", "DMT", "MISC Payment"]);
+const TX_PENDING_KEY = "fino_tx_pending";
+
+// ── Types ────────────────────────────────────────────────────────────────────
 
 interface FormState {
   referenceId: string;
@@ -70,19 +88,88 @@ interface FormState {
   status: string;
 }
 
-function TxForm({ onClose }: { onClose: () => void }) {
+interface PendingTransaction {
+  id: string;
+  submittedAt: string;
+  submittedByUserId: string;
+  referenceId: string;
+  transactionType: string;
+  accountNumber: string;
+  accountHolderName: string;
+  bankName: string;
+  ifscCode: string;
+  amount: number;
+  transactionDate: string;
+  frequencyType: string;
+  remark: string;
+  status: string;
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function genTxId(): string {
+  return Date.now().toString() + Math.random().toString(36).slice(2);
+}
+
+function getRole(): "staff" | "manager" {
+  try {
+    const stored = localStorage.getItem("fino_inventory_auth");
+    if (stored) {
+      const parsed = JSON.parse(stored) as { role?: string };
+      if (parsed.role === "manager") return "manager";
+    }
+  } catch {
+    // ignore
+  }
+  return "staff";
+}
+
+function loadPendingTxs(): PendingTransaction[] {
+  try {
+    const stored = localStorage.getItem(TX_PENDING_KEY);
+    return stored ? (JSON.parse(stored) as PendingTransaction[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function savePendingTxs(txs: PendingTransaction[]): void {
+  localStorage.setItem(TX_PENDING_KEY, JSON.stringify(txs));
+}
+
+// ── TxForm ───────────────────────────────────────────────────────────────────
+
+const emptyForm: FormState = {
+  referenceId: "",
+  transactionType: "NEFT",
+  accountNumber: "",
+  accountHolderName: "",
+  bankName: "",
+  ifscCode: "",
+  amount: "",
+  transactionDate: todayISO(),
+  remark: "",
+  status: "Success",
+};
+
+function TxForm({
+  onClose,
+  role,
+  onPendingAdd,
+  initialValues,
+}: {
+  onClose: () => void;
+  role: "staff" | "manager";
+  onPendingAdd?: (tx: PendingTransaction) => void;
+  initialValues?: Partial<FormState>;
+}) {
   const [form, setForm] = useState<FormState>({
-    referenceId: "",
-    transactionType: "NEFT",
-    accountNumber: "",
-    accountHolderName: "",
-    bankName: "",
-    ifscCode: "",
-    amount: "",
-    transactionDate: todayISO(),
-    remark: "",
-    status: "Success",
+    ...emptyForm,
+    ...initialValues,
   });
+  const [staffUserId, setStaffUserId] = useState("");
+  const [staffPassword, setStaffPassword] = useState("");
+  const [staffError, setStaffError] = useState("");
 
   const addTx = useAddTransaction();
   const update = (field: keyof FormState, value: string) =>
@@ -94,6 +181,40 @@ function TxForm({ onClose }: { onClose: () => void }) {
       toast.error("Please fill in required fields.");
       return;
     }
+
+    if (role !== "manager") {
+      // Staff mode: validate credentials then queue for approval
+      if (staffUserId !== "156399746" || staffPassword !== "156399746") {
+        setStaffError(
+          "Invalid Staff User ID or Password. Please check and retry.",
+        );
+        return;
+      }
+      const pending: PendingTransaction = {
+        id: genTxId(),
+        submittedAt: new Date().toISOString(),
+        submittedByUserId: staffUserId,
+        referenceId: form.referenceId,
+        transactionType: form.transactionType,
+        accountNumber: form.accountNumber,
+        accountHolderName: form.accountHolderName,
+        bankName: form.bankName,
+        ifscCode: form.ifscCode,
+        amount: Number.parseFloat(form.amount) || 0,
+        transactionDate: form.transactionDate,
+        frequencyType: "One Time",
+        remark: form.remark,
+        status: form.status,
+      };
+      if (onPendingAdd) {
+        onPendingAdd(pending);
+      }
+      toast.success("Transaction submitted for manager approval");
+      onClose();
+      return;
+    }
+
+    // Manager mode: direct backend submit
     try {
       await addTx.mutateAsync({
         referenceId: form.referenceId,
@@ -117,6 +238,12 @@ function TxForm({ onClose }: { onClose: () => void }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {role !== "manager" && (
+        <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-700">
+          ⚡ Staff submission — this transaction will require{" "}
+          <strong>manager approval</strong> before being recorded.
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div>
           <Label htmlFor="tx-ref">Reference ID *</Label>
@@ -247,8 +374,73 @@ function TxForm({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
+      {/* Staff Authentication — only for staff role */}
+      {role !== "manager" && (
+        <>
+          <Separator />
+          <div
+            className="rounded-lg p-4 space-y-3"
+            style={{
+              backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
+              border: "1px solid oklch(0.78 0.18 72 / 0.3)",
+            }}
+          >
+            <p className="text-sm font-semibold text-amber-800 flex items-center gap-1.5">
+              <UserCheck className="w-4 h-4" />
+              Staff Authentication Required
+            </p>
+            <p className="text-xs text-amber-700">
+              Enter your Staff credentials to submit this transaction for
+              manager approval.
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="tx-staff-id">Staff User ID</Label>
+                <Input
+                  id="tx-staff-id"
+                  placeholder="Enter your staff ID"
+                  value={staffUserId}
+                  onChange={(e) => {
+                    setStaffUserId(e.target.value);
+                    setStaffError("");
+                  }}
+                  data-ocid="tx.staff_id.input"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="tx-staff-pass">Staff Password</Label>
+                <Input
+                  id="tx-staff-pass"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={staffPassword}
+                  onChange={(e) => {
+                    setStaffPassword(e.target.value);
+                    setStaffError("");
+                  }}
+                  data-ocid="tx.staff_password.input"
+                />
+              </div>
+            </div>
+            {staffError && (
+              <p
+                className="text-xs text-red-600"
+                data-ocid="tx.staff_auth.error_state"
+              >
+                {staffError}
+              </p>
+            )}
+          </div>
+        </>
+      )}
+
       <div className="flex justify-end gap-3 pt-2">
-        <Button type="button" variant="outline" onClick={onClose}>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onClose}
+          data-ocid="tx.cancel.button"
+        >
           Cancel
         </Button>
         <Button
@@ -258,12 +450,207 @@ function TxForm({ onClose }: { onClose: () => void }) {
           style={{ backgroundColor: "var(--brand-red)" }}
           data-ocid="tx.submit.button"
         >
-          {addTx.isPending ? "Saving..." : "Add Transaction"}
+          {addTx.isPending
+            ? "Saving..."
+            : role === "manager"
+              ? "Add Transaction"
+              : "Submit for Approval"}
         </Button>
       </div>
     </form>
   );
 }
+
+// ── Pending Edit Dialog ───────────────────────────────────────────────────────
+
+function PendingTxEditDialog({
+  pending,
+  onSave,
+  onClose,
+}: {
+  pending: PendingTransaction | null;
+  onSave: (updated: PendingTransaction) => void;
+  onClose: () => void;
+}) {
+  const [form, setForm] = useState<FormState>(emptyForm);
+
+  useEffect(() => {
+    if (pending) {
+      setForm({
+        referenceId: pending.referenceId,
+        transactionType: pending.transactionType,
+        accountNumber: pending.accountNumber,
+        accountHolderName: pending.accountHolderName,
+        bankName: pending.bankName,
+        ifscCode: pending.ifscCode,
+        amount: String(pending.amount),
+        transactionDate: pending.transactionDate,
+        remark: pending.remark,
+        status: pending.status,
+      });
+    }
+  }, [pending]);
+
+  const update = (field: keyof FormState, value: string) =>
+    setForm((prev) => ({ ...prev, [field]: value }));
+
+  const handleSave = () => {
+    if (!pending) return;
+    if (!form.referenceId || !form.accountNumber || !form.amount) {
+      toast.error("Please fill in required fields.");
+      return;
+    }
+    onSave({
+      ...pending,
+      referenceId: form.referenceId,
+      transactionType: form.transactionType,
+      accountNumber: form.accountNumber,
+      accountHolderName: form.accountHolderName,
+      bankName: form.bankName,
+      ifscCode: form.ifscCode,
+      amount: Number.parseFloat(form.amount) || 0,
+      transactionDate: form.transactionDate,
+      remark: form.remark,
+      status: form.status,
+    });
+    toast.success("Pending transaction updated");
+    onClose();
+  };
+
+  return (
+    <Dialog open={!!pending} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent
+        className="sm:max-w-2xl max-h-[90vh] overflow-y-auto"
+        data-ocid="tx.pending_edit.dialog"
+      >
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Pencil className="w-5 h-5" style={{ color: "var(--brand-red)" }} />
+            Edit Pending Transaction
+          </DialogTitle>
+        </DialogHeader>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Label>Reference ID *</Label>
+            <Input
+              value={form.referenceId}
+              onChange={(e) => update("referenceId", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Transaction Type</Label>
+            <Select
+              value={form.transactionType}
+              onValueChange={(v) => update("transactionType", v)}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {TX_TYPES.map((t) => (
+                  <SelectItem key={t} value={t}>
+                    {t}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-1.5">
+            <Label>Account Number *</Label>
+            <Input
+              value={form.accountNumber}
+              onChange={(e) => update("accountNumber", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Account Holder Name</Label>
+            <Input
+              value={form.accountHolderName}
+              onChange={(e) => update("accountHolderName", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Bank Name</Label>
+            <Input
+              value={form.bankName}
+              onChange={(e) => update("bankName", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>IFSC Code</Label>
+            <Input
+              value={form.ifscCode}
+              onChange={(e) => update("ifscCode", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Amount (₹) *</Label>
+            <Input
+              type="number"
+              min="0"
+              step="0.01"
+              value={form.amount}
+              onChange={(e) => update("amount", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Transaction Date</Label>
+            <Input
+              type="date"
+              value={form.transactionDate}
+              onChange={(e) => update("transactionDate", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Status</Label>
+            <Select
+              value={form.status}
+              onValueChange={(v) => update("status", v)}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {TX_STATUSES.map((s) => (
+                  <SelectItem key={s} value={s}>
+                    {s}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-1.5 md:col-span-2">
+            <Label>Remark</Label>
+            <Textarea
+              value={form.remark}
+              onChange={(e) => update("remark", e.target.value)}
+              className="resize-none h-16"
+            />
+          </div>
+        </div>
+        <DialogFooter className="pt-2">
+          <Button
+            variant="outline"
+            onClick={onClose}
+            data-ocid="tx.pending_edit.cancel_button"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSave}
+            style={{ backgroundColor: "var(--brand-red)" }}
+            className="text-white"
+            data-ocid="tx.pending_edit.save_button"
+          >
+            Save Changes
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── TxTable ──────────────────────────────────────────────────────────────────
 
 function TxTable({
   transactions,
@@ -372,6 +759,8 @@ function TxTable({
   );
 }
 
+// ── Transactions page ─────────────────────────────────────────────────────────
+
 export default function Transactions() {
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
@@ -380,6 +769,87 @@ export default function Transactions() {
   const [filterDateStart, setFilterDateStart] = useState("");
   const [filterDateEnd, setFilterDateEnd] = useState("");
   const [deleteId, setDeleteId] = useState<bigint | null>(null);
+
+  // Role detection (reads from same localStorage as InventoryAuthContext)
+  const [role, setRole] = useState<"staff" | "manager">(() => getRole());
+  useEffect(() => {
+    const handleStorage = () => setRole(getRole());
+    window.addEventListener("storage", handleStorage);
+    const interval = setInterval(() => setRole(getRole()), 1000);
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      clearInterval(interval);
+    };
+  }, []);
+  const isManager = role === "manager";
+
+  // Pending transactions state
+  const [pendingTxs, setPendingTxs] = useState<PendingTransaction[]>(() =>
+    loadPendingTxs(),
+  );
+
+  const updatePendingTxs = (updated: PendingTransaction[]) => {
+    setPendingTxs(updated);
+    savePendingTxs(updated);
+  };
+
+  const handlePendingAdd = (tx: PendingTransaction) => {
+    const updated = [...pendingTxs, tx];
+    updatePendingTxs(updated);
+  };
+
+  // Pending tx approval state
+  const [approvingTxIds, setApprovingTxIds] = useState<Set<string>>(new Set());
+  const [pendingEditTarget, setPendingEditTarget] =
+    useState<PendingTransaction | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+
+  const addTxMut = useAddTransaction();
+
+  const handleTxApprove = async (pending: PendingTransaction) => {
+    setApprovingTxIds((prev) => new Set(prev).add(pending.id));
+    try {
+      await addTxMut.mutateAsync({
+        referenceId: pending.referenceId,
+        transactionType: pending.transactionType,
+        accountNumber: pending.accountNumber,
+        accountHolderName: pending.accountHolderName,
+        bankName: pending.bankName,
+        ifscCode: pending.ifscCode,
+        amount: pending.amount,
+        transactionDate: pending.transactionDate,
+        frequencyType: pending.frequencyType,
+        remark: pending.remark,
+        status: pending.status,
+      });
+      const updated = pendingTxs.filter((t) => t.id !== pending.id);
+      updatePendingTxs(updated);
+      toast.success(
+        `Transaction "${pending.referenceId}" approved and recorded!`,
+      );
+    } catch (err) {
+      console.error("Approve transaction error:", err);
+      toast.error("Failed to approve transaction. Please try again.");
+    } finally {
+      setApprovingTxIds((prev) => {
+        const next = new Set(prev);
+        next.delete(pending.id);
+        return next;
+      });
+    }
+  };
+
+  const handlePendingTxEdit = (updated: PendingTransaction) => {
+    const list = pendingTxs.map((t) => (t.id === updated.id ? updated : t));
+    updatePendingTxs(list);
+  };
+
+  const handlePendingTxDelete = (id: string) => {
+    const updated = pendingTxs.filter((t) => t.id !== id);
+    updatePendingTxs(updated);
+    setPendingDeleteId(null);
+    toast.success("Pending transaction removed");
+  };
 
   const { data: txs, isLoading } = useTransactions();
   const deleteTx = useDeleteTransaction();
@@ -462,6 +932,22 @@ export default function Transactions() {
         </div>
       </div>
 
+      {/* Staff pending banner */}
+      {!isManager && pendingTxs.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-2 px-4 py-3 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800"
+          data-ocid="tx.pending.toast"
+        >
+          <Clock className="w-4 h-4 shrink-0" />
+          <span>
+            <strong>{pendingTxs.length}</strong> transaction
+            {pendingTxs.length > 1 ? "s" : ""} pending manager approval.
+          </span>
+        </motion.div>
+      )}
+
       <AnimatePresence>
         {showForm && (
           <motion.div
@@ -477,12 +963,128 @@ export default function Transactions() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <TxForm onClose={() => setShowForm(false)} />
+                <TxForm
+                  onClose={() => setShowForm(false)}
+                  role={role}
+                  onPendingAdd={handlePendingAdd}
+                />
               </CardContent>
             </Card>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Manager: Pending Approvals Panel */}
+      {isManager && pendingTxs.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Card
+            className="border-amber-200 bg-amber-50 shadow-sm"
+            data-ocid="tx.pending_approvals.panel"
+          >
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold text-amber-900 flex items-center gap-2">
+                <Clock className="w-5 h-5 text-amber-600" />
+                Pending Approvals
+                <Badge className="ml-auto bg-amber-200 text-amber-900 border-amber-300">
+                  {pendingTxs.length}
+                </Badge>
+              </CardTitle>
+              <p className="text-xs text-amber-700 mt-0.5">
+                Review staff-submitted transactions before they are recorded.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <AnimatePresence>
+                {pendingTxs.map((pt, idx) => (
+                  <motion.div
+                    key={pt.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    transition={{ delay: idx * 0.04 }}
+                    className="flex flex-wrap items-start gap-3 p-3 bg-white rounded-lg border border-amber-200"
+                    data-ocid={`tx.pending.item.${idx + 1}`}
+                  >
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-foreground">
+                        <span className="font-mono">{pt.referenceId}</span>
+                        <Badge variant="outline" className="text-xs">
+                          {pt.transactionType}
+                        </Badge>
+                        <span className="text-muted-foreground text-xs">
+                          {pt.accountNumber} — {pt.accountHolderName}
+                        </span>
+                      </div>
+                      <div className="text-xs text-muted-foreground flex flex-wrap gap-3">
+                        <span>
+                          Amount:{" "}
+                          <strong className="text-foreground">
+                            {formatINR(pt.amount)}
+                          </strong>
+                        </span>
+                        <span>Date: {formatDate(pt.transactionDate)}</span>
+                        <span>
+                          Status:{" "}
+                          <strong className="text-foreground">
+                            {pt.status}
+                          </strong>
+                        </span>
+                        <span>
+                          Submitted:{" "}
+                          {new Date(pt.submittedAt).toLocaleDateString()} by{" "}
+                          <strong className="text-foreground">
+                            {pt.submittedByUserId}
+                          </strong>
+                        </span>
+                      </div>
+                      {pt.remark && (
+                        <p className="text-xs text-muted-foreground italic">
+                          Remark: {pt.remark}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Button
+                        size="sm"
+                        className="h-8 text-xs bg-green-600 hover:bg-green-700 text-white"
+                        onClick={() => handleTxApprove(pt)}
+                        disabled={approvingTxIds.has(pt.id)}
+                        data-ocid={`tx.pending.approve_button.${idx + 1}`}
+                      >
+                        <CheckCircle className="w-3.5 h-3.5 mr-1" />
+                        {approvingTxIds.has(pt.id) ? "Approving..." : "Approve"}
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-8 text-xs border-blue-200 text-blue-700 hover:bg-blue-50"
+                        onClick={() => setPendingEditTarget(pt)}
+                        data-ocid={`tx.pending.edit_button.${idx + 1}`}
+                      >
+                        <Pencil className="w-3.5 h-3.5 mr-1" />
+                        Edit
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="h-8 text-xs border-red-200 text-red-600 hover:bg-red-50"
+                        onClick={() => setPendingDeleteId(pt.id)}
+                        data-ocid={`tx.pending.delete_button.${idx + 1}`}
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </Button>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
 
       {/* Filters */}
       <Card className="shadow-card border-border">
@@ -595,7 +1197,6 @@ export default function Transactions() {
                 <TabsTrigger
                   value="all"
                   className="data-[state=active]:border-b-2 rounded-none"
-                  style={{}}
                   data-ocid="tx.all.tab"
                 >
                   All ({filterTxs.length})
@@ -633,7 +1234,7 @@ export default function Transactions() {
         </Card>
       )}
 
-      {/* Delete confirmation */}
+      {/* Delete transaction confirmation */}
       <AlertDialog
         open={deleteId !== null}
         onOpenChange={(open) => !open && setDeleteId(null)}
@@ -660,6 +1261,46 @@ export default function Transactions() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Delete pending transaction confirmation */}
+      <AlertDialog
+        open={pendingDeleteId !== null}
+        onOpenChange={(open) => !open && setPendingDeleteId(null)}
+      >
+        <AlertDialogContent data-ocid="tx.pending_delete.dialog">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove Pending Transaction?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This pending submission will be discarded and cannot be recovered.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel
+              data-ocid="tx.pending_delete.cancel_button"
+              onClick={() => setPendingDeleteId(null)}
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() =>
+                pendingDeleteId && handlePendingTxDelete(pendingDeleteId)
+              }
+              className="text-white"
+              style={{ backgroundColor: "var(--brand-red)" }}
+              data-ocid="tx.pending_delete.confirm_button"
+            >
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Edit pending transaction dialog */}
+      <PendingTxEditDialog
+        pending={pendingEditTarget}
+        onSave={handlePendingTxEdit}
+        onClose={() => setPendingEditTarget(null)}
+      />
     </div>
   );
 }
