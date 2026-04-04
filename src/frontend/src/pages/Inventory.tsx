@@ -367,7 +367,7 @@ export default function Inventory() {
         name: productForm.name.trim(),
         description: productForm.description.trim(),
         sku: productForm.sku.trim(),
-        barcode: productForm.barcode.trim(),
+        barcode: "",
         category: productForm.category.trim(),
         quantity: BigInt(
           Math.max(0, Number.parseInt(productForm.quantity) || 0),
@@ -381,8 +381,9 @@ export default function Inventory() {
       toast.success("Product added successfully");
       setProductForm(emptyProductForm);
       setAddProductOpen(false);
-    } catch {
-      toast.error("Failed to add product.");
+    } catch (err) {
+      console.error("Add product error:", err);
+      toast.error("Failed to add product. Please try again.");
     }
   };
 
@@ -400,7 +401,7 @@ export default function Inventory() {
         name: editForm.name.trim(),
         description: editForm.description.trim(),
         sku: editForm.sku.trim(),
-        barcode: editForm.barcode.trim(),
+        barcode: "",
         category: editForm.category.trim(),
         unitCost: Number.parseFloat(editForm.unitCost) || 0,
         salePrice: Number.parseFloat(editForm.salePrice) || 0,
@@ -410,7 +411,8 @@ export default function Inventory() {
       });
       toast.success("Product updated");
       setEditProduct(null);
-    } catch {
+    } catch (err) {
+      console.error("Edit product error:", err);
       toast.error("Failed to update product.");
     }
   };
@@ -1179,7 +1181,7 @@ export default function Inventory() {
                   data-ocid="inventory.add_product.description.input"
                 />
               </div>
-              <div>
+              <div className="col-span-2">
                 <Label htmlFor="ap-sku">SKU *</Label>
                 <Input
                   id="ap-sku"
@@ -1190,19 +1192,6 @@ export default function Inventory() {
                     setProductForm((f) => ({ ...f, sku: e.target.value }))
                   }
                   data-ocid="inventory.add_product.sku.input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="ap-barcode">Barcode</Label>
-                <Input
-                  id="ap-barcode"
-                  className="mt-1 font-mono"
-                  placeholder="e.g. 8901234567890"
-                  value={productForm.barcode}
-                  onChange={(e) =>
-                    setProductForm((f) => ({ ...f, barcode: e.target.value }))
-                  }
-                  data-ocid="inventory.add_product.barcode.input"
                 />
               </div>
               <div className="col-span-2">
@@ -1369,7 +1358,7 @@ export default function Inventory() {
                   data-ocid="inventory.edit_product.description.input"
                 />
               </div>
-              <div>
+              <div className="col-span-2">
                 <Label htmlFor="ep-sku">SKU *</Label>
                 <Input
                   id="ep-sku"
@@ -1379,18 +1368,6 @@ export default function Inventory() {
                     setEditForm((f) => ({ ...f, sku: e.target.value }))
                   }
                   data-ocid="inventory.edit_product.sku.input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="ep-barcode">Barcode</Label>
-                <Input
-                  id="ep-barcode"
-                  className="mt-1 font-mono"
-                  value={editForm.barcode}
-                  onChange={(e) =>
-                    setEditForm((f) => ({ ...f, barcode: e.target.value }))
-                  }
-                  data-ocid="inventory.edit_product.barcode.input"
                 />
               </div>
               <div className="col-span-2">

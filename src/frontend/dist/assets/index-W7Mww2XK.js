@@ -90735,7 +90735,7 @@ function Inventory() {
         name: productForm.name.trim(),
         description: productForm.description.trim(),
         sku: productForm.sku.trim(),
-        barcode: productForm.barcode.trim(),
+        barcode: "",
         category: productForm.category.trim(),
         quantity: BigInt(
           Math.max(0, Number.parseInt(productForm.quantity) || 0)
@@ -90749,8 +90749,9 @@ function Inventory() {
       ue.success("Product added successfully");
       setProductForm(emptyProductForm);
       setAddProductOpen(false);
-    } catch {
-      ue.error("Failed to add product.");
+    } catch (err) {
+      console.error("Add product error:", err);
+      ue.error("Failed to add product. Please try again.");
     }
   };
   const handleEditProduct = async (e3) => {
@@ -90766,7 +90767,7 @@ function Inventory() {
         name: editForm.name.trim(),
         description: editForm.description.trim(),
         sku: editForm.sku.trim(),
-        barcode: editForm.barcode.trim(),
+        barcode: "",
         category: editForm.category.trim(),
         unitCost: Number.parseFloat(editForm.unitCost) || 0,
         salePrice: Number.parseFloat(editForm.salePrice) || 0,
@@ -90776,7 +90777,8 @@ function Inventory() {
       });
       ue.success("Product updated");
       setEditProduct(null);
-    } catch {
+    } catch (err) {
+      console.error("Edit product error:", err);
       ue.error("Failed to update product.");
     }
   };
@@ -91464,7 +91466,7 @@ function Inventory() {
                   }
                 )
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-sku", children: "SKU *" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
@@ -91475,20 +91477,6 @@ function Inventory() {
                     value: productForm.sku,
                     onChange: (e3) => setProductForm((f2) => ({ ...f2, sku: e3.target.value })),
                     "data-ocid": "inventory.add_product.sku.input"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-barcode", children: "Barcode" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Input,
-                  {
-                    id: "ap-barcode",
-                    className: "mt-1 font-mono",
-                    placeholder: "e.g. 8901234567890",
-                    value: productForm.barcode,
-                    onChange: (e3) => setProductForm((f2) => ({ ...f2, barcode: e3.target.value })),
-                    "data-ocid": "inventory.add_product.barcode.input"
                   }
                 )
               ] }),
@@ -91663,7 +91651,7 @@ function Inventory() {
                       }
                     )
                   ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-sku", children: "SKU *" }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Input,
@@ -91673,19 +91661,6 @@ function Inventory() {
                         value: editForm.sku,
                         onChange: (e3) => setEditForm((f2) => ({ ...f2, sku: e3.target.value })),
                         "data-ocid": "inventory.edit_product.sku.input"
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-barcode", children: "Barcode" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        id: "ep-barcode",
-                        className: "mt-1 font-mono",
-                        value: editForm.barcode,
-                        onChange: (e3) => setEditForm((f2) => ({ ...f2, barcode: e3.target.value })),
-                        "data-ocid": "inventory.edit_product.barcode.input"
                       }
                     )
                   ] }),
