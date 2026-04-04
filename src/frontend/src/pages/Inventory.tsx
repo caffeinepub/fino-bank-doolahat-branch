@@ -1456,7 +1456,8 @@ function InventoryInner() {
   const { data: todayTxs = [], isLoading: txLoading } =
     useTodayStockTransactions(today);
 
-  const addProductMut = useAddProduct();
+  const approveProductMut = useAddProduct();
+  const [approvingIds, setApprovingIds] = useState<Set<string>>(new Set());
   const deleteProductMut = useDeleteProduct();
   const bulkUpdateMut = useBulkUpdateProducts();
 
@@ -1591,8 +1592,9 @@ function InventoryInner() {
   };
 
   const handlePendingApprove = async (pending: PendingProduct) => {
+    setApprovingIds((prev) => new Set(prev).add(pending.id));
     try {
-      await addProductMut.mutateAsync({
+      await approveProductMut.mutateAsync({
         name: pending.name,
         description: pending.description,
         sku: pending.sku,
@@ -1605,8 +1607,15 @@ function InventoryInner() {
       });
       setPendingProducts((prev) => prev.filter((p) => p.id !== pending.id));
       toast.success(`"${pending.name}" approved and added to inventory!`);
-    } catch {
-      toast.error("Failed to approve product.");
+    } catch (err) {
+      console.error("Approve product error:", err);
+      toast.error("Failed to approve product. Please try again.");
+    } finally {
+      setApprovingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(pending.id);
+        return next;
+      });
     }
   };
 
@@ -1922,10 +1931,10 @@ function InventoryInner() {
                                 className="h-7 w-7 text-green-600 hover:bg-green-50"
                                 title="Approve"
                                 onClick={() => handlePendingApprove(p)}
-                                disabled={addProductMut.isPending}
+                                disabled={approvingIds.has(p.id)}
                                 data-ocid={`pending_approvals.confirm_button.${idx + 1}`}
                               >
-                                {addProductMut.isPending ? (
+                                {approvingIds.has(p.id) ? (
                                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
                                 ) : (
                                   <CheckCircle className="w-3.5 h-3.5" />

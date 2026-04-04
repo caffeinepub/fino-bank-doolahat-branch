@@ -91969,7 +91969,8 @@ function InventoryInner() {
   const [pendingDeleteId, setPendingDeleteId] = reactExports.useState(null);
   const { data: products = [], isLoading: productsLoading } = useInventoryProducts();
   const { data: todayTxs = [], isLoading: txLoading } = useTodayStockTransactions(today);
-  const addProductMut = useAddProduct();
+  const approveProductMut = useAddProduct();
+  const [approvingIds, setApprovingIds] = reactExports.useState(/* @__PURE__ */ new Set());
   const deleteProductMut = useDeleteProduct();
   const bulkUpdateMut = useBulkUpdateProducts();
   const metrics = reactExports.useMemo(() => {
@@ -92082,8 +92083,9 @@ function InventoryInner() {
     setPendingProducts((prev) => [...prev, p2]);
   };
   const handlePendingApprove = async (pending) => {
+    setApprovingIds((prev) => new Set(prev).add(pending.id));
     try {
-      await addProductMut.mutateAsync({
+      await approveProductMut.mutateAsync({
         name: pending.name,
         description: pending.description,
         sku: pending.sku,
@@ -92096,8 +92098,15 @@ function InventoryInner() {
       });
       setPendingProducts((prev) => prev.filter((p2) => p2.id !== pending.id));
       ue.success(`"${pending.name}" approved and added to inventory!`);
-    } catch {
-      ue.error("Failed to approve product.");
+    } catch (err) {
+      console.error("Approve product error:", err);
+      ue.error("Failed to approve product. Please try again.");
+    } finally {
+      setApprovingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(pending.id);
+        return next;
+      });
     }
   };
   const handlePendingEdit = (updated) => {
@@ -92359,9 +92368,9 @@ function InventoryInner() {
                             className: "h-7 w-7 text-green-600 hover:bg-green-50",
                             title: "Approve",
                             onClick: () => handlePendingApprove(p2),
-                            disabled: addProductMut.isPending,
+                            disabled: approvingIds.has(p2.id),
                             "data-ocid": `pending_approvals.confirm_button.${idx + 1}`,
-                            children: addProductMut.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-3.5 h-3.5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5" })
+                            children: approvingIds.has(p2.id) ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-3.5 h-3.5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5" })
                           }
                         ),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
