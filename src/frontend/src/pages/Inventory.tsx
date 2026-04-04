@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -43,22 +44,31 @@ import {
   ArrowUp,
   ArrowUpDown,
   BoxIcon,
+  CheckCircle,
   ChevronDown,
   ChevronUp,
   IndianRupee,
+  KeyRound,
   Layers,
   Loader2,
+  LogOut,
   Pencil,
   PlusCircle,
   RefreshCw,
   Search,
+  ShieldCheck,
   ShoppingCart,
   Trash2,
   TrendingUp,
+  UserCheck,
 } from "lucide-react";
-import { motion } from "motion/react";
-import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+import {
+  InventoryAuthProvider,
+  useInventoryAuth,
+} from "../context/InventoryAuthContext";
 import {
   useAddProduct,
   useAddStockTransaction,
@@ -71,9 +81,12 @@ import {
 import type { InventoryProduct, StockTransaction } from "../types/inventory";
 import { formatINR, todayISO } from "../utils/helpers";
 
+// ── Constants ────────────────────────────────────────────────────────────────
+
+const PENDING_KEY = "fino_inventory_pending";
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
-type UserRole = "manager" | "staff";
 type SortField =
   | "name"
   | "sku"
@@ -84,6 +97,36 @@ type SortField =
   | "reorderPoint"
   | "status";
 type SortDir = "asc" | "desc";
+
+interface PendingProduct {
+  id: string;
+  submittedAt: string;
+  submittedByUserId: string;
+  name: string;
+  description: string;
+  sku: string;
+  category: string;
+  quantity: number;
+  unitCost: number;
+  salePrice: number;
+  reorderPoint: number;
+  status: "pending";
+}
+
+interface AddProductForm {
+  name: string;
+  description: string;
+  sku: string;
+  category: string;
+  quantity: string;
+  unitCost: string;
+  salePrice: string;
+  reorderPoint: string;
+  staffUserId: string;
+  staffPassword: string;
+}
+
+// ── Helper functions ─────────────────────────────────────────────────────────
 
 function getStatus(
   qty: number,
@@ -98,6 +141,10 @@ function statusSortValue(status: "in-stock" | "low" | "out-of-stock"): number {
   if (status === "out-of-stock") return 0;
   if (status === "low") return 1;
   return 2;
+}
+
+function genId(): string {
+  return Date.now().toString() + Math.random().toString(36).slice(2);
 }
 
 // ── Sub-components ───────────────────────────────────────────────────────────
@@ -174,19 +221,755 @@ function MetricCard({
   );
 }
 
-// ── Main Component ───────────────────────────────────────────────────────────
+// ── Manager Login Modal ───────────────────────────────────────────────────────
 
-const emptyProductForm = {
+function ManagerLoginModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  const { loginAsManager, resetManagerPassword } = useInventoryAuth();
+  const [password, setPassword] = useState("");
+  const [showForgot, setShowForgot] = useState(false);
+  const [nickName, setNickName] = useState("");
+  const [forgotError, setForgotError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleLogin = () => {
+    if (!password.trim()) {
+      setPasswordError("Please enter the manager password.");
+      return;
+    }
+    const ok = loginAsManager(password);
+    if (ok) {
+      toast.success("Manager access granted");
+      setPassword("");
+      setPasswordError("");
+      onClose();
+    } else {
+      setPasswordError("Incorrect password. Please try again.");
+    }
+  };
+
+  const handleForgot = () => {
+    if (!nickName.trim()) {
+      setForgotError("Please enter your nick name.");
+      return;
+    }
+    const ok = resetManagerPassword(nickName);
+    if (ok) {
+      toast.success("Manager access granted via security question");
+      setNickName("");
+      setForgotError("");
+      setShowForgot(false);
+      onClose();
+    } else {
+      setForgotError("Incorrect answer. Access denied.");
+    }
+  };
+
+  const handleClose = () => {
+    setPassword("");
+    setPasswordError("");
+    setNickName("");
+    setForgotError("");
+    setShowForgot(false);
+    onClose();
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
+      <DialogContent className="sm:max-w-md" data-ocid="manager_login.dialog">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <ShieldCheck
+              className="w-5 h-5"
+              style={{ color: "var(--brand-red)" }}
+            />
+            Manager Login
+          </DialogTitle>
+        </DialogHeader>
+
+        <AnimatePresence mode="wait">
+          {!showForgot ? (
+            <motion.div
+              key="login"
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              className="space-y-4"
+            >
+              <div className="space-y-1.5">
+                <Label htmlFor="mgr-password">Manager Password</Label>
+                <Input
+                  id="mgr-password"
+                  type="password"
+                  placeholder="Enter manager password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setPasswordError("");
+                  }}
+                  onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                  data-ocid="manager_login.input"
+                />
+                {passwordError && (
+                  <p
+                    className="text-xs text-red-600 flex items-center gap-1"
+                    data-ocid="manager_login.error_state"
+                  >
+                    <AlertCircle className="w-3 h-3" />
+                    {passwordError}
+                  </p>
+                )}
+              </div>
+              <button
+                type="button"
+                className="text-xs text-primary underline underline-offset-2 hover:opacity-70 transition-opacity"
+                onClick={() => {
+                  setShowForgot(true);
+                  setPasswordError("");
+                }}
+                data-ocid="manager_login.forgot_link"
+              >
+                Forgot Password?
+              </button>
+              <DialogFooter>
+                <Button
+                  variant="outline"
+                  onClick={handleClose}
+                  data-ocid="manager_login.cancel_button"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleLogin}
+                  style={{ backgroundColor: "var(--brand-red)" }}
+                  className="text-white"
+                  data-ocid="manager_login.submit_button"
+                >
+                  <KeyRound className="w-4 h-4 mr-1.5" />
+                  Login
+                </Button>
+              </DialogFooter>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="forgot"
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              className="space-y-4"
+            >
+              <div
+                className="p-3 rounded-lg text-sm"
+                style={{
+                  backgroundColor: "oklch(0.97 0.012 293.8)",
+                  borderLeft: "3px solid var(--brand-red)",
+                }}
+              >
+                <p className="font-medium text-foreground">Security Question</p>
+                <p className="text-muted-foreground text-xs mt-0.5">
+                  Answer correctly to regain access
+                </p>
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="nick-name">Enter Your Nick Name</Label>
+                <Input
+                  id="nick-name"
+                  type="text"
+                  placeholder="Your nick name"
+                  value={nickName}
+                  onChange={(e) => {
+                    setNickName(e.target.value);
+                    setForgotError("");
+                  }}
+                  onKeyDown={(e) => e.key === "Enter" && handleForgot()}
+                  data-ocid="manager_login.nickname_input"
+                />
+                {forgotError && (
+                  <p
+                    className="text-xs text-red-600 flex items-center gap-1"
+                    data-ocid="manager_login.forgot_error_state"
+                  >
+                    <AlertCircle className="w-3 h-3" />
+                    {forgotError}
+                  </p>
+                )}
+              </div>
+              <DialogFooter>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowForgot(false);
+                    setForgotError("");
+                    setNickName("");
+                  }}
+                  data-ocid="manager_login.back_button"
+                >
+                  Back
+                </Button>
+                <Button
+                  onClick={handleForgot}
+                  style={{ backgroundColor: "var(--brand-red)" }}
+                  className="text-white"
+                  data-ocid="manager_login.reset_button"
+                >
+                  Reset Access
+                </Button>
+              </DialogFooter>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Add Product Modal ─────────────────────────────────────────────────────────
+
+const emptyAddForm: AddProductForm = {
   name: "",
   description: "",
   sku: "",
-  barcode: "",
   category: "",
   quantity: "",
   unitCost: "",
   salePrice: "",
   reorderPoint: "",
+  staffUserId: "",
+  staffPassword: "",
 };
+
+function AddProductModal({
+  open,
+  onClose,
+  isManager,
+  pendingProducts,
+  onPendingAdd,
+}: {
+  open: boolean;
+  onClose: () => void;
+  isManager: boolean;
+  pendingProducts: PendingProduct[];
+  onPendingAdd: (p: PendingProduct) => void;
+}) {
+  const addProduct = useAddProduct();
+  const [form, setForm] = useState<AddProductForm>(emptyAddForm);
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof AddProductForm, string>>
+  >({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const set = (field: keyof AddProductForm, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
+  };
+
+  const validate = (): boolean => {
+    const newErrors: Partial<Record<keyof AddProductForm, string>> = {};
+    if (!form.name.trim()) newErrors.name = "Product name is required";
+    if (!form.sku.trim()) newErrors.sku = "SKU is required";
+    if (!isManager) {
+      if (!form.staffUserId.trim())
+        newErrors.staffUserId = "Staff User ID is required";
+      if (!form.staffPassword.trim())
+        newErrors.staffPassword = "Staff password is required";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    try {
+      if (isManager) {
+        // Manager: direct add to backend
+        await addProduct.mutateAsync({
+          name: form.name.trim(),
+          description: form.description.trim(),
+          sku: form.sku.trim(),
+          barcode: "",
+          category: form.category.trim(),
+          quantity: BigInt(Math.max(0, Number.parseInt(form.quantity) || 0)),
+          unitCost: Number.parseFloat(form.unitCost) || 0,
+          salePrice: Number.parseFloat(form.salePrice) || 0,
+          reorderPoint: BigInt(
+            Math.max(0, Number.parseInt(form.reorderPoint) || 0),
+          ),
+        });
+        toast.success("Product added successfully");
+        setForm(emptyAddForm);
+        onClose();
+      } else {
+        // Staff: validate credentials then add to pending
+        if (
+          form.staffUserId !== "156399746" ||
+          form.staffPassword !== "156399746"
+        ) {
+          toast.error(
+            "Invalid Staff credentials. Use your assigned User ID and password.",
+          );
+          setErrors({
+            staffUserId: "Invalid Staff User ID or Password",
+            staffPassword: "Invalid Staff User ID or Password",
+          });
+          setIsSubmitting(false);
+          return;
+        }
+        const pending: PendingProduct = {
+          id: genId(),
+          submittedAt: new Date().toISOString(),
+          submittedByUserId: form.staffUserId,
+          name: form.name.trim(),
+          description: form.description.trim(),
+          sku: form.sku.trim(),
+          category: form.category.trim(),
+          quantity: Math.max(0, Number.parseInt(form.quantity) || 0),
+          unitCost: Number.parseFloat(form.unitCost) || 0,
+          salePrice: Number.parseFloat(form.salePrice) || 0,
+          reorderPoint: Math.max(0, Number.parseInt(form.reorderPoint) || 0),
+          status: "pending",
+        };
+        onPendingAdd(pending);
+        toast.success("Product submitted for manager approval");
+        setForm(emptyAddForm);
+        onClose();
+      }
+    } catch (err) {
+      console.error("Add product error:", err);
+      toast.error("Failed to add product. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleClose = () => {
+    setForm(emptyAddForm);
+    setErrors({});
+    onClose();
+  };
+
+  // prevent duplicate SKU in pending
+  const skuTaken = pendingProducts.some(
+    (p) => p.sku === form.sku.trim() && form.sku.trim(),
+  );
+
+  return (
+    <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
+      <DialogContent
+        className="sm:max-w-lg max-h-[90vh] overflow-y-auto"
+        data-ocid="add_product.dialog"
+      >
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <PlusCircle
+              className="w-5 h-5"
+              style={{ color: "var(--brand-red)" }}
+            />
+            Add New Product
+          </DialogTitle>
+          {!isManager && (
+            <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-md px-3 py-2 mt-2">
+              ⚡ Staff submission — will require manager approval before being
+              added to inventory.
+            </p>
+          )}
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Product Name */}
+          <div className="space-y-1.5">
+            <Label htmlFor="ap-name">
+              Product Name <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="ap-name"
+              placeholder="e.g. A4 Paper Ream"
+              value={form.name}
+              onChange={(e) => set("name", e.target.value)}
+              data-ocid="add_product.input"
+            />
+            {errors.name && (
+              <p
+                className="text-xs text-red-600"
+                data-ocid="add_product.name_error"
+              >
+                {errors.name}
+              </p>
+            )}
+          </div>
+
+          {/* Description */}
+          <div className="space-y-1.5">
+            <Label htmlFor="ap-desc">Description</Label>
+            <Input
+              id="ap-desc"
+              placeholder="Brief product description"
+              value={form.description}
+              onChange={(e) => set("description", e.target.value)}
+            />
+          </div>
+
+          {/* SKU */}
+          <div className="space-y-1.5">
+            <Label htmlFor="ap-sku">
+              SKU <span className="text-red-500">*</span>
+            </Label>
+            <Input
+              id="ap-sku"
+              placeholder="e.g. PAPER-A4-001"
+              value={form.sku}
+              onChange={(e) => set("sku", e.target.value)}
+            />
+            {errors.sku && (
+              <p
+                className="text-xs text-red-600"
+                data-ocid="add_product.sku_error"
+              >
+                {errors.sku}
+              </p>
+            )}
+            {skuTaken && (
+              <p className="text-xs text-amber-600">
+                ⚠️ A pending product with this SKU already exists
+              </p>
+            )}
+          </div>
+
+          {/* Category */}
+          <div className="space-y-1.5">
+            <Label htmlFor="ap-category">Category</Label>
+            <Input
+              id="ap-category"
+              placeholder="e.g. Stationery, Electronics"
+              value={form.category}
+              onChange={(e) => set("category", e.target.value)}
+            />
+          </div>
+
+          {/* Quantity + Reorder Point */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="ap-qty">Initial Quantity</Label>
+              <Input
+                id="ap-qty"
+                type="number"
+                min="0"
+                placeholder="0"
+                value={form.quantity}
+                onChange={(e) => set("quantity", e.target.value)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="ap-reorder">Reorder Point</Label>
+              <Input
+                id="ap-reorder"
+                type="number"
+                min="0"
+                placeholder="0"
+                value={form.reorderPoint}
+                onChange={(e) => set("reorderPoint", e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Unit Cost + Sale Price */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="ap-cost">Unit Cost (₹)</Label>
+              <Input
+                id="ap-cost"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+                value={form.unitCost}
+                onChange={(e) => set("unitCost", e.target.value)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="ap-sale">Sale Price (₹)</Label>
+              <Input
+                id="ap-sale"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="0.00"
+                value={form.salePrice}
+                onChange={(e) => set("salePrice", e.target.value)}
+              />
+            </div>
+          </div>
+
+          {/* Staff Authentication — only for staff role */}
+          {!isManager && (
+            <>
+              <Separator />
+              <div
+                className="rounded-lg p-4 space-y-3"
+                style={{
+                  backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
+                  border: "1px solid oklch(0.78 0.18 72 / 0.3)",
+                }}
+              >
+                <p className="text-sm font-semibold text-amber-800 flex items-center gap-1.5">
+                  <UserCheck className="w-4 h-4" />
+                  Staff Authentication Required
+                </p>
+                <p className="text-xs text-amber-700">
+                  Enter your Staff credentials to submit this product for
+                  manager approval.
+                </p>
+                <div className="space-y-1.5">
+                  <Label htmlFor="ap-staff-id">Staff User ID</Label>
+                  <Input
+                    id="ap-staff-id"
+                    placeholder="Enter your staff ID"
+                    value={form.staffUserId}
+                    onChange={(e) => set("staffUserId", e.target.value)}
+                    data-ocid="add_product.staff_id_input"
+                  />
+                  {errors.staffUserId && (
+                    <p
+                      className="text-xs text-red-600"
+                      data-ocid="add_product.staff_id_error"
+                    >
+                      {errors.staffUserId}
+                    </p>
+                  )}
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="ap-staff-pass">Staff Password</Label>
+                  <Input
+                    id="ap-staff-pass"
+                    type="password"
+                    placeholder="Enter your staff password"
+                    value={form.staffPassword}
+                    onChange={(e) => set("staffPassword", e.target.value)}
+                    data-ocid="add_product.staff_password_input"
+                  />
+                  {errors.staffPassword && (
+                    <p
+                      className="text-xs text-red-600"
+                      data-ocid="add_product.staff_pass_error"
+                    >
+                      {errors.staffPassword}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+
+          <DialogFooter className="pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleClose}
+              data-ocid="add_product.cancel_button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={
+                isSubmitting || addProduct.isPending || (skuTaken && !isManager)
+              }
+              style={{ backgroundColor: "var(--brand-red)" }}
+              className="text-white"
+              data-ocid="add_product.submit_button"
+            >
+              {isSubmitting || addProduct.isPending ? (
+                <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+              ) : (
+                <PlusCircle className="w-4 h-4 mr-1.5" />
+              )}
+              {isManager ? "Add Product" : "Submit for Approval"}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Pending Edit Modal ────────────────────────────────────────────────────────
+
+function PendingEditModal({
+  pending,
+  onSave,
+  onClose,
+}: {
+  pending: PendingProduct | null;
+  onSave: (updated: PendingProduct) => void;
+  onClose: () => void;
+}) {
+  const [form, setForm] = useState<
+    Omit<AddProductForm, "staffUserId" | "staffPassword">
+  >({
+    name: "",
+    description: "",
+    sku: "",
+    category: "",
+    quantity: "",
+    unitCost: "",
+    salePrice: "",
+    reorderPoint: "",
+  });
+
+  useEffect(() => {
+    if (pending) {
+      setForm({
+        name: pending.name,
+        description: pending.description,
+        sku: pending.sku,
+        category: pending.category,
+        quantity: String(pending.quantity),
+        unitCost: String(pending.unitCost),
+        salePrice: String(pending.salePrice),
+        reorderPoint: String(pending.reorderPoint),
+      });
+    }
+  }, [pending]);
+
+  const set = (field: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSave = () => {
+    if (!pending) return;
+    if (!form.name.trim() || !form.sku.trim()) {
+      toast.error("Product name and SKU are required.");
+      return;
+    }
+    onSave({
+      ...pending,
+      name: form.name.trim(),
+      description: form.description.trim(),
+      sku: form.sku.trim(),
+      category: form.category.trim(),
+      quantity: Math.max(0, Number.parseInt(form.quantity) || 0),
+      unitCost: Number.parseFloat(form.unitCost) || 0,
+      salePrice: Number.parseFloat(form.salePrice) || 0,
+      reorderPoint: Math.max(0, Number.parseInt(form.reorderPoint) || 0),
+    });
+    toast.success("Pending product updated");
+    onClose();
+  };
+
+  return (
+    <Dialog open={!!pending} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent
+        className="sm:max-w-lg max-h-[90vh] overflow-y-auto"
+        data-ocid="pending_edit.dialog"
+      >
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Pencil className="w-5 h-5" style={{ color: "var(--brand-red)" }} />
+            Edit Pending Product
+          </DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <div className="space-y-1.5">
+            <Label>Product Name *</Label>
+            <Input
+              value={form.name}
+              onChange={(e) => set("name", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Description</Label>
+            <Input
+              value={form.description}
+              onChange={(e) => set("description", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>SKU *</Label>
+            <Input
+              value={form.sku}
+              onChange={(e) => set("sku", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Category</Label>
+            <Input
+              value={form.category}
+              onChange={(e) => set("category", e.target.value)}
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label>Initial Quantity</Label>
+              <Input
+                type="number"
+                min="0"
+                value={form.quantity}
+                onChange={(e) => set("quantity", e.target.value)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Reorder Point</Label>
+              <Input
+                type="number"
+                min="0"
+                value={form.reorderPoint}
+                onChange={(e) => set("reorderPoint", e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label>Unit Cost (₹)</Label>
+              <Input
+                type="number"
+                min="0"
+                step="0.01"
+                value={form.unitCost}
+                onChange={(e) => set("unitCost", e.target.value)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Sale Price (₹)</Label>
+              <Input
+                type="number"
+                min="0"
+                step="0.01"
+                value={form.salePrice}
+                onChange={(e) => set("salePrice", e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        <DialogFooter className="pt-2">
+          <Button
+            variant="outline"
+            onClick={onClose}
+            data-ocid="pending_edit.cancel_button"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSave}
+            style={{ backgroundColor: "var(--brand-red)" }}
+            className="text-white"
+            data-ocid="pending_edit.save_button"
+          >
+            Save Changes
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Stock Update Modal ────────────────────────────────────────────────────────
 
 const emptyStockForm = {
   txType: "purchase",
@@ -196,9 +979,454 @@ const emptyStockForm = {
   date: todayISO(),
 };
 
-export default function Inventory() {
+function StockUpdateModal({
+  product,
+  onClose,
+}: {
+  product: InventoryProduct | null;
+  onClose: () => void;
+}) {
+  const addStockTx = useAddStockTransaction();
+  const [form, setForm] = useState(emptyStockForm);
+
+  useEffect(() => {
+    if (product) setForm({ ...emptyStockForm, date: todayISO() });
+  }, [product]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!product) return;
+    const qty = Number.parseInt(form.quantity);
+    if (!qty || qty <= 0) {
+      toast.error("Enter a valid quantity.");
+      return;
+    }
+    let change: bigint;
+    if (form.txType === "purchase") {
+      change = BigInt(qty);
+    } else if (form.txType === "sale") {
+      change = -BigInt(qty);
+    } else {
+      change = form.adjustSign === "+" ? BigInt(qty) : -BigInt(qty);
+    }
+    try {
+      await addStockTx.mutateAsync({
+        productId: product.id,
+        txType: form.txType,
+        quantityChange: change,
+        note: form.note.trim(),
+        transactionDate: form.date,
+      });
+      toast.success("Stock updated");
+      onClose();
+    } catch {
+      toast.error("Failed to update stock.");
+    }
+  };
+
+  return (
+    <Dialog open={!!product} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent className="sm:max-w-md" data-ocid="stock_update.dialog">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <RefreshCw
+              className="w-5 h-5"
+              style={{ color: "var(--brand-red)" }}
+            />
+            Stock Update — {product?.name}
+          </DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-1.5">
+            <Label>Transaction Type</Label>
+            <Select
+              value={form.txType}
+              onValueChange={(v) => setForm((f) => ({ ...f, txType: v }))}
+            >
+              <SelectTrigger data-ocid="stock_update.select">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="purchase">Purchase (Stock In +)</SelectItem>
+                <SelectItem value="sale">Sale (Stock Out −)</SelectItem>
+                <SelectItem value="adjustment">Manual Adjustment</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {form.txType === "adjustment" && (
+            <div className="space-y-1.5">
+              <Label>Adjustment Direction</Label>
+              <div className="flex gap-2">
+                {(
+                  [
+                    ["+", "Add Stock"],
+                    ["-", "Remove Stock"],
+                  ] as const
+                ).map(([sign, label]) => (
+                  <button
+                    key={sign}
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, adjustSign: sign }))}
+                    className={`flex-1 py-2 rounded-md text-sm font-medium border transition-colors ${
+                      form.adjustSign === sign
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border bg-background text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="space-y-1.5">
+            <Label>Quantity</Label>
+            <Input
+              type="number"
+              min="1"
+              placeholder="Enter quantity"
+              value={form.quantity}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, quantity: e.target.value }))
+              }
+              data-ocid="stock_update.input"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Date</Label>
+            <Input
+              type="date"
+              value={form.date}
+              onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Note (optional)</Label>
+            <Input
+              placeholder="Reason for update"
+              value={form.note}
+              onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))}
+            />
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              data-ocid="stock_update.cancel_button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={addStockTx.isPending}
+              style={{ backgroundColor: "var(--brand-red)" }}
+              className="text-white"
+              data-ocid="stock_update.submit_button"
+            >
+              {addStockTx.isPending && (
+                <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+              )}
+              Update Stock
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Bulk Update Modal ─────────────────────────────────────────────────────────
+
+function BulkUpdateModal({
+  actionType,
+  selectedCount,
+  onClose,
+  onSubmit,
+  isPending,
+}: {
+  actionType: "prices" | "reorder" | null;
+  selectedCount: number;
+  onClose: () => void;
+  onSubmit: (data: {
+    type: "prices" | "reorder";
+    unitCost?: string;
+    salePrice?: string;
+    reorderPoint?: string;
+  }) => void;
+  isPending: boolean;
+}) {
+  const [unitCost, setUnitCost] = useState("");
+  const [salePrice, setSalePrice] = useState("");
+  const [reorderPoint, setReorderPoint] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!actionType) return;
+    onSubmit({ type: actionType, unitCost, salePrice, reorderPoint });
+  };
+
+  return (
+    <Dialog open={!!actionType} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent className="sm:max-w-md" data-ocid="bulk_update.dialog">
+        <DialogHeader>
+          <DialogTitle>
+            Bulk Update — {selectedCount} item{selectedCount > 1 ? "s" : ""}
+          </DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {actionType === "prices" ? (
+            <>
+              <div className="space-y-1.5">
+                <Label>New Unit Cost (₹)</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  value={unitCost}
+                  onChange={(e) => setUnitCost(e.target.value)}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label>New Sale Price (₹)</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  value={salePrice}
+                  onChange={(e) => setSalePrice(e.target.value)}
+                />
+              </div>
+            </>
+          ) : (
+            <div className="space-y-1.5">
+              <Label>New Reorder Point</Label>
+              <Input
+                type="number"
+                min="0"
+                placeholder="0"
+                value={reorderPoint}
+                onChange={(e) => setReorderPoint(e.target.value)}
+              />
+            </div>
+          )}
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              data-ocid="bulk_update.cancel_button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={isPending}
+              style={{ backgroundColor: "var(--brand-red)" }}
+              className="text-white"
+              data-ocid="bulk_update.submit_button"
+            >
+              {isPending && <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />}
+              Apply to {selectedCount} item{selectedCount > 1 ? "s" : ""}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Edit Product Modal ────────────────────────────────────────────────────────
+
+function EditProductModal({
+  product,
+  onClose,
+}: {
+  product: InventoryProduct | null;
+  onClose: () => void;
+}) {
+  const editProductMut = useEditProduct();
+  const [form, setForm] = useState({
+    name: "",
+    description: "",
+    sku: "",
+    category: "",
+    unitCost: "",
+    salePrice: "",
+    reorderPoint: "",
+  });
+
+  useEffect(() => {
+    if (product) {
+      setForm({
+        name: product.name,
+        description: product.description,
+        sku: product.sku,
+        category: product.category,
+        unitCost: String(product.unitCost),
+        salePrice: String(product.salePrice),
+        reorderPoint: String(Number(product.reorderPoint)),
+      });
+    }
+  }, [product]);
+
+  const set = (field: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!product) return;
+    if (!form.name.trim() || !form.sku.trim()) {
+      toast.error("Product Name and SKU are required.");
+      return;
+    }
+    try {
+      await editProductMut.mutateAsync({
+        id: product.id,
+        name: form.name.trim(),
+        description: form.description.trim(),
+        sku: form.sku.trim(),
+        barcode: "",
+        category: form.category.trim(),
+        unitCost: Number.parseFloat(form.unitCost) || 0,
+        salePrice: Number.parseFloat(form.salePrice) || 0,
+        reorderPoint: BigInt(
+          Math.max(0, Number.parseInt(form.reorderPoint) || 0),
+        ),
+      });
+      toast.success("Product updated");
+      onClose();
+    } catch {
+      toast.error("Failed to update product.");
+    }
+  };
+
+  return (
+    <Dialog open={!!product} onOpenChange={(v) => !v && onClose()}>
+      <DialogContent
+        className="sm:max-w-lg max-h-[90vh] overflow-y-auto"
+        data-ocid="edit_product.dialog"
+      >
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <Pencil className="w-5 h-5" style={{ color: "var(--brand-red)" }} />
+            Edit Product
+          </DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-1.5">
+            <Label>Product Name *</Label>
+            <Input
+              value={form.name}
+              onChange={(e) => set("name", e.target.value)}
+              data-ocid="edit_product.input"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Description</Label>
+            <Input
+              value={form.description}
+              onChange={(e) => set("description", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>SKU *</Label>
+            <Input
+              value={form.sku}
+              onChange={(e) => set("sku", e.target.value)}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Category</Label>
+            <Input
+              value={form.category}
+              onChange={(e) => set("category", e.target.value)}
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label>Unit Cost (₹)</Label>
+              <Input
+                type="number"
+                min="0"
+                step="0.01"
+                value={form.unitCost}
+                onChange={(e) => set("unitCost", e.target.value)}
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Sale Price (₹)</Label>
+              <Input
+                type="number"
+                min="0"
+                step="0.01"
+                value={form.salePrice}
+                onChange={(e) => set("salePrice", e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="space-y-1.5">
+            <Label>Reorder Point</Label>
+            <Input
+              type="number"
+              min="0"
+              value={form.reorderPoint}
+              onChange={(e) => set("reorderPoint", e.target.value)}
+            />
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              data-ocid="edit_product.cancel_button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              disabled={editProductMut.isPending}
+              style={{ backgroundColor: "var(--brand-red)" }}
+              className="text-white"
+              data-ocid="edit_product.save_button"
+            >
+              {editProductMut.isPending && (
+                <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+              )}
+              Save Changes
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Inner inventory page (uses context) ───────────────────────────────────────
+
+function InventoryInner() {
+  const { role, logout } = useInventoryAuth();
+  const isManager = role === "manager";
   const today = todayISO();
-  const [userRole, setUserRole] = useState<UserRole>("manager");
+
+  // Pending products state
+  const [pendingProducts, setPendingProducts] = useState<PendingProduct[]>(
+    () => {
+      try {
+        const stored = localStorage.getItem(PENDING_KEY);
+        return stored ? (JSON.parse(stored) as PendingProduct[]) : [];
+      } catch {
+        return [];
+      }
+    },
+  );
+
+  useEffect(() => {
+    localStorage.setItem(PENDING_KEY, JSON.stringify(pendingProducts));
+  }, [pendingProducts]);
 
   // Table state
   const [search, setSearch] = useState("");
@@ -207,36 +1435,32 @@ export default function Inventory() {
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
-  // Dialogs
+  // Dialog state
+  const [managerLoginOpen, setManagerLoginOpen] = useState(false);
   const [addProductOpen, setAddProductOpen] = useState(false);
-  const [editProduct, setEditProduct] = useState<InventoryProduct | null>(null);
+  const [editProductTarget, setEditProductTarget] =
+    useState<InventoryProduct | null>(null);
   const [deleteProductId, setDeleteProductId] = useState<bigint | null>(null);
   const [stockUpdateProduct, setStockUpdateProduct] =
     useState<InventoryProduct | null>(null);
   const [bulkActionType, setBulkActionType] = useState<
     "prices" | "reorder" | null
   >(null);
+  const [pendingEditTarget, setPendingEditTarget] =
+    useState<PendingProduct | null>(null);
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
 
-  // Forms
-  const [productForm, setProductForm] = useState(emptyProductForm);
-  const [editForm, setEditForm] = useState(emptyProductForm);
-  const [stockForm, setStockForm] = useState(emptyStockForm);
-  const [bulkUnitCost, setBulkUnitCost] = useState("");
-  const [bulkSalePrice, setBulkSalePrice] = useState("");
-  const [bulkReorderPoint, setBulkReorderPoint] = useState("");
-
-  // Queries & mutations
+  // Queries
   const { data: products = [], isLoading: productsLoading } =
     useInventoryProducts();
   const { data: todayTxs = [], isLoading: txLoading } =
     useTodayStockTransactions(today);
-  const addProduct = useAddProduct();
-  const editProductMut = useEditProduct();
-  const deleteProductMut = useDeleteProduct();
-  const addStockTx = useAddStockTransaction();
-  const bulkUpdate = useBulkUpdateProducts();
 
-  // ── Derived metrics ────────────────────────────────────────────────────────
+  const addProductMut = useAddProduct();
+  const deleteProductMut = useDeleteProduct();
+  const bulkUpdateMut = useBulkUpdateProducts();
+
+  // ── Derived metrics ──────────────────────────────────────────────────────
   const metrics = useMemo(() => {
     const totalValue = products.reduce(
       (sum, p) => sum + Number(p.quantity) * p.unitCost,
@@ -247,29 +1471,23 @@ export default function Inventory() {
         Number(p.quantity) > 0 && Number(p.quantity) <= Number(p.reorderPoint),
     ).length;
     const outOfStock = products.filter((p) => Number(p.quantity) === 0).length;
-    const currentYearMonth = today.slice(0, 7);
-    // Use today's transactions for monthly orders (proxy — real total would need all)
-    const monthlyOrders = todayTxs.length;
-    void monthlyOrders;
-    return { totalValue, lowStock, outOfStock, currentYearMonth };
-  }, [products, today, todayTxs]);
+    return { totalValue, lowStock, outOfStock, monthlyOrders: todayTxs.length };
+  }, [products, todayTxs]);
 
-  // ── Unique categories ──────────────────────────────────────────────────────
+  // ── Unique categories ────────────────────────────────────────────────────
   const categories = useMemo(() => {
     const cats = new Set(products.map((p) => p.category).filter(Boolean));
     return Array.from(cats).sort();
   }, [products]);
 
-  // ── Filtered + sorted table ────────────────────────────────────────────────
+  // ── Filtered + sorted table ──────────────────────────────────────────────
   const filteredProducts = useMemo(() => {
     let list = [...products];
     if (search.trim()) {
       const q = search.toLowerCase();
       list = list.filter(
         (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.sku.toLowerCase().includes(q) ||
-          p.barcode.toLowerCase().includes(q),
+          p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q),
       );
     }
     if (categoryFilter !== "all") {
@@ -314,7 +1532,7 @@ export default function Inventory() {
     return list;
   }, [products, search, categoryFilter, sortField, sortDir]);
 
-  // ── Sort helpers ───────────────────────────────────────────────────────────
+  // ── Sort helpers ─────────────────────────────────────────────────────────
   const handleSort = (field: SortField) => {
     if (sortField === field) {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
@@ -337,7 +1555,7 @@ export default function Inventory() {
     );
   };
 
-  // ── Selection helpers ──────────────────────────────────────────────────────
+  // ── Selection helpers ────────────────────────────────────────────────────
   const toggleSelect = (id: string) => {
     setSelectedIds((prev) => {
       const next = new Set(prev);
@@ -355,69 +1573,7 @@ export default function Inventory() {
     }
   };
 
-  // ── Add product submit ────────────────────────────────────────────────────
-  const handleAddProduct = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!productForm.name.trim() || !productForm.sku.trim()) {
-      toast.error("Product Name and SKU are required.");
-      return;
-    }
-    try {
-      await addProduct.mutateAsync({
-        name: productForm.name.trim(),
-        description: productForm.description.trim(),
-        sku: productForm.sku.trim(),
-        barcode: "",
-        category: productForm.category.trim(),
-        quantity: BigInt(
-          Math.max(0, Number.parseInt(productForm.quantity) || 0),
-        ),
-        unitCost: Number.parseFloat(productForm.unitCost) || 0,
-        salePrice: Number.parseFloat(productForm.salePrice) || 0,
-        reorderPoint: BigInt(
-          Math.max(0, Number.parseInt(productForm.reorderPoint) || 0),
-        ),
-      });
-      toast.success("Product added successfully");
-      setProductForm(emptyProductForm);
-      setAddProductOpen(false);
-    } catch (err) {
-      console.error("Add product error:", err);
-      toast.error("Failed to add product. Please try again.");
-    }
-  };
-
-  // ── Edit product submit ───────────────────────────────────────────────────
-  const handleEditProduct = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editProduct) return;
-    if (!editForm.name.trim() || !editForm.sku.trim()) {
-      toast.error("Product Name and SKU are required.");
-      return;
-    }
-    try {
-      await editProductMut.mutateAsync({
-        id: editProduct.id,
-        name: editForm.name.trim(),
-        description: editForm.description.trim(),
-        sku: editForm.sku.trim(),
-        barcode: "",
-        category: editForm.category.trim(),
-        unitCost: Number.parseFloat(editForm.unitCost) || 0,
-        salePrice: Number.parseFloat(editForm.salePrice) || 0,
-        reorderPoint: BigInt(
-          Math.max(0, Number.parseInt(editForm.reorderPoint) || 0),
-        ),
-      });
-      toast.success("Product updated");
-      setEditProduct(null);
-    } catch (err) {
-      console.error("Edit product error:", err);
-      toast.error("Failed to update product.");
-    }
-  };
-
-  // ── Delete product submit ─────────────────────────────────────────────────
+  // ── Delete product ───────────────────────────────────────────────────────
   const handleDeleteProduct = async () => {
     if (deleteProductId === null) return;
     try {
@@ -429,53 +1585,61 @@ export default function Inventory() {
     }
   };
 
-  // ── Stock update submit ───────────────────────────────────────────────────
-  const handleStockUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!stockUpdateProduct) return;
-    const qty = Number.parseInt(stockForm.quantity);
-    if (!qty || qty <= 0) {
-      toast.error("Enter a valid quantity.");
-      return;
-    }
-    let change: bigint;
-    if (stockForm.txType === "purchase") {
-      change = BigInt(qty);
-    } else if (stockForm.txType === "sale") {
-      change = -BigInt(qty);
-    } else {
-      change = stockForm.adjustSign === "+" ? BigInt(qty) : -BigInt(qty);
-    }
+  // ── Pending product handlers ─────────────────────────────────────────────
+  const handlePendingAdd = (p: PendingProduct) => {
+    setPendingProducts((prev) => [...prev, p]);
+  };
+
+  const handlePendingApprove = async (pending: PendingProduct) => {
     try {
-      await addStockTx.mutateAsync({
-        productId: stockUpdateProduct.id,
-        txType: stockForm.txType,
-        quantityChange: change,
-        note: stockForm.note.trim(),
-        transactionDate: stockForm.date,
+      await addProductMut.mutateAsync({
+        name: pending.name,
+        description: pending.description,
+        sku: pending.sku,
+        barcode: "",
+        category: pending.category,
+        quantity: BigInt(pending.quantity),
+        unitCost: pending.unitCost,
+        salePrice: pending.salePrice,
+        reorderPoint: BigInt(pending.reorderPoint),
       });
-      toast.success("Stock updated");
-      setStockUpdateProduct(null);
-      setStockForm(emptyStockForm);
+      setPendingProducts((prev) => prev.filter((p) => p.id !== pending.id));
+      toast.success(`"${pending.name}" approved and added to inventory!`);
     } catch {
-      toast.error("Failed to update stock.");
+      toast.error("Failed to approve product.");
     }
   };
 
-  // ── Bulk update submit ────────────────────────────────────────────────────
-  const handleBulkUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handlePendingEdit = (updated: PendingProduct) => {
+    setPendingProducts((prev) =>
+      prev.map((p) => (p.id === updated.id ? updated : p)),
+    );
+  };
+
+  const handlePendingDelete = (id: string) => {
+    setPendingProducts((prev) => prev.filter((p) => p.id !== id));
+    setPendingDeleteId(null);
+    toast.success("Pending submission removed");
+  };
+
+  // ── Bulk update handler ──────────────────────────────────────────────────
+  const handleBulkUpdate = async (data: {
+    type: "prices" | "reorder";
+    unitCost?: string;
+    salePrice?: string;
+    reorderPoint?: string;
+  }) => {
     const ids = Array.from(selectedIds).map((id) => BigInt(id));
     const count = ids.length;
     try {
-      if (bulkActionType === "prices") {
-        const uc = Number.parseFloat(bulkUnitCost);
-        const sp = Number.parseFloat(bulkSalePrice);
+      if (data.type === "prices") {
+        const uc = Number.parseFloat(data.unitCost ?? "");
+        const sp = Number.parseFloat(data.salePrice ?? "");
         if (Number.isNaN(uc) || Number.isNaN(sp)) {
           toast.error("Enter valid price values.");
           return;
         }
-        await bulkUpdate.mutateAsync({
+        await bulkUpdateMut.mutateAsync({
           ids,
           unitCosts: Array(count).fill(uc),
           salePrices: Array(count).fill(sp),
@@ -484,15 +1648,13 @@ export default function Inventory() {
             return p ? p.reorderPoint : 0n;
           }),
         });
-        setBulkUnitCost("");
-        setBulkSalePrice("");
       } else {
-        const rp = Number.parseInt(bulkReorderPoint);
+        const rp = Number.parseInt(data.reorderPoint ?? "");
         if (Number.isNaN(rp) || rp < 0) {
           toast.error("Enter a valid reorder point.");
           return;
         }
-        await bulkUpdate.mutateAsync({
+        await bulkUpdateMut.mutateAsync({
           ids,
           unitCosts: ids.map((id) => {
             const p = products.find((pr) => pr.id === id);
@@ -504,7 +1666,6 @@ export default function Inventory() {
           }),
           reorderPoints: Array(count).fill(BigInt(rp)),
         });
-        setBulkReorderPoint("");
       }
       toast.success(`Updated ${count} product${count > 1 ? "s" : ""}.`);
       setBulkActionType(null);
@@ -514,38 +1675,14 @@ export default function Inventory() {
     }
   };
 
-  // ── Open edit dialog ──────────────────────────────────────────────────────
-  const openEdit = (product: InventoryProduct) => {
-    setEditProduct(product);
-    setEditForm({
-      name: product.name,
-      description: product.description,
-      sku: product.sku,
-      barcode: product.barcode,
-      category: product.category,
-      quantity: String(Number(product.quantity)),
-      unitCost: String(product.unitCost),
-      salePrice: String(product.salePrice),
-      reorderPoint: String(Number(product.reorderPoint)),
-    });
-  };
-
-  const openStockUpdate = (product: InventoryProduct) => {
-    setStockUpdateProduct(product);
-    setStockForm({ ...emptyStockForm, date: today });
-  };
-
-  // ── Today's tx product name lookup ────────────────────────────────────────
+  // ── Today's tx product name lookup ──────────────────────────────────────
   const productMap = useMemo(() => {
     const m = new Map<string, string>();
-    for (const p of products) {
-      m.set(String(p.id), p.name);
-    }
+    for (const p of products) m.set(String(p.id), p.name);
     return m;
   }, [products]);
 
   const formatTime = (createdAt: bigint) => {
-    // createdAt is nanoseconds from IC
     const ms = Number(createdAt) / 1_000_000;
     if (!ms || ms < 1_000_000) return "—";
     return new Date(ms).toLocaleTimeString("en-IN", {
@@ -560,7 +1697,7 @@ export default function Inventory() {
     return "bg-purple-100 text-purple-700 border-purple-200";
   };
 
-  // ── Loading skeleton ──────────────────────────────────────────────────────
+  // ── Loading skeleton ─────────────────────────────────────────────────────
   if (productsLoading) {
     return (
       <div className="space-y-6" data-ocid="inventory.loading_state">
@@ -575,7 +1712,6 @@ export default function Inventory() {
     );
   }
 
-  const isManager = userRole === "manager";
   const allFilteredSelected =
     filteredProducts.length > 0 &&
     filteredProducts.every((p) => selectedIds.has(String(p.id)));
@@ -598,46 +1734,57 @@ export default function Inventory() {
           <div>
             <h2 className="text-xl font-bold text-foreground">Inventory</h2>
             <p className="text-sm text-muted-foreground mt-0.5">
-              Manage product stock, prices and reorder levels
+              {isManager
+                ? "Manager View — Full access"
+                : "Staff View — View & Submit Products"}
             </p>
           </div>
         </div>
 
+        {/* Role badge + switch button */}
         <div className="flex items-center gap-3 flex-wrap">
-          {/* Role Toggle */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground font-medium">
-              View as:
-            </span>
-            <Select
-              value={userRole}
-              onValueChange={(v) => setUserRole(v as UserRole)}
+          {isManager ? (
+            <Badge
+              className="flex items-center gap-1.5 px-3 py-1"
+              style={{
+                backgroundColor: "oklch(0.369 0.139 293.8 / 0.1)",
+                color: "var(--brand-red)",
+                border: "1px solid oklch(0.369 0.139 293.8 / 0.3)",
+              }}
             >
-              <SelectTrigger
-                className="h-8 text-xs w-32"
-                data-ocid="inventory.role.select"
-              >
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="manager">Manager</SelectItem>
-                <SelectItem value="staff">Staff (View Only)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <ShieldCheck className="w-3.5 h-3.5" />
+              Manager View
+            </Badge>
+          ) : (
+            <Badge className="flex items-center gap-1.5 px-3 py-1 bg-blue-100 text-blue-700 border-blue-200">
+              <UserCheck className="w-3.5 h-3.5" />
+              Staff View
+            </Badge>
+          )}
+
+          {!isManager && (
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setManagerLoginOpen(true)}
+              className="flex items-center gap-1.5"
+              data-ocid="inventory.manager_login_button"
+            >
+              <KeyRound className="w-4 h-4" />
+              Switch to Manager
+            </Button>
+          )}
 
           {isManager && (
             <Button
-              className="gap-2 text-white text-sm"
-              style={{ backgroundColor: "var(--brand-red)" }}
-              onClick={() => {
-                setProductForm(emptyProductForm);
-                setAddProductOpen(true);
-              }}
-              data-ocid="inventory.add_product.open_modal_button"
+              size="sm"
+              variant="outline"
+              onClick={logout}
+              className="flex items-center gap-1.5 text-muted-foreground"
+              data-ocid="inventory.logout_button"
             >
-              <PlusCircle className="w-4 h-4" />
-              Add Product
+              <LogOut className="w-4 h-4" />
+              Back to Staff View
             </Button>
           )}
         </div>
@@ -649,15 +1796,15 @@ export default function Inventory() {
           title="Total Inventory Value"
           value={formatINR(metrics.totalValue)}
           icon={IndianRupee}
-          color="var(--brand-red)"
-          subtitle={`${products.length} products`}
+          color="#462980"
+          subtitle="Current stock valuation"
           delay={0}
         />
         <MetricCard
           title="Low Stock Items"
           value={String(metrics.lowStock)}
           icon={AlertCircle}
-          color="oklch(0.72 0.18 72)"
+          color="#d97706"
           subtitle="Below reorder point"
           delay={0.05}
         />
@@ -665,21 +1812,182 @@ export default function Inventory() {
           title="Out of Stock"
           value={String(metrics.outOfStock)}
           icon={BoxIcon}
-          color="oklch(0.44 0.19 21)"
-          subtitle="Critical — zero units"
+          color="#dc2626"
+          subtitle="Zero quantity"
           delay={0.1}
         />
         <MetricCard
           title="Today's Transactions"
-          value={String(todayTxs.length)}
-          icon={ShoppingCart}
-          color="oklch(0.52 0.16 250)"
-          subtitle={"As of today"}
+          value={String(metrics.monthlyOrders)}
+          icon={TrendingUp}
+          color="#059669"
+          subtitle="Stock moves today"
           delay={0.15}
         />
       </div>
 
-      {/* Table Controls */}
+      {/* Pending Approvals (Manager only) */}
+      <AnimatePresence>
+        {isManager && pendingProducts.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+          >
+            <Card
+              className="border-amber-200"
+              style={{ backgroundColor: "oklch(0.99 0.025 72)" }}
+              data-ocid="pending_approvals.card"
+            >
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base flex items-center gap-2 text-amber-800">
+                  <AlertCircle className="w-5 h-5 text-amber-600" />
+                  Pending Approvals ({pendingProducts.length})
+                  <span className="text-xs font-normal text-amber-600 ml-1">
+                    — Review and approve staff submissions
+                  </span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="border-amber-200">
+                        <TableHead className="text-amber-800">
+                          Product
+                        </TableHead>
+                        <TableHead className="text-amber-800">SKU</TableHead>
+                        <TableHead className="text-amber-800">
+                          Category
+                        </TableHead>
+                        <TableHead className="text-amber-800 text-right">
+                          Qty
+                        </TableHead>
+                        <TableHead className="text-amber-800 text-right">
+                          Cost
+                        </TableHead>
+                        <TableHead className="text-amber-800">
+                          Submitted By
+                        </TableHead>
+                        <TableHead className="text-amber-800">Date</TableHead>
+                        <TableHead className="text-amber-800 text-right">
+                          Actions
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {pendingProducts.map((p, idx) => (
+                        <TableRow
+                          key={p.id}
+                          className="border-amber-100"
+                          data-ocid={`pending_approvals.item.${idx + 1}`}
+                        >
+                          <TableCell>
+                            <div>
+                              <p className="font-medium text-sm text-foreground">
+                                {p.name}
+                              </p>
+                              {p.description && (
+                                <p className="text-xs text-muted-foreground">
+                                  {p.description}
+                                </p>
+                              )}
+                            </div>
+                          </TableCell>
+                          <TableCell className="font-mono text-xs">
+                            {p.sku}
+                          </TableCell>
+                          <TableCell className="text-sm">
+                            {p.category || "—"}
+                          </TableCell>
+                          <TableCell className="text-right text-sm">
+                            {p.quantity}
+                          </TableCell>
+                          <TableCell className="text-right text-sm">
+                            {formatINR(p.unitCost)}
+                          </TableCell>
+                          <TableCell className="text-xs font-mono">
+                            {p.submittedByUserId}
+                          </TableCell>
+                          <TableCell className="text-xs text-muted-foreground">
+                            {new Date(p.submittedAt).toLocaleDateString(
+                              "en-IN",
+                            )}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <div className="flex items-center justify-end gap-1">
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-7 w-7 text-green-600 hover:bg-green-50"
+                                title="Approve"
+                                onClick={() => handlePendingApprove(p)}
+                                disabled={addProductMut.isPending}
+                                data-ocid={`pending_approvals.confirm_button.${idx + 1}`}
+                              >
+                                {addProductMut.isPending ? (
+                                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                ) : (
+                                  <CheckCircle className="w-3.5 h-3.5" />
+                                )}
+                              </Button>
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-7 w-7 text-blue-600 hover:bg-blue-50"
+                                title="Edit"
+                                onClick={() => setPendingEditTarget(p)}
+                                data-ocid={`pending_approvals.edit_button.${idx + 1}`}
+                              >
+                                <Pencil className="w-3.5 h-3.5" />
+                              </Button>
+                              <Button
+                                size="icon"
+                                variant="ghost"
+                                className="h-7 w-7 text-red-600 hover:bg-red-50"
+                                title="Delete"
+                                onClick={() => setPendingDeleteId(p.id)}
+                                data-ocid={`pending_approvals.delete_button.${idx + 1}`}
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Staff: your submissions banner */}
+      {!isManager && pendingProducts.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="rounded-lg px-4 py-3 flex items-center gap-3"
+          style={{
+            backgroundColor: "oklch(0.97 0.016 72 / 0.5)",
+            border: "1px solid oklch(0.78 0.18 72 / 0.3)",
+          }}
+          data-ocid="staff_pending.card"
+        >
+          <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+          <p className="text-sm text-amber-800">
+            <span className="font-semibold">
+              {pendingProducts.length} submission
+              {pendingProducts.length > 1 ? "s" : ""} pending manager approval.
+            </span>{" "}
+            Products will appear in inventory once approved.
+          </p>
+        </motion.div>
+      )}
+
+      {/* Search + Filter + Actions */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -689,61 +1997,72 @@ export default function Inventory() {
           <CardContent className="p-4">
             <div className="flex flex-wrap items-center gap-3">
               {/* Search */}
-              <div className="relative flex-1 min-w-48">
+              <div className="relative flex-1 min-w-[200px]">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
-                  className="pl-9 h-9 text-sm"
                   placeholder="Search by name or SKU…"
+                  className="pl-9"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  data-ocid="inventory.search.search_input"
+                  data-ocid="inventory.search_input"
                 />
               </div>
 
               {/* Category filter */}
-              <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger
-                  className="h-9 text-sm w-44"
-                  data-ocid="inventory.category.select"
+              {categories.length > 0 && (
+                <Select
+                  value={categoryFilter}
+                  onValueChange={setCategoryFilter}
                 >
-                  <SelectValue placeholder="All Categories" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat} value={cat}>
-                      {cat}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                  <SelectTrigger
+                    className="w-40"
+                    data-ocid="inventory.category_select"
+                  >
+                    <SelectValue placeholder="All Categories" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {categories.map((c) => (
+                      <SelectItem key={c} value={c}>
+                        {c}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
 
-              {/* Bulk action toolbar */}
-              {isManager && selectedIds.size >= 2 && (
-                <div
-                  className="flex gap-2 items-center ml-auto"
-                  data-ocid="inventory.bulk_actions.panel"
-                >
+              {/* Add Product */}
+              <Button
+                onClick={() => setAddProductOpen(true)}
+                style={{ backgroundColor: "var(--brand-red)" }}
+                className="text-white"
+                data-ocid="inventory.add_product_button"
+              >
+                <PlusCircle className="w-4 h-4 mr-1.5" />
+                Add Product
+              </Button>
+
+              {/* Bulk actions — manager only */}
+              {isManager && selectedIds.size > 0 && (
+                <div className="flex items-center gap-2">
                   <span className="text-xs text-muted-foreground">
-                    {selectedIds.size} selected:
+                    {selectedIds.size} selected
                   </span>
                   <Button
                     size="sm"
                     variant="outline"
-                    className="h-8 text-xs gap-1"
                     onClick={() => setBulkActionType("prices")}
-                    data-ocid="inventory.bulk_prices.button"
+                    data-ocid="inventory.bulk_prices_button"
                   >
-                    <TrendingUp className="w-3 h-3" /> Update Prices
+                    Update Prices
                   </Button>
                   <Button
                     size="sm"
                     variant="outline"
-                    className="h-8 text-xs gap-1"
                     onClick={() => setBulkActionType("reorder")}
-                    data-ocid="inventory.bulk_reorder.button"
+                    data-ocid="inventory.bulk_reorder_button"
                   >
-                    <RefreshCw className="w-3 h-3" /> Update Reorder Level
+                    Update Reorder
                   </Button>
                 </div>
               )}
@@ -758,30 +2077,44 @@ export default function Inventory() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.25 }}
       >
-        <Card className="shadow-sm border-border">
+        <Card className="shadow-sm border-border" data-ocid="inventory.table">
+          <CardHeader className="pb-3 border-b border-border">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base">
+                Products ({filteredProducts.length})
+              </CardTitle>
+              {filteredProducts.length === 0 && search && (
+                <span className="text-xs text-muted-foreground">
+                  No results for "{search}"
+                </span>
+              )}
+            </div>
+          </CardHeader>
           <CardContent className="p-0">
-            {products.length === 0 ? (
+            {filteredProducts.length === 0 ? (
               <div
-                className="py-20 text-center text-muted-foreground"
+                className="flex flex-col items-center justify-center py-16 text-center"
                 data-ocid="inventory.empty_state"
               >
-                <Layers className="w-12 h-12 mx-auto mb-4 opacity-25" />
-                <p className="font-semibold text-base">No products yet</p>
-                <p className="text-sm mt-1 mb-4">
-                  Start building your inventory by adding your first product.
+                <BoxIcon className="w-12 h-12 text-muted-foreground/30 mb-3" />
+                <p className="text-muted-foreground font-medium">
+                  No products found
                 </p>
-                {isManager && (
+                <p className="text-sm text-muted-foreground/70 mt-1">
+                  {search || categoryFilter !== "all"
+                    ? "Try adjusting your search or filters"
+                    : "Add your first product to get started"}
+                </p>
+                {!search && categoryFilter === "all" && (
                   <Button
-                    className="text-white gap-2"
+                    className="mt-4"
+                    size="sm"
+                    onClick={() => setAddProductOpen(true)}
                     style={{ backgroundColor: "var(--brand-red)" }}
-                    onClick={() => {
-                      setProductForm(emptyProductForm);
-                      setAddProductOpen(true);
-                    }}
-                    data-ocid="inventory.empty.add_product.primary_button"
+                    data-ocid="inventory.empty_add_button"
                   >
-                    <PlusCircle className="w-4 h-4" />
-                    Add Your First Product
+                    <PlusCircle className="w-4 h-4 mr-1.5" />
+                    Add First Product
                   </Button>
                 )}
               </div>
@@ -789,241 +2122,182 @@ export default function Inventory() {
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-secondary/50">
+                    <TableRow className="border-border bg-muted/30">
                       {isManager && (
-                        <TableHead className="w-10">
+                        <TableHead className="w-10 pl-4">
                           <Checkbox
                             checked={allFilteredSelected}
                             onCheckedChange={toggleSelectAll}
-                            data-ocid="inventory.select_all.checkbox"
+                            aria-label="Select all"
+                            data-ocid="inventory.select_all_checkbox"
                           />
                         </TableHead>
                       )}
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("name")}
-                          data-ocid="inventory.sort_name.button"
-                        >
-                          Product
-                          <SortIcon field="name" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none"
+                        onClick={() => handleSort("name")}
+                      >
+                        <span className="flex items-center">
+                          Product <SortIcon field="name" />
+                        </span>
                       </TableHead>
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("sku")}
-                          data-ocid="inventory.sort_sku.button"
-                        >
-                          SKU / Barcode
-                          <SortIcon field="sku" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none"
+                        onClick={() => handleSort("sku")}
+                      >
+                        <span className="flex items-center">
+                          SKU <SortIcon field="sku" />
+                        </span>
                       </TableHead>
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("category")}
-                          data-ocid="inventory.sort_category.button"
-                        >
-                          Category
-                          <SortIcon field="category" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none"
+                        onClick={() => handleSort("category")}
+                      >
+                        <span className="flex items-center">
+                          Category <SortIcon field="category" />
+                        </span>
                       </TableHead>
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("quantity")}
-                          data-ocid="inventory.sort_qty.button"
-                        >
-                          Qty
-                          <SortIcon field="quantity" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none text-right"
+                        onClick={() => handleSort("quantity")}
+                      >
+                        <span className="flex items-center justify-end">
+                          Qty <SortIcon field="quantity" />
+                        </span>
                       </TableHead>
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("unitCost")}
-                          data-ocid="inventory.sort_cost.button"
-                        >
-                          Cost / Price
-                          <SortIcon field="unitCost" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none text-right"
+                        onClick={() => handleSort("unitCost")}
+                      >
+                        <span className="flex items-center justify-end">
+                          Unit Cost <SortIcon field="unitCost" />
+                        </span>
                       </TableHead>
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("reorderPoint")}
-                          data-ocid="inventory.sort_reorder.button"
-                        >
-                          Reorder At
-                          <SortIcon field="reorderPoint" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none text-right"
+                        onClick={() => handleSort("salePrice")}
+                      >
+                        <span className="flex items-center justify-end">
+                          Sale Price <SortIcon field="salePrice" />
+                        </span>
                       </TableHead>
-                      <TableHead>
-                        <button
-                          type="button"
-                          className="flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground"
-                          onClick={() => handleSort("status")}
-                          data-ocid="inventory.sort_status.button"
-                        >
-                          Status
-                          <SortIcon field="status" />
-                        </button>
+                      <TableHead
+                        className="cursor-pointer select-none text-right"
+                        onClick={() => handleSort("reorderPoint")}
+                      >
+                        <span className="flex items-center justify-end">
+                          Reorder <SortIcon field="reorderPoint" />
+                        </span>
                       </TableHead>
-                      {isManager && (
-                        <TableHead className="text-xs font-semibold text-muted-foreground">
-                          Actions
-                        </TableHead>
-                      )}
+                      <TableHead
+                        className="cursor-pointer select-none"
+                        onClick={() => handleSort("status")}
+                      >
+                        <span className="flex items-center">
+                          Status <SortIcon field="status" />
+                        </span>
+                      </TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filteredProducts.length === 0 ? (
-                      <TableRow>
-                        <TableCell
-                          colSpan={isManager ? 9 : 8}
-                          className="text-center py-10 text-muted-foreground text-sm"
-                          data-ocid="inventory.search.empty_state"
-                        >
-                          No products match your search or filter.
+                    {filteredProducts.map((p, idx) => (
+                      <TableRow
+                        key={String(p.id)}
+                        className="border-border hover:bg-muted/20 transition-colors"
+                        data-ocid={`inventory.item.${idx + 1}`}
+                      >
+                        {isManager && (
+                          <TableCell className="pl-4">
+                            <Checkbox
+                              checked={selectedIds.has(String(p.id))}
+                              onCheckedChange={() => toggleSelect(String(p.id))}
+                              data-ocid={`inventory.checkbox.${idx + 1}`}
+                            />
+                          </TableCell>
+                        )}
+                        <TableCell>
+                          <div>
+                            <p className="font-medium text-sm text-foreground">
+                              {p.name}
+                            </p>
+                            {p.description && (
+                              <p className="text-xs text-muted-foreground truncate max-w-[200px]">
+                                {p.description}
+                              </p>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell className="font-mono text-xs">
+                          {p.sku}
+                        </TableCell>
+                        <TableCell className="text-sm">
+                          {p.category || "—"}
+                        </TableCell>
+                        <TableCell className="text-right text-sm font-medium">
+                          {Number(p.quantity)}
+                        </TableCell>
+                        <TableCell className="text-right text-sm">
+                          {formatINR(p.unitCost)}
+                        </TableCell>
+                        <TableCell className="text-right text-sm">
+                          {formatINR(p.salePrice)}
+                        </TableCell>
+                        <TableCell className="text-right text-sm">
+                          {Number(p.reorderPoint)}
+                        </TableCell>
+                        <TableCell>
+                          <StatusBadgeInv
+                            qty={Number(p.quantity)}
+                            reorder={Number(p.reorderPoint)}
+                          />
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-1">
+                            {/* Stock update — everyone can see, manager only can use */}
+                            {isManager && (
+                              <>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  className="h-7 w-7"
+                                  title="Update Stock"
+                                  onClick={() => setStockUpdateProduct(p)}
+                                  data-ocid={`inventory.stock_update_button.${idx + 1}`}
+                                >
+                                  <RefreshCw className="w-3.5 h-3.5" />
+                                </Button>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  className="h-7 w-7 text-blue-600 hover:bg-blue-50"
+                                  title="Edit"
+                                  onClick={() => setEditProductTarget(p)}
+                                  data-ocid={`inventory.edit_button.${idx + 1}`}
+                                >
+                                  <Pencil className="w-3.5 h-3.5" />
+                                </Button>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  className="h-7 w-7 text-red-600 hover:bg-red-50"
+                                  title="Delete"
+                                  onClick={() => setDeleteProductId(p.id)}
+                                  data-ocid={`inventory.delete_button.${idx + 1}`}
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </Button>
+                              </>
+                            )}
+                            {!isManager && (
+                              <span className="text-xs text-muted-foreground italic">
+                                View only
+                              </span>
+                            )}
+                          </div>
                         </TableCell>
                       </TableRow>
-                    ) : (
-                      filteredProducts.map((product, idx) => {
-                        const qty = Number(product.quantity);
-                        const reorder = Number(product.reorderPoint);
-                        const status = getStatus(qty, reorder);
-                        const isSelected = selectedIds.has(String(product.id));
-                        const qtyColor =
-                          status === "out-of-stock"
-                            ? "text-red-600 font-bold"
-                            : status === "low"
-                              ? "text-amber-600 font-semibold"
-                              : "text-green-700 font-semibold";
-
-                        return (
-                          <TableRow
-                            key={String(product.id)}
-                            className={`hover:bg-secondary/30 transition-colors ${
-                              isSelected ? "bg-accent/40" : ""
-                            }`}
-                            data-ocid={`inventory.item.${idx + 1}`}
-                          >
-                            {isManager && (
-                              <TableCell>
-                                <Checkbox
-                                  checked={isSelected}
-                                  onCheckedChange={() =>
-                                    toggleSelect(String(product.id))
-                                  }
-                                  data-ocid={`inventory.checkbox.${idx + 1}`}
-                                />
-                              </TableCell>
-                            )}
-                            <TableCell className="max-w-[180px]">
-                              <div className="font-semibold text-sm truncate">
-                                {product.name}
-                              </div>
-                              {product.description && (
-                                <div className="text-xs text-muted-foreground mt-0.5 truncate">
-                                  {product.description}
-                                </div>
-                              )}
-                            </TableCell>
-                            <TableCell>
-                              <div className="font-mono text-xs font-medium">
-                                {product.sku}
-                              </div>
-                              {product.barcode && (
-                                <div className="font-mono text-xs text-muted-foreground mt-0.5">
-                                  {product.barcode}
-                                </div>
-                              )}
-                            </TableCell>
-                            <TableCell>
-                              {product.category ? (
-                                <Badge
-                                  variant="secondary"
-                                  className="text-xs font-normal"
-                                >
-                                  {product.category}
-                                </Badge>
-                              ) : (
-                                <span className="text-muted-foreground text-xs">
-                                  —
-                                </span>
-                              )}
-                            </TableCell>
-                            <TableCell>
-                              <span className={`text-sm ${qtyColor}`}>
-                                {qty.toLocaleString()}
-                              </span>
-                            </TableCell>
-                            <TableCell>
-                              <div className="text-xs font-medium">
-                                {formatINR(product.unitCost)}
-                              </div>
-                              <div className="text-xs text-muted-foreground mt-0.5">
-                                {formatINR(product.salePrice)}
-                              </div>
-                            </TableCell>
-                            <TableCell>
-                              <span className="text-sm text-muted-foreground">
-                                {reorder.toLocaleString()}
-                              </span>
-                            </TableCell>
-                            <TableCell>
-                              <StatusBadgeInv qty={qty} reorder={reorder} />
-                            </TableCell>
-                            {isManager && (
-                              <TableCell>
-                                <div className="flex gap-1.5">
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="h-7 px-2 gap-1 text-xs"
-                                    title="Update Stock"
-                                    onClick={() => openStockUpdate(product)}
-                                    data-ocid={`inventory.stock_update.button.${idx + 1}`}
-                                  >
-                                    <RefreshCw className="w-3 h-3" />
-                                    Stock
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="h-7 px-2 gap-1 text-xs"
-                                    title="Edit"
-                                    onClick={() => openEdit(product)}
-                                    data-ocid={`inventory.edit_button.${idx + 1}`}
-                                  >
-                                    <Pencil className="w-3 h-3" />
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="outline"
-                                    className="h-7 px-2 text-xs border-red-200 text-red-600 hover:bg-red-50"
-                                    title="Delete"
-                                    onClick={() =>
-                                      setDeleteProductId(product.id)
-                                    }
-                                    data-ocid={`inventory.delete_button.${idx + 1}`}
-                                  >
-                                    <Trash2 className="w-3 h-3" />
-                                  </Button>
-                                </div>
-                              </TableCell>
-                            )}
-                          </TableRow>
-                        );
-                      })
-                    )}
+                    ))}
                   </TableBody>
                 </Table>
               </div>
@@ -1032,770 +2306,215 @@ export default function Inventory() {
         </Card>
       </motion.div>
 
-      {/* Today's Transactions Panel */}
+      {/* Today's Transactions */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
         <Card className="shadow-sm border-border">
-          <CardHeader className="pb-3 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-semibold flex items-center gap-2">
+          <CardHeader className="pb-3 border-b border-border">
+            <CardTitle className="text-base flex items-center gap-2">
               <ShoppingCart
                 className="w-4 h-4"
                 style={{ color: "var(--brand-red)" }}
               />
-              Today&apos;s Stock Transactions
+              Today's Transactions
+              <Badge variant="secondary" className="text-xs">
+                {todayTxs.length}
+              </Badge>
             </CardTitle>
-            <Badge variant="secondary" className="text-xs">
-              {today}
-            </Badge>
           </CardHeader>
           <CardContent className="p-0">
             {txLoading ? (
-              <div className="p-4 space-y-2">
-                {[1, 2].map((i) => (
-                  <Skeleton key={i} className="h-10 w-full" />
+              <div
+                className="p-6 space-y-2"
+                data-ocid="transactions.loading_state"
+              >
+                {[1, 2, 3].map((i) => (
+                  <Skeleton key={i} className="h-8 rounded" />
                 ))}
               </div>
             ) : todayTxs.length === 0 ? (
               <div
-                className="py-10 text-center text-muted-foreground text-sm"
-                data-ocid="inventory.today_txs.empty_state"
+                className="flex flex-col items-center justify-center py-10"
+                data-ocid="transactions.empty_state"
               >
-                <ShoppingCart className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                <p className="font-medium">No stock movements today</p>
-                <p className="text-xs mt-1">
-                  Use &quot;Update Stock&quot; on a product row to record a
-                  transaction.
+                <ShoppingCart className="w-8 h-8 text-muted-foreground/30 mb-2" />
+                <p className="text-sm text-muted-foreground">
+                  No transactions recorded today
                 </p>
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-border bg-secondary/50">
-                      <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">
-                        Time
-                      </th>
-                      <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">
-                        Product
-                      </th>
-                      <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">
-                        Type
-                      </th>
-                      <th className="px-4 py-2.5 text-right text-xs font-semibold text-muted-foreground">
-                        Qty Change
-                      </th>
-                      <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">
-                        Note
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(todayTxs as StockTransaction[]).map((tx, idx) => {
-                      const qtyChange = Number(tx.quantityChange);
-                      const isPositive = qtyChange >= 0;
-                      return (
-                        <tr
-                          key={String(tx.id)}
-                          className="border-b border-border last:border-0 hover:bg-secondary/30"
-                          data-ocid={`inventory.today_tx.item.${idx + 1}`}
-                        >
-                          <td className="px-4 py-3 text-xs text-muted-foreground">
-                            {formatTime(tx.createdAt)}
-                          </td>
-                          <td className="px-4 py-3 font-medium text-sm">
-                            {productMap.get(String(tx.productId)) ||
-                              `#${String(tx.productId)}`}
-                          </td>
-                          <td className="px-4 py-3">
-                            <span
-                              className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${txTypeColor(
-                                tx.transactionType,
-                              )}`}
-                            >
-                              {tx.transactionType.charAt(0).toUpperCase() +
-                                tx.transactionType.slice(1)}
-                            </span>
-                          </td>
-                          <td
-                            className={`px-4 py-3 text-right font-semibold text-sm ${
-                              isPositive ? "text-green-600" : "text-red-600"
-                            }`}
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-border bg-muted/30">
+                      <TableHead>Product</TableHead>
+                      <TableHead>Type</TableHead>
+                      <TableHead className="text-right">Change</TableHead>
+                      <TableHead>Note</TableHead>
+                      <TableHead>Time</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {todayTxs.map((tx: StockTransaction, idx: number) => (
+                      <TableRow
+                        key={String(tx.id)}
+                        className="border-border"
+                        data-ocid={`transactions.item.${idx + 1}`}
+                      >
+                        <TableCell className="font-medium text-sm">
+                          {productMap.get(String(tx.productId)) ?? "Unknown"}
+                        </TableCell>
+                        <TableCell>
+                          <Badge
+                            className={`text-xs ${txTypeColor(tx.transactionType)}`}
                           >
-                            {isPositive ? "+" : ""}
-                            {qtyChange.toLocaleString()}
-                          </td>
-                          <td className="px-4 py-3 text-xs text-muted-foreground">
-                            {tx.note || "—"}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                            {tx.transactionType}
+                          </Badge>
+                        </TableCell>
+                        <TableCell
+                          className={`text-right font-bold text-sm ${
+                            Number(tx.quantityChange) >= 0
+                              ? "text-green-600"
+                              : "text-red-600"
+                          }`}
+                        >
+                          {Number(tx.quantityChange) >= 0 ? "+" : ""}
+                          {Number(tx.quantityChange)}
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">
+                          {tx.note || "—"}
+                        </TableCell>
+                        <TableCell className="text-xs text-muted-foreground">
+                          {formatTime(tx.createdAt)}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             )}
           </CardContent>
         </Card>
       </motion.div>
 
-      {/* ── Add Product Dialog ─────────────────────────────────────────────── */}
-      <Dialog open={addProductOpen} onOpenChange={setAddProductOpen}>
-        <DialogContent
-          className="max-w-lg max-h-[90vh] overflow-y-auto"
-          data-ocid="inventory.add_product.dialog"
-        >
-          <DialogHeader>
-            <DialogTitle>Add New Product</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleAddProduct} className="space-y-4 mt-2">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2">
-                <Label htmlFor="ap-name">Product Name *</Label>
-                <Input
-                  id="ap-name"
-                  className="mt-1"
-                  placeholder="e.g. HP LaserJet Toner"
-                  value={productForm.name}
-                  onChange={(e) =>
-                    setProductForm((f) => ({ ...f, name: e.target.value }))
-                  }
-                  data-ocid="inventory.add_product.name.input"
-                />
-              </div>
-              <div className="col-span-2">
-                <Label htmlFor="ap-desc">Description</Label>
-                <Input
-                  id="ap-desc"
-                  className="mt-1"
-                  placeholder="Brief product description"
-                  value={productForm.description}
-                  onChange={(e) =>
-                    setProductForm((f) => ({
-                      ...f,
-                      description: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.add_product.description.input"
-                />
-              </div>
-              <div className="col-span-2">
-                <Label htmlFor="ap-sku">SKU *</Label>
-                <Input
-                  id="ap-sku"
-                  className="mt-1 font-mono"
-                  placeholder="e.g. SKU-0001"
-                  value={productForm.sku}
-                  onChange={(e) =>
-                    setProductForm((f) => ({ ...f, sku: e.target.value }))
-                  }
-                  data-ocid="inventory.add_product.sku.input"
-                />
-              </div>
-              <div className="col-span-2">
-                <Label htmlFor="ap-cat">Category</Label>
-                <Input
-                  id="ap-cat"
-                  className="mt-1"
-                  placeholder="e.g. Electronics, Stationery…"
-                  value={productForm.category}
-                  onChange={(e) =>
-                    setProductForm((f) => ({
-                      ...f,
-                      category: e.target.value,
-                    }))
-                  }
-                  list="categories-list"
-                  data-ocid="inventory.add_product.category.input"
-                />
-                <datalist id="categories-list">
-                  {categories.map((c) => (
-                    <option key={c} value={c} />
-                  ))}
-                </datalist>
-              </div>
-              <div>
-                <Label htmlFor="ap-qty">Initial Quantity</Label>
-                <Input
-                  id="ap-qty"
-                  type="number"
-                  min="0"
-                  className="mt-1"
-                  placeholder="0"
-                  value={productForm.quantity}
-                  onChange={(e) =>
-                    setProductForm((f) => ({
-                      ...f,
-                      quantity: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.add_product.quantity.input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="ap-reorder">Reorder Point</Label>
-                <Input
-                  id="ap-reorder"
-                  type="number"
-                  min="0"
-                  className="mt-1"
-                  placeholder="0"
-                  value={productForm.reorderPoint}
-                  onChange={(e) =>
-                    setProductForm((f) => ({
-                      ...f,
-                      reorderPoint: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.add_product.reorder.input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="ap-cost">Unit Cost (₹)</Label>
-                <Input
-                  id="ap-cost"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  className="mt-1"
-                  placeholder="0.00"
-                  value={productForm.unitCost}
-                  onChange={(e) =>
-                    setProductForm((f) => ({
-                      ...f,
-                      unitCost: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.add_product.unit_cost.input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="ap-sale">Sale Price (₹)</Label>
-                <Input
-                  id="ap-sale"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  className="mt-1"
-                  placeholder="0.00"
-                  value={productForm.salePrice}
-                  onChange={(e) =>
-                    setProductForm((f) => ({
-                      ...f,
-                      salePrice: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.add_product.sale_price.input"
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setAddProductOpen(false)}
-                data-ocid="inventory.add_product.cancel_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="text-white"
-                style={{ backgroundColor: "var(--brand-red)" }}
-                disabled={addProduct.isPending}
-                data-ocid="inventory.add_product.submit_button"
-              >
-                {addProduct.isPending ? (
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                ) : null}
-                Add Product
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      {/* ── Modals ─────────────────────────────────────────────────────────── */}
 
-      {/* ── Edit Product Dialog ────────────────────────────────────────────── */}
-      <Dialog
-        open={!!editProduct}
-        onOpenChange={(open) => !open && setEditProduct(null)}
-      >
-        <DialogContent
-          className="max-w-lg max-h-[90vh] overflow-y-auto"
-          data-ocid="inventory.edit_product.dialog"
-        >
-          <DialogHeader>
-            <DialogTitle>Edit Product</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleEditProduct} className="space-y-4 mt-2">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2">
-                <Label htmlFor="ep-name">Product Name *</Label>
-                <Input
-                  id="ep-name"
-                  className="mt-1"
-                  value={editForm.name}
-                  onChange={(e) =>
-                    setEditForm((f) => ({ ...f, name: e.target.value }))
-                  }
-                  data-ocid="inventory.edit_product.name.input"
-                />
-              </div>
-              <div className="col-span-2">
-                <Label htmlFor="ep-desc">Description</Label>
-                <Input
-                  id="ep-desc"
-                  className="mt-1"
-                  value={editForm.description}
-                  onChange={(e) =>
-                    setEditForm((f) => ({
-                      ...f,
-                      description: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.edit_product.description.input"
-                />
-              </div>
-              <div className="col-span-2">
-                <Label htmlFor="ep-sku">SKU *</Label>
-                <Input
-                  id="ep-sku"
-                  className="mt-1 font-mono"
-                  value={editForm.sku}
-                  onChange={(e) =>
-                    setEditForm((f) => ({ ...f, sku: e.target.value }))
-                  }
-                  data-ocid="inventory.edit_product.sku.input"
-                />
-              </div>
-              <div className="col-span-2">
-                <Label htmlFor="ep-cat">Category</Label>
-                <Input
-                  id="ep-cat"
-                  className="mt-1"
-                  value={editForm.category}
-                  onChange={(e) =>
-                    setEditForm((f) => ({
-                      ...f,
-                      category: e.target.value,
-                    }))
-                  }
-                  list="categories-list-edit"
-                  data-ocid="inventory.edit_product.category.input"
-                />
-                <datalist id="categories-list-edit">
-                  {categories.map((c) => (
-                    <option key={c} value={c} />
-                  ))}
-                </datalist>
-              </div>
-              <div>
-                <Label htmlFor="ep-reorder">Reorder Point</Label>
-                <Input
-                  id="ep-reorder"
-                  type="number"
-                  min="0"
-                  className="mt-1"
-                  value={editForm.reorderPoint}
-                  onChange={(e) =>
-                    setEditForm((f) => ({
-                      ...f,
-                      reorderPoint: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.edit_product.reorder.input"
-                />
-              </div>
-              <div />
-              <div>
-                <Label htmlFor="ep-cost">Unit Cost (₹)</Label>
-                <Input
-                  id="ep-cost"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  className="mt-1"
-                  value={editForm.unitCost}
-                  onChange={(e) =>
-                    setEditForm((f) => ({
-                      ...f,
-                      unitCost: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.edit_product.unit_cost.input"
-                />
-              </div>
-              <div>
-                <Label htmlFor="ep-sale">Sale Price (₹)</Label>
-                <Input
-                  id="ep-sale"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  className="mt-1"
-                  value={editForm.salePrice}
-                  onChange={(e) =>
-                    setEditForm((f) => ({
-                      ...f,
-                      salePrice: e.target.value,
-                    }))
-                  }
-                  data-ocid="inventory.edit_product.sale_price.input"
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setEditProduct(null)}
-                data-ocid="inventory.edit_product.cancel_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="text-white"
-                style={{ backgroundColor: "var(--brand-red)" }}
-                disabled={editProductMut.isPending}
-                data-ocid="inventory.edit_product.save_button"
-              >
-                {editProductMut.isPending ? (
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                ) : null}
-                Save Changes
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      {/* Manager Login */}
+      <ManagerLoginModal
+        open={managerLoginOpen}
+        onClose={() => setManagerLoginOpen(false)}
+      />
 
-      {/* ── Stock Update Modal ─────────────────────────────────────────────── */}
-      <Dialog
-        open={!!stockUpdateProduct}
-        onOpenChange={(open) => !open && setStockUpdateProduct(null)}
-      >
-        <DialogContent
-          className="max-w-sm"
-          data-ocid="inventory.stock_update.dialog"
-        >
-          <DialogHeader>
-            <DialogTitle>Update Stock</DialogTitle>
-          </DialogHeader>
-          {stockUpdateProduct && (
-            <form onSubmit={handleStockUpdate} className="space-y-4 mt-2">
-              <div className="bg-secondary/50 rounded-lg px-3 py-2">
-                <p className="text-xs text-muted-foreground">Product</p>
-                <p className="text-sm font-semibold">
-                  {stockUpdateProduct.name}
-                </p>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  Current stock:{" "}
-                  <strong>
-                    {Number(stockUpdateProduct.quantity).toLocaleString()}
-                  </strong>{" "}
-                  units
-                </p>
-              </div>
+      {/* Add Product */}
+      <AddProductModal
+        open={addProductOpen}
+        onClose={() => setAddProductOpen(false)}
+        isManager={isManager}
+        pendingProducts={pendingProducts}
+        onPendingAdd={handlePendingAdd}
+      />
 
-              <div>
-                <Label htmlFor="su-type">Transaction Type</Label>
-                <Select
-                  value={stockForm.txType}
-                  onValueChange={(v) =>
-                    setStockForm((f) => ({ ...f, txType: v }))
-                  }
-                >
-                  <SelectTrigger
-                    id="su-type"
-                    className="mt-1"
-                    data-ocid="inventory.stock_update.type.select"
-                  >
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="purchase">
-                      Purchase (Add Stock)
-                    </SelectItem>
-                    <SelectItem value="sale">Sale (Remove Stock)</SelectItem>
-                    <SelectItem value="adjustment">Adjustment</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+      {/* Edit Product (manager only) */}
+      <EditProductModal
+        product={editProductTarget}
+        onClose={() => setEditProductTarget(null)}
+      />
 
-              <div className="flex gap-2 items-end">
-                {stockForm.txType === "adjustment" && (
-                  <div>
-                    <Label>Sign</Label>
-                    <div className="flex gap-1 mt-1">
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant={
-                          stockForm.adjustSign === "+" ? "default" : "outline"
-                        }
-                        style={
-                          stockForm.adjustSign === "+"
-                            ? {
-                                backgroundColor: "var(--brand-red)",
-                                color: "white",
-                              }
-                            : {}
-                        }
-                        className="w-9 h-9 p-0"
-                        onClick={() =>
-                          setStockForm((f) => ({ ...f, adjustSign: "+" }))
-                        }
-                        data-ocid="inventory.stock_update.plus.toggle"
-                      >
-                        <ChevronUp className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant={
-                          stockForm.adjustSign === "-" ? "default" : "outline"
-                        }
-                        style={
-                          stockForm.adjustSign === "-"
-                            ? {
-                                backgroundColor: "oklch(0.44 0.19 21)",
-                                color: "white",
-                              }
-                            : {}
-                        }
-                        className="w-9 h-9 p-0"
-                        onClick={() =>
-                          setStockForm((f) => ({ ...f, adjustSign: "-" }))
-                        }
-                        data-ocid="inventory.stock_update.minus.toggle"
-                      >
-                        <ChevronDown className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                )}
-                <div className="flex-1">
-                  <Label htmlFor="su-qty">Quantity</Label>
-                  <Input
-                    id="su-qty"
-                    type="number"
-                    min="1"
-                    className="mt-1"
-                    placeholder="e.g. 50"
-                    value={stockForm.quantity}
-                    onChange={(e) =>
-                      setStockForm((f) => ({ ...f, quantity: e.target.value }))
-                    }
-                    data-ocid="inventory.stock_update.quantity.input"
-                  />
-                </div>
-              </div>
+      {/* Pending product edit */}
+      <PendingEditModal
+        pending={pendingEditTarget}
+        onSave={handlePendingEdit}
+        onClose={() => setPendingEditTarget(null)}
+      />
 
-              <div>
-                <Label htmlFor="su-note">Note (optional)</Label>
-                <Input
-                  id="su-note"
-                  className="mt-1"
-                  placeholder="e.g. Restocked from supplier"
-                  value={stockForm.note}
-                  onChange={(e) =>
-                    setStockForm((f) => ({ ...f, note: e.target.value }))
-                  }
-                  data-ocid="inventory.stock_update.note.input"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="su-date">Date</Label>
-                <Input
-                  id="su-date"
-                  type="date"
-                  className="mt-1"
-                  value={stockForm.date}
-                  onChange={(e) =>
-                    setStockForm((f) => ({ ...f, date: e.target.value }))
-                  }
-                  data-ocid="inventory.stock_update.date.input"
-                />
-              </div>
-
-              <DialogFooter>
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setStockUpdateProduct(null)}
-                  data-ocid="inventory.stock_update.cancel_button"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  className="text-white"
-                  style={{ backgroundColor: "var(--brand-red)" }}
-                  disabled={addStockTx.isPending}
-                  data-ocid="inventory.stock_update.submit_button"
-                >
-                  {addStockTx.isPending ? (
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                  ) : null}
-                  Update Stock
-                </Button>
-              </DialogFooter>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
-
-      {/* ── Bulk Update Prices Dialog ─────────────────────────────────────── */}
-      <Dialog
-        open={bulkActionType === "prices"}
-        onOpenChange={(open) => !open && setBulkActionType(null)}
-      >
-        <DialogContent data-ocid="inventory.bulk_prices.dialog">
-          <DialogHeader>
-            <DialogTitle>
-              Update Prices — {selectedIds.size} product
-              {selectedIds.size > 1 ? "s" : ""}
-            </DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleBulkUpdate} className="space-y-4 mt-2">
-            <div>
-              <Label htmlFor="bp-cost">New Unit Cost (₹)</Label>
-              <Input
-                id="bp-cost"
-                type="number"
-                min="0"
-                step="0.01"
-                className="mt-1"
-                placeholder="0.00"
-                value={bulkUnitCost}
-                onChange={(e) => setBulkUnitCost(e.target.value)}
-                data-ocid="inventory.bulk_prices.unit_cost.input"
-              />
-            </div>
-            <div>
-              <Label htmlFor="bp-sale">New Sale Price (₹)</Label>
-              <Input
-                id="bp-sale"
-                type="number"
-                min="0"
-                step="0.01"
-                className="mt-1"
-                placeholder="0.00"
-                value={bulkSalePrice}
-                onChange={(e) => setBulkSalePrice(e.target.value)}
-                data-ocid="inventory.bulk_prices.sale_price.input"
-              />
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setBulkActionType(null)}
-                data-ocid="inventory.bulk_prices.cancel_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="text-white"
-                style={{ backgroundColor: "var(--brand-red)" }}
-                disabled={bulkUpdate.isPending}
-                data-ocid="inventory.bulk_prices.submit_button"
-              >
-                {bulkUpdate.isPending ? (
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                ) : null}
-                Apply to Selected
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* ── Bulk Update Reorder Level Dialog ─────────────────────────────── */}
-      <Dialog
-        open={bulkActionType === "reorder"}
-        onOpenChange={(open) => !open && setBulkActionType(null)}
-      >
-        <DialogContent data-ocid="inventory.bulk_reorder.dialog">
-          <DialogHeader>
-            <DialogTitle>
-              Update Reorder Level — {selectedIds.size} product
-              {selectedIds.size > 1 ? "s" : ""}
-            </DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleBulkUpdate} className="space-y-4 mt-2">
-            <div>
-              <Label htmlFor="br-rp">New Reorder Point (units)</Label>
-              <Input
-                id="br-rp"
-                type="number"
-                min="0"
-                className="mt-1"
-                placeholder="e.g. 10"
-                value={bulkReorderPoint}
-                onChange={(e) => setBulkReorderPoint(e.target.value)}
-                data-ocid="inventory.bulk_reorder.reorder_point.input"
-              />
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setBulkActionType(null)}
-                data-ocid="inventory.bulk_reorder.cancel_button"
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="text-white"
-                style={{ backgroundColor: "var(--brand-red)" }}
-                disabled={bulkUpdate.isPending}
-                data-ocid="inventory.bulk_reorder.submit_button"
-              >
-                {bulkUpdate.isPending ? (
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                ) : null}
-                Apply to Selected
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* ── Delete Confirmation ────────────────────────────────────────────── */}
+      {/* Delete confirmed product */}
       <AlertDialog
         open={deleteProductId !== null}
-        onOpenChange={(open) => !open && setDeleteProductId(null)}
+        onOpenChange={(v) => !v && setDeleteProductId(null)}
       >
-        <AlertDialogContent data-ocid="inventory.delete_product.dialog">
+        <AlertDialogContent data-ocid="delete_product.dialog">
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Product?</AlertDialogTitle>
+            <AlertDialogTitle>Delete Product</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently remove the product and its stock history.
-              This action cannot be undone.
+              This will permanently remove the product from inventory. This
+              action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel data-ocid="inventory.delete_product.cancel_button">
+            <AlertDialogCancel data-ocid="delete_product.cancel_button">
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
               onClick={handleDeleteProduct}
-              className="text-white"
-              style={{ backgroundColor: "oklch(0.44 0.19 21)" }}
-              data-ocid="inventory.delete_product.confirm_button"
+              data-ocid="delete_product.confirm_button"
             >
+              {deleteProductMut.isPending ? (
+                <Loader2 className="w-4 h-4 mr-1.5 animate-spin" />
+              ) : null}
               Delete Product
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Delete pending submission */}
+      <AlertDialog
+        open={pendingDeleteId !== null}
+        onOpenChange={(v) => !v && setPendingDeleteId(null)}
+      >
+        <AlertDialogContent data-ocid="delete_pending.dialog">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove Pending Submission</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will remove the pending product submission. It will not be
+              added to inventory.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel data-ocid="delete_pending.cancel_button">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={() =>
+                pendingDeleteId && handlePendingDelete(pendingDeleteId)
+              }
+              data-ocid="delete_pending.confirm_button"
+            >
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Stock update */}
+      <StockUpdateModal
+        product={stockUpdateProduct}
+        onClose={() => setStockUpdateProduct(null)}
+      />
+
+      {/* Bulk update */}
+      <BulkUpdateModal
+        actionType={bulkActionType}
+        selectedCount={selectedIds.size}
+        onClose={() => setBulkActionType(null)}
+        onSubmit={handleBulkUpdate}
+        isPending={bulkUpdateMut.isPending}
+      />
     </div>
+  );
+}
+
+// ── Exported page (wrapped in provider) ───────────────────────────────────────
+
+export default function Inventory() {
+  return (
+    <InventoryAuthProvider>
+      <InventoryInner />
+    </InventoryAuthProvider>
   );
 }
