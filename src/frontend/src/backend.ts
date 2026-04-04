@@ -141,6 +141,7 @@ export interface PaymentHead {
     isDefault: boolean;
 }
 export interface backendInterface {
+    _initializeAccessControlWithSecret(adminToken: string): Promise<void>;
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
     addPaymentHead(name: string, headType: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
@@ -159,6 +160,9 @@ export interface backendInterface {
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async _initializeAccessControlWithSecret(arg0: string): Promise<void> {
+        try { await (this.actor as any)._initializeAccessControlWithSecret(arg0); } catch(_e) {}
+    }
     async addFixedDeposit(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: number, arg6: bigint, arg7: number, arg8: number, arg9: number, arg10: string, arg11: string): Promise<bigint> {
         if (this.processError) {
             try {

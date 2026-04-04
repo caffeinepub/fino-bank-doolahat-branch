@@ -5,6 +5,7 @@ import NavTabs from "./components/NavTabs";
 import DailyPLEntry from "./pages/DailyPLEntry";
 import Dashboard from "./pages/Dashboard";
 import FixedDeposits from "./pages/FixedDeposits";
+import Inventory from "./pages/Inventory";
 import Merchants from "./pages/Merchants";
 import PLReports from "./pages/PLReports";
 import PaymentHeads from "./pages/PaymentHeads";
@@ -17,7 +18,8 @@ export type TabId =
   | "fixed-deposits"
   | "transactions"
   | "payment-heads"
-  | "merchants";
+  | "merchants"
+  | "inventory";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>("dashboard");
@@ -38,6 +40,8 @@ export default function App() {
         return <PaymentHeads />;
       case "merchants":
         return <Merchants />;
+      case "inventory":
+        return <Inventory />;
       default:
         return <Dashboard onNavigate={setActiveTab} />;
     }
@@ -105,6 +109,7 @@ export default function App() {
                     ["fixed-deposits", "Fixed Deposit"],
                     ["transactions", "Transactions"],
                     ["merchants", "Merchants"],
+                    ["inventory", "Inventory"],
                   ] as [TabId, string][]
                 ).map(([tab, label]) => (
                   <li key={tab}>

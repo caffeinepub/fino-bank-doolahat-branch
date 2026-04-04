@@ -58,7 +58,30 @@ export interface PaymentHead {
     name: string;
     isDefault: boolean;
 }
+export interface InventoryProduct {
+    id: bigint;
+    name: string;
+    description: string;
+    sku: string;
+    barcode: string;
+    category: string;
+    quantity: bigint;
+    unitCost: number;
+    salePrice: number;
+    reorderPoint: bigint;
+    createdAt: bigint;
+}
+export interface StockTransaction {
+    id: bigint;
+    productId: bigint;
+    transactionType: string;
+    quantityChange: bigint;
+    note: string;
+    transactionDate: string;
+    createdAt: bigint;
+}
 export interface backendInterface {
+    _initializeAccessControlWithSecret(adminToken: string): Promise<void>;
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
     addPaymentHead(name: string, headType: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
@@ -74,4 +97,13 @@ export interface backendInterface {
     getDailyPLByDateRange(startDate: string, endDate: string): Promise<Array<DailyPL>>;
     getTransactionsByTypeAndStatus(txType: string, status: string): Promise<Array<Transaction>>;
     saveDailyPL(date: string, headBalances: Array<HeadBalance>): Promise<bigint>;
+    addProduct(name: string, description: string, sku: string, barcode: string, category: string, quantity: bigint, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<bigint>;
+    editProduct(id: bigint, name: string, description: string, sku: string, barcode: string, category: string, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<void>;
+    deleteProduct(id: bigint): Promise<void>;
+    getAllProducts(): Promise<Array<InventoryProduct>>;
+    addStockTransaction(productId: bigint, txType: string, quantityChange: bigint, note: string, transactionDate: string): Promise<bigint>;
+    getAllStockTransactions(): Promise<Array<StockTransaction>>;
+    getStockTransactionsByProduct(productId: bigint): Promise<Array<StockTransaction>>;
+    getTodayStockTransactions(today: string): Promise<Array<StockTransaction>>;
+    bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
 }

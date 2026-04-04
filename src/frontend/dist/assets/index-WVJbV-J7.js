@@ -17873,18 +17873,53 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$m = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+const __iconNode$v = [
+  ["path", { d: "M12 5v14", key: "s699le" }],
+  ["path", { d: "m19 12-7 7-7-7", key: "1idqje" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$m);
+const ArrowDown = createLucideIcon("arrow-down", __iconNode$v);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$l = [
+const __iconNode$u = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+];
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$u);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$t = [
+  ["path", { d: "m21 16-4 4-4-4", key: "f6ql7i" }],
+  ["path", { d: "M17 20V4", key: "1ejh1v" }],
+  ["path", { d: "m3 8 4-4 4 4", key: "11wl7u" }],
+  ["path", { d: "M7 4v16", key: "1glfcx" }]
+];
+const ArrowUpDown = createLucideIcon("arrow-up-down", __iconNode$t);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$s = [
+  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
+  ["path", { d: "M12 19V5", key: "x0mq9r" }]
+];
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$s);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$r = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -17894,31 +17929,107 @@ const __iconNode$l = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$l);
+const Bell = createLucideIcon("bell", __iconNode$r);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$k = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$k);
+const __iconNode$q = [
+  [
+    "path",
+    {
+      d: "M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z",
+      key: "hh9hay"
+    }
+  ],
+  ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
+  ["path", { d: "M12 22V12", key: "d0xqtd" }]
+];
+const Box = createLucideIcon("box", __iconNode$q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$j = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$j);
+const __iconNode$p = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$p);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$i = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$i);
+const __iconNode$o = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$o);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$n = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$n);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$m);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$l = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$l);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$k = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
+];
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$k);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$j = [
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+];
+const CreditCard = createLucideIcon("credit-card", __iconNode$j);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$i = [
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
+];
+const Download = createLucideIcon("download", __iconNode$i);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17926,10 +18037,13 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$i);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$h = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$h);
+const FileText = createLucideIcon("file-text", __iconNode$h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17937,11 +18051,13 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
+  ["path", { d: "M6 3h12", key: "ggurg9" }],
+  ["path", { d: "M6 8h12", key: "6g4wlu" }],
+  ["path", { d: "m6 13 8.5 8", key: "u1kupk" }],
+  ["path", { d: "M6 13h3", key: "wdp6ag" }],
+  ["path", { d: "M9 13c6.667 0 6.667-10 0-10", key: "1nkvk2" }]
 ];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$g);
+const IndianRupee = createLucideIcon("indian-rupee", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17949,43 +18065,6 @@ const CirclePlus = createLucideIcon("circle-plus", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
-  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
-];
-const CreditCard = createLucideIcon("credit-card", __iconNode$f);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$e = [
-  ["path", { d: "M12 15V3", key: "m9g1x1" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
-];
-const Download = createLucideIcon("download", __iconNode$e);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$d = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$d);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
   ["path", { d: "M10 18v-7", key: "wt116b" }],
   [
     "path",
@@ -17999,34 +18078,64 @@ const __iconNode$c = [
   ["path", { d: "M3 22h18", key: "8prr45" }],
   ["path", { d: "M6 18v-7", key: "1ivflk" }]
 ];
-const Landmark = createLucideIcon("landmark", __iconNode$c);
+const Landmark = createLucideIcon("landmark", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$b = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$b);
+const __iconNode$e = [
+  [
+    "path",
+    {
+      d: "M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",
+      key: "zw3jo"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12",
+      key: "1wduqc"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17",
+      key: "kqbvx6"
+    }
+  ]
+];
+const Layers = createLucideIcon("layers", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$a = [
+const __iconNode$d = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
   ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
   ["path", { d: "M21 12H9", key: "dn1m92" }],
   ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-const LogOut = createLucideIcon("log-out", __iconNode$a);
+const LogOut = createLucideIcon("log-out", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [
+const __iconNode$b = [
   [
     "path",
     {
@@ -18036,14 +18145,14 @@ const __iconNode$9 = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$9);
+const Pencil = createLucideIcon("pencil", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [
+const __iconNode$a = [
   [
     "path",
     { d: "M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z", key: "q3az6g" }
@@ -18051,14 +18160,27 @@ const __iconNode$8 = [
   ["path", { d: "M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8", key: "1h4pet" }],
   ["path", { d: "M12 17.5v-11", key: "1jc1ny" }]
 ];
-const Receipt = createLucideIcon("receipt", __iconNode$8);
+const Receipt = createLucideIcon("receipt", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [
+const __iconNode$9 = [
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+];
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$9);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
   [
     "path",
     {
@@ -18069,7 +18191,18 @@ const __iconNode$7 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$7);
+const Save = createLucideIcon("save", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+const Search = createLucideIcon("search", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18077,17 +18210,6 @@ const Save = createLucideIcon("save", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
-];
-const Search = createLucideIcon("search", __iconNode$6);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$5 = [
   [
     "path",
     {
@@ -18097,7 +18219,25 @@ const __iconNode$5 = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const ShieldCheck = createLucideIcon("shield-check", __iconNode$5);
+const ShieldCheck = createLucideIcon("shield-check", __iconNode$6);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$5 = [
+  ["circle", { cx: "8", cy: "21", r: "1", key: "jimo8o" }],
+  ["circle", { cx: "19", cy: "21", r: "1", key: "13723u" }],
+  [
+    "path",
+    {
+      d: "M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12",
+      key: "9zh506"
+    }
+  ]
+];
+const ShoppingCart = createLucideIcon("shopping-cart", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18257,7 +18397,8 @@ const tabs = [
   { id: "fixed-deposits", label: "Fixed Deposit" },
   { id: "transactions", label: "Transactions" },
   { id: "payment-heads", label: "Payment Heads" },
-  { id: "merchants", label: "Merchants" }
+  { id: "merchants", label: "Merchants" },
+  { id: "inventory", label: "Inventory" }
 ];
 function NavTabs({ activeTab, onTabChange }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "bg-white border-b border-border sticky top-16 z-30", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center px-6 gap-0 overflow-x-auto", children: [
@@ -18403,7 +18544,7 @@ function useControllableState({
     (nextValue) => {
       var _a3;
       if (isControlled) {
-        const value2 = isFunction$4(nextValue) ? nextValue(prop) : nextValue;
+        const value2 = isFunction$5(nextValue) ? nextValue(prop) : nextValue;
         if (value2 !== prop) {
           (_a3 = onChangeRef.current) == null ? void 0 : _a3.call(onChangeRef, value2);
         }
@@ -18434,7 +18575,7 @@ function useUncontrolledState({
   }, [value, prevValueRef]);
   return [value, setValue, onChangeRef];
 }
-function isFunction$4(value) {
+function isFunction$5(value) {
   return typeof value === "function";
 }
 var NODES = [
@@ -19864,11 +20005,11 @@ var Dialog$1 = (props) => {
   );
 };
 Dialog$1.displayName = DIALOG_NAME;
-var TRIGGER_NAME$3 = "DialogTrigger";
+var TRIGGER_NAME$4 = "DialogTrigger";
 var DialogTrigger = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDialog, ...triggerProps } = props;
-    const context = useDialogContext(TRIGGER_NAME$3, __scopeDialog);
+    const context = useDialogContext(TRIGGER_NAME$4, __scopeDialog);
     const composedTriggerRef = useComposedRefs$1(forwardedRef, context.triggerRef);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
@@ -19877,7 +20018,7 @@ var DialogTrigger = reactExports.forwardRef(
         "aria-haspopup": "dialog",
         "aria-expanded": context.open,
         "aria-controls": context.contentId,
-        "data-state": getState$1(context.open),
+        "data-state": getState$2(context.open),
         ...triggerProps,
         ref: composedTriggerRef,
         onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
@@ -19885,7 +20026,7 @@ var DialogTrigger = reactExports.forwardRef(
     );
   }
 );
-DialogTrigger.displayName = TRIGGER_NAME$3;
+DialogTrigger.displayName = TRIGGER_NAME$4;
 var PORTAL_NAME$2 = "DialogPortal";
 var [PortalProvider, usePortalContext] = createDialogContext(PORTAL_NAME$2, {
   forceMount: void 0
@@ -19917,7 +20058,7 @@ var DialogOverlayImpl = reactExports.forwardRef(
       /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot$1, allowPinchZoom: true, shards: [context.contentRef], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Primitive.div,
         {
-          "data-state": getState$1(context.open),
+          "data-state": getState$2(context.open),
           ...overlayProps,
           ref: forwardedRef,
           style: { pointerEvents: "auto", ...overlayProps.style }
@@ -20036,7 +20177,7 @@ var DialogContentImpl = reactExports.forwardRef(
               id: context.contentId,
               "aria-describedby": context.descriptionId,
               "aria-labelledby": context.titleId,
-              "data-state": getState$1(context.open),
+              "data-state": getState$2(context.open),
               ...contentProps,
               ref: composedRefs,
               onDismiss: () => context.onOpenChange(false)
@@ -20086,7 +20227,7 @@ var DialogClose = reactExports.forwardRef(
   }
 );
 DialogClose.displayName = CLOSE_NAME;
-function getState$1(open) {
+function getState$2(open) {
   return open ? "open" : "closed";
 }
 var TITLE_WARNING_NAME = "DialogTitleWarning";
@@ -20143,7 +20284,7 @@ var AlertDialog$1 = (props) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$4, { ...dialogScope, ...alertDialogProps, modal: true });
 };
 AlertDialog$1.displayName = ROOT_NAME;
-var TRIGGER_NAME$2 = "AlertDialogTrigger";
+var TRIGGER_NAME$3 = "AlertDialogTrigger";
 var AlertDialogTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeAlertDialog, ...triggerProps } = props;
@@ -20151,7 +20292,7 @@ var AlertDialogTrigger$1 = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Trigger$2, { ...dialogScope, ...triggerProps, ref: forwardedRef });
   }
 );
-AlertDialogTrigger$1.displayName = TRIGGER_NAME$2;
+AlertDialogTrigger$1.displayName = TRIGGER_NAME$3;
 var PORTAL_NAME$1 = "AlertDialogPortal";
 var AlertDialogPortal$1 = (props) => {
   const { __scopeAlertDialog, ...portalProps } = props;
@@ -20592,7 +20733,7 @@ var Switch$1 = reactExports.forwardRef(
           role: "switch",
           "aria-checked": checked,
           "aria-required": required,
-          "data-state": getState(checked),
+          "data-state": getState$1(checked),
           "data-disabled": disabled ? "" : void 0,
           disabled,
           value,
@@ -20633,7 +20774,7 @@ var SwitchThumb = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.span,
       {
-        "data-state": getState(context.checked),
+        "data-state": getState$1(context.checked),
         "data-disabled": context.disabled ? "" : void 0,
         ...thumbProps,
         ref: forwardedRef
@@ -20642,7 +20783,7 @@ var SwitchThumb = reactExports.forwardRef(
   }
 );
 SwitchThumb.displayName = THUMB_NAME;
-var BUBBLE_INPUT_NAME$1 = "SwitchBubbleInput";
+var BUBBLE_INPUT_NAME$2 = "SwitchBubbleInput";
 var SwitchBubbleInput = reactExports.forwardRef(
   ({
     __scopeSwitch,
@@ -20691,8 +20832,8 @@ var SwitchBubbleInput = reactExports.forwardRef(
     );
   }
 );
-SwitchBubbleInput.displayName = BUBBLE_INPUT_NAME$1;
-function getState(checked) {
+SwitchBubbleInput.displayName = BUBBLE_INPUT_NAME$2;
+function getState$1(checked) {
   return checked ? "checked" : "unchecked";
 }
 var Root$2 = Switch$1;
@@ -39475,6 +39616,12 @@ class Backend {
     this._downloadFile = _downloadFile;
     this.processError = processError2;
   }
+  async _initializeAccessControlWithSecret(arg0) {
+    try {
+      await this.actor._initializeAccessControlWithSecret(arg0);
+    } catch (_e2) {
+    }
+  }
   async addFixedDeposit(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) {
     if (this.processError) {
       try {
@@ -40242,6 +40389,68 @@ async function createActorWithConfig(options) {
     downloadFile,
     actorOptions
   );
+}
+function storeSessionParameter(key, value) {
+  try {
+    sessionStorage.setItem(key, value);
+  } catch (error) {
+    console.warn(`Failed to store session parameter ${key}:`, error);
+  }
+}
+function getSessionParameter(key) {
+  try {
+    return sessionStorage.getItem(key);
+  } catch (error) {
+    console.warn(`Failed to retrieve session parameter ${key}:`, error);
+    return null;
+  }
+}
+function clearParamFromHash(paramName) {
+  if (!window.history.replaceState) {
+    return;
+  }
+  const hash = window.location.hash;
+  if (!hash || hash.length <= 1) {
+    return;
+  }
+  const hashContent = hash.substring(1);
+  const queryStartIndex = hashContent.indexOf("?");
+  if (queryStartIndex === -1) {
+    return;
+  }
+  const routePath = hashContent.substring(0, queryStartIndex);
+  const queryString = hashContent.substring(queryStartIndex + 1);
+  const params = new URLSearchParams(queryString);
+  params.delete(paramName);
+  const newQueryString = params.toString();
+  let newHash = routePath;
+  if (newQueryString) {
+    newHash += `?${newQueryString}`;
+  }
+  const newUrl = window.location.pathname + window.location.search + (newHash ? `#${newHash}` : "");
+  window.history.replaceState(null, "", newUrl);
+}
+function getSecretFromHash(paramName) {
+  const existingSecret = getSessionParameter(paramName);
+  if (existingSecret !== null) {
+    return existingSecret;
+  }
+  const hash = window.location.hash;
+  if (!hash || hash.length <= 1) {
+    return null;
+  }
+  const hashContent = hash.substring(1);
+  const params = new URLSearchParams(hashContent);
+  const secret = params.get(paramName);
+  if (secret) {
+    storeSessionParameter(paramName, secret);
+    clearParamFromHash(paramName);
+    return secret;
+  }
+  return null;
+}
+function getSecretParameter(paramName) {
+  return getSecretFromHash(paramName);
 }
 function isObject$9(value) {
   return value !== null && typeof value === "object";
@@ -41725,6 +41934,8 @@ function useActor() {
         }
       };
       const actor = await createActorWithConfig(actorOptions);
+      const adminToken = getSecretParameter("caffeineAdminToken") || "";
+      await actor._initializeAccessControlWithSecret(adminToken);
       return actor;
     },
     // Only refetch when identity changes
@@ -41936,6 +42147,120 @@ function useDeleteTransaction() {
       return actor.deleteTransaction(id2);
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["transactions"] })
+  });
+}
+function asInventoryActor(actor) {
+  return actor;
+}
+function useInventoryProducts() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["inventory"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return asInventoryActor(actor).getAllProducts();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useAddProduct() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (p2) => {
+      if (!actor) throw new Error("No actor");
+      return asInventoryActor(actor).addProduct(
+        p2.name,
+        p2.description,
+        p2.sku,
+        p2.barcode,
+        p2.category,
+        p2.quantity,
+        p2.unitCost,
+        p2.salePrice,
+        p2.reorderPoint
+      );
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] })
+  });
+}
+function useEditProduct() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (p2) => {
+      if (!actor) throw new Error("No actor");
+      return asInventoryActor(actor).editProduct(
+        p2.id,
+        p2.name,
+        p2.description,
+        p2.sku,
+        p2.barcode,
+        p2.category,
+        p2.unitCost,
+        p2.salePrice,
+        p2.reorderPoint
+      );
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] })
+  });
+}
+function useDeleteProduct() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id2) => {
+      if (!actor) throw new Error("No actor");
+      return asInventoryActor(actor).deleteProduct(id2);
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] })
+  });
+}
+function useTodayStockTransactions(today) {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["stockTransactions", "today", today],
+    queryFn: async () => {
+      if (!actor) return [];
+      return asInventoryActor(actor).getTodayStockTransactions(today);
+    },
+    enabled: !!actor && !isFetching && !!today
+  });
+}
+function useAddStockTransaction() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (p2) => {
+      if (!actor) throw new Error("No actor");
+      return asInventoryActor(actor).addStockTransaction(
+        p2.productId,
+        p2.txType,
+        p2.quantityChange,
+        p2.note,
+        p2.transactionDate
+      );
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["inventory"] });
+      qc.invalidateQueries({ queryKey: ["stockTransactions"] });
+    }
+  });
+}
+function useBulkUpdateProducts() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (p2) => {
+      if (!actor) throw new Error("No actor");
+      return asInventoryActor(actor).bulkUpdateProducts(
+        p2.ids,
+        p2.unitCosts,
+        p2.salePrices,
+        p2.reorderPoints
+      );
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] })
   });
 }
 function formatDate(isoDate) {
@@ -42657,15 +42982,15 @@ var isObject_1 = isObject$7;
 const isObject$8 = /* @__PURE__ */ getDefaultExportFromCjs(isObject_1);
 var baseGetTag$7 = _baseGetTag, isObject$6 = isObject_1;
 var asyncTag = "[object AsyncFunction]", funcTag$1 = "[object Function]", genTag = "[object GeneratorFunction]", proxyTag = "[object Proxy]";
-function isFunction$2(value) {
+function isFunction$3(value) {
   if (!isObject$6(value)) {
     return false;
   }
   var tag = baseGetTag$7(value);
   return tag == funcTag$1 || tag == genTag || tag == asyncTag || tag == proxyTag;
 }
-var isFunction_1 = isFunction$2;
-const isFunction$3 = /* @__PURE__ */ getDefaultExportFromCjs(isFunction_1);
+var isFunction_1 = isFunction$3;
+const isFunction$4 = /* @__PURE__ */ getDefaultExportFromCjs(isFunction_1);
 var root$7 = _root;
 var coreJsData$1 = root$7["__core-js_shared__"];
 var _coreJsData = coreJsData$1;
@@ -42694,7 +43019,7 @@ function toSource$2(func) {
   return "";
 }
 var _toSource = toSource$2;
-var isFunction$1 = isFunction_1, isMasked = _isMasked, isObject$5 = isObject_1, toSource$1 = _toSource;
+var isFunction$2 = isFunction_1, isMasked = _isMasked, isObject$5 = isObject_1, toSource$1 = _toSource;
 var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
 var reIsHostCtor = /^\[object .+?Constructor\]$/;
 var funcProto$1 = Function.prototype, objectProto$a = Object.prototype;
@@ -42707,7 +43032,7 @@ function baseIsNative$1(value) {
   if (!isObject$5(value) || isMasked(value)) {
     return false;
   }
-  var pattern = isFunction$1(value) ? reIsNative : reIsHostCtor;
+  var pattern = isFunction$2(value) ? reIsNative : reIsHostCtor;
   return pattern.test(toSource$1(value));
 }
 var _baseIsNative = baseIsNative$1;
@@ -43754,7 +44079,7 @@ var isSvgElement = function isSvgElement2(child) {
 var isValidSpreadableProp = function isValidSpreadableProp2(property2, key, includeEvents, svgElementType) {
   var _FilteredElementKeyMa;
   var matchingElementTypeKeys = (_FilteredElementKeyMa = FilteredElementKeyMap === null || FilteredElementKeyMap === void 0 ? void 0 : FilteredElementKeyMap[svgElementType]) !== null && _FilteredElementKeyMa !== void 0 ? _FilteredElementKeyMa : [];
-  return key.startsWith("data-") || !isFunction$3(property2) && (svgElementType && matchingElementTypeKeys.includes(key) || SVGElementPropKeys.includes(key)) || includeEvents && EventKeys.includes(key);
+  return key.startsWith("data-") || !isFunction$4(property2) && (svgElementType && matchingElementTypeKeys.includes(key) || SVGElementPropKeys.includes(key)) || includeEvents && EventKeys.includes(key);
 };
 var filterProps = function filterProps2(props, includeEvents, svgElementType) {
   if (!props || typeof props === "function" || typeof props === "boolean") {
@@ -45303,9 +45628,9 @@ var DefaultLegendContent = /* @__PURE__ */ function(_PureComponent) {
         if (entry.type === "none") {
           return null;
         }
-        var entryValue = !isFunction$3(entry.value) ? entry.value : null;
+        var entryValue = !isFunction$4(entry.value) ? entry.value : null;
         warn(
-          !isFunction$3(entry.value),
+          !isFunction$4(entry.value),
           `The name property is also required when using a function for the dataKey of a chart's cartesian components. Ex: <Bar name="Name of my Data"/>`
           // eslint-disable-line max-len
         );
@@ -45741,9 +46066,9 @@ function baseKeys$1(object2) {
   return result;
 }
 var _baseKeys = baseKeys$1;
-var isFunction = isFunction_1, isLength$1 = isLength_1;
+var isFunction$1 = isFunction_1, isLength$1 = isLength_1;
 function isArrayLike$5(value) {
-  return value != null && isLength$1(value.length) && !isFunction(value);
+  return value != null && isLength$1(value.length) && !isFunction$1(value);
 }
 var isArrayLike_1 = isArrayLike$5;
 var arrayLikeKeys = _arrayLikeKeys, baseKeys = _baseKeys, isArrayLike$4 = isArrayLike_1;
@@ -46140,7 +46465,7 @@ function getUniqPayload(payload, option, defaultUniqBy2) {
   if (option === true) {
     return uniqBy$1(payload, defaultUniqBy2);
   }
-  if (isFunction$3(option)) {
+  if (isFunction$4(option)) {
     return uniqBy$1(payload, option);
   }
   return payload;
@@ -52916,7 +53241,7 @@ function getValueByDataKey(obj, dataKey, defaultValue) {
   if (isNumOrStr(dataKey)) {
     return get$2(obj, dataKey, defaultValue);
   }
-  if (isFunction$3(dataKey)) {
+  if (isFunction$4(dataKey)) {
     return dataKey(obj);
   }
   return defaultValue;
@@ -53364,7 +53689,7 @@ var parseScale = function parseScale2(axis, chartType, hasBar) {
       realScaleType: d3Scales[name] ? name : "point"
     };
   }
-  return isFunction$3(scale2) ? {
+  return isFunction$4(scale2) ? {
     scale: scale2
   } : {
     scale: point(),
@@ -53621,7 +53946,7 @@ var getDomainOfStackGroups = function getDomainOfStackGroups2(stackGroups, start
 var MIN_VALUE_REG = /^dataMin[\s]*-[\s]*([0-9]+([.]{1}[0-9]+){0,1})$/;
 var MAX_VALUE_REG = /^dataMax[\s]*\+[\s]*([0-9]+([.]{1}[0-9]+){0,1})$/;
 var parseSpecifiedDomain = function parseSpecifiedDomain2(specifiedDomain, dataDomain, allowDataOverflow) {
-  if (isFunction$3(specifiedDomain)) {
+  if (isFunction$4(specifiedDomain)) {
     return specifiedDomain(dataDomain, allowDataOverflow);
   }
   if (!Array.isArray(specifiedDomain)) {
@@ -53633,7 +53958,7 @@ var parseSpecifiedDomain = function parseSpecifiedDomain2(specifiedDomain, dataD
   } else if (MIN_VALUE_REG.test(specifiedDomain[0])) {
     var value = +MIN_VALUE_REG.exec(specifiedDomain[0])[1];
     domain[0] = dataDomain[0] - value;
-  } else if (isFunction$3(specifiedDomain[0])) {
+  } else if (isFunction$4(specifiedDomain[0])) {
     domain[0] = specifiedDomain[0](dataDomain[0]);
   } else {
     domain[0] = dataDomain[0];
@@ -53643,7 +53968,7 @@ var parseSpecifiedDomain = function parseSpecifiedDomain2(specifiedDomain, dataD
   } else if (MAX_VALUE_REG.test(specifiedDomain[1])) {
     var _value = +MAX_VALUE_REG.exec(specifiedDomain[1])[1];
     domain[1] = dataDomain[1] + _value;
-  } else if (isFunction$3(specifiedDomain[1])) {
+  } else if (isFunction$4(specifiedDomain[1])) {
     domain[1] = specifiedDomain[1](dataDomain[1]);
   } else {
     domain[1] = dataDomain[1];
@@ -53948,7 +54273,7 @@ var inRangeOfSector = function inRangeOfSector2(_ref5, sector) {
   return null;
 };
 var getTickClassName = function getTickClassName2(tick) {
-  return !/* @__PURE__ */ reactExports.isValidElement(tick) && !isFunction$3(tick) && typeof tick !== "boolean" ? tick.className : "";
+  return !/* @__PURE__ */ reactExports.isValidElement(tick) && !isFunction$4(tick) && typeof tick !== "boolean" ? tick.className : "";
 };
 function _typeof$u(o2) {
   "@babel/helpers - typeof";
@@ -54071,7 +54396,7 @@ function _extends$m() {
 var getLabel = function getLabel2(props) {
   var value = props.value, formatter = props.formatter;
   var label = isNil$1(props.children) ? value : props.children;
-  if (isFunction$3(formatter)) {
+  if (isFunction$4(formatter)) {
     return formatter(label);
   }
   return label;
@@ -54310,14 +54635,14 @@ function Label(_ref4) {
     offset: offset2
   }, restProps);
   var viewBox = props.viewBox, position = props.position, value = props.value, children = props.children, content = props.content, _props$className = props.className, className = _props$className === void 0 ? "" : _props$className, textBreakAll = props.textBreakAll;
-  if (!viewBox || isNil$1(value) && isNil$1(children) && !/* @__PURE__ */ reactExports.isValidElement(content) && !isFunction$3(content)) {
+  if (!viewBox || isNil$1(value) && isNil$1(children) && !/* @__PURE__ */ reactExports.isValidElement(content) && !isFunction$4(content)) {
     return null;
   }
   if (/* @__PURE__ */ reactExports.isValidElement(content)) {
     return /* @__PURE__ */ reactExports.cloneElement(content, props);
   }
   var label;
-  if (isFunction$3(content)) {
+  if (isFunction$4(content)) {
     label = /* @__PURE__ */ reactExports.createElement(content, props);
     if (/* @__PURE__ */ reactExports.isValidElement(label)) {
       return label;
@@ -54415,7 +54740,7 @@ var parseLabel = function parseLabel2(label, viewBox) {
       viewBox
     });
   }
-  if (isFunction$3(label)) {
+  if (isFunction$4(label)) {
     return /* @__PURE__ */ React2.createElement(Label, {
       key: "label-implicit",
       content: label,
@@ -54616,7 +54941,7 @@ function parseLabelList(label, data) {
       data
     });
   }
-  if (/* @__PURE__ */ React2.isValidElement(label) || isFunction$3(label)) {
+  if (/* @__PURE__ */ React2.isValidElement(label) || isFunction$4(label)) {
     return /* @__PURE__ */ React2.createElement(LabelList, {
       key: "labelList-implicit",
       data,
@@ -54962,7 +55287,7 @@ var getY = function getY2(p2) {
   return p2.y;
 };
 var getCurveFactory = function getCurveFactory2(type, layout2) {
-  if (isFunction$3(type)) {
+  if (isFunction$4(type)) {
     return type;
   }
   var name = "curve".concat(upperFirst$1(type));
@@ -57348,7 +57673,7 @@ var PolarRadiusAxis = /* @__PURE__ */ function(_PureComponent) {
       var tickItem;
       if (/* @__PURE__ */ React2.isValidElement(option)) {
         tickItem = /* @__PURE__ */ React2.cloneElement(option, props);
-      } else if (isFunction$3(option)) {
+      } else if (isFunction$4(option)) {
         tickItem = option(props);
       } else {
         tickItem = /* @__PURE__ */ React2.createElement(Text, _extends$e({}, props, {
@@ -57639,7 +57964,7 @@ var PolarAngleAxis = /* @__PURE__ */ function(_PureComponent) {
       var tickItem;
       if (/* @__PURE__ */ React2.isValidElement(option)) {
         tickItem = /* @__PURE__ */ React2.cloneElement(option, props);
-      } else if (isFunction$3(option)) {
+      } else if (isFunction$4(option)) {
         tickItem = option(props);
       } else {
         tickItem = /* @__PURE__ */ React2.createElement(Text, _extends$d({}, props, {
@@ -58000,7 +58325,7 @@ function Shape(_ref2) {
   var shape;
   if (/* @__PURE__ */ reactExports.isValidElement(option)) {
     shape = /* @__PURE__ */ reactExports.cloneElement(option, _objectSpread$e(_objectSpread$e({}, props), getPropsFromShapeOption(option)));
-  } else if (isFunction$3(option)) {
+  } else if (isFunction$4(option)) {
     shape = option(props);
   } else if (isPlainObject$1(option) && !isBoolean$1(option)) {
     var nextProps = propTransformer(option, props);
@@ -58249,7 +58574,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
       _this.setState({
         isAnimationFinished: true
       });
-      if (isFunction$3(onAnimationEnd2)) {
+      if (isFunction$4(onAnimationEnd2)) {
         onAnimationEnd2();
       }
     });
@@ -58258,7 +58583,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
       _this.setState({
         isAnimationFinished: false
       });
-      if (isFunction$3(onAnimationStart2)) {
+      if (isFunction$4(onAnimationStart2)) {
         onAnimationStart2();
       }
     });
@@ -58528,7 +58853,7 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
       if (/* @__PURE__ */ React2.isValidElement(option)) {
         return /* @__PURE__ */ React2.cloneElement(option, props);
       }
-      if (isFunction$3(option)) {
+      if (isFunction$4(option)) {
         return option(props);
       }
       var className = clsx("recharts-pie-label-line", typeof option !== "boolean" ? option.className : "");
@@ -58545,13 +58870,13 @@ var Pie = /* @__PURE__ */ function(_PureComponent) {
         return /* @__PURE__ */ React2.cloneElement(option, props);
       }
       var label = value;
-      if (isFunction$3(option)) {
+      if (isFunction$4(option)) {
         label = option(props);
         if (/* @__PURE__ */ React2.isValidElement(label)) {
           return label;
         }
       }
-      var className = clsx("recharts-pie-label-text", typeof option !== "boolean" && !isFunction$3(option) ? option.className : "");
+      var className = clsx("recharts-pie-label-text", typeof option !== "boolean" && !isFunction$4(option) ? option.className : "");
       return /* @__PURE__ */ React2.createElement(Text, _extends$b({}, props, {
         alignmentBaseline: "middle",
         className
@@ -59061,7 +59386,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
     value: function getTextOfTick(index2) {
       var _this$props3 = this.props, data = _this$props3.data, tickFormatter = _this$props3.tickFormatter, dataKey = _this$props3.dataKey;
       var text = getValueByDataKey(data[index2], dataKey, index2);
-      return isFunction$3(tickFormatter) ? tickFormatter(text, index2) : text;
+      return isFunction$4(tickFormatter) ? tickFormatter(text, index2) : text;
     }
   }, {
     key: "attachDragEndListener",
@@ -59349,7 +59674,7 @@ var Brush = /* @__PURE__ */ function(_PureComponent) {
       var rectangle;
       if (/* @__PURE__ */ React2.isValidElement(option)) {
         rectangle = /* @__PURE__ */ React2.cloneElement(option, props);
-      } else if (isFunction$3(option)) {
+      } else if (isFunction$4(option)) {
         rectangle = option(props);
       } else {
         rectangle = Brush2.renderDefaultTraveller(props);
@@ -60735,7 +61060,7 @@ var renderLine = function renderLine2(option, props) {
   var line;
   if (/* @__PURE__ */ React2.isValidElement(option)) {
     line = /* @__PURE__ */ React2.cloneElement(option, props);
-  } else if (isFunction$3(option)) {
+  } else if (isFunction$4(option)) {
     line = option(props);
   } else {
     line = /* @__PURE__ */ React2.createElement("line", _extends$7({}, props, {
@@ -61067,7 +61392,7 @@ _defineProperty$9(ReferenceDot, "renderDot", function(option, props) {
   var dot;
   if (/* @__PURE__ */ React2.isValidElement(option)) {
     dot = /* @__PURE__ */ React2.cloneElement(option, props);
-  } else if (isFunction$3(option)) {
+  } else if (isFunction$4(option)) {
     dot = option(props);
   } else {
     dot = /* @__PURE__ */ React2.createElement(Dot, _extends$6({}, props, {
@@ -61287,7 +61612,7 @@ _defineProperty$8(ReferenceArea, "renderRect", function(option, props) {
   var rect;
   if (/* @__PURE__ */ React2.isValidElement(option)) {
     rect = /* @__PURE__ */ React2.cloneElement(option, props);
-  } else if (isFunction$3(option)) {
+  } else if (isFunction$4(option)) {
     rect = option(props);
   } else {
     rect = /* @__PURE__ */ React2.createElement(Rectangle, _extends$5({}, props, {
@@ -61542,7 +61867,7 @@ function getTicks(props, fontSize, letterSpacing) {
     height: 0
   };
   var getTickSize = function getTickSize2(content, index2) {
-    var value = isFunction$3(tickFormatter) ? tickFormatter(content.value, index2) : content.value;
+    var value = isFunction$4(tickFormatter) ? tickFormatter(content.value, index2) : content.value;
     return sizeKey === "width" ? getAngledTickWidth(getStringSize(value, {
       fontSize,
       letterSpacing
@@ -61922,7 +62247,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
             key: "tick-".concat(entry.value, "-").concat(entry.coordinate, "-").concat(entry.tickCoord)
           }, adaptEventsOfChild(_this2.props, entry, i)), tickLine && /* @__PURE__ */ React2.createElement("line", _extends$4({}, tickLineProps, lineCoord, {
             className: clsx("recharts-cartesian-axis-tick-line", get$2(tickLine, "className"))
-          })), tick && CartesianAxis2.renderTickItem(tick, tickProps, "".concat(isFunction$3(tickFormatter) ? tickFormatter(entry.value, i) : entry.value).concat(unit2 || "")));
+          })), tick && CartesianAxis2.renderTickItem(tick, tickProps, "".concat(isFunction$4(tickFormatter) ? tickFormatter(entry.value, i) : entry.value).concat(unit2 || "")));
         });
         return /* @__PURE__ */ React2.createElement("g", {
           className: "recharts-cartesian-axis-ticks"
@@ -61939,7 +62264,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
       }
       var _this$props8 = this.props, ticks2 = _this$props8.ticks, noTicksProps = _objectWithoutProperties$2(_this$props8, _excluded3);
       var finalTicks = ticks2;
-      if (isFunction$3(ticksGenerator)) {
+      if (isFunction$4(ticksGenerator)) {
         finalTicks = ticks2 && ticks2.length > 0 ? ticksGenerator(this.props) : ticksGenerator(noTicksProps);
       }
       if (width <= 0 || height <= 0 || !finalTicks || !finalTicks.length) {
@@ -61961,7 +62286,7 @@ var CartesianAxis = /* @__PURE__ */ function(_Component) {
         tickItem = /* @__PURE__ */ React2.cloneElement(option, _objectSpread$3(_objectSpread$3({}, props), {}, {
           className: combinedClassName
         }));
-      } else if (isFunction$3(option)) {
+      } else if (isFunction$4(option)) {
         tickItem = option(_objectSpread$3(_objectSpread$3({}, props), {}, {
           className: combinedClassName
         }));
@@ -62116,7 +62441,7 @@ function renderLineItem(option, props) {
   var lineItem;
   if (/* @__PURE__ */ React2.isValidElement(option)) {
     lineItem = /* @__PURE__ */ React2.cloneElement(option, props);
-  } else if (isFunction$3(option)) {
+  } else if (isFunction$4(option)) {
     lineItem = option(props);
   } else {
     var x1 = props.x1, y1 = props.y1, x22 = props.x2, y2 = props.y2, key = props.key, others = _objectWithoutProperties$1(props, _excluded$1);
@@ -62305,7 +62630,7 @@ function CartesianGrid(props) {
   var verticalCoordinatesGenerator = propsIncludingDefaults.verticalCoordinatesGenerator || defaultVerticalCoordinatesGenerator;
   var horizontalCoordinatesGenerator = propsIncludingDefaults.horizontalCoordinatesGenerator || defaultHorizontalCoordinatesGenerator;
   var horizontalPoints = propsIncludingDefaults.horizontalPoints, verticalPoints = propsIncludingDefaults.verticalPoints;
-  if ((!horizontalPoints || !horizontalPoints.length) && isFunction$3(horizontalCoordinatesGenerator)) {
+  if ((!horizontalPoints || !horizontalPoints.length) && isFunction$4(horizontalCoordinatesGenerator)) {
     var isHorizontalValues = horizontalValues && horizontalValues.length;
     var generatorResult = horizontalCoordinatesGenerator({
       yAxis: yAxis ? _objectSpread$2(_objectSpread$2({}, yAxis), {}, {
@@ -62320,7 +62645,7 @@ function CartesianGrid(props) {
       horizontalPoints = generatorResult;
     }
   }
-  if ((!verticalPoints || !verticalPoints.length) && isFunction$3(verticalCoordinatesGenerator)) {
+  if ((!verticalPoints || !verticalPoints.length) && isFunction$4(verticalCoordinatesGenerator)) {
     var isVerticalValues = verticalValues && verticalValues.length;
     var _generatorResult = verticalCoordinatesGenerator({
       xAxis: xAxis ? _objectSpread$2(_objectSpread$2({}, xAxis), {}, {
@@ -64051,7 +64376,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           _this.setState(_nextState);
           _this.triggerSyncEvent(_nextState);
           var onMouseEnter = _this.props.onMouseEnter;
-          if (isFunction$3(onMouseEnter)) {
+          if (isFunction$4(onMouseEnter)) {
             onMouseEnter(_nextState, e3);
           }
         }
@@ -64066,7 +64391,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         _this.setState(nextState);
         _this.triggerSyncEvent(nextState);
         var onMouseMove = _this.props.onMouseMove;
-        if (isFunction$3(onMouseMove)) {
+        if (isFunction$4(onMouseMove)) {
           onMouseMove(nextState, e3);
         }
       });
@@ -64102,14 +64427,14 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
         _this.setState(nextState);
         _this.triggerSyncEvent(nextState);
         var onMouseLeave = _this.props.onMouseLeave;
-        if (isFunction$3(onMouseLeave)) {
+        if (isFunction$4(onMouseLeave)) {
           onMouseLeave(nextState, e3);
         }
       });
       _defineProperty(_this, "handleOuterEvent", function(e3) {
         var eventName = getReactEventByType(e3);
         var event = get$2(_this.props, "".concat(eventName));
-        if (eventName && isFunction$3(event)) {
+        if (eventName && isFunction$4(event)) {
           var _mouse;
           var mouse;
           if (/.*touch.*/i.test(eventName)) {
@@ -64129,21 +64454,21 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
           _this.setState(_nextState2);
           _this.triggerSyncEvent(_nextState2);
           var onClick = _this.props.onClick;
-          if (isFunction$3(onClick)) {
+          if (isFunction$4(onClick)) {
             onClick(_nextState2, e3);
           }
         }
       });
       _defineProperty(_this, "handleMouseDown", function(e3) {
         var onMouseDown = _this.props.onMouseDown;
-        if (isFunction$3(onMouseDown)) {
+        if (isFunction$4(onMouseDown)) {
           var _nextState3 = _this.getMouseInfo(e3);
           onMouseDown(_nextState3, e3);
         }
       });
       _defineProperty(_this, "handleMouseUp", function(e3) {
         var onMouseUp = _this.props.onMouseUp;
-        if (isFunction$3(onMouseUp)) {
+        if (isFunction$4(onMouseUp)) {
           var _nextState4 = _this.getMouseInfo(e3);
           onMouseUp(_nextState4, e3);
         }
@@ -64165,14 +64490,14 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
       });
       _defineProperty(_this, "handleDoubleClick", function(e3) {
         var onDoubleClick = _this.props.onDoubleClick;
-        if (isFunction$3(onDoubleClick)) {
+        if (isFunction$4(onDoubleClick)) {
           var _nextState5 = _this.getMouseInfo(e3);
           onDoubleClick(_nextState5, e3);
         }
       });
       _defineProperty(_this, "handleContextMenu", function(e3) {
         var onContextMenu = _this.props.onContextMenu;
-        if (isFunction$3(onContextMenu)) {
+        if (isFunction$4(onContextMenu)) {
           var _nextState6 = _this.getMouseInfo(e3);
           onContextMenu(_nextState6, e3);
         }
@@ -65016,7 +65341,7 @@ var generateCategoricalChart = function generateCategoricalChart2(_ref6) {
     var dot;
     if (/* @__PURE__ */ reactExports.isValidElement(option)) {
       dot = /* @__PURE__ */ reactExports.cloneElement(option, props);
-    } else if (isFunction$3(option)) {
+    } else if (isFunction$4(option)) {
       dot = option(props);
     } else {
       dot = /* @__PURE__ */ React2.createElement(Dot, props);
@@ -67775,12 +68100,12 @@ var Select$1 = (props) => {
   ) });
 };
 Select$1.displayName = SELECT_NAME;
-var TRIGGER_NAME$1 = "SelectTrigger";
+var TRIGGER_NAME$2 = "SelectTrigger";
 var SelectTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeSelect, disabled = false, ...triggerProps } = props;
     const popperScope = usePopperScope(__scopeSelect);
-    const context = useSelectContext(TRIGGER_NAME$1, __scopeSelect);
+    const context = useSelectContext(TRIGGER_NAME$2, __scopeSelect);
     const isDisabled = context.disabled || disabled;
     const composedRefs = useComposedRefs$1(forwardedRef, context.onTriggerChange);
     const getItems = useCollection$1(__scopeSelect);
@@ -67852,7 +68177,7 @@ var SelectTrigger$1 = reactExports.forwardRef(
     ) });
   }
 );
-SelectTrigger$1.displayName = TRIGGER_NAME$1;
+SelectTrigger$1.displayName = TRIGGER_NAME$2;
 var VALUE_NAME = "SelectValue";
 var SelectValue$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -68716,7 +69041,7 @@ var SelectArrow = reactExports.forwardRef(
   }
 );
 SelectArrow.displayName = ARROW_NAME;
-var BUBBLE_INPUT_NAME = "SelectBubbleInput";
+var BUBBLE_INPUT_NAME$1 = "SelectBubbleInput";
 var SelectBubbleInput = reactExports.forwardRef(
   ({ __scopeSelect, value, ...props }, forwardedRef) => {
     const ref = reactExports.useRef(null);
@@ -68748,7 +69073,7 @@ var SelectBubbleInput = reactExports.forwardRef(
     );
   }
 );
-SelectBubbleInput.displayName = BUBBLE_INPUT_NAME;
+SelectBubbleInput.displayName = BUBBLE_INPUT_NAME$1;
 function shouldShowPlaceholder(value) {
   return value === "" || value === void 0;
 }
@@ -89746,6 +90071,287 @@ function FixedDeposits() {
     )
   ] });
 }
+var CHECKBOX_NAME = "Checkbox";
+var [createCheckboxContext] = createContextScope(CHECKBOX_NAME);
+var [CheckboxProviderImpl, useCheckboxContext] = createCheckboxContext(CHECKBOX_NAME);
+function CheckboxProvider(props) {
+  const {
+    __scopeCheckbox,
+    checked: checkedProp,
+    children,
+    defaultChecked,
+    disabled,
+    form,
+    name,
+    onCheckedChange,
+    required,
+    value = "on",
+    // @ts-expect-error
+    internal_do_not_use_render
+  } = props;
+  const [checked, setChecked] = useControllableState({
+    prop: checkedProp,
+    defaultProp: defaultChecked ?? false,
+    onChange: onCheckedChange,
+    caller: CHECKBOX_NAME
+  });
+  const [control, setControl] = reactExports.useState(null);
+  const [bubbleInput, setBubbleInput] = reactExports.useState(null);
+  const hasConsumerStoppedPropagationRef = reactExports.useRef(false);
+  const isFormControl = control ? !!form || !!control.closest("form") : (
+    // We set this to true by default so that events bubble to forms without JS (SSR)
+    true
+  );
+  const context = {
+    checked,
+    disabled,
+    setChecked,
+    control,
+    setControl,
+    name,
+    form,
+    value,
+    hasConsumerStoppedPropagationRef,
+    required,
+    defaultChecked: isIndeterminate(defaultChecked) ? false : defaultChecked,
+    isFormControl,
+    bubbleInput,
+    setBubbleInput
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    CheckboxProviderImpl,
+    {
+      scope: __scopeCheckbox,
+      ...context,
+      children: isFunction(internal_do_not_use_render) ? internal_do_not_use_render(context) : children
+    }
+  );
+}
+var TRIGGER_NAME$1 = "CheckboxTrigger";
+var CheckboxTrigger = reactExports.forwardRef(
+  ({ __scopeCheckbox, onKeyDown, onClick, ...checkboxProps }, forwardedRef) => {
+    const {
+      control,
+      value,
+      disabled,
+      checked,
+      required,
+      setControl,
+      setChecked,
+      hasConsumerStoppedPropagationRef,
+      isFormControl,
+      bubbleInput
+    } = useCheckboxContext(TRIGGER_NAME$1, __scopeCheckbox);
+    const composedRefs = useComposedRefs$1(forwardedRef, setControl);
+    const initialCheckedStateRef = reactExports.useRef(checked);
+    reactExports.useEffect(() => {
+      const form = control == null ? void 0 : control.form;
+      if (form) {
+        const reset = () => setChecked(initialCheckedStateRef.current);
+        form.addEventListener("reset", reset);
+        return () => form.removeEventListener("reset", reset);
+      }
+    }, [control, setChecked]);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.button,
+      {
+        type: "button",
+        role: "checkbox",
+        "aria-checked": isIndeterminate(checked) ? "mixed" : checked,
+        "aria-required": required,
+        "data-state": getState(checked),
+        "data-disabled": disabled ? "" : void 0,
+        disabled,
+        value,
+        ...checkboxProps,
+        ref: composedRefs,
+        onKeyDown: composeEventHandlers(onKeyDown, (event) => {
+          if (event.key === "Enter") event.preventDefault();
+        }),
+        onClick: composeEventHandlers(onClick, (event) => {
+          setChecked((prevChecked) => isIndeterminate(prevChecked) ? true : !prevChecked);
+          if (bubbleInput && isFormControl) {
+            hasConsumerStoppedPropagationRef.current = event.isPropagationStopped();
+            if (!hasConsumerStoppedPropagationRef.current) event.stopPropagation();
+          }
+        })
+      }
+    );
+  }
+);
+CheckboxTrigger.displayName = TRIGGER_NAME$1;
+var Checkbox$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeCheckbox,
+      name,
+      checked,
+      defaultChecked,
+      required,
+      disabled,
+      value,
+      onCheckedChange,
+      form,
+      ...checkboxProps
+    } = props;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      CheckboxProvider,
+      {
+        __scopeCheckbox,
+        checked,
+        defaultChecked,
+        disabled,
+        required,
+        onCheckedChange,
+        name,
+        form,
+        value,
+        internal_do_not_use_render: ({ isFormControl }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CheckboxTrigger,
+            {
+              ...checkboxProps,
+              ref: forwardedRef,
+              __scopeCheckbox
+            }
+          ),
+          isFormControl && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CheckboxBubbleInput,
+            {
+              __scopeCheckbox
+            }
+          )
+        ] })
+      }
+    );
+  }
+);
+Checkbox$1.displayName = CHECKBOX_NAME;
+var INDICATOR_NAME = "CheckboxIndicator";
+var CheckboxIndicator = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeCheckbox, forceMount, ...indicatorProps } = props;
+    const context = useCheckboxContext(INDICATOR_NAME, __scopeCheckbox);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Presence,
+      {
+        present: forceMount || isIndeterminate(context.checked) || context.checked === true,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.span,
+          {
+            "data-state": getState(context.checked),
+            "data-disabled": context.disabled ? "" : void 0,
+            ...indicatorProps,
+            ref: forwardedRef,
+            style: { pointerEvents: "none", ...props.style }
+          }
+        )
+      }
+    );
+  }
+);
+CheckboxIndicator.displayName = INDICATOR_NAME;
+var BUBBLE_INPUT_NAME = "CheckboxBubbleInput";
+var CheckboxBubbleInput = reactExports.forwardRef(
+  ({ __scopeCheckbox, ...props }, forwardedRef) => {
+    const {
+      control,
+      hasConsumerStoppedPropagationRef,
+      checked,
+      defaultChecked,
+      required,
+      disabled,
+      name,
+      value,
+      form,
+      bubbleInput,
+      setBubbleInput
+    } = useCheckboxContext(BUBBLE_INPUT_NAME, __scopeCheckbox);
+    const composedRefs = useComposedRefs$1(forwardedRef, setBubbleInput);
+    const prevChecked = usePrevious(checked);
+    const controlSize = useSize(control);
+    reactExports.useEffect(() => {
+      const input = bubbleInput;
+      if (!input) return;
+      const inputProto = window.HTMLInputElement.prototype;
+      const descriptor = Object.getOwnPropertyDescriptor(
+        inputProto,
+        "checked"
+      );
+      const setChecked = descriptor.set;
+      const bubbles = !hasConsumerStoppedPropagationRef.current;
+      if (prevChecked !== checked && setChecked) {
+        const event = new Event("click", { bubbles });
+        input.indeterminate = isIndeterminate(checked);
+        setChecked.call(input, isIndeterminate(checked) ? false : checked);
+        input.dispatchEvent(event);
+      }
+    }, [bubbleInput, prevChecked, checked, hasConsumerStoppedPropagationRef]);
+    const defaultCheckedRef = reactExports.useRef(isIndeterminate(checked) ? false : checked);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.input,
+      {
+        type: "checkbox",
+        "aria-hidden": true,
+        defaultChecked: defaultChecked ?? defaultCheckedRef.current,
+        required,
+        disabled,
+        name,
+        value,
+        form,
+        ...props,
+        tabIndex: -1,
+        ref: composedRefs,
+        style: {
+          ...props.style,
+          ...controlSize,
+          position: "absolute",
+          pointerEvents: "none",
+          opacity: 0,
+          margin: 0,
+          // We transform because the input is absolutely positioned but we have
+          // rendered it **after** the button. This pulls it back to sit on top
+          // of the button.
+          transform: "translateX(-100%)"
+        }
+      }
+    );
+  }
+);
+CheckboxBubbleInput.displayName = BUBBLE_INPUT_NAME;
+function isFunction(value) {
+  return typeof value === "function";
+}
+function isIndeterminate(checked) {
+  return checked === "indeterminate";
+}
+function getState(checked) {
+  return isIndeterminate(checked) ? "indeterminate" : checked ? "checked" : "unchecked";
+}
+function Checkbox({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Checkbox$1,
+    {
+      "data-slot": "checkbox",
+      className: cn(
+        "peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      ),
+      ...props,
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        CheckboxIndicator,
+        {
+          "data-slot": "checkbox-indicator",
+          className: "flex items-center justify-center text-current transition-none",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "size-3.5" })
+        }
+      )
+    }
+  );
+}
 function Dialog({
   ...props
 }) {
@@ -89918,6 +90524,1607 @@ function TableCell({ className, ...props }) {
       ...props
     }
   );
+}
+function getStatus(qty, reorder) {
+  if (qty === 0) return "out-of-stock";
+  if (qty <= reorder) return "low";
+  return "in-stock";
+}
+function statusSortValue(status) {
+  if (status === "out-of-stock") return 0;
+  if (status === "low") return 1;
+  return 2;
+}
+function StatusBadgeInv({ qty, reorder }) {
+  const status = getStatus(qty, reorder);
+  if (status === "out-of-stock")
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-red-100 text-red-700 border-red-200 hover:bg-red-100", children: "Out of Stock" });
+  if (status === "low")
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-amber-100 text-amber-700 border-amber-200 hover:bg-amber-100", children: "Low Stock" });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-green-100 text-green-700 border-green-200 hover:bg-green-100", children: "In Stock" });
+}
+function MetricCard({
+  title,
+  value,
+  icon: Icon2,
+  color: color2,
+  subtitle,
+  delay: delay2
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    motion.div,
+    {
+      initial: { opacity: 0, y: 12 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.3, delay: delay2 },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-sm border-border hover:shadow-md transition-shadow h-full", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground font-medium uppercase tracking-wide", children: title }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: "text-2xl font-bold mt-1.5 truncate",
+              style: { color: color2 },
+              children: value
+            }
+          ),
+          subtitle && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-1", children: subtitle })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
+            style: { backgroundColor: `${color2}18` },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "w-5 h-5", style: { color: color2 } })
+          }
+        )
+      ] }) }) })
+    }
+  );
+}
+const emptyProductForm = {
+  name: "",
+  description: "",
+  sku: "",
+  barcode: "",
+  category: "",
+  quantity: "",
+  unitCost: "",
+  salePrice: "",
+  reorderPoint: ""
+};
+const emptyStockForm = {
+  txType: "purchase",
+  quantity: "",
+  adjustSign: "+",
+  note: "",
+  date: todayISO()
+};
+function Inventory() {
+  const today = todayISO();
+  const [userRole, setUserRole] = reactExports.useState("manager");
+  const [search, setSearch] = reactExports.useState("");
+  const [categoryFilter, setCategoryFilter] = reactExports.useState("all");
+  const [sortField, setSortField] = reactExports.useState("name");
+  const [sortDir, setSortDir] = reactExports.useState("asc");
+  const [selectedIds, setSelectedIds] = reactExports.useState(/* @__PURE__ */ new Set());
+  const [addProductOpen, setAddProductOpen] = reactExports.useState(false);
+  const [editProduct, setEditProduct] = reactExports.useState(null);
+  const [deleteProductId, setDeleteProductId] = reactExports.useState(null);
+  const [stockUpdateProduct, setStockUpdateProduct] = reactExports.useState(null);
+  const [bulkActionType, setBulkActionType] = reactExports.useState(null);
+  const [productForm, setProductForm] = reactExports.useState(emptyProductForm);
+  const [editForm, setEditForm] = reactExports.useState(emptyProductForm);
+  const [stockForm, setStockForm] = reactExports.useState(emptyStockForm);
+  const [bulkUnitCost, setBulkUnitCost] = reactExports.useState("");
+  const [bulkSalePrice, setBulkSalePrice] = reactExports.useState("");
+  const [bulkReorderPoint, setBulkReorderPoint] = reactExports.useState("");
+  const { data: products = [], isLoading: productsLoading } = useInventoryProducts();
+  const { data: todayTxs = [], isLoading: txLoading } = useTodayStockTransactions(today);
+  const addProduct = useAddProduct();
+  const editProductMut = useEditProduct();
+  const deleteProductMut = useDeleteProduct();
+  const addStockTx = useAddStockTransaction();
+  const bulkUpdate = useBulkUpdateProducts();
+  const metrics = reactExports.useMemo(() => {
+    const totalValue = products.reduce(
+      (sum, p2) => sum + Number(p2.quantity) * p2.unitCost,
+      0
+    );
+    const lowStock = products.filter(
+      (p2) => Number(p2.quantity) > 0 && Number(p2.quantity) <= Number(p2.reorderPoint)
+    ).length;
+    const outOfStock = products.filter((p2) => Number(p2.quantity) === 0).length;
+    const currentYearMonth = today.slice(0, 7);
+    todayTxs.length;
+    return { totalValue, lowStock, outOfStock, currentYearMonth };
+  }, [products, today, todayTxs]);
+  const categories = reactExports.useMemo(() => {
+    const cats = new Set(products.map((p2) => p2.category).filter(Boolean));
+    return Array.from(cats).sort();
+  }, [products]);
+  const filteredProducts = reactExports.useMemo(() => {
+    let list = [...products];
+    if (search.trim()) {
+      const q2 = search.toLowerCase();
+      list = list.filter(
+        (p2) => p2.name.toLowerCase().includes(q2) || p2.sku.toLowerCase().includes(q2) || p2.barcode.toLowerCase().includes(q2)
+      );
+    }
+    if (categoryFilter !== "all") {
+      list = list.filter((p2) => p2.category === categoryFilter);
+    }
+    list.sort((a2, b2) => {
+      let cmp = 0;
+      switch (sortField) {
+        case "name":
+          cmp = a2.name.localeCompare(b2.name);
+          break;
+        case "sku":
+          cmp = a2.sku.localeCompare(b2.sku);
+          break;
+        case "category":
+          cmp = a2.category.localeCompare(b2.category);
+          break;
+        case "quantity":
+          cmp = Number(a2.quantity) - Number(b2.quantity);
+          break;
+        case "unitCost":
+          cmp = a2.unitCost - b2.unitCost;
+          break;
+        case "salePrice":
+          cmp = a2.salePrice - b2.salePrice;
+          break;
+        case "reorderPoint":
+          cmp = Number(a2.reorderPoint) - Number(b2.reorderPoint);
+          break;
+        case "status":
+          cmp = statusSortValue(
+            getStatus(Number(a2.quantity), Number(a2.reorderPoint))
+          ) - statusSortValue(
+            getStatus(Number(b2.quantity), Number(b2.reorderPoint))
+          );
+          break;
+      }
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+    return list;
+  }, [products, search, categoryFilter, sortField, sortDir]);
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDir((d2) => d2 === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDir("asc");
+    }
+  };
+  const SortIcon = ({ field }) => {
+    if (sortField !== field)
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { className: "w-3 h-3 ml-1 opacity-40" });
+    return sortDir === "asc" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { className: "w-3 h-3 ml-1", style: { color: "var(--brand-red)" } }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ArrowDown,
+      {
+        className: "w-3 h-3 ml-1",
+        style: { color: "var(--brand-red)" }
+      }
+    );
+  };
+  const toggleSelect = (id2) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id2)) next.delete(id2);
+      else next.add(id2);
+      return next;
+    });
+  };
+  const toggleSelectAll = () => {
+    if (selectedIds.size === filteredProducts.length) {
+      setSelectedIds(/* @__PURE__ */ new Set());
+    } else {
+      setSelectedIds(new Set(filteredProducts.map((p2) => String(p2.id))));
+    }
+  };
+  const handleAddProduct = async (e3) => {
+    e3.preventDefault();
+    if (!productForm.name.trim() || !productForm.sku.trim()) {
+      ue.error("Product Name and SKU are required.");
+      return;
+    }
+    try {
+      await addProduct.mutateAsync({
+        name: productForm.name.trim(),
+        description: productForm.description.trim(),
+        sku: productForm.sku.trim(),
+        barcode: productForm.barcode.trim(),
+        category: productForm.category.trim(),
+        quantity: BigInt(
+          Math.max(0, Number.parseInt(productForm.quantity) || 0)
+        ),
+        unitCost: Number.parseFloat(productForm.unitCost) || 0,
+        salePrice: Number.parseFloat(productForm.salePrice) || 0,
+        reorderPoint: BigInt(
+          Math.max(0, Number.parseInt(productForm.reorderPoint) || 0)
+        )
+      });
+      ue.success("Product added successfully");
+      setProductForm(emptyProductForm);
+      setAddProductOpen(false);
+    } catch {
+      ue.error("Failed to add product.");
+    }
+  };
+  const handleEditProduct = async (e3) => {
+    e3.preventDefault();
+    if (!editProduct) return;
+    if (!editForm.name.trim() || !editForm.sku.trim()) {
+      ue.error("Product Name and SKU are required.");
+      return;
+    }
+    try {
+      await editProductMut.mutateAsync({
+        id: editProduct.id,
+        name: editForm.name.trim(),
+        description: editForm.description.trim(),
+        sku: editForm.sku.trim(),
+        barcode: editForm.barcode.trim(),
+        category: editForm.category.trim(),
+        unitCost: Number.parseFloat(editForm.unitCost) || 0,
+        salePrice: Number.parseFloat(editForm.salePrice) || 0,
+        reorderPoint: BigInt(
+          Math.max(0, Number.parseInt(editForm.reorderPoint) || 0)
+        )
+      });
+      ue.success("Product updated");
+      setEditProduct(null);
+    } catch {
+      ue.error("Failed to update product.");
+    }
+  };
+  const handleDeleteProduct = async () => {
+    if (deleteProductId === null) return;
+    try {
+      await deleteProductMut.mutateAsync(deleteProductId);
+      ue.success("Product deleted");
+      setDeleteProductId(null);
+    } catch {
+      ue.error("Failed to delete product.");
+    }
+  };
+  const handleStockUpdate = async (e3) => {
+    e3.preventDefault();
+    if (!stockUpdateProduct) return;
+    const qty = Number.parseInt(stockForm.quantity);
+    if (!qty || qty <= 0) {
+      ue.error("Enter a valid quantity.");
+      return;
+    }
+    let change;
+    if (stockForm.txType === "purchase") {
+      change = BigInt(qty);
+    } else if (stockForm.txType === "sale") {
+      change = -BigInt(qty);
+    } else {
+      change = stockForm.adjustSign === "+" ? BigInt(qty) : -BigInt(qty);
+    }
+    try {
+      await addStockTx.mutateAsync({
+        productId: stockUpdateProduct.id,
+        txType: stockForm.txType,
+        quantityChange: change,
+        note: stockForm.note.trim(),
+        transactionDate: stockForm.date
+      });
+      ue.success("Stock updated");
+      setStockUpdateProduct(null);
+      setStockForm(emptyStockForm);
+    } catch {
+      ue.error("Failed to update stock.");
+    }
+  };
+  const handleBulkUpdate = async (e3) => {
+    e3.preventDefault();
+    const ids = Array.from(selectedIds).map((id2) => BigInt(id2));
+    const count2 = ids.length;
+    try {
+      if (bulkActionType === "prices") {
+        const uc = Number.parseFloat(bulkUnitCost);
+        const sp = Number.parseFloat(bulkSalePrice);
+        if (Number.isNaN(uc) || Number.isNaN(sp)) {
+          ue.error("Enter valid price values.");
+          return;
+        }
+        await bulkUpdate.mutateAsync({
+          ids,
+          unitCosts: Array(count2).fill(uc),
+          salePrices: Array(count2).fill(sp),
+          reorderPoints: ids.map((id2) => {
+            const p2 = products.find((pr) => pr.id === id2);
+            return p2 ? p2.reorderPoint : 0n;
+          })
+        });
+        setBulkUnitCost("");
+        setBulkSalePrice("");
+      } else {
+        const rp = Number.parseInt(bulkReorderPoint);
+        if (Number.isNaN(rp) || rp < 0) {
+          ue.error("Enter a valid reorder point.");
+          return;
+        }
+        await bulkUpdate.mutateAsync({
+          ids,
+          unitCosts: ids.map((id2) => {
+            const p2 = products.find((pr) => pr.id === id2);
+            return p2 ? p2.unitCost : 0;
+          }),
+          salePrices: ids.map((id2) => {
+            const p2 = products.find((pr) => pr.id === id2);
+            return p2 ? p2.salePrice : 0;
+          }),
+          reorderPoints: Array(count2).fill(BigInt(rp))
+        });
+        setBulkReorderPoint("");
+      }
+      ue.success(`Updated ${count2} product${count2 > 1 ? "s" : ""}.`);
+      setBulkActionType(null);
+      setSelectedIds(/* @__PURE__ */ new Set());
+    } catch {
+      ue.error("Bulk update failed.");
+    }
+  };
+  const openEdit = (product) => {
+    setEditProduct(product);
+    setEditForm({
+      name: product.name,
+      description: product.description,
+      sku: product.sku,
+      barcode: product.barcode,
+      category: product.category,
+      quantity: String(Number(product.quantity)),
+      unitCost: String(product.unitCost),
+      salePrice: String(product.salePrice),
+      reorderPoint: String(Number(product.reorderPoint))
+    });
+  };
+  const openStockUpdate = (product) => {
+    setStockUpdateProduct(product);
+    setStockForm({ ...emptyStockForm, date: today });
+  };
+  const productMap = reactExports.useMemo(() => {
+    const m2 = /* @__PURE__ */ new Map();
+    for (const p2 of products) {
+      m2.set(String(p2.id), p2.name);
+    }
+    return m2;
+  }, [products]);
+  const formatTime = (createdAt) => {
+    const ms = Number(createdAt) / 1e6;
+    if (!ms || ms < 1e6) return "—";
+    return new Date(ms).toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  };
+  const txTypeColor = (type) => {
+    if (type === "purchase") return "bg-blue-100 text-blue-700 border-blue-200";
+    if (type === "sale") return "bg-amber-100 text-amber-700 border-amber-200";
+    return "bg-purple-100 text-purple-700 border-purple-200";
+  };
+  if (productsLoading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", "data-ocid": "inventory.loading_state", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-4", children: [1, 2, 3, 4].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-24 rounded-xl" }, i)) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-12 rounded-lg" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-64 rounded-xl" })
+    ] });
+  }
+  const isManager = userRole === "manager";
+  const allFilteredSelected = filteredProducts.length > 0 && filteredProducts.every((p2) => selectedIds.has(String(p2.id)));
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -8 },
+        animate: { opacity: 1, y: 0 },
+        className: "flex items-center justify-between flex-wrap gap-3",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "w-10 h-10 rounded-lg flex items-center justify-center",
+                style: { backgroundColor: "oklch(0.369 0.139 293.8 / 0.1)" },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Layers, { className: "w-5 h-5", style: { color: "var(--brand-red)" } })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-foreground", children: "Inventory" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage product stock, prices and reorder levels" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 flex-wrap", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground font-medium", children: "View as:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Select,
+                {
+                  value: userRole,
+                  onValueChange: (v2) => setUserRole(v2),
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      SelectTrigger,
+                      {
+                        className: "h-8 text-xs w-32",
+                        "data-ocid": "inventory.role.select",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "manager", children: "Manager" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "staff", children: "Staff (View Only)" })
+                    ] })
+                  ]
+                }
+              )
+            ] }),
+            isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                className: "gap-2 text-white text-sm",
+                style: { backgroundColor: "var(--brand-red)" },
+                onClick: () => {
+                  setProductForm(emptyProductForm);
+                  setAddProductOpen(true);
+                },
+                "data-ocid": "inventory.add_product.open_modal_button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-4 h-4" }),
+                  "Add Product"
+                ]
+              }
+            )
+          ] })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MetricCard,
+        {
+          title: "Total Inventory Value",
+          value: formatINR(metrics.totalValue),
+          icon: IndianRupee,
+          color: "var(--brand-red)",
+          subtitle: `${products.length} products`,
+          delay: 0
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MetricCard,
+        {
+          title: "Low Stock Items",
+          value: String(metrics.lowStock),
+          icon: CircleAlert,
+          color: "oklch(0.72 0.18 72)",
+          subtitle: "Below reorder point",
+          delay: 0.05
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MetricCard,
+        {
+          title: "Out of Stock",
+          value: String(metrics.outOfStock),
+          icon: Box,
+          color: "oklch(0.44 0.19 21)",
+          subtitle: "Critical — zero units",
+          delay: 0.1
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        MetricCard,
+        {
+          title: "Today's Transactions",
+          value: String(todayTxs.length),
+          icon: ShoppingCart,
+          color: "oklch(0.52 0.16 250)",
+          subtitle: "As of today",
+          delay: 0.15
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      motion.div,
+      {
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        transition: { delay: 0.2 },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-sm border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1 min-w-48", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                className: "pl-9 h-9 text-sm",
+                placeholder: "Search by name or SKU…",
+                value: search,
+                onChange: (e3) => setSearch(e3.target.value),
+                "data-ocid": "inventory.search.search_input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: categoryFilter, onValueChange: setCategoryFilter, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              SelectTrigger,
+              {
+                className: "h-9 text-sm w-44",
+                "data-ocid": "inventory.category.select",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "All Categories" })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "all", children: "All Categories" }),
+              categories.map((cat) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: cat, children: cat }, cat))
+            ] })
+          ] }),
+          isManager && selectedIds.size >= 2 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "flex gap-2 items-center ml-auto",
+              "data-ocid": "inventory.bulk_actions.panel",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-muted-foreground", children: [
+                  selectedIds.size,
+                  " selected:"
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    size: "sm",
+                    variant: "outline",
+                    className: "h-8 text-xs gap-1",
+                    onClick: () => setBulkActionType("prices"),
+                    "data-ocid": "inventory.bulk_prices.button",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(TrendingUp, { className: "w-3 h-3" }),
+                      " Update Prices"
+                    ]
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    size: "sm",
+                    variant: "outline",
+                    className: "h-8 text-xs gap-1",
+                    onClick: () => setBulkActionType("reorder"),
+                    "data-ocid": "inventory.bulk_reorder.button",
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3 h-3" }),
+                      " Update Reorder Level"
+                    ]
+                  }
+                )
+              ]
+            }
+          )
+        ] }) }) })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      motion.div,
+      {
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        transition: { delay: 0.25 },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-sm border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: products.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "py-20 text-center text-muted-foreground",
+            "data-ocid": "inventory.empty_state",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Layers, { className: "w-12 h-12 mx-auto mb-4 opacity-25" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-base", children: "No products yet" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm mt-1 mb-4", children: "Start building your inventory by adding your first product." }),
+              isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  className: "text-white gap-2",
+                  style: { backgroundColor: "var(--brand-red)" },
+                  onClick: () => {
+                    setProductForm(emptyProductForm);
+                    setAddProductOpen(true);
+                  },
+                  "data-ocid": "inventory.empty.add_product.primary_button",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-4 h-4" }),
+                    "Add Your First Product"
+                  ]
+                }
+              )
+            ]
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "bg-secondary/50", children: [
+            isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "w-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Checkbox,
+              {
+                checked: allFilteredSelected,
+                onCheckedChange: toggleSelectAll,
+                "data-ocid": "inventory.select_all.checkbox"
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("name"),
+                "data-ocid": "inventory.sort_name.button",
+                children: [
+                  "Product",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "name" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("sku"),
+                "data-ocid": "inventory.sort_sku.button",
+                children: [
+                  "SKU / Barcode",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "sku" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("category"),
+                "data-ocid": "inventory.sort_category.button",
+                children: [
+                  "Category",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "category" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("quantity"),
+                "data-ocid": "inventory.sort_qty.button",
+                children: [
+                  "Qty",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "quantity" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("unitCost"),
+                "data-ocid": "inventory.sort_cost.button",
+                children: [
+                  "Cost / Price",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "unitCost" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("reorderPoint"),
+                "data-ocid": "inventory.sort_reorder.button",
+                children: [
+                  "Reorder At",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "reorderPoint" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                className: "flex items-center text-xs font-semibold text-muted-foreground hover:text-foreground",
+                onClick: () => handleSort("status"),
+                "data-ocid": "inventory.sort_status.button",
+                children: [
+                  "Status",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "status" })
+                ]
+              }
+            ) }),
+            isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: filteredProducts.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(TableRow, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            TableCell,
+            {
+              colSpan: isManager ? 9 : 8,
+              className: "text-center py-10 text-muted-foreground text-sm",
+              "data-ocid": "inventory.search.empty_state",
+              children: "No products match your search or filter."
+            }
+          ) }) : filteredProducts.map((product, idx) => {
+            const qty = Number(product.quantity);
+            const reorder = Number(product.reorderPoint);
+            const status = getStatus(qty, reorder);
+            const isSelected = selectedIds.has(String(product.id));
+            const qtyColor = status === "out-of-stock" ? "text-red-600 font-bold" : status === "low" ? "text-amber-600 font-semibold" : "text-green-700 font-semibold";
+            return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              TableRow,
+              {
+                className: `hover:bg-secondary/30 transition-colors ${isSelected ? "bg-accent/40" : ""}`,
+                "data-ocid": `inventory.item.${idx + 1}`,
+                children: [
+                  isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Checkbox,
+                    {
+                      checked: isSelected,
+                      onCheckedChange: () => toggleSelect(String(product.id)),
+                      "data-ocid": `inventory.checkbox.${idx + 1}`
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: "max-w-[180px]", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-semibold text-sm truncate", children: product.name }),
+                    product.description && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-muted-foreground mt-0.5 truncate", children: product.description })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-mono text-xs font-medium", children: product.sku }),
+                    product.barcode && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-mono text-xs text-muted-foreground mt-0.5", children: product.barcode })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: product.category ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Badge,
+                    {
+                      variant: "secondary",
+                      className: "text-xs font-normal",
+                      children: product.category
+                    }
+                  ) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground text-xs", children: "—" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `text-sm ${qtyColor}`, children: qty.toLocaleString() }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs font-medium", children: formatINR(product.unitCost) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-muted-foreground mt-0.5", children: formatINR(product.salePrice) })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm text-muted-foreground", children: reorder.toLocaleString() }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(StatusBadgeInv, { qty, reorder }) }),
+                  isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1.5", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "outline",
+                        className: "h-7 px-2 gap-1 text-xs",
+                        title: "Update Stock",
+                        onClick: () => openStockUpdate(product),
+                        "data-ocid": `inventory.stock_update.button.${idx + 1}`,
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3 h-3" }),
+                          "Stock"
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "outline",
+                        className: "h-7 px-2 gap-1 text-xs",
+                        title: "Edit",
+                        onClick: () => openEdit(product),
+                        "data-ocid": `inventory.edit_button.${idx + 1}`,
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-3 h-3" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "outline",
+                        className: "h-7 px-2 text-xs border-red-200 text-red-600 hover:bg-red-50",
+                        title: "Delete",
+                        onClick: () => setDeleteProductId(product.id),
+                        "data-ocid": `inventory.delete_button.${idx + 1}`,
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" })
+                      }
+                    )
+                  ] }) })
+                ]
+              },
+              String(product.id)
+            );
+          }) })
+        ] }) }) }) })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      motion.div,
+      {
+        initial: { opacity: 0, y: 8 },
+        animate: { opacity: 1, y: 0 },
+        transition: { delay: 0.3 },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-sm border-border", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { className: "pb-3 flex flex-row items-center justify-between", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base font-semibold flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ShoppingCart,
+                {
+                  className: "w-4 h-4",
+                  style: { color: "var(--brand-red)" }
+                }
+              ),
+              "Today's Stock Transactions"
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "secondary", className: "text-xs", children: today })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: txLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 space-y-2", children: [1, 2].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-10 w-full" }, i)) }) : todayTxs.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "py-10 text-center text-muted-foreground text-sm",
+              "data-ocid": "inventory.today_txs.empty_state",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingCart, { className: "w-8 h-8 mx-auto mb-2 opacity-30" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "No stock movements today" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs mt-1", children: 'Use "Update Stock" on a product row to record a transaction.' })
+              ]
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "w-full text-sm", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: "border-b border-border bg-secondary/50", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground", children: "Time" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground", children: "Product" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground", children: "Type" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "px-4 py-2.5 text-right text-xs font-semibold text-muted-foreground", children: "Qty Change" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground", children: "Note" })
+            ] }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: todayTxs.map((tx, idx) => {
+              const qtyChange = Number(tx.quantityChange);
+              const isPositive = qtyChange >= 0;
+              return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "tr",
+                {
+                  className: "border-b border-border last:border-0 hover:bg-secondary/30",
+                  "data-ocid": `inventory.today_tx.item.${idx + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3 text-xs text-muted-foreground", children: formatTime(tx.createdAt) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3 font-medium text-sm", children: productMap.get(String(tx.productId)) || `#${String(tx.productId)}` }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        className: `inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ${txTypeColor(
+                          tx.transactionType
+                        )}`,
+                        children: tx.transactionType.charAt(0).toUpperCase() + tx.transactionType.slice(1)
+                      }
+                    ) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "td",
+                      {
+                        className: `px-4 py-3 text-right font-semibold text-sm ${isPositive ? "text-green-600" : "text-red-600"}`,
+                        children: [
+                          isPositive ? "+" : "",
+                          qtyChange.toLocaleString()
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-3 text-xs text-muted-foreground", children: tx.note || "—" })
+                  ]
+                },
+                String(tx.id)
+              );
+            }) })
+          ] }) }) })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: addProductOpen, onOpenChange: setAddProductOpen, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      DialogContent,
+      {
+        className: "max-w-lg max-h-[90vh] overflow-y-auto",
+        "data-ocid": "inventory.add_product.dialog",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Add New Product" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleAddProduct, className: "space-y-4 mt-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-name", children: "Product Name *" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-name",
+                    className: "mt-1",
+                    placeholder: "e.g. HP LaserJet Toner",
+                    value: productForm.name,
+                    onChange: (e3) => setProductForm((f2) => ({ ...f2, name: e3.target.value })),
+                    "data-ocid": "inventory.add_product.name.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-desc", children: "Description" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-desc",
+                    className: "mt-1",
+                    placeholder: "Brief product description",
+                    value: productForm.description,
+                    onChange: (e3) => setProductForm((f2) => ({
+                      ...f2,
+                      description: e3.target.value
+                    })),
+                    "data-ocid": "inventory.add_product.description.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-sku", children: "SKU *" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-sku",
+                    className: "mt-1 font-mono",
+                    placeholder: "e.g. SKU-0001",
+                    value: productForm.sku,
+                    onChange: (e3) => setProductForm((f2) => ({ ...f2, sku: e3.target.value })),
+                    "data-ocid": "inventory.add_product.sku.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-barcode", children: "Barcode" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-barcode",
+                    className: "mt-1 font-mono",
+                    placeholder: "e.g. 8901234567890",
+                    value: productForm.barcode,
+                    onChange: (e3) => setProductForm((f2) => ({ ...f2, barcode: e3.target.value })),
+                    "data-ocid": "inventory.add_product.barcode.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-cat", children: "Category" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-cat",
+                    className: "mt-1",
+                    placeholder: "e.g. Electronics, Stationery…",
+                    value: productForm.category,
+                    onChange: (e3) => setProductForm((f2) => ({
+                      ...f2,
+                      category: e3.target.value
+                    })),
+                    list: "categories-list",
+                    "data-ocid": "inventory.add_product.category.input"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("datalist", { id: "categories-list", children: categories.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: c2 }, c2)) })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-qty", children: "Initial Quantity" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-qty",
+                    type: "number",
+                    min: "0",
+                    className: "mt-1",
+                    placeholder: "0",
+                    value: productForm.quantity,
+                    onChange: (e3) => setProductForm((f2) => ({
+                      ...f2,
+                      quantity: e3.target.value
+                    })),
+                    "data-ocid": "inventory.add_product.quantity.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-reorder", children: "Reorder Point" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-reorder",
+                    type: "number",
+                    min: "0",
+                    className: "mt-1",
+                    placeholder: "0",
+                    value: productForm.reorderPoint,
+                    onChange: (e3) => setProductForm((f2) => ({
+                      ...f2,
+                      reorderPoint: e3.target.value
+                    })),
+                    "data-ocid": "inventory.add_product.reorder.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-cost", children: "Unit Cost (₹)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-cost",
+                    type: "number",
+                    min: "0",
+                    step: "0.01",
+                    className: "mt-1",
+                    placeholder: "0.00",
+                    value: productForm.unitCost,
+                    onChange: (e3) => setProductForm((f2) => ({
+                      ...f2,
+                      unitCost: e3.target.value
+                    })),
+                    "data-ocid": "inventory.add_product.unit_cost.input"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-sale", children: "Sale Price (₹)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "ap-sale",
+                    type: "number",
+                    min: "0",
+                    step: "0.01",
+                    className: "mt-1",
+                    placeholder: "0.00",
+                    value: productForm.salePrice,
+                    onChange: (e3) => setProductForm((f2) => ({
+                      ...f2,
+                      salePrice: e3.target.value
+                    })),
+                    "data-ocid": "inventory.add_product.sale_price.input"
+                  }
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  type: "button",
+                  variant: "outline",
+                  onClick: () => setAddProductOpen(false),
+                  "data-ocid": "inventory.add_product.cancel_button",
+                  children: "Cancel"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  type: "submit",
+                  className: "text-white",
+                  style: { backgroundColor: "var(--brand-red)" },
+                  disabled: addProduct.isPending,
+                  "data-ocid": "inventory.add_product.submit_button",
+                  children: [
+                    addProduct.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 animate-spin mr-2" }) : null,
+                    "Add Product"
+                  ]
+                }
+              )
+            ] })
+          ] })
+        ]
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: !!editProduct,
+        onOpenChange: (open) => !open && setEditProduct(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          DialogContent,
+          {
+            className: "max-w-lg max-h-[90vh] overflow-y-auto",
+            "data-ocid": "inventory.edit_product.dialog",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Edit Product" }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleEditProduct, className: "space-y-4 mt-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-name", children: "Product Name *" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-name",
+                        className: "mt-1",
+                        value: editForm.name,
+                        onChange: (e3) => setEditForm((f2) => ({ ...f2, name: e3.target.value })),
+                        "data-ocid": "inventory.edit_product.name.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-desc", children: "Description" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-desc",
+                        className: "mt-1",
+                        value: editForm.description,
+                        onChange: (e3) => setEditForm((f2) => ({
+                          ...f2,
+                          description: e3.target.value
+                        })),
+                        "data-ocid": "inventory.edit_product.description.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-sku", children: "SKU *" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-sku",
+                        className: "mt-1 font-mono",
+                        value: editForm.sku,
+                        onChange: (e3) => setEditForm((f2) => ({ ...f2, sku: e3.target.value })),
+                        "data-ocid": "inventory.edit_product.sku.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-barcode", children: "Barcode" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-barcode",
+                        className: "mt-1 font-mono",
+                        value: editForm.barcode,
+                        onChange: (e3) => setEditForm((f2) => ({ ...f2, barcode: e3.target.value })),
+                        "data-ocid": "inventory.edit_product.barcode.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-cat", children: "Category" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-cat",
+                        className: "mt-1",
+                        value: editForm.category,
+                        onChange: (e3) => setEditForm((f2) => ({
+                          ...f2,
+                          category: e3.target.value
+                        })),
+                        list: "categories-list-edit",
+                        "data-ocid": "inventory.edit_product.category.input"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("datalist", { id: "categories-list-edit", children: categories.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: c2 }, c2)) })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-reorder", children: "Reorder Point" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-reorder",
+                        type: "number",
+                        min: "0",
+                        className: "mt-1",
+                        value: editForm.reorderPoint,
+                        onChange: (e3) => setEditForm((f2) => ({
+                          ...f2,
+                          reorderPoint: e3.target.value
+                        })),
+                        "data-ocid": "inventory.edit_product.reorder.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", {}),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-cost", children: "Unit Cost (₹)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-cost",
+                        type: "number",
+                        min: "0",
+                        step: "0.01",
+                        className: "mt-1",
+                        value: editForm.unitCost,
+                        onChange: (e3) => setEditForm((f2) => ({
+                          ...f2,
+                          unitCost: e3.target.value
+                        })),
+                        "data-ocid": "inventory.edit_product.unit_cost.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ep-sale", children: "Sale Price (₹)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "ep-sale",
+                        type: "number",
+                        min: "0",
+                        step: "0.01",
+                        className: "mt-1",
+                        value: editForm.salePrice,
+                        onChange: (e3) => setEditForm((f2) => ({
+                          ...f2,
+                          salePrice: e3.target.value
+                        })),
+                        "data-ocid": "inventory.edit_product.sale_price.input"
+                      }
+                    )
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button,
+                    {
+                      type: "button",
+                      variant: "outline",
+                      onClick: () => setEditProduct(null),
+                      "data-ocid": "inventory.edit_product.cancel_button",
+                      children: "Cancel"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      type: "submit",
+                      className: "text-white",
+                      style: { backgroundColor: "var(--brand-red)" },
+                      disabled: editProductMut.isPending,
+                      "data-ocid": "inventory.edit_product.save_button",
+                      children: [
+                        editProductMut.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 animate-spin mr-2" }) : null,
+                        "Save Changes"
+                      ]
+                    }
+                  )
+                ] })
+              ] })
+            ]
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: !!stockUpdateProduct,
+        onOpenChange: (open) => !open && setStockUpdateProduct(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          DialogContent,
+          {
+            className: "max-w-sm",
+            "data-ocid": "inventory.stock_update.dialog",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Update Stock" }) }),
+              stockUpdateProduct && /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleStockUpdate, className: "space-y-4 mt-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-secondary/50 rounded-lg px-3 py-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Product" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold", children: stockUpdateProduct.name }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground mt-0.5", children: [
+                    "Current stock:",
+                    " ",
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: Number(stockUpdateProduct.quantity).toLocaleString() }),
+                    " ",
+                    "units"
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "su-type", children: "Transaction Type" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Select,
+                    {
+                      value: stockForm.txType,
+                      onValueChange: (v2) => setStockForm((f2) => ({ ...f2, txType: v2 })),
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          SelectTrigger,
+                          {
+                            id: "su-type",
+                            className: "mt-1",
+                            "data-ocid": "inventory.stock_update.type.select",
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "purchase", children: "Purchase (Add Stock)" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "sale", children: "Sale (Remove Stock)" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "adjustment", children: "Adjustment" })
+                        ] })
+                      ]
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 items-end", children: [
+                  stockForm.txType === "adjustment" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sign" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1 mt-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button,
+                        {
+                          type: "button",
+                          size: "sm",
+                          variant: stockForm.adjustSign === "+" ? "default" : "outline",
+                          style: stockForm.adjustSign === "+" ? {
+                            backgroundColor: "var(--brand-red)",
+                            color: "white"
+                          } : {},
+                          className: "w-9 h-9 p-0",
+                          onClick: () => setStockForm((f2) => ({ ...f2, adjustSign: "+" })),
+                          "data-ocid": "inventory.stock_update.plus.toggle",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { className: "w-4 h-4" })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button,
+                        {
+                          type: "button",
+                          size: "sm",
+                          variant: stockForm.adjustSign === "-" ? "default" : "outline",
+                          style: stockForm.adjustSign === "-" ? {
+                            backgroundColor: "oklch(0.44 0.19 21)",
+                            color: "white"
+                          } : {},
+                          className: "w-9 h-9 p-0",
+                          onClick: () => setStockForm((f2) => ({ ...f2, adjustSign: "-" })),
+                          "data-ocid": "inventory.stock_update.minus.toggle",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "w-4 h-4" })
+                        }
+                      )
+                    ] })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "su-qty", children: "Quantity" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "su-qty",
+                        type: "number",
+                        min: "1",
+                        className: "mt-1",
+                        placeholder: "e.g. 50",
+                        value: stockForm.quantity,
+                        onChange: (e3) => setStockForm((f2) => ({ ...f2, quantity: e3.target.value })),
+                        "data-ocid": "inventory.stock_update.quantity.input"
+                      }
+                    )
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "su-note", children: "Note (optional)" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      id: "su-note",
+                      className: "mt-1",
+                      placeholder: "e.g. Restocked from supplier",
+                      value: stockForm.note,
+                      onChange: (e3) => setStockForm((f2) => ({ ...f2, note: e3.target.value })),
+                      "data-ocid": "inventory.stock_update.note.input"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "su-date", children: "Date" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      id: "su-date",
+                      type: "date",
+                      className: "mt-1",
+                      value: stockForm.date,
+                      onChange: (e3) => setStockForm((f2) => ({ ...f2, date: e3.target.value })),
+                      "data-ocid": "inventory.stock_update.date.input"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button,
+                    {
+                      type: "button",
+                      variant: "outline",
+                      onClick: () => setStockUpdateProduct(null),
+                      "data-ocid": "inventory.stock_update.cancel_button",
+                      children: "Cancel"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      type: "submit",
+                      className: "text-white",
+                      style: { backgroundColor: "var(--brand-red)" },
+                      disabled: addStockTx.isPending,
+                      "data-ocid": "inventory.stock_update.submit_button",
+                      children: [
+                        addStockTx.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 animate-spin mr-2" }) : null,
+                        "Update Stock"
+                      ]
+                    }
+                  )
+                ] })
+              ] })
+            ]
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: bulkActionType === "prices",
+        onOpenChange: (open) => !open && setBulkActionType(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-ocid": "inventory.bulk_prices.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { children: [
+            "Update Prices — ",
+            selectedIds.size,
+            " product",
+            selectedIds.size > 1 ? "s" : ""
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleBulkUpdate, className: "space-y-4 mt-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "bp-cost", children: "New Unit Cost (₹)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "bp-cost",
+                  type: "number",
+                  min: "0",
+                  step: "0.01",
+                  className: "mt-1",
+                  placeholder: "0.00",
+                  value: bulkUnitCost,
+                  onChange: (e3) => setBulkUnitCost(e3.target.value),
+                  "data-ocid": "inventory.bulk_prices.unit_cost.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "bp-sale", children: "New Sale Price (₹)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "bp-sale",
+                  type: "number",
+                  min: "0",
+                  step: "0.01",
+                  className: "mt-1",
+                  placeholder: "0.00",
+                  value: bulkSalePrice,
+                  onChange: (e3) => setBulkSalePrice(e3.target.value),
+                  "data-ocid": "inventory.bulk_prices.sale_price.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  type: "button",
+                  variant: "outline",
+                  onClick: () => setBulkActionType(null),
+                  "data-ocid": "inventory.bulk_prices.cancel_button",
+                  children: "Cancel"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  type: "submit",
+                  className: "text-white",
+                  style: { backgroundColor: "var(--brand-red)" },
+                  disabled: bulkUpdate.isPending,
+                  "data-ocid": "inventory.bulk_prices.submit_button",
+                  children: [
+                    bulkUpdate.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 animate-spin mr-2" }) : null,
+                    "Apply to Selected"
+                  ]
+                }
+              )
+            ] })
+          ] })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: bulkActionType === "reorder",
+        onOpenChange: (open) => !open && setBulkActionType(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { "data-ocid": "inventory.bulk_reorder.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { children: [
+            "Update Reorder Level — ",
+            selectedIds.size,
+            " product",
+            selectedIds.size > 1 ? "s" : ""
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleBulkUpdate, className: "space-y-4 mt-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "br-rp", children: "New Reorder Point (units)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  id: "br-rp",
+                  type: "number",
+                  min: "0",
+                  className: "mt-1",
+                  placeholder: "e.g. 10",
+                  value: bulkReorderPoint,
+                  onChange: (e3) => setBulkReorderPoint(e3.target.value),
+                  "data-ocid": "inventory.bulk_reorder.reorder_point.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  type: "button",
+                  variant: "outline",
+                  onClick: () => setBulkActionType(null),
+                  "data-ocid": "inventory.bulk_reorder.cancel_button",
+                  children: "Cancel"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  type: "submit",
+                  className: "text-white",
+                  style: { backgroundColor: "var(--brand-red)" },
+                  disabled: bulkUpdate.isPending,
+                  "data-ocid": "inventory.bulk_reorder.submit_button",
+                  children: [
+                    bulkUpdate.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 animate-spin mr-2" }) : null,
+                    "Apply to Selected"
+                  ]
+                }
+              )
+            ] })
+          ] })
+        ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialog,
+      {
+        open: deleteProductId !== null,
+        onOpenChange: (open) => !open && setDeleteProductId(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "inventory.delete_product.dialog", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete Product?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This will permanently remove the product and its stock history. This action cannot be undone." })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "inventory.delete_product.cancel_button", children: "Cancel" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AlertDialogAction,
+              {
+                onClick: handleDeleteProduct,
+                className: "text-white",
+                style: { backgroundColor: "oklch(0.44 0.19 21)" },
+                "data-ocid": "inventory.delete_product.confirm_button",
+                children: "Delete Product"
+              }
+            )
+          ] })
+        ] })
+      }
+    )
+  ] });
 }
 const STORAGE_KEY = "fino_merchants";
 function loadMerchants() {
@@ -92057,6 +94264,8 @@ function App() {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(PaymentHeads, {});
       case "merchants":
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Merchants, {});
+      case "inventory":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Inventory, {});
       default:
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, { onNavigate: setActiveTab });
     }
@@ -92114,7 +94323,8 @@ function App() {
                 ["pl-reports", "P&L Reports"],
                 ["fixed-deposits", "Fixed Deposit"],
                 ["transactions", "Transactions"],
-                ["merchants", "Merchants"]
+                ["merchants", "Merchants"],
+                ["inventory", "Inventory"]
               ].map(([tab, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "button",
                 {
