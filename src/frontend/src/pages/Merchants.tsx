@@ -27,10 +27,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Download, Pencil, PlusCircle, Trash2, Users } from "lucide-react";
+import {
+  Download,
+  Lock,
+  Pencil,
+  PlusCircle,
+  Trash2,
+  Users,
+} from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
+import RoleSwitcherBar from "../components/RoleSwitcherBar";
+import { useInventoryAuth } from "../context/InventoryAuthContext";
 import type { Merchant } from "../utils/excelExport";
 import { downloadMerchants } from "../utils/excelExport";
 
@@ -52,6 +61,7 @@ function saveMerchants(merchants: Merchant[]) {
 const emptyForm = { name: "", merchantId: "", mobileNo: "", address: "" };
 
 export default function Merchants() {
+  const { isManager } = useInventoryAuth();
   const [merchants, setMerchants] = useState<Merchant[]>(loadMerchants);
   const [addOpen, setAddOpen] = useState(false);
   const [editTarget, setEditTarget] = useState<Merchant | null>(null);
@@ -126,6 +136,9 @@ export default function Merchants() {
 
   return (
     <div className="space-y-6">
+      {/* Role Switcher Bar */}
+      <RoleSwitcherBar />
+
       {/* Page header */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
@@ -146,31 +159,53 @@ export default function Merchants() {
             </p>
           </div>
         </div>
-        <div className="flex gap-2 flex-wrap">
-          <Button
-            variant="outline"
-            className="gap-2"
-            onClick={() => downloadMerchants(merchants)}
-            disabled={merchants.length === 0}
-            data-ocid="merchants.download.button"
-          >
-            <Download className="w-4 h-4" />
-            Download Excel
-          </Button>
-          <Button
-            className="gap-2 text-white"
-            style={{ backgroundColor: "var(--brand-red)" }}
-            onClick={() => {
-              setForm(emptyForm);
-              setAddOpen(true);
-            }}
-            data-ocid="merchants.add.open_modal_button"
-          >
-            <PlusCircle className="w-4 h-4" />
-            Add Merchant
-          </Button>
-        </div>
+        {/* Manager-only action buttons */}
+        {isManager && (
+          <div className="flex gap-2 flex-wrap">
+            <Button
+              variant="outline"
+              className="gap-2"
+              onClick={() => downloadMerchants(merchants)}
+              disabled={merchants.length === 0}
+              data-ocid="merchants.download.button"
+            >
+              <Download className="w-4 h-4" />
+              Download Excel
+            </Button>
+            <Button
+              className="gap-2 text-white"
+              style={{ backgroundColor: "var(--brand-red)" }}
+              onClick={() => {
+                setForm(emptyForm);
+                setAddOpen(true);
+              }}
+              data-ocid="merchants.add.open_modal_button"
+            >
+              <PlusCircle className="w-4 h-4" />
+              Add Merchant
+            </Button>
+          </div>
+        )}
       </motion.div>
+
+      {/* Staff view-only notice */}
+      {!isManager && (
+        <motion.div
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-start gap-3 px-4 py-3 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-800"
+          data-ocid="merchants.staff_restricted.panel"
+        >
+          <Lock className="w-5 h-5 shrink-0 mt-0.5 text-blue-500" />
+          <div>
+            <p className="font-semibold text-blue-900">View Only Access</p>
+            <p className="mt-0.5 text-blue-700">
+              Merchant details are partially hidden for staff. Switch to Manager
+              to view full details or make changes.
+            </p>
+          </div>
+        </motion.div>
+      )}
 
       {/* Table card */}
       <Card className="shadow-card border-border">
@@ -182,9 +217,11 @@ export default function Merchants() {
             >
               <Users className="w-10 h-10 mx-auto mb-3 opacity-30" />
               <p className="font-medium">No merchants registered yet.</p>
-              <p className="text-sm mt-1">
-                Click &quot;Add Merchant&quot; to get started.
-              </p>
+              {isManager && (
+                <p className="text-sm mt-1">
+                  Click &quot;Add Merchant&quot; to get started.
+                </p>
+              )}
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -206,9 +243,11 @@ export default function Merchants() {
                     <TableHead className="text-xs font-semibold text-muted-foreground">
                       Address
                     </TableHead>
-                    <TableHead className="text-xs font-semibold text-muted-foreground">
-                      Actions
-                    </TableHead>
+                    {isManager && (
+                      <TableHead className="text-xs font-semibold text-muted-foreground">
+                        Actions
+                      </TableHead>
+                    )}
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -225,36 +264,65 @@ export default function Merchants() {
                         {merchant.name}
                       </TableCell>
                       <TableCell className="font-mono text-sm">
-                        {merchant.merchantId}
+                        {isManager ? (
+                          merchant.merchantId
+                        ) : (
+                          <span
+                            className="tracking-widest text-muted-foreground"
+                            title="Hidden from staff view"
+                          >
+                            &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;
+                          </span>
+                        )}
                       </TableCell>
                       <TableCell className="text-sm">
-                        {merchant.mobileNo || "-"}
+                        {isManager ? (
+                          merchant.mobileNo || "-"
+                        ) : (
+                          <span
+                            className="tracking-widest text-muted-foreground"
+                            title="Hidden from staff view"
+                          >
+                            &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;
+                          </span>
+                        )}
                       </TableCell>
                       <TableCell className="text-sm max-w-xs truncate">
-                        {merchant.address || "-"}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-1.5">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-7 px-2 gap-1 text-xs"
-                            onClick={() => openEdit(merchant)}
-                            data-ocid={`merchants.edit_button.${i + 1}`}
+                        {isManager ? (
+                          merchant.address || "-"
+                        ) : (
+                          <span
+                            className="tracking-widest text-muted-foreground"
+                            title="Hidden from staff view"
                           >
-                            <Pencil className="w-3 h-3" /> Edit
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-7 px-2 text-xs border-red-200 text-red-600 hover:bg-red-50"
-                            onClick={() => setDeleteTarget(merchant.id)}
-                            data-ocid={`merchants.delete_button.${i + 1}`}
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </Button>
-                        </div>
+                            &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;
+                          </span>
+                        )}
                       </TableCell>
+                      {isManager && (
+                        <TableCell>
+                          <div className="flex gap-1.5">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 px-2 gap-1 text-xs"
+                              onClick={() => openEdit(merchant)}
+                              data-ocid={`merchants.edit_button.${i + 1}`}
+                            >
+                              <Pencil className="w-3 h-3" /> Edit
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 px-2 text-xs border-red-200 text-red-600 hover:bg-red-50"
+                              onClick={() => setDeleteTarget(merchant.id)}
+                              data-ocid={`merchants.delete_button.${i + 1}`}
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      )}
                     </TableRow>
                   ))}
                 </TableBody>
@@ -264,7 +332,7 @@ export default function Merchants() {
         </CardContent>
       </Card>
 
-      {/* Add Merchant Dialog */}
+      {/* Add Merchant Dialog — Manager only */}
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogContent data-ocid="merchants.add.dialog">
           <DialogHeader>
@@ -345,7 +413,7 @@ export default function Merchants() {
         </DialogContent>
       </Dialog>
 
-      {/* Edit Merchant Dialog */}
+      {/* Edit Merchant Dialog — Manager only */}
       <Dialog
         open={!!editTarget}
         onOpenChange={(open) => !open && setEditTarget(null)}
@@ -425,7 +493,7 @@ export default function Merchants() {
         </DialogContent>
       </Dialog>
 
-      {/* Delete confirmation */}
+      {/* Delete confirmation — Manager only */}
       <AlertDialog
         open={deleteTarget !== null}
         onOpenChange={(open) => !open && setDeleteTarget(null)}

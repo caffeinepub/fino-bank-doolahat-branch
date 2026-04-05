@@ -20731,49 +20731,6 @@ function Label$1({
     }
   );
 }
-var NAME$2 = "Separator";
-var DEFAULT_ORIENTATION = "horizontal";
-var ORIENTATIONS = ["horizontal", "vertical"];
-var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
-  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
-  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
-  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Primitive.div,
-    {
-      "data-orientation": orientation,
-      ...semanticProps,
-      ...domProps,
-      ref: forwardedRef
-    }
-  );
-});
-Separator$1.displayName = NAME$2;
-function isValidOrientation(orientation) {
-  return ORIENTATIONS.includes(orientation);
-}
-var Root$3 = Separator$1;
-function Separator({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root$3,
-    {
-      "data-slot": "separator",
-      decorative,
-      orientation,
-      className: cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className
-      ),
-      ...props
-    }
-  );
-}
 function usePrevious(value) {
   const ref = reactExports.useRef({ value, previous: value });
   return reactExports.useMemo(() => {
@@ -20956,14 +20913,14 @@ SwitchBubbleInput.displayName = BUBBLE_INPUT_NAME$2;
 function getState$1(checked) {
   return checked ? "checked" : "unchecked";
 }
-var Root$2 = Switch$1;
+var Root$3 = Switch$1;
 var Thumb = SwitchThumb;
 function Switch({
   className,
   ...props
 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root$2,
+    Root$3,
     {
       "data-slot": "switch",
       className: cn(
@@ -42818,15 +42775,12 @@ function savePendingPLs(entries) {
   localStorage.setItem(PL_PENDING_KEY, JSON.stringify(entries));
 }
 function DailyPLEntry() {
-  const { role, isManager } = useInventoryAuth();
+  const { isManager } = useInventoryAuth();
   const [selectedDate, setSelectedDate] = reactExports.useState(todayISO());
   const [balances, setBalances] = reactExports.useState({});
   const [confirmBalances, setConfirmBalances] = reactExports.useState({});
   const [doubleEntry, setDoubleEntry] = reactExports.useState(false);
   const [saved, setSaved] = reactExports.useState(false);
-  const [staffUserId, setStaffUserId] = reactExports.useState("");
-  const [staffPassword, setStaffPassword] = reactExports.useState("");
-  const [staffAuthError, setStaffAuthError] = reactExports.useState("");
   const [pendingPLs, setPendingPLs] = reactExports.useState(
     () => loadPendingPLs()
   );
@@ -42940,42 +42894,16 @@ function DailyPLEntry() {
       );
       return;
     }
-    if (role === "manager") {
-      try {
-        await saveMutation.mutateAsync({
-          date: selectedDate,
-          headBalances: buildHBs()
-        });
-        ue.success("Daily P&L entry saved successfully!");
-        setSaved(true);
-      } catch {
-        ue.error("Failed to save P&L entry. Please try again.");
-      }
-      return;
+    try {
+      await saveMutation.mutateAsync({
+        date: selectedDate,
+        headBalances: buildHBs()
+      });
+      ue.success("Daily P&L entry saved successfully!");
+      setSaved(true);
+    } catch {
+      ue.error("Failed to save P&L entry. Please try again.");
     }
-    if (staffUserId !== STAFF_ID || staffPassword !== STAFF_PASSWORD) {
-      setStaffAuthError(
-        "Invalid Staff User ID or Password. Please check and retry."
-      );
-      return;
-    }
-    const entry = {
-      id: Date.now().toString() + Math.random().toString(36).slice(2),
-      date: selectedDate,
-      headBalances: headBalances.map((h2) => ({
-        headId: String(h2.headId),
-        headName: h2.headName,
-        opening: h2.opening,
-        closing: h2.closing
-      })),
-      submittedAt: (/* @__PURE__ */ new Date()).toISOString(),
-      staffId: staffUserId
-    };
-    updatePendingPLs([...pendingPLs, entry]);
-    ue.success("P&L entry submitted for manager approval.");
-    setStaffUserId("");
-    setStaffPassword("");
-    setStaffAuthError("");
   };
   const handleApprovePL = async (entry) => {
     setApprovingIds((prev) => new Set(prev).add(entry.id));
@@ -43188,7 +43116,23 @@ function DailyPLEntry() {
         )
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-card border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "pt-5", children: [
+    !isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -4 },
+        animate: { opacity: 1, y: 0 },
+        className: "flex items-start gap-3 px-4 py-4 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-800",
+        "data-ocid": "daily_pl.staff_restricted.panel",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-5 h-5 shrink-0 mt-0.5 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-blue-900", children: "Data Entry Restricted" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-0.5 text-blue-700", children: "P&L data entry is available to Manager only. You can view past entries below. Switch to Manager to record or modify entries." })
+          ] })
+        ]
+      }
+    ),
+    isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-card border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "pt-5", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-end gap-4", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-sm font-medium", children: "Select Date" }),
@@ -43255,7 +43199,7 @@ function DailyPLEntry() {
       ] }),
       doubleEntry && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 text-xs text-muted-foreground bg-amber-50 border border-amber-200 rounded px-3 py-2", children: "Double Entry mode is ON. Re-enter each balance in the confirm columns. Values must match before saving." })
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-card border-border", children: [
+    isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-card border-border", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base font-semibold", children: [
         "Balance Entry",
         doubleEntry && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-2 text-xs font-normal text-amber-600", children: "(Double Entry Mode)" })
@@ -43400,71 +43344,8 @@ function DailyPLEntry() {
             )
           ] })
         ] }) }),
-        role !== "manager" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, { className: "my-4" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              className: "rounded-lg p-4 space-y-3",
-              style: {
-                backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
-                border: "1px solid oklch(0.78 0.18 72 / 0.3)"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-semibold text-amber-800 flex items-center gap-1.5", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(UserCheck, { className: "w-4 h-4" }),
-                  "Staff Authentication Required"
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700", children: "Enter your Staff credentials to submit this P&L entry for manager approval." }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "pl-staff-id", children: "Staff User ID" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        id: "pl-staff-id",
-                        placeholder: "Enter your staff ID",
-                        value: staffUserId,
-                        onChange: (e3) => {
-                          setStaffUserId(e3.target.value);
-                          setStaffAuthError("");
-                        },
-                        "data-ocid": "daily_pl.staff_id.input"
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "pl-staff-pass", children: "Staff Password" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        id: "pl-staff-pass",
-                        type: "password",
-                        placeholder: "Enter your password",
-                        value: staffPassword,
-                        onChange: (e3) => {
-                          setStaffPassword(e3.target.value);
-                          setStaffAuthError("");
-                        },
-                        "data-ocid": "daily_pl.staff_password.input"
-                      }
-                    )
-                  ] })
-                ] }),
-                staffAuthError && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "p",
-                  {
-                    className: "text-xs text-red-600",
-                    "data-ocid": "daily_pl.staff_auth.error_state",
-                    children: staffAuthError
-                  }
-                )
-              ]
-            }
-          )
-        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-5 flex items-center justify-between gap-3", children: [
-          existingEntry && isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
+          existingEntry && /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
               {
@@ -43513,7 +43394,7 @@ function DailyPLEntry() {
                 "Saving..."
               ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4" }),
-                role === "manager" ? "Save Entry" : "Submit for Approval"
+                "Save Entry"
               ] })
             }
           ) })
@@ -43613,11 +43494,11 @@ function DailyPLEntry() {
                       type: "button",
                       className: "font-medium text-left hover:underline",
                       style: { color: "var(--brand-red)" },
-                      onClick: () => setSelectedDate(entry.date),
+                      onClick: () => isManager && setSelectedDate(entry.date),
                       children: formatDate(entry.date)
                     }
                   ),
-                  isSelected && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-2 text-xs text-muted-foreground", children: "(selected)" })
+                  isSelected && isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-2 text-xs text-muted-foreground", children: "(selected)" })
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2.5 px-4 text-right", children: formatINR(entryTotalOpening) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2.5 px-4 text-right", children: formatINR(entryTotalClosing) }),
@@ -68460,7 +68341,7 @@ const arrow = (options, deps) => ({
   ...arrow$1(options),
   options: [options, deps]
 });
-var NAME$1 = "Arrow";
+var NAME$2 = "Arrow";
 var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
   const { children, width = 10, height = 5, ...arrowProps } = props;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -68476,8 +68357,8 @@ var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
     }
   );
 });
-Arrow$1.displayName = NAME$1;
-var Root$1 = Arrow$1;
+Arrow$1.displayName = NAME$2;
+var Root$2 = Arrow$1;
 var POPPER_NAME = "Popper";
 var [createPopperContext, createPopperScope] = createContextScope(POPPER_NAME);
 var [PopperProvider, usePopperContext] = createPopperContext(POPPER_NAME);
@@ -68690,7 +68571,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
           visibility: contentContext.shouldHideArrow ? "hidden" : void 0
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$1,
+          Root$2,
           {
             ...arrowProps,
             ref: forwardedRef,
@@ -68762,7 +68643,7 @@ var VISUALLY_HIDDEN_STYLES = Object.freeze({
   whiteSpace: "nowrap",
   wordWrap: "normal"
 });
-var NAME = "VisuallyHidden";
+var NAME$1 = "VisuallyHidden";
 var VisuallyHidden = reactExports.forwardRef(
   (props, forwardedRef) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -68775,7 +68656,7 @@ var VisuallyHidden = reactExports.forwardRef(
     );
   }
 );
-VisuallyHidden.displayName = NAME;
+VisuallyHidden.displayName = NAME$1;
 var OPEN_KEYS = [" ", "Enter", "ArrowUp", "ArrowDown"];
 var SELECTION_KEYS = [" ", "Enter"];
 var SELECT_NAME = "Select";
@@ -93155,6 +93036,7 @@ function saveMerchants(merchants) {
 }
 const emptyForm$1 = { name: "", merchantId: "", mobileNo: "", address: "" };
 function Merchants() {
+  const { isManager } = useInventoryAuth();
   const [merchants, setMerchants] = reactExports.useState(loadMerchants);
   const [addOpen, setAddOpen] = reactExports.useState(false);
   const [editTarget, setEditTarget] = reactExports.useState(null);
@@ -93220,6 +93102,7 @@ function Merchants() {
     setDeleteTarget(null);
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.div,
       {
@@ -93241,7 +93124,7 @@ function Merchants() {
               /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage merchant registrations for Doolahat Branch" })
             ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-wrap", children: [
+          isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-wrap", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
               {
@@ -93276,6 +93159,22 @@ function Merchants() {
         ]
       }
     ),
+    !isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -4 },
+        animate: { opacity: 1, y: 0 },
+        className: "flex items-start gap-3 px-4 py-3 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-800",
+        "data-ocid": "merchants.staff_restricted.panel",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-5 h-5 shrink-0 mt-0.5 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold text-blue-900", children: "View Only Access" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-0.5 text-blue-700", children: "Merchant details are partially hidden for staff. Switch to Manager to view full details or make changes." })
+          ] })
+        ]
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-card border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: merchants.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
@@ -93284,7 +93183,7 @@ function Merchants() {
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Users, { className: "w-10 h-10 mx-auto mb-3 opacity-30" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "No merchants registered yet." }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm mt-1", children: 'Click "Add Merchant" to get started.' })
+          isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm mt-1", children: 'Click "Add Merchant" to get started.' })
         ]
       }
     ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
@@ -93294,7 +93193,7 @@ function Merchants() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Merchant ID" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Mobile No" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Address" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Actions" })
+        isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-muted-foreground", children: "Actions" })
       ] }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: merchants.map((merchant, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
         TableRow,
@@ -93304,10 +93203,31 @@ function Merchants() {
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-muted-foreground font-mono", children: i + 1 }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium", children: merchant.name }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-sm", children: merchant.merchantId }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm", children: merchant.mobileNo || "-" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm max-w-xs truncate", children: merchant.address || "-" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-sm", children: isManager ? merchant.merchantId : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tracking-widest text-muted-foreground",
+                title: "Hidden from staff view",
+                children: "••••••••"
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm", children: isManager ? merchant.mobileNo || "-" : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tracking-widest text-muted-foreground",
+                title: "Hidden from staff view",
+                children: "•••••••••••"
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm max-w-xs truncate", children: isManager ? merchant.address || "-" : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "tracking-widest text-muted-foreground",
+                title: "Hidden from staff view",
+                children: "••••••••••••••••"
+              }
+            ) }),
+            isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-1.5", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 Button,
                 {
@@ -94246,6 +94166,49 @@ function PaymentHeads() {
       }
     )
   ] });
+}
+var NAME = "Separator";
+var DEFAULT_ORIENTATION = "horizontal";
+var ORIENTATIONS = ["horizontal", "vertical"];
+var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
+  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
+  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
+  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.div,
+    {
+      "data-orientation": orientation,
+      ...semanticProps,
+      ...domProps,
+      ref: forwardedRef
+    }
+  );
+});
+Separator$1.displayName = NAME;
+function isValidOrientation(orientation) {
+  return ORIENTATIONS.includes(orientation);
+}
+var Root$1 = Separator$1;
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root$1,
+    {
+      "data-slot": "separator",
+      decorative,
+      orientation,
+      className: cn(
+        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      ),
+      ...props
+    }
+  );
 }
 var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
 var EVENT_OPTIONS = { bubbles: false, cancelable: true };
