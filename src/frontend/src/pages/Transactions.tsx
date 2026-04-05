@@ -48,6 +48,7 @@ import { toast } from "sonner";
 import type { Transaction } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
 import StatusBadge from "../components/StatusBadge";
+import { useInventoryAuth } from "../context/InventoryAuthContext";
 import {
   useAddTransaction,
   useDeleteTransaction,
@@ -109,19 +110,6 @@ interface PendingTransaction {
 
 function genTxId(): string {
   return Date.now().toString() + Math.random().toString(36).slice(2);
-}
-
-function getRole(): "staff" | "manager" {
-  try {
-    const stored = localStorage.getItem("fino_inventory_auth");
-    if (stored) {
-      const parsed = JSON.parse(stored) as { role?: string };
-      if (parsed.role === "manager") return "manager";
-    }
-  } catch {
-    // ignore
-  }
-  return "staff";
 }
 
 function loadPendingTxs(): PendingTransaction[] {
@@ -770,18 +758,9 @@ export default function Transactions() {
   const [filterDateEnd, setFilterDateEnd] = useState("");
   const [deleteId, setDeleteId] = useState<bigint | null>(null);
 
-  // Role detection (reads from same localStorage as InventoryAuthContext)
-  const [role, setRole] = useState<"staff" | "manager">(() => getRole());
-  useEffect(() => {
-    const handleStorage = () => setRole(getRole());
-    window.addEventListener("storage", handleStorage);
-    const interval = setInterval(() => setRole(getRole()), 1000);
-    return () => {
-      window.removeEventListener("storage", handleStorage);
-      clearInterval(interval);
-    };
-  }, []);
-  const isManager = role === "manager";
+  // Role detection — uses shared InventoryAuthContext (reactive, no polling)
+  const { isManager } = useInventoryAuth();
+  const role = isManager ? "manager" : "staff";
 
   // Pending transactions state
   const [pendingTxs, setPendingTxs] = useState<PendingTransaction[]>(() =>

@@ -18469,6 +18469,66 @@ function NavTabs({ activeTab, onTabChange }) {
     ))
   ] }) });
 }
+const MANAGER_PASSWORD = "Ratulcc143@";
+const SECURITY_ANSWER = "Pulak";
+const STORAGE_KEY$1 = "fino_role_v2";
+const InventoryAuthContext = reactExports.createContext(
+  null
+);
+function InventoryAuthProvider({
+  children
+}) {
+  const [role, setRole] = reactExports.useState(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY$1);
+      if (stored === "manager") return "manager";
+    } catch {
+    }
+    return "staff";
+  });
+  reactExports.useEffect(() => {
+    localStorage.setItem(STORAGE_KEY$1, role);
+    localStorage.setItem("fino_inventory_auth", JSON.stringify({ role }));
+  }, [role]);
+  const loginAsManager = (password) => {
+    if (password === MANAGER_PASSWORD) {
+      setRole("manager");
+      return true;
+    }
+    return false;
+  };
+  const resetManagerPassword = (nickName) => {
+    if (nickName.trim() === SECURITY_ANSWER) {
+      setRole("manager");
+      return true;
+    }
+    return false;
+  };
+  const logoutManager = () => {
+    setRole("staff");
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    InventoryAuthContext.Provider,
+    {
+      value: {
+        role,
+        isManager: role === "manager",
+        loginAsManager,
+        resetManagerPassword,
+        logoutManager
+      },
+      children
+    }
+  );
+}
+function useInventoryAuth() {
+  const ctx = reactExports.useContext(InventoryAuthContext);
+  if (!ctx)
+    throw new Error(
+      "useInventoryAuth must be used within InventoryAuthProvider"
+    );
+  return ctx;
+}
 function createContext2(rootComponentName, defaultContext) {
   const Context = reactExports.createContext(defaultContext);
   const Provider = (props) => {
@@ -90619,81 +90679,6 @@ function TableCell({ className, ...props }) {
     }
   );
 }
-const STORAGE_KEY$1 = "fino_inventory_auth";
-const MANAGER_PASSWORD = "Ratulcc143@";
-const STAFF_ID = "156399746";
-const STAFF_PASSWORD = "156399746";
-const SECURITY_ANSWER = "Pulak";
-const InventoryAuthContext = reactExports.createContext(
-  null
-);
-function InventoryAuthProvider({
-  children
-}) {
-  const [state, setState] = reactExports.useState(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY$1);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        return { role: "staff", staffUserId: parsed.staffUserId ?? null };
-      }
-    } catch {
-    }
-    return { role: "staff", staffUserId: null };
-  });
-  reactExports.useEffect(() => {
-    localStorage.setItem(STORAGE_KEY$1, JSON.stringify(state));
-  }, [state]);
-  const loginAsStaff = (userId, password) => {
-    if (userId === STAFF_ID && password === STAFF_PASSWORD) {
-      setState({ role: "staff", staffUserId: userId });
-      return true;
-    }
-    return false;
-  };
-  const loginAsManager = (password) => {
-    if (password === MANAGER_PASSWORD) {
-      setState((prev) => ({ ...prev, role: "manager" }));
-      return true;
-    }
-    return false;
-  };
-  const resetManagerPassword = (nickName) => {
-    if (nickName === SECURITY_ANSWER) {
-      setState((prev) => ({ ...prev, role: "manager" }));
-      return true;
-    }
-    return false;
-  };
-  const logout = () => {
-    setState({ role: "staff", staffUserId: null });
-  };
-  const setStaffAuth = (userId) => {
-    setState((prev) => ({ ...prev, staffUserId: userId }));
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    InventoryAuthContext.Provider,
-    {
-      value: {
-        ...state,
-        loginAsStaff,
-        loginAsManager,
-        resetManagerPassword,
-        logout,
-        setStaffAuth
-      },
-      children
-    }
-  );
-}
-function useInventoryAuth() {
-  const ctx = reactExports.useContext(InventoryAuthContext);
-  if (!ctx)
-    throw new Error(
-      "useInventoryAuth must be used within InventoryAuthProvider"
-    );
-  return ctx;
-}
 const PENDING_KEY = "fino_inventory_pending";
 const APPROVED_KEY = "fino_inventory_approved";
 function getStatus(qty, reorder) {
@@ -91950,8 +91935,7 @@ function EditProductModal({
   ) });
 }
 function InventoryInner() {
-  const { role, logout } = useInventoryAuth();
-  const isManager = role === "manager";
+  const { isManager, logoutManager } = useInventoryAuth();
   const today = todayISO();
   const [pendingProducts, setPendingProducts] = reactExports.useState(
     () => {
@@ -92310,7 +92294,7 @@ function InventoryInner() {
               {
                 size: "sm",
                 variant: "outline",
-                onClick: logout,
+                onClick: logoutManager,
                 className: "flex items-center gap-1.5 text-muted-foreground",
                 "data-ocid": "inventory.logout_button",
                 children: [
@@ -92982,7 +92966,7 @@ function InventoryInner() {
   ] });
 }
 function Inventory() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(InventoryAuthProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(InventoryInner, {}) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(InventoryInner, {});
 }
 const STORAGE_KEY = "fino_merchants";
 function loadMerchants() {
@@ -94561,17 +94545,6 @@ const TX_PENDING_KEY = "fino_tx_pending";
 function genTxId() {
   return Date.now().toString() + Math.random().toString(36).slice(2);
 }
-function getRole() {
-  try {
-    const stored = localStorage.getItem("fino_inventory_auth");
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      if (parsed.role === "manager") return "manager";
-    }
-  } catch {
-  }
-  return "staff";
-}
 function loadPendingTxs() {
   try {
     const stored = localStorage.getItem(TX_PENDING_KEY);
@@ -95189,17 +95162,8 @@ function Transactions() {
   const [filterDateStart, setFilterDateStart] = reactExports.useState("");
   const [filterDateEnd, setFilterDateEnd] = reactExports.useState("");
   const [deleteId, setDeleteId] = reactExports.useState(null);
-  const [role, setRole] = reactExports.useState(() => getRole());
-  reactExports.useEffect(() => {
-    const handleStorage = () => setRole(getRole());
-    window.addEventListener("storage", handleStorage);
-    const interval = setInterval(() => setRole(getRole()), 1e3);
-    return () => {
-      window.removeEventListener("storage", handleStorage);
-      clearInterval(interval);
-    };
-  }, []);
-  const isManager = role === "manager";
+  const { isManager } = useInventoryAuth();
+  const role = isManager ? "manager" : "staff";
   const [pendingTxs, setPendingTxs] = reactExports.useState(
     () => loadPendingTxs()
   );
@@ -95721,7 +95685,7 @@ function App() {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, { onNavigate: setActiveTab });
     }
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(InventoryAuthProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       className: "min-h-screen flex flex-col",
@@ -95822,7 +95786,7 @@ function App() {
         /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { richColors: true, position: "top-right" })
       ]
     }
-  );
+  ) });
 }
 BigInt.prototype.toJSON = function() {
   return this.toString();

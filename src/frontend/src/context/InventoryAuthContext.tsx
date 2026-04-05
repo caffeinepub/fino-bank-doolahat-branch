@@ -1,29 +1,30 @@
+import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
-export type InventoryRole = "staff" | "manager" | null;
+export type InventoryRole = "staff" | "manager";
 
 export interface InventoryAuthState {
   role: InventoryRole;
-  staffUserId: string | null;
 }
 
-interface InventoryAuthContextValue extends InventoryAuthState {
-  loginAsStaff: (userId: string, password: string) => boolean;
+interface InventoryAuthContextValue {
+  role: InventoryRole;
+  isManager: boolean;
   loginAsManager: (password: string) => boolean;
   resetManagerPassword: (nickName: string) => boolean;
-  logout: () => void;
-  setStaffAuth: (userId: string) => void;
+  logoutManager: () => void;
 }
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-const STORAGE_KEY = "fino_inventory_auth";
-const MANAGER_PASSWORD = "Ratulcc143@";
-const STAFF_ID = "156399746";
-const STAFF_PASSWORD = "156399746";
-const SECURITY_ANSWER = "Pulak";
+export const STAFF_ID = "156399746";
+export const STAFF_PASSWORD = "156399746";
+export const MANAGER_PASSWORD = "Ratulcc143@";
+export const SECURITY_ANSWER = "Pulak";
+
+const STORAGE_KEY = "fino_role_v2";
 
 // ── Context ──────────────────────────────────────────────────────────────────
 
@@ -36,65 +37,51 @@ export function InventoryAuthProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [state, setState] = useState<InventoryAuthState>(() => {
+  const [role, setRole] = useState<InventoryRole>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as InventoryAuthState;
-        // Always start with staff view per requirement
-        return { role: "staff", staffUserId: parsed.staffUserId ?? null };
-      }
+      // Always default to staff on page load for security
+      if (stored === "manager") return "manager";
     } catch {
       // ignore
     }
-    return { role: "staff", staffUserId: null };
+    return "staff";
   });
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [state]);
-
-  const loginAsStaff = (userId: string, password: string): boolean => {
-    if (userId === STAFF_ID && password === STAFF_PASSWORD) {
-      setState({ role: "staff", staffUserId: userId });
-      return true;
-    }
-    return false;
-  };
+    localStorage.setItem(STORAGE_KEY, role);
+    // Also write to old key for Transactions page compatibility
+    localStorage.setItem("fino_inventory_auth", JSON.stringify({ role }));
+  }, [role]);
 
   const loginAsManager = (password: string): boolean => {
     if (password === MANAGER_PASSWORD) {
-      setState((prev) => ({ ...prev, role: "manager" }));
+      setRole("manager");
       return true;
     }
     return false;
   };
 
   const resetManagerPassword = (nickName: string): boolean => {
-    if (nickName === SECURITY_ANSWER) {
-      setState((prev) => ({ ...prev, role: "manager" }));
+    if (nickName.trim() === SECURITY_ANSWER) {
+      setRole("manager");
       return true;
     }
     return false;
   };
 
-  const logout = () => {
-    setState({ role: "staff", staffUserId: null });
-  };
-
-  const setStaffAuth = (userId: string) => {
-    setState((prev) => ({ ...prev, staffUserId: userId }));
+  const logoutManager = () => {
+    setRole("staff");
   };
 
   return (
     <InventoryAuthContext.Provider
       value={{
-        ...state,
-        loginAsStaff,
+        role,
+        isManager: role === "manager",
         loginAsManager,
         resetManagerPassword,
-        logout,
-        setStaffAuth,
+        logoutManager,
       }}
     >
       {children}
@@ -110,5 +97,3 @@ export function useInventoryAuth(): InventoryAuthContextValue {
     );
   return ctx;
 }
-
-export { STAFF_ID, STAFF_PASSWORD, MANAGER_PASSWORD, SECURITY_ANSWER };

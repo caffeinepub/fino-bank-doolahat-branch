@@ -66,10 +66,7 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import {
-  InventoryAuthProvider,
-  useInventoryAuth,
-} from "../context/InventoryAuthContext";
+import { useInventoryAuth } from "../context/InventoryAuthContext";
 import {
   useAddProduct,
   useAddStockTransaction,
@@ -1410,8 +1407,7 @@ function EditProductModal({
 // ── Inner inventory page (uses context) ───────────────────────────────────────
 
 function InventoryInner() {
-  const { role, logout } = useInventoryAuth();
-  const isManager = role === "manager";
+  const { isManager, logoutManager } = useInventoryAuth();
   const today = todayISO();
 
   // Pending products state
@@ -1854,7 +1850,7 @@ function InventoryInner() {
             <Button
               size="sm"
               variant="outline"
-              onClick={logout}
+              onClick={logoutManager}
               className="flex items-center gap-1.5 text-muted-foreground"
               data-ocid="inventory.logout_button"
             >
@@ -2579,12 +2575,8 @@ function InventoryInner() {
   );
 }
 
-// ── Exported page (wrapped in provider) ───────────────────────────────────────
+// ── Exported page ──────────────────────────────────────────────────────────────────
 
 export default function Inventory() {
-  return (
-    <InventoryAuthProvider>
-      <InventoryInner />
-    </InventoryAuthProvider>
-  );
+  return <InventoryInner />;
 }
