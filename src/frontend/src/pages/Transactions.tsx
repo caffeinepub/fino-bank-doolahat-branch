@@ -47,6 +47,7 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import type { Transaction } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
+import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import StatusBadge from "../components/StatusBadge";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
 import {
@@ -874,6 +875,7 @@ export default function Transactions() {
 
   return (
     <div className="space-y-6">
+      <RoleSwitcherBar />
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h2 className="text-xl font-bold text-foreground">

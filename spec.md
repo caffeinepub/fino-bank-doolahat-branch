@@ -1,40 +1,51 @@
-# Fino Bank Doolahat Branch – Inventory Rebuild
+# Fino Bank Doolahat Branch
 
 ## Current State
-- Inventory page (`src/frontend/src/pages/Inventory.tsx`) is ~2600 lines with metric cards, sortable product table, Add/Edit/Delete, Stock Update modal, Bulk Actions, Today's Transactions panel.
-- Role management is in `InventoryAuthContext.tsx` with Staff default and Manager password login.
-- The Approve button and pending workflow have had reliability issues across multiple versions.
-- The existing Inventory page will be completely replaced.
+
+- `InventoryAuthProvider` wraps the entire app; `InventoryAuthContext` provides `role` ("staff" | "manager"), `isManager`, `loginAsManager`, `resetManagerPassword`, `logoutManager`. Role is persisted in localStorage.
+- **Transactions.tsx**: Already has full staff/manager approval workflow — staff submit to pending queue (localStorage `fino_tx_pending`) with credential check (User ID + password `156399746`); manager approves via Pending Approvals panel. However, **no role-switcher UI is embedded on the Transactions page itself** — it relies on switching elsewhere.
+- **DailyPLEntry.tsx**: No auth/role protection at all. Any user can save/delete P&L entries directly to backend.
+- **FixedDeposits.tsx**: No auth/role protection at all. Any user can add/delete FDs directly to backend.
+- **Inventory.tsx**: Has a full role-switcher bar at the top, staff/manager approval workflow, and pending approvals panel.
 
 ## Requested Changes (Diff)
 
 ### Add
-- New Inventory page, fully rebuilt from scratch.
-- **User Switching Panel** always visible at the top of the Inventory page: shows current role (Staff / Manager) with a toggle/switch button.
-  - **Staff View**: default. Shows a badge "Staff View" with a "Switch to Manager" button.
-  - **Manager View**: shows badge "Manager View" with a "Switch to Staff" logout button.
-- **Manager Login Dialog**: triggered when switching to Manager; requires password `Ratulcc143@`. Includes Forgot Password via security question ("Enter Your Nick Name", answer: "Pulak").
-- **Staff Password Authentication on Submission**: when staff submits Add Product, they must enter Staff User ID (`156399746`) and Staff Password (`156399746`) inline in the form before submitting. Submission goes to a local pending queue.
-- **Pending Approvals panel** (visible only to Manager): lists all staff-submitted pending products. Each row has Approve, Edit, Delete buttons. Approving a pending product immediately adds it to the inventory table (local-first, optimistic update).
-- All existing inventory features preserved: metric cards (Total Value, Low Stock, Out of Stock, Monthly Orders), product table with search/sort/filter, Add/Edit/Delete (manager direct), Stock Update modal, Bulk Actions.
+- **Role-Switcher bar** on the `Transactions` page (same pattern as Inventory): shows current role (Staff/Manager), "Switch to Manager" button that opens login dialog, and "Switch to Staff" logout button when in Manager mode.
+- **Staff credential step in Add Transaction form** (already exists but needs the switcher bar on page so staff/manager switching is self-contained on Transactions page).
+- **Staff/Manager approval workflow on DailyPLEntry page**: Staff can fill and submit P&L entries but must enter User ID + password before submission; entries go to a pending queue (localStorage `fino_pl_pending`); a "Pending Approvals" amber panel is shown to managers with Approve/Edit/Delete; manager can also save directly without pending step.
+- **Role-Switcher bar** on `DailyPLEntry` page (same pattern as Inventory/Transactions).
+- **Manager-only gate on FixedDeposits page**: The entire FD section (Add New FD form + Delete button) is hidden/locked when role is "staff". A role-switcher bar at the top lets staff switch to Manager to unlock access. Staff sees a locked state with a message to login as Manager.
+- **Manager-only gate on DailyPLEntry page**: P&L Entry form (Save) is accessible to staff via the pending queue workflow; but the existing/history edit and delete actions require Manager role.
 
 ### Modify
-- `InventoryAuthContext.tsx`: no structural changes needed; keep as-is.
-- Keep App.tsx, NavTabs.tsx, and all other pages unchanged.
+- `DailyPLEntry.tsx`: Import and consume `useInventoryAuth`. Add role-switcher bar. Add pending queue logic for staff P&L submissions. Add manager-only Pending Approvals panel. Protect history delete actions behind manager role.
+- `FixedDeposits.tsx`: Import and consume `useInventoryAuth`. Add role-switcher bar at top. Gate Add New FD and Delete behind manager-only access.
+- `Transactions.tsx`: Add role-switcher bar UI (embedded on the page itself, same style as Inventory).
 
 ### Remove
-- Replace the entire existing `Inventory.tsx` with the new rebuild. The old file is discarded.
+- Nothing removed.
 
 ## Implementation Plan
-1. Rewrite `src/frontend/src/pages/Inventory.tsx` completely.
-2. Architecture:
-   - `RoleSwitcher` component at top of page -- shows current role badge + switch button.
-   - `ManagerLoginModal` -- clean standalone dialog for manager login + forgot password.
-   - `AddProductModal` -- with inline staff auth section (shown only in Staff mode).
-   - `PendingApprovalsPanel` -- amber card visible only to manager, lists pending items.
-   - `InventoryTable` -- product table with search/filter/sort, edit/delete (manager), stock update.
-   - `StockUpdateModal`, `EditProductModal`, `BulkUpdateModal`, `PendingEditModal` -- unchanged logic.
-3. Pending state: stored in `localStorage` under key `fino_inventory_pending`.
-4. Approved state: optimistic local list stored in `localStorage` under `fino_inventory_approved`, merged with backend products.
-5. Approve action: remove from pending list + add to local approved list immediately (no async wait).
-6. All approve/edit/delete buttons for pending products have independent state (no shared loading flag).
+
+1. **InventoryAuthContext.tsx** — No changes needed; already provides all required auth state.
+
+2. **Transactions.tsx**:
+   - Add a role-switcher bar at the top (identical to Inventory pattern): shows "Staff View" or "Manager View", Switch button, logout button.
+   - The existing staff credential step and pending approval panel are already correct — just add the switcher bar.
+
+3. **DailyPLEntry.tsx**:
+   - Import `useInventoryAuth`.
+   - Add role-switcher bar at top of page.
+   - **Staff submit flow**: When role is "staff", the Save button triggers a staff credential dialog (User ID + password `156399746`). On valid credentials, create a `PendingPLEntry` object and push to localStorage `fino_pl_pending` instead of calling backend directly.
+   - **Manager direct save**: When role is "manager", Save calls backend directly (existing behavior).
+   - **Pending Approvals panel** (manager only): amber panel listing pending P&L entries with Approve (calls backend `saveMutation`), Edit (open edit dialog), Delete (remove from queue) buttons.
+   - **History delete**: Only available when `isManager` is true.
+   - Show a pending banner to staff: "N P&L entries pending manager approval."
+
+4. **FixedDeposits.tsx**:
+   - Import `useInventoryAuth`.
+   - Add role-switcher bar at top of page.
+   - When role is "staff": hide/disable Add New FD button and all Delete buttons; show a locked-state notice: "FD section is restricted to Manager access only. Please switch to Manager to add or delete records."
+   - When role is "manager": full access (existing behavior).
+   - Staff can still VIEW existing FD records (read-only table).

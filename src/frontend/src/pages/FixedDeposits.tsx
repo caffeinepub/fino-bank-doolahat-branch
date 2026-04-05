@@ -23,6 +23,7 @@ import {
   ChevronDown,
   ChevronUp,
   Download,
+  Info,
   PlusCircle,
   Receipt,
   Search,
@@ -33,6 +34,8 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import type { FixedDeposit } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
+import RoleSwitcherBar from "../components/RoleSwitcherBar";
+import { useInventoryAuth } from "../context/InventoryAuthContext";
 import {
   useAddFixedDeposit,
   useDeleteFixedDeposit,
@@ -264,6 +267,7 @@ function FDForm({ onClose }: { onClose: () => void }) {
 }
 
 export default function FixedDeposits() {
+  const { isManager } = useInventoryAuth();
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
   const [deleteId, setDeleteId] = useState<bigint | null>(null);
@@ -296,6 +300,9 @@ export default function FixedDeposits() {
 
   return (
     <div className="space-y-6">
+      {/* Role Switcher Bar */}
+      <RoleSwitcherBar />
+
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h2 className="text-xl font-bold text-foreground">
@@ -317,21 +324,43 @@ export default function FixedDeposits() {
               Export All
             </Button>
           )}
-          <Button
-            onClick={() => setShowForm((v) => !v)}
-            className="gap-2 text-white"
-            style={{ backgroundColor: "var(--brand-red)" }}
-            data-ocid="fd.add.button"
-          >
-            {showForm ? (
-              <ChevronUp className="w-4 h-4" />
-            ) : (
-              <PlusCircle className="w-4 h-4" />
-            )}
-            {showForm ? "Hide Form" : "Add New FD"}
-          </Button>
+          {/* Add New FD button only visible to Manager */}
+          {isManager && (
+            <Button
+              onClick={() => setShowForm((v) => !v)}
+              className="gap-2 text-white"
+              style={{ backgroundColor: "var(--brand-red)" }}
+              data-ocid="fd.add.button"
+            >
+              {showForm ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <PlusCircle className="w-4 h-4" />
+              )}
+              {showForm ? "Hide Form" : "Add New FD"}
+            </Button>
+          )}
         </div>
       </div>
+
+      {/* Staff access notice */}
+      {!isManager && (
+        <div
+          className="flex items-start gap-3 px-4 py-3 rounded-lg border text-sm"
+          style={{
+            backgroundColor: "oklch(0.97 0.015 255 / 0.5)",
+            borderColor: "oklch(0.7 0.1 255 / 0.4)",
+            color: "oklch(0.35 0.12 255)",
+          }}
+          data-ocid="fd.staff_notice.panel"
+        >
+          <Info className="w-4 h-4 shrink-0 mt-0.5" />
+          <span>
+            Fixed Deposit management is restricted to Manager access only.
+            Please switch to Manager to add or delete records.
+          </span>
+        </div>
+      )}
 
       <AnimatePresence>
         {showForm && (
@@ -471,15 +500,17 @@ export default function FixedDeposits() {
                             <Receipt className="w-3 h-3" />
                             Receipt
                           </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="h-7 px-2 text-xs gap-1 border-red-200 text-red-600 hover:bg-red-50"
-                            onClick={() => setDeleteId(fd.id)}
-                            data-ocid={`fd.delete_button.${i + 1}`}
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </Button>
+                          {isManager && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-7 px-2 text-xs gap-1 border-red-200 text-red-600 hover:bg-red-50"
+                              onClick={() => setDeleteId(fd.id)}
+                              data-ocid={`fd.delete_button.${i + 1}`}
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          )}
                         </div>
                       </td>
                     </tr>

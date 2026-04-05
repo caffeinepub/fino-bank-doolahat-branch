@@ -14,13 +14,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-import { CheckCircle2, Save, Trash2 } from "lucide-react";
-import { motion } from "motion/react";
+import {
+  CheckCircle,
+  CheckCircle2,
+  Clock,
+  Save,
+  Trash2,
+  UserCheck,
+} from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import type { HeadBalance } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
+import RoleSwitcherBar from "../components/RoleSwitcherBar";
+import {
+  STAFF_ID,
+  STAFF_PASSWORD,
+  useInventoryAuth,
+} from "../context/InventoryAuthContext";
 import {
   useAllDailyPLs,
   useDeleteDailyPL,
@@ -29,7 +43,43 @@ import {
 } from "../hooks/useQueries";
 import { formatDate, formatINR, todayISO } from "../utils/helpers";
 
+// ── Pending P&L Types ────────────────────────────────────────────────────────
+
+interface PendingPLHeadBalance {
+  headId: string; // stored as string (bigint serialization)
+  headName: string;
+  opening: number;
+  closing: number;
+}
+
+interface PendingPLEntry {
+  id: string;
+  date: string;
+  headBalances: PendingPLHeadBalance[];
+  submittedAt: string;
+  staffId: string;
+}
+
+const PL_PENDING_KEY = "fino_pl_pending";
+
+function loadPendingPLs(): PendingPLEntry[] {
+  try {
+    const stored = localStorage.getItem(PL_PENDING_KEY);
+    return stored ? (JSON.parse(stored) as PendingPLEntry[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function savePendingPLs(entries: PendingPLEntry[]): void {
+  localStorage.setItem(PL_PENDING_KEY, JSON.stringify(entries));
+}
+
+// ── Main Component ───────────────────────────────────────────────────────────
+
 export default function DailyPLEntry() {
+  const { role, isManager } = useInventoryAuth();
+
   const [selectedDate, setSelectedDate] = useState(todayISO());
   const [balances, setBalances] = useState<
     Record<string, { opening: string; closing: string }>
@@ -39,6 +89,24 @@ export default function DailyPLEntry() {
   >({});
   const [doubleEntry, setDoubleEntry] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  // Staff auth state
+  const [staffUserId, setStaffUserId] = useState("");
+  const [staffPassword, setStaffPassword] = useState("");
+  const [staffAuthError, setStaffAuthError] = useState("");
+
+  // Pending P&L entries
+  const [pendingPLs, setPendingPLs] = useState<PendingPLEntry[]>(() =>
+    loadPendingPLs(),
+  );
+
+  const updatePendingPLs = (updated: PendingPLEntry[]) => {
+    setPendingPLs(updated);
+    savePendingPLs(updated);
+  };
+
+  // Approving state per entry
+  const [approvingIds, setApprovingIds] = useState<Set<string>>(new Set());
 
   const { data: heads, isLoading: headsLoading } = usePaymentHeads();
   const { data: allPLs, isLoading: plsLoading } = useAllDailyPLs();
@@ -98,7 +166,6 @@ export default function DailyPLEntry() {
   const totalOpening = headBalances.reduce((s, h) => s + h.openingBalance, 0);
   const totalClosing = headBalances.reduce((s, h) => s + h.closingBalance, 0);
 
-  // Validate double entry: confirm values must match primary
   const doubleEntryErrors = useMemo(() => {
     if (!doubleEntry || !heads) return {};
     const errors: Record<string, { opening?: boolean; closing?: boolean }> = {};
@@ -154,6 +221,15 @@ export default function DailyPLEntry() {
     }));
   };
 
+  const buildHBs = (): HeadBalance[] =>
+    headBalances.map((h) => ({
+      headId: h.headId,
+      headName: h.headName,
+      openingBalance: h.openingBalance,
+      closingBalance: h.closingBalance,
+      profitLoss: h.profitLoss,
+    }));
+
   const handleSave = async () => {
     if (doubleEntry && !doubleEntryValid) {
       toast.error(
@@ -161,20 +237,81 @@ export default function DailyPLEntry() {
       );
       return;
     }
-    try {
-      const hbs: HeadBalance[] = headBalances.map((h) => ({
-        headId: h.headId,
-        headName: h.headName,
-        openingBalance: h.openingBalance,
-        closingBalance: h.closingBalance,
-        profitLoss: h.profitLoss,
-      }));
-      await saveMutation.mutateAsync({ date: selectedDate, headBalances: hbs });
-      toast.success("Daily P&L entry saved successfully!");
-      setSaved(true);
-    } catch {
-      toast.error("Failed to save P&L entry. Please try again.");
+
+    if (role === "manager") {
+      // Manager: save directly to backend
+      try {
+        await saveMutation.mutateAsync({
+          date: selectedDate,
+          headBalances: buildHBs(),
+        });
+        toast.success("Daily P&L entry saved successfully!");
+        setSaved(true);
+      } catch {
+        toast.error("Failed to save P&L entry. Please try again.");
+      }
+      return;
     }
+
+    // Staff: validate credentials
+    if (staffUserId !== STAFF_ID || staffPassword !== STAFF_PASSWORD) {
+      setStaffAuthError(
+        "Invalid Staff User ID or Password. Please check and retry.",
+      );
+      return;
+    }
+
+    // Build pending entry
+    const entry: PendingPLEntry = {
+      id: Date.now().toString() + Math.random().toString(36).slice(2),
+      date: selectedDate,
+      headBalances: headBalances.map((h) => ({
+        headId: String(h.headId),
+        headName: h.headName,
+        opening: h.opening,
+        closing: h.closing,
+      })),
+      submittedAt: new Date().toISOString(),
+      staffId: staffUserId,
+    };
+
+    updatePendingPLs([...pendingPLs, entry]);
+    toast.success("P&L entry submitted for manager approval.");
+    setStaffUserId("");
+    setStaffPassword("");
+    setStaffAuthError("");
+  };
+
+  const handleApprovePL = async (entry: PendingPLEntry) => {
+    setApprovingIds((prev) => new Set(prev).add(entry.id));
+    try {
+      const hbs: HeadBalance[] = entry.headBalances.map((h) => ({
+        headId: BigInt(h.headId),
+        headName: h.headName,
+        openingBalance: h.opening,
+        closingBalance: h.closing,
+        profitLoss: h.closing - h.opening,
+      }));
+      await saveMutation.mutateAsync({ date: entry.date, headBalances: hbs });
+      updatePendingPLs(pendingPLs.filter((e) => e.id !== entry.id));
+      toast.success(
+        `P&L entry for ${formatDate(entry.date)} approved and saved.`,
+      );
+    } catch (err) {
+      console.error("Approve P&L error:", err);
+      toast.error("Failed to approve P&L entry. Please try again.");
+    } finally {
+      setApprovingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(entry.id);
+        return next;
+      });
+    }
+  };
+
+  const handleDeletePending = (id: string) => {
+    updatePendingPLs(pendingPLs.filter((e) => e.id !== id));
+    toast.success("Pending P&L entry removed.");
   };
 
   const handleDeleteEntry = async (id: bigint, date: string) => {
@@ -187,7 +324,6 @@ export default function DailyPLEntry() {
     }
   };
 
-  // Sort all entries newest first for history
   const sortedEntries = useMemo(() => {
     if (!allPLs) return [];
     return [...allPLs].sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -198,6 +334,9 @@ export default function DailyPLEntry() {
 
   return (
     <div className="space-y-6">
+      {/* Role Switcher Bar */}
+      <RoleSwitcherBar />
+
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-foreground">Daily P&L Entry</h2>
@@ -206,6 +345,163 @@ export default function DailyPLEntry() {
           </p>
         </div>
       </div>
+
+      {/* Staff pending banner */}
+      {!isManager && pendingPLs.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-2 px-4 py-3 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800"
+          data-ocid="daily_pl.pending.toast"
+        >
+          <Clock className="w-4 h-4 shrink-0" />
+          <span>
+            <strong>{pendingPLs.length}</strong> P&L
+            {pendingPLs.length > 1 ? " entries" : " entry"} pending manager
+            approval.
+          </span>
+        </motion.div>
+      )}
+
+      {/* Manager: Pending Approvals Panel */}
+      {isManager && pendingPLs.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Card
+            className="border-amber-200 bg-amber-50 shadow-sm"
+            data-ocid="daily_pl.pending_approvals.panel"
+          >
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold text-amber-900 flex items-center gap-2">
+                <Clock className="w-5 h-5 text-amber-600" />
+                Pending P&L Approvals
+                <Badge className="ml-auto bg-amber-200 text-amber-900 border-amber-300">
+                  {pendingPLs.length}
+                </Badge>
+              </CardTitle>
+              <p className="text-xs text-amber-700 mt-0.5">
+                Review staff-submitted P&L entries before they are recorded.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <AnimatePresence>
+                {pendingPLs.map((entry, idx) => {
+                  const totalOpen = entry.headBalances.reduce(
+                    (s, h) => s + h.opening,
+                    0,
+                  );
+                  const totalClose = entry.headBalances.reduce(
+                    (s, h) => s + h.closing,
+                    0,
+                  );
+                  const pl = totalClose - totalOpen;
+                  return (
+                    <motion.div
+                      key={entry.id}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 10 }}
+                      transition={{ delay: idx * 0.04 }}
+                      className="flex flex-wrap items-start gap-3 p-3 bg-white rounded-lg border border-amber-200"
+                      data-ocid={`daily_pl.pending.item.${idx + 1}`}
+                    >
+                      <div className="flex-1 min-w-0 space-y-1">
+                        <div className="flex flex-wrap items-center gap-2 text-sm font-medium">
+                          <span className="font-semibold">
+                            {formatDate(entry.date)}
+                          </span>
+                          <Badge
+                            variant="outline"
+                            className="text-xs"
+                            style={{
+                              color:
+                                pl >= 0
+                                  ? "var(--profit-green)"
+                                  : "var(--brand-red)",
+                            }}
+                          >
+                            {pl >= 0 ? "+" : ""}
+                            {formatINR(pl)} P&L
+                          </Badge>
+                        </div>
+                        <div className="text-xs text-muted-foreground flex flex-wrap gap-3">
+                          <span>
+                            Opening:{" "}
+                            <strong className="text-foreground">
+                              {formatINR(totalOpen)}
+                            </strong>
+                          </span>
+                          <span>
+                            Closing:{" "}
+                            <strong className="text-foreground">
+                              {formatINR(totalClose)}
+                            </strong>
+                          </span>
+                          <span>
+                            Submitted:{" "}
+                            {new Date(entry.submittedAt).toLocaleString()} by{" "}
+                            <strong className="text-foreground">
+                              {entry.staffId}
+                            </strong>
+                          </span>
+                        </div>
+                        <div className="text-xs text-muted-foreground flex flex-wrap gap-2">
+                          {entry.headBalances.map((h) => (
+                            <span
+                              key={h.headId}
+                              className="bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5"
+                            >
+                              {h.headName}:{" "}
+                              <span
+                                className="font-medium"
+                                style={{
+                                  color:
+                                    h.closing - h.opening >= 0
+                                      ? "var(--profit-green)"
+                                      : "var(--brand-red)",
+                                }}
+                              >
+                                {h.closing - h.opening >= 0 ? "+" : ""}
+                                {formatINR(h.closing - h.opening)}
+                              </span>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <Button
+                          size="sm"
+                          className="h-8 text-xs bg-green-600 hover:bg-green-700 text-white"
+                          onClick={() => handleApprovePL(entry)}
+                          disabled={approvingIds.has(entry.id)}
+                          data-ocid={`daily_pl.pending.approve_button.${idx + 1}`}
+                        >
+                          <CheckCircle className="w-3.5 h-3.5 mr-1" />
+                          {approvingIds.has(entry.id)
+                            ? "Approving..."
+                            : "Approve"}
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-8 text-xs border-red-200 text-red-600 hover:bg-red-50"
+                          onClick={() => handleDeletePending(entry.id)}
+                          data-ocid={`daily_pl.pending.delete_button.${idx + 1}`}
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
 
       {/* Date selector + Double Entry toggle */}
       <Card className="shadow-card border-border">
@@ -246,7 +542,6 @@ export default function DailyPLEntry() {
                 checked={doubleEntry}
                 onCheckedChange={(val) => {
                   setDoubleEntry(val);
-                  // Reset confirm values when toggling
                   if (!val) {
                     const reset: Record<
                       string,
@@ -493,9 +788,69 @@ export default function DailyPLEntry() {
             </table>
           </div>
 
+          {/* Staff Authentication section — only for staff role */}
+          {role !== "manager" && (
+            <>
+              <Separator className="my-4" />
+              <div
+                className="rounded-lg p-4 space-y-3"
+                style={{
+                  backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
+                  border: "1px solid oklch(0.78 0.18 72 / 0.3)",
+                }}
+              >
+                <p className="text-sm font-semibold text-amber-800 flex items-center gap-1.5">
+                  <UserCheck className="w-4 h-4" />
+                  Staff Authentication Required
+                </p>
+                <p className="text-xs text-amber-700">
+                  Enter your Staff credentials to submit this P&L entry for
+                  manager approval.
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="pl-staff-id">Staff User ID</Label>
+                    <Input
+                      id="pl-staff-id"
+                      placeholder="Enter your staff ID"
+                      value={staffUserId}
+                      onChange={(e) => {
+                        setStaffUserId(e.target.value);
+                        setStaffAuthError("");
+                      }}
+                      data-ocid="daily_pl.staff_id.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="pl-staff-pass">Staff Password</Label>
+                    <Input
+                      id="pl-staff-pass"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={staffPassword}
+                      onChange={(e) => {
+                        setStaffPassword(e.target.value);
+                        setStaffAuthError("");
+                      }}
+                      data-ocid="daily_pl.staff_password.input"
+                    />
+                  </div>
+                </div>
+                {staffAuthError && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="daily_pl.staff_auth.error_state"
+                  >
+                    {staffAuthError}
+                  </p>
+                )}
+              </div>
+            </>
+          )}
+
           <div className="mt-5 flex items-center justify-between gap-3">
-            {/* Delete existing entry button */}
-            {existingEntry && (
+            {/* Delete existing entry button — Manager only */}
+            {existingEntry && isManager && (
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
@@ -549,7 +904,7 @@ export default function DailyPLEntry() {
                 ) : (
                   <>
                     <Save className="w-4 h-4" />
-                    Save Entry
+                    {role === "manager" ? "Save Entry" : "Submit for Approval"}
                   </>
                 )}
               </Button>
@@ -642,9 +997,12 @@ export default function DailyPLEntry() {
                     <th className="py-2 px-4 text-right text-xs font-semibold text-muted-foreground">
                       Net P&L (₹)
                     </th>
-                    <th className="py-2 pl-4 text-right text-xs font-semibold text-muted-foreground">
-                      Action
-                    </th>
+                    {/* Action column only visible to manager */}
+                    {isManager && (
+                      <th className="py-2 pl-4 text-right text-xs font-semibold text-muted-foreground">
+                        Action
+                      </th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -701,43 +1059,47 @@ export default function DailyPLEntry() {
                             {formatINR(pl)}
                           </span>
                         </td>
-                        <td className="py-2.5 pl-4 text-right">
-                          <AlertDialog>
-                            <AlertDialogTrigger asChild>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-7 w-7 text-red-500 hover:bg-red-50 hover:text-red-700"
-                                data-ocid="daily_pl.history_delete.button"
-                              >
-                                <Trash2 className="w-3.5 h-3.5" />
-                              </Button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                              <AlertDialogHeader>
-                                <AlertDialogTitle>
-                                  Delete P&L Entry?
-                                </AlertDialogTitle>
-                                <AlertDialogDescription>
-                                  This will permanently delete the P&L entry for{" "}
-                                  <strong>{formatDate(entry.date)}</strong>.
-                                  This action cannot be undone.
-                                </AlertDialogDescription>
-                              </AlertDialogHeader>
-                              <AlertDialogFooter>
-                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                <AlertDialogAction
-                                  className="bg-red-600 hover:bg-red-700 text-white"
-                                  onClick={() =>
-                                    handleDeleteEntry(entry.id, entry.date)
-                                  }
+                        {/* Delete button — Manager only */}
+                        {isManager && (
+                          <td className="py-2.5 pl-4 text-right">
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-7 w-7 text-red-500 hover:bg-red-50 hover:text-red-700"
+                                  data-ocid="daily_pl.history_delete.button"
                                 >
-                                  Delete
-                                </AlertDialogAction>
-                              </AlertDialogFooter>
-                            </AlertDialogContent>
-                          </AlertDialog>
-                        </td>
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>
+                                    Delete P&L Entry?
+                                  </AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    This will permanently delete the P&L entry
+                                    for{" "}
+                                    <strong>{formatDate(entry.date)}</strong>.
+                                    This action cannot be undone.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                  <AlertDialogAction
+                                    className="bg-red-600 hover:bg-red-700 text-white"
+                                    onClick={() =>
+                                      handleDeleteEntry(entry.id, entry.date)
+                                    }
+                                  >
+                                    Delete
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </td>
+                        )}
                       </tr>
                     );
                   })}

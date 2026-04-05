@@ -17873,18 +17873,18 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
+const __iconNode$x = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$u);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$x);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [
+const __iconNode$w = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -17894,31 +17894,65 @@ const __iconNode$t = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$t);
+const Bell = createLucideIcon("bell", __iconNode$w);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$s);
+const __iconNode$v = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$v);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
+const __iconNode$u = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$u);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$q);
+const __iconNode$t = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$t);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$s = [
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+];
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$s);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$r = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+];
+const CircleCheck = createLucideIcon("circle-check", __iconNode$r);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$q = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
+];
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17926,10 +17960,10 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$q);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$p = [
-  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
-  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$p);
+const Clock = createLucideIcon("clock", __iconNode$p);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17937,10 +17971,10 @@ const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$p);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$o = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$o);
+const CreditCard = createLucideIcon("credit-card", __iconNode$o);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17948,11 +17982,11 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$o);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$n = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$n);
+const Download = createLucideIcon("download", __iconNode$n);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17960,10 +17994,13 @@ const CirclePlus = createLucideIcon("circle-plus", __iconNode$n);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$m = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$m);
+const FileText = createLucideIcon("file-text", __iconNode$m);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17971,10 +18008,11 @@ const Clock = createLucideIcon("clock", __iconNode$m);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$l = [
-  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
-  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 16v-4", key: "1dtifu" }],
+  ["path", { d: "M12 8h.01", key: "e9boi3" }]
 ];
-const CreditCard = createLucideIcon("credit-card", __iconNode$l);
+const Info = createLucideIcon("info", __iconNode$l);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -17982,32 +18020,6 @@ const CreditCard = createLucideIcon("credit-card", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
-  ["path", { d: "M12 15V3", key: "m9g1x1" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
-];
-const Download = createLucideIcon("download", __iconNode$k);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$j = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$j);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$i = [
   ["path", { d: "M10 18v-7", key: "wt116b" }],
   [
     "path",
@@ -18021,15 +18033,38 @@ const __iconNode$i = [
   ["path", { d: "M3 22h18", key: "8prr45" }],
   ["path", { d: "M6 18v-7", key: "1ivflk" }]
 ];
-const Landmark = createLucideIcon("landmark", __iconNode$i);
+const Landmark = createLucideIcon("landmark", __iconNode$k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$h = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$h);
+const __iconNode$j = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$j);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$i = [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
+];
+const Lock = createLucideIcon("lock", __iconNode$i);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$h = [
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+];
+const LogOut = createLucideIcon("log-out", __iconNode$h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18037,18 +18072,6 @@ const LoaderCircle = createLucideIcon("loader-circle", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
-];
-const LogOut = createLucideIcon("log-out", __iconNode$g);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$f = [
   [
     "path",
     {
@@ -18062,14 +18085,14 @@ const __iconNode$f = [
   ["circle", { cx: "18.5", cy: "15.5", r: "2.5", key: "b5zd12" }],
   ["path", { d: "M20.27 17.27 22 19", key: "1l4muz" }]
 ];
-const PackageSearch = createLucideIcon("package-search", __iconNode$f);
+const PackageSearch = createLucideIcon("package-search", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$e = [
+const __iconNode$f = [
   [
     "path",
     {
@@ -18079,7 +18102,18 @@ const __iconNode$e = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$e);
+const Pencil = createLucideIcon("pencil", __iconNode$f);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$e = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
+];
+const Plus = createLucideIcon("plus", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18087,17 +18121,6 @@ const Pencil = createLucideIcon("pencil", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
-];
-const Plus = createLucideIcon("plus", __iconNode$d);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
   [
     "path",
     { d: "M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z", key: "q3az6g" }
@@ -18105,7 +18128,20 @@ const __iconNode$c = [
   ["path", { d: "M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8", key: "1h4pet" }],
   ["path", { d: "M12 17.5v-11", key: "1jc1ny" }]
 ];
-const Receipt = createLucideIcon("receipt", __iconNode$c);
+const Receipt = createLucideIcon("receipt", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+];
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18113,19 +18149,6 @@ const Receipt = createLucideIcon("receipt", __iconNode$c);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$b = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
-];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$b);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$a = [
   [
     "path",
     {
@@ -18136,7 +18159,18 @@ const __iconNode$a = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$a);
+const Save = createLucideIcon("save", __iconNode$b);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$a = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+const Search = createLucideIcon("search", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18144,17 +18178,6 @@ const Save = createLucideIcon("save", __iconNode$a);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$9 = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
-];
-const Search = createLucideIcon("search", __iconNode$9);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$8 = [
   [
     "path",
     {
@@ -18164,14 +18187,14 @@ const __iconNode$8 = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const ShieldCheck = createLucideIcon("shield-check", __iconNode$8);
+const ShieldCheck = createLucideIcon("shield-check", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [
+const __iconNode$8 = [
   ["path", { d: "m2 2 20 20", key: "1ooewy" }],
   [
     "path",
@@ -18188,7 +18211,21 @@ const __iconNode$7 = [
     }
   ]
 ];
-const ShieldOff = createLucideIcon("shield-off", __iconNode$7);
+const ShieldOff = createLucideIcon("shield-off", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+];
+const Trash2 = createLucideIcon("trash-2", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18196,13 +18233,10 @@ const ShieldOff = createLucideIcon("shield-off", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  ["path", { d: "M16 17h6v-6", key: "t6n2it" }],
+  ["path", { d: "m22 17-8.5-8.5-5 5L2 7", key: "x473p" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$6);
+const TrendingDown = createLucideIcon("trending-down", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18210,10 +18244,10 @@ const Trash2 = createLucideIcon("trash-2", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["path", { d: "M16 17h6v-6", key: "t6n2it" }],
-  ["path", { d: "m22 17-8.5-8.5-5 5L2 7", key: "x473p" }]
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
 ];
-const TrendingDown = createLucideIcon("trending-down", __iconNode$5);
+const TrendingUp = createLucideIcon("trending-up", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18221,17 +18255,6 @@ const TrendingDown = createLucideIcon("trending-down", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
-  ["path", { d: "M16 7h6v6", key: "box55l" }],
-  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
-];
-const TrendingUp = createLucideIcon("trending-up", __iconNode$4);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$3 = [
   [
     "path",
     {
@@ -18242,7 +18265,19 @@ const __iconNode$3 = [
   ["path", { d: "M12 9v4", key: "juzpu7" }],
   ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-const TriangleAlert = createLucideIcon("triangle-alert", __iconNode$3);
+const TriangleAlert = createLucideIcon("triangle-alert", __iconNode$4);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$3 = [
+  ["path", { d: "m16 11 2 2 4-4", key: "9rsbq5" }],
+  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
+  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
+];
+const UserCheck = createLucideIcon("user-check", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18250,11 +18285,10 @@ const TriangleAlert = createLucideIcon("triangle-alert", __iconNode$3);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$2 = [
-  ["path", { d: "m16 11 2 2 4-4", key: "9rsbq5" }],
-  ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
-  ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }]
+  ["path", { d: "M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", key: "975kel" }],
+  ["circle", { cx: "12", cy: "7", r: "4", key: "17ys0d" }]
 ];
-const UserCheck = createLucideIcon("user-check", __iconNode$2);
+const User = createLucideIcon("user", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -20697,6 +20731,49 @@ function Label$1({
     }
   );
 }
+var NAME$2 = "Separator";
+var DEFAULT_ORIENTATION = "horizontal";
+var ORIENTATIONS = ["horizontal", "vertical"];
+var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
+  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
+  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
+  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.div,
+    {
+      "data-orientation": orientation,
+      ...semanticProps,
+      ...domProps,
+      ref: forwardedRef
+    }
+  );
+});
+Separator$1.displayName = NAME$2;
+function isValidOrientation(orientation) {
+  return ORIENTATIONS.includes(orientation);
+}
+var Root$3 = Separator$1;
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root$3,
+    {
+      "data-slot": "separator",
+      decorative,
+      orientation,
+      className: cn(
+        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      ),
+      ...props
+    }
+  );
+}
 function usePrevious(value) {
   const ref = reactExports.useRef({ value, previous: value });
   return reactExports.useMemo(() => {
@@ -20879,14 +20956,14 @@ SwitchBubbleInput.displayName = BUBBLE_INPUT_NAME$2;
 function getState$1(checked) {
   return checked ? "checked" : "unchecked";
 }
-var Root$3 = Switch$1;
+var Root$2 = Switch$1;
 var Thumb = SwitchThumb;
 function Switch({
   className,
   ...props
 }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root$3,
+    Root$2,
     {
       "data-slot": "switch",
       className: cn(
@@ -28814,6 +28891,365 @@ function LoadingSpinner({
       ]
     }
   );
+}
+function Dialog({
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$5, { "data-slot": "dialog", ...props });
+}
+function DialogPortal({
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-slot": "dialog-portal", ...props });
+}
+function DialogOverlay({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Overlay,
+    {
+      "data-slot": "dialog-overlay",
+      className: cn(
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function DialogContent({
+  className,
+  children,
+  showCloseButton = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-slot": "dialog-portal", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Content$2,
+      {
+        "data-slot": "dialog-content",
+        className: cn(
+          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
+          className
+        ),
+        ...props,
+        children: [
+          children,
+          showCloseButton && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Close,
+            {
+              "data-slot": "dialog-close",
+              className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, {}),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: "Close" })
+              ]
+            }
+          )
+        ]
+      }
+    )
+  ] });
+}
+function DialogHeader({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": "dialog-header",
+      className: cn("flex flex-col gap-2 text-center sm:text-left", className),
+      ...props
+    }
+  );
+}
+function DialogFooter({ className, ...props }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      "data-slot": "dialog-footer",
+      className: cn(
+        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function DialogTitle({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Title,
+    {
+      "data-slot": "dialog-title",
+      className: cn("text-lg leading-none font-semibold", className),
+      ...props
+    }
+  );
+}
+function RoleSwitcherBar({
+  className = ""
+}) {
+  const { isManager, loginAsManager, resetManagerPassword, logoutManager } = useInventoryAuth();
+  const [loginOpen, setLoginOpen] = reactExports.useState(false);
+  const [forgotOpen, setForgotOpen] = reactExports.useState(false);
+  const [password, setPassword] = reactExports.useState("");
+  const [passwordError, setPasswordError] = reactExports.useState("");
+  const [nickName, setNickName] = reactExports.useState("");
+  const [nickError, setNickError] = reactExports.useState("");
+  const openLogin = () => {
+    setPassword("");
+    setPasswordError("");
+    setLoginOpen(true);
+  };
+  const handleLogin = () => {
+    const ok = loginAsManager(password);
+    if (ok) {
+      ue.success("Switched to Manager View");
+      setLoginOpen(false);
+      setPassword("");
+    } else {
+      setPasswordError("Incorrect manager password. Please try again.");
+    }
+  };
+  const handleForgotOpen = () => {
+    setNickName("");
+    setNickError("");
+    setLoginOpen(false);
+    setForgotOpen(true);
+  };
+  const handleForgotSubmit = () => {
+    const ok = resetManagerPassword(nickName);
+    if (ok) {
+      ue.success("Identity verified — Logged in as Manager");
+      setForgotOpen(false);
+      setNickName("");
+    } else {
+      setNickError("Incorrect answer. Please try again.");
+    }
+  };
+  const handleLogout = () => {
+    logoutManager();
+    ue.success("Switched to Staff View");
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: `flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg mb-1 ${className}`,
+        style: { backgroundColor: "var(--brand-red)" },
+        "data-ocid": "role_switcher.panel",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2.5", children: isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldCheck, { className: "w-4 h-4 text-white" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-white", children: "Manager View" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 text-white border border-white/30", children: "Full Access" })
+          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(User, { className: "w-4 h-4 text-white" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-white", children: "Staff View" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 text-white border border-white/30", children: "Limited Access" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2", children: isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              size: "sm",
+              variant: "outline",
+              onClick: handleLogout,
+              className: "h-8 text-xs gap-1.5 bg-white/10 border-white/40 text-white hover:bg-white/20 hover:text-white",
+              "data-ocid": "role_switcher.logout.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { className: "w-3.5 h-3.5" }),
+                "Switch to Staff"
+              ]
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              size: "sm",
+              onClick: openLogin,
+              className: "h-8 text-xs gap-1.5 bg-white text-[#462980] hover:bg-white/90 font-semibold",
+              "data-ocid": "role_switcher.login.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-3.5 h-3.5" }),
+                "Switch to Manager"
+              ]
+            }
+          ) })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: loginOpen,
+        onOpenChange: (v2) => {
+          if (!v2) {
+            setLoginOpen(false);
+            setPassword("");
+            setPasswordError("");
+          }
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          DialogContent,
+          {
+            className: "sm:max-w-sm",
+            "data-ocid": "role_switcher.login.dialog",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  ShieldCheck,
+                  {
+                    className: "w-5 h-5",
+                    style: { color: "var(--brand-red)" }
+                  }
+                ),
+                "Manager Login"
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4 py-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Enter the manager password to unlock full access." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "mgr-password", children: "Manager Password" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      id: "mgr-password",
+                      type: "password",
+                      placeholder: "Enter password",
+                      value: password,
+                      onChange: (e3) => {
+                        setPassword(e3.target.value);
+                        setPasswordError("");
+                      },
+                      onKeyDown: (e3) => e3.key === "Enter" && handleLogin(),
+                      autoFocus: true,
+                      "data-ocid": "role_switcher.password.input"
+                    }
+                  ),
+                  passwordError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-xs text-red-600",
+                      "data-ocid": "role_switcher.password.error_state",
+                      children: passwordError
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    type: "button",
+                    className: "text-xs underline text-muted-foreground hover:text-foreground transition-colors",
+                    onClick: handleForgotOpen,
+                    "data-ocid": "role_switcher.forgot_password.button",
+                    children: "Forgot Password?"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button,
+                  {
+                    variant: "outline",
+                    onClick: () => setLoginOpen(false),
+                    "data-ocid": "role_switcher.login.cancel_button",
+                    children: "Cancel"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button,
+                  {
+                    onClick: handleLogin,
+                    className: "text-white",
+                    style: { backgroundColor: "var(--brand-red)" },
+                    "data-ocid": "role_switcher.login.submit_button",
+                    children: "Login as Manager"
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: forgotOpen,
+        onOpenChange: (v2) => {
+          if (!v2) {
+            setForgotOpen(false);
+            setNickName("");
+            setNickError("");
+          }
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          DialogContent,
+          {
+            className: "sm:max-w-sm",
+            "data-ocid": "role_switcher.forgot.dialog",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-5 h-5", style: { color: "var(--brand-red)" } }),
+                "Forgot Password"
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4 py-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Answer the security question to regain manager access." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "nick-name", children: "Enter Your Nick Name" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      id: "nick-name",
+                      placeholder: "Your nick name",
+                      value: nickName,
+                      onChange: (e3) => {
+                        setNickName(e3.target.value);
+                        setNickError("");
+                      },
+                      onKeyDown: (e3) => e3.key === "Enter" && handleForgotSubmit(),
+                      autoFocus: true,
+                      "data-ocid": "role_switcher.nickname.input"
+                    }
+                  ),
+                  nickError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-xs text-red-600",
+                      "data-ocid": "role_switcher.nickname.error_state",
+                      children: nickError
+                    }
+                  )
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button,
+                  {
+                    variant: "outline",
+                    onClick: () => setForgotOpen(false),
+                    "data-ocid": "role_switcher.forgot.cancel_button",
+                    children: "Cancel"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button,
+                  {
+                    onClick: handleForgotSubmit,
+                    className: "text-white",
+                    style: { backgroundColor: "var(--brand-red)" },
+                    "data-ocid": "role_switcher.forgot.submit_button",
+                    children: "Verify & Login"
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      }
+    )
+  ] });
 }
 var ReplicaRejectCode;
 (function(ReplicaRejectCode2) {
@@ -42369,12 +42805,36 @@ function getLast7DaysRange() {
     end: now2.toISOString().split("T")[0]
   };
 }
+const PL_PENDING_KEY = "fino_pl_pending";
+function loadPendingPLs() {
+  try {
+    const stored = localStorage.getItem(PL_PENDING_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+function savePendingPLs(entries) {
+  localStorage.setItem(PL_PENDING_KEY, JSON.stringify(entries));
+}
 function DailyPLEntry() {
+  const { role, isManager } = useInventoryAuth();
   const [selectedDate, setSelectedDate] = reactExports.useState(todayISO());
   const [balances, setBalances] = reactExports.useState({});
   const [confirmBalances, setConfirmBalances] = reactExports.useState({});
   const [doubleEntry, setDoubleEntry] = reactExports.useState(false);
   const [saved, setSaved] = reactExports.useState(false);
+  const [staffUserId, setStaffUserId] = reactExports.useState("");
+  const [staffPassword, setStaffPassword] = reactExports.useState("");
+  const [staffAuthError, setStaffAuthError] = reactExports.useState("");
+  const [pendingPLs, setPendingPLs] = reactExports.useState(
+    () => loadPendingPLs()
+  );
+  const updatePendingPLs = (updated) => {
+    setPendingPLs(updated);
+    savePendingPLs(updated);
+  };
+  const [approvingIds, setApprovingIds] = reactExports.useState(/* @__PURE__ */ new Set());
   const { data: heads, isLoading: headsLoading } = usePaymentHeads();
   const { data: allPLs, isLoading: plsLoading } = useAllDailyPLs();
   const saveMutation = useSaveDailyPL();
@@ -42466,6 +42926,13 @@ function DailyPLEntry() {
       [headId]: { ...prev[headId], [field]: value }
     }));
   };
+  const buildHBs = () => headBalances.map((h2) => ({
+    headId: h2.headId,
+    headName: h2.headName,
+    openingBalance: h2.openingBalance,
+    closingBalance: h2.closingBalance,
+    profitLoss: h2.profitLoss
+  }));
   const handleSave = async () => {
     if (doubleEntry && !doubleEntryValid) {
       ue.error(
@@ -42473,20 +42940,72 @@ function DailyPLEntry() {
       );
       return;
     }
-    try {
-      const hbs = headBalances.map((h2) => ({
-        headId: h2.headId,
-        headName: h2.headName,
-        openingBalance: h2.openingBalance,
-        closingBalance: h2.closingBalance,
-        profitLoss: h2.profitLoss
-      }));
-      await saveMutation.mutateAsync({ date: selectedDate, headBalances: hbs });
-      ue.success("Daily P&L entry saved successfully!");
-      setSaved(true);
-    } catch {
-      ue.error("Failed to save P&L entry. Please try again.");
+    if (role === "manager") {
+      try {
+        await saveMutation.mutateAsync({
+          date: selectedDate,
+          headBalances: buildHBs()
+        });
+        ue.success("Daily P&L entry saved successfully!");
+        setSaved(true);
+      } catch {
+        ue.error("Failed to save P&L entry. Please try again.");
+      }
+      return;
     }
+    if (staffUserId !== STAFF_ID || staffPassword !== STAFF_PASSWORD) {
+      setStaffAuthError(
+        "Invalid Staff User ID or Password. Please check and retry."
+      );
+      return;
+    }
+    const entry = {
+      id: Date.now().toString() + Math.random().toString(36).slice(2),
+      date: selectedDate,
+      headBalances: headBalances.map((h2) => ({
+        headId: String(h2.headId),
+        headName: h2.headName,
+        opening: h2.opening,
+        closing: h2.closing
+      })),
+      submittedAt: (/* @__PURE__ */ new Date()).toISOString(),
+      staffId: staffUserId
+    };
+    updatePendingPLs([...pendingPLs, entry]);
+    ue.success("P&L entry submitted for manager approval.");
+    setStaffUserId("");
+    setStaffPassword("");
+    setStaffAuthError("");
+  };
+  const handleApprovePL = async (entry) => {
+    setApprovingIds((prev) => new Set(prev).add(entry.id));
+    try {
+      const hbs = entry.headBalances.map((h2) => ({
+        headId: BigInt(h2.headId),
+        headName: h2.headName,
+        openingBalance: h2.opening,
+        closingBalance: h2.closing,
+        profitLoss: h2.closing - h2.opening
+      }));
+      await saveMutation.mutateAsync({ date: entry.date, headBalances: hbs });
+      updatePendingPLs(pendingPLs.filter((e3) => e3.id !== entry.id));
+      ue.success(
+        `P&L entry for ${formatDate(entry.date)} approved and saved.`
+      );
+    } catch (err) {
+      console.error("Approve P&L error:", err);
+      ue.error("Failed to approve P&L entry. Please try again.");
+    } finally {
+      setApprovingIds((prev) => {
+        const next = new Set(prev);
+        next.delete(entry.id);
+        return next;
+      });
+    }
+  };
+  const handleDeletePending = (id2) => {
+    updatePendingPLs(pendingPLs.filter((e3) => e3.id !== id2));
+    ue.success("Pending P&L entry removed.");
   };
   const handleDeleteEntry = async (id2, date2) => {
     try {
@@ -42504,10 +43023,171 @@ function DailyPLEntry() {
   if (headsLoading || plsLoading)
     return /* @__PURE__ */ jsxRuntimeExports.jsx(LoadingSpinner, { text: "Loading P&L data..." });
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-foreground", children: "Daily P&L Entry" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Record opening and closing balances for each payment head" })
     ] }) }),
+    !isManager && pendingPLs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -6 },
+        animate: { opacity: 1, y: 0 },
+        className: "flex items-center gap-2 px-4 py-3 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800",
+        "data-ocid": "daily_pl.pending.toast",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-4 h-4 shrink-0" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: pendingPLs.length }),
+            " P&L",
+            pendingPLs.length > 1 ? " entries" : " entry",
+            " pending manager approval."
+          ] })
+        ]
+      }
+    ),
+    isManager && pendingPLs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      motion.div,
+      {
+        initial: { opacity: 0, y: -8 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.3 },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Card,
+          {
+            className: "border-amber-200 bg-amber-50 shadow-sm",
+            "data-ocid": "daily_pl.pending_approvals.panel",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { className: "pb-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base font-semibold text-amber-900 flex items-center gap-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { className: "w-5 h-5 text-amber-600" }),
+                  "Pending P&L Approvals",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "ml-auto bg-amber-200 text-amber-900 border-amber-300", children: pendingPLs.length })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700 mt-0.5", children: "Review staff-submitted P&L entries before they are recorded." })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "space-y-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: pendingPLs.map((entry, idx) => {
+                const totalOpen = entry.headBalances.reduce(
+                  (s2, h2) => s2 + h2.opening,
+                  0
+                );
+                const totalClose = entry.headBalances.reduce(
+                  (s2, h2) => s2 + h2.closing,
+                  0
+                );
+                const pl = totalClose - totalOpen;
+                return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  motion.div,
+                  {
+                    initial: { opacity: 0, x: -10 },
+                    animate: { opacity: 1, x: 0 },
+                    exit: { opacity: 0, x: 10 },
+                    transition: { delay: idx * 0.04 },
+                    className: "flex flex-wrap items-start gap-3 p-3 bg-white rounded-lg border border-amber-200",
+                    "data-ocid": `daily_pl.pending.item.${idx + 1}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0 space-y-1", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-2 text-sm font-medium", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold", children: formatDate(entry.date) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            Badge,
+                            {
+                              variant: "outline",
+                              className: "text-xs",
+                              style: {
+                                color: pl >= 0 ? "var(--profit-green)" : "var(--brand-red)"
+                              },
+                              children: [
+                                pl >= 0 ? "+" : "",
+                                formatINR(pl),
+                                " P&L"
+                              ]
+                            }
+                          )
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-xs text-muted-foreground flex flex-wrap gap-3", children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                            "Opening:",
+                            " ",
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: formatINR(totalOpen) })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                            "Closing:",
+                            " ",
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: formatINR(totalClose) })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                            "Submitted:",
+                            " ",
+                            new Date(entry.submittedAt).toLocaleString(),
+                            " by",
+                            " ",
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "text-foreground", children: entry.staffId })
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-muted-foreground flex flex-wrap gap-2", children: entry.headBalances.map((h2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "span",
+                          {
+                            className: "bg-amber-50 border border-amber-200 rounded px-1.5 py-0.5",
+                            children: [
+                              h2.headName,
+                              ":",
+                              " ",
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "span",
+                                {
+                                  className: "font-medium",
+                                  style: {
+                                    color: h2.closing - h2.opening >= 0 ? "var(--profit-green)" : "var(--brand-red)"
+                                  },
+                                  children: [
+                                    h2.closing - h2.opening >= 0 ? "+" : "",
+                                    formatINR(h2.closing - h2.opening)
+                                  ]
+                                }
+                              )
+                            ]
+                          },
+                          h2.headId
+                        )) })
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 shrink-0", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          Button,
+                          {
+                            size: "sm",
+                            className: "h-8 text-xs bg-green-600 hover:bg-green-700 text-white",
+                            onClick: () => handleApprovePL(entry),
+                            disabled: approvingIds.has(entry.id),
+                            "data-ocid": `daily_pl.pending.approve_button.${idx + 1}`,
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5 mr-1" }),
+                              approvingIds.has(entry.id) ? "Approving..." : "Approve"
+                            ]
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Button,
+                          {
+                            size: "sm",
+                            variant: "outline",
+                            className: "h-8 text-xs border-red-200 text-red-600 hover:bg-red-50",
+                            onClick: () => handleDeletePending(entry.id),
+                            "data-ocid": `daily_pl.pending.delete_button.${idx + 1}`,
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3.5 h-3.5" })
+                          }
+                        )
+                      ] })
+                    ]
+                  },
+                  entry.id
+                );
+              }) }) })
+            ]
+          }
+        )
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-card border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "pt-5", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-end gap-4", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -42720,8 +43400,71 @@ function DailyPLEntry() {
             )
           ] })
         ] }) }),
+        role !== "manager" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, { className: "my-4" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "rounded-lg p-4 space-y-3",
+              style: {
+                backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
+                border: "1px solid oklch(0.78 0.18 72 / 0.3)"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-semibold text-amber-800 flex items-center gap-1.5", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(UserCheck, { className: "w-4 h-4" }),
+                  "Staff Authentication Required"
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700", children: "Enter your Staff credentials to submit this P&L entry for manager approval." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "pl-staff-id", children: "Staff User ID" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "pl-staff-id",
+                        placeholder: "Enter your staff ID",
+                        value: staffUserId,
+                        onChange: (e3) => {
+                          setStaffUserId(e3.target.value);
+                          setStaffAuthError("");
+                        },
+                        "data-ocid": "daily_pl.staff_id.input"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "pl-staff-pass", children: "Staff Password" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        id: "pl-staff-pass",
+                        type: "password",
+                        placeholder: "Enter your password",
+                        value: staffPassword,
+                        onChange: (e3) => {
+                          setStaffPassword(e3.target.value);
+                          setStaffAuthError("");
+                        },
+                        "data-ocid": "daily_pl.staff_password.input"
+                      }
+                    )
+                  ] })
+                ] }),
+                staffAuthError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "daily_pl.staff_auth.error_state",
+                    children: staffAuthError
+                  }
+                )
+              ]
+            }
+          )
+        ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-5 flex items-center justify-between gap-3", children: [
-          existingEntry && /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
+          existingEntry && isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Button,
               {
@@ -42770,7 +43513,7 @@ function DailyPLEntry() {
                 "Saving..."
               ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4" }),
-                "Save Entry"
+                role === "manager" ? "Save Entry" : "Submit for Approval"
               ] })
             }
           ) })
@@ -42845,7 +43588,7 @@ function DailyPLEntry() {
           /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "py-2 px-4 text-right text-xs font-semibold text-muted-foreground", children: "Total Opening (₹)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "py-2 px-4 text-right text-xs font-semibold text-muted-foreground", children: "Total Closing (₹)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "py-2 px-4 text-right text-xs font-semibold text-muted-foreground", children: "Net P&L (₹)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "py-2 pl-4 text-right text-xs font-semibold text-muted-foreground", children: "Action" })
+          isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "py-2 pl-4 text-right text-xs font-semibold text-muted-foreground", children: "Action" })
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: sortedEntries.map((entry) => {
           const entryTotalOpening = entry.headBalances.reduce(
@@ -42891,7 +43634,7 @@ function DailyPLEntry() {
                     ]
                   }
                 ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2.5 pl-4 text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
+                isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "py-2.5 pl-4 text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialog, { children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Button,
                     {
@@ -67717,7 +68460,7 @@ const arrow = (options, deps) => ({
   ...arrow$1(options),
   options: [options, deps]
 });
-var NAME$2 = "Arrow";
+var NAME$1 = "Arrow";
 var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
   const { children, width = 10, height = 5, ...arrowProps } = props;
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -67733,8 +68476,8 @@ var Arrow$1 = reactExports.forwardRef((props, forwardedRef) => {
     }
   );
 });
-Arrow$1.displayName = NAME$2;
-var Root$2 = Arrow$1;
+Arrow$1.displayName = NAME$1;
+var Root$1 = Arrow$1;
 var POPPER_NAME = "Popper";
 var [createPopperContext, createPopperScope] = createContextScope(POPPER_NAME);
 var [PopperProvider, usePopperContext] = createPopperContext(POPPER_NAME);
@@ -67947,7 +68690,7 @@ var PopperArrow = reactExports.forwardRef(function PopperArrow2(props, forwarded
           visibility: contentContext.shouldHideArrow ? "hidden" : void 0
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Root$2,
+          Root$1,
           {
             ...arrowProps,
             ref: forwardedRef,
@@ -68019,7 +68762,7 @@ var VISUALLY_HIDDEN_STYLES = Object.freeze({
   whiteSpace: "nowrap",
   wordWrap: "normal"
 });
-var NAME$1 = "VisuallyHidden";
+var NAME = "VisuallyHidden";
 var VisuallyHidden = reactExports.forwardRef(
   (props, forwardedRef) => {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -68032,7 +68775,7 @@ var VisuallyHidden = reactExports.forwardRef(
     );
   }
 );
-VisuallyHidden.displayName = NAME$1;
+VisuallyHidden.displayName = NAME;
 var OPEN_KEYS = [" ", "Enter", "ArrowUp", "ArrowDown"];
 var SELECTION_KEYS = [" ", "Enter"];
 var SELECT_NAME = "Select";
@@ -89900,6 +90643,7 @@ function FDForm({ onClose }) {
   ] });
 }
 function FixedDeposits() {
+  const { isManager } = useInventoryAuth();
   const [showForm, setShowForm] = reactExports.useState(false);
   const [search, setSearch] = reactExports.useState("");
   const [deleteId, setDeleteId] = reactExports.useState(null);
@@ -89924,6 +90668,7 @@ function FixedDeposits() {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-3", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-foreground", children: "Fixed Deposit Management" }),
@@ -89943,7 +90688,7 @@ function FixedDeposits() {
             ]
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button,
           {
             onClick: () => setShowForm((v2) => !v2),
@@ -89958,6 +90703,22 @@ function FixedDeposits() {
         )
       ] })
     ] }),
+    !isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "flex items-start gap-3 px-4 py-3 rounded-lg border text-sm",
+        style: {
+          backgroundColor: "oklch(0.97 0.015 255 / 0.5)",
+          borderColor: "oklch(0.7 0.1 255 / 0.4)",
+          color: "oklch(0.35 0.12 255)"
+        },
+        "data-ocid": "fd.staff_notice.panel",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { className: "w-4 h-4 shrink-0 mt-0.5" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Fixed Deposit management is restricted to Manager access only. Please switch to Manager to add or delete records." })
+        ]
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showForm && /* @__PURE__ */ jsxRuntimeExports.jsx(
       motion.div,
       {
@@ -90069,7 +90830,7 @@ function FixedDeposits() {
                   ]
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
+              isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Button,
                 {
                   size: "sm",
@@ -90392,103 +91153,6 @@ function Checkbox({
           children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "size-3.5" })
         }
       )
-    }
-  );
-}
-function Dialog({
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$5, { "data-slot": "dialog", ...props });
-}
-function DialogPortal({
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { "data-slot": "dialog-portal", ...props });
-}
-function DialogOverlay({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Overlay,
-    {
-      "data-slot": "dialog-overlay",
-      className: cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function DialogContent({
-  className,
-  children,
-  showCloseButton = true,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-slot": "dialog-portal", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      Content$2,
-      {
-        "data-slot": "dialog-content",
-        className: cn(
-          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 sm:max-w-lg",
-          className
-        ),
-        ...props,
-        children: [
-          children,
-          showCloseButton && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Close,
-            {
-              "data-slot": "dialog-close",
-              className: "ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, {}),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "sr-only", children: "Close" })
-              ]
-            }
-          )
-        ]
-      }
-    )
-  ] });
-}
-function DialogHeader({ className, ...props }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "data-slot": "dialog-header",
-      className: cn("flex flex-col gap-2 text-center sm:text-left", className),
-      ...props
-    }
-  );
-}
-function DialogFooter({ className, ...props }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "data-slot": "dialog-footer",
-      className: cn(
-        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function DialogTitle({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Title,
-    {
-      "data-slot": "dialog-title",
-      className: cn("text-lg leading-none font-semibold", className),
-      ...props
     }
   );
 }
@@ -93583,49 +94247,6 @@ function PaymentHeads() {
     )
   ] });
 }
-var NAME = "Separator";
-var DEFAULT_ORIENTATION = "horizontal";
-var ORIENTATIONS = ["horizontal", "vertical"];
-var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
-  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
-  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
-  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Primitive.div,
-    {
-      "data-orientation": orientation,
-      ...semanticProps,
-      ...domProps,
-      ref: forwardedRef
-    }
-  );
-});
-Separator$1.displayName = NAME;
-function isValidOrientation(orientation) {
-  return ORIENTATIONS.includes(orientation);
-}
-var Root$1 = Separator$1;
-function Separator({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root$1,
-    {
-      "data-slot": "separator",
-      decorative,
-      orientation,
-      className: cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className
-      ),
-      ...props
-    }
-  );
-}
 var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
 var EVENT_OPTIONS = { bubbles: false, cancelable: true };
 var GROUP_NAME = "RovingFocusGroup";
@@ -94807,6 +95428,7 @@ function Transactions() {
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-3", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-foreground", children: "Transaction History" }),

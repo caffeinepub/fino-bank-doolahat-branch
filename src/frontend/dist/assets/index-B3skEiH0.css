@@ -766,6 +766,10 @@ video {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .-ml-4 {
   margin-left: -1rem;
 }
@@ -1330,6 +1334,9 @@ video {
 .gap-2 {
   gap: 0.5rem;
 }
+.gap-2\.5 {
+  gap: 0.625rem;
+}
 .gap-3 {
   gap: 0.75rem;
 }
@@ -1553,6 +1560,9 @@ video {
 .border-transparent {
   border-color: transparent;
 }
+.border-white\/30 {
+  border-color: rgb(255 255 255 / 0.3);
+}
 .border-white\/40 {
   border-color: rgb(255 255 255 / 0.4);
 }
@@ -1694,6 +1704,9 @@ video {
 }
 .bg-white\/10 {
   background-color: rgb(255 255 255 / 0.1);
+}
+.bg-white\/20 {
+  background-color: rgb(255 255 255 / 0.2);
 }
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
@@ -1950,6 +1963,10 @@ video {
 }
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+.text-\[\#462980\] {
+  --tw-text-opacity: 1;
+  color: rgb(70 41 128 / var(--tw-text-opacity, 1));
 }
 .text-accent-foreground {
   color: oklch(var(--accent-foreground));
@@ -2540,6 +2557,14 @@ video {
   background-color: oklch(var(--sidebar-accent));
 }
 
+.hover\:bg-white\/20:hover {
+  background-color: rgb(255 255 255 / 0.2);
+}
+
+.hover\:bg-white\/90:hover {
+  background-color: rgb(255 255 255 / 0.9);
+}
+
 .hover\:text-accent-foreground:hover {
   color: oklch(var(--accent-foreground));
 }
@@ -2560,6 +2585,11 @@ video {
 
 .hover\:text-sidebar-accent-foreground:hover {
   color: oklch(var(--sidebar-accent-foreground));
+}
+
+.hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {
