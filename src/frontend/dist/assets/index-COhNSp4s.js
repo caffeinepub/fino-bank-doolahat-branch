@@ -17873,53 +17873,18 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$z = [
-  ["path", { d: "M12 5v14", key: "s699le" }],
-  ["path", { d: "m19 12-7 7-7-7", key: "1idqje" }]
-];
-const ArrowDown = createLucideIcon("arrow-down", __iconNode$z);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$y = [
+const __iconNode$u = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$y);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$u);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [
-  ["path", { d: "m21 16-4 4-4-4", key: "f6ql7i" }],
-  ["path", { d: "M17 20V4", key: "1ejh1v" }],
-  ["path", { d: "m3 8 4-4 4 4", key: "11wl7u" }],
-  ["path", { d: "M7 4v16", key: "1glfcx" }]
-];
-const ArrowUpDown = createLucideIcon("arrow-up-down", __iconNode$x);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$w = [
-  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
-  ["path", { d: "M12 19V5", key: "x0mq9r" }]
-];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$w);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$v = [
+const __iconNode$t = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -17929,61 +17894,31 @@ const __iconNode$v = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$v);
+const Bell = createLucideIcon("bell", __iconNode$t);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
-  [
-    "path",
-    {
-      d: "M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z",
-      key: "hh9hay"
-    }
-  ],
-  ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
-  ["path", { d: "M12 22V12", key: "d0xqtd" }]
-];
-const Box = createLucideIcon("box", __iconNode$u);
+const __iconNode$s = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$s);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$t);
+const __iconNode$r = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$r);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$s);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$r = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$r);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$q = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
-];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$q);
+const __iconNode$q = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18073,37 +18008,6 @@ const FileText = createLucideIcon("file-text", __iconNode$j);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$i = [
-  ["path", { d: "M6 3h12", key: "ggurg9" }],
-  ["path", { d: "M6 8h12", key: "6g4wlu" }],
-  ["path", { d: "m6 13 8.5 8", key: "u1kupk" }],
-  ["path", { d: "M6 13h3", key: "wdp6ag" }],
-  ["path", { d: "M9 13c6.667 0 6.667-10 0-10", key: "1nkvk2" }]
-];
-const IndianRupee = createLucideIcon("indian-rupee", __iconNode$i);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$h = [
-  [
-    "path",
-    {
-      d: "M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z",
-      key: "1s6t7t"
-    }
-  ],
-  ["circle", { cx: "16.5", cy: "7.5", r: ".5", fill: "currentColor", key: "w0ekpg" }]
-];
-const KeyRound = createLucideIcon("key-round", __iconNode$h);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$g = [
   ["path", { d: "M10 18v-7", key: "wt116b" }],
   [
     "path",
@@ -18117,7 +18021,27 @@ const __iconNode$g = [
   ["path", { d: "M3 22h18", key: "8prr45" }],
   ["path", { d: "M6 18v-7", key: "1ivflk" }]
 ];
-const Landmark = createLucideIcon("landmark", __iconNode$g);
+const Landmark = createLucideIcon("landmark", __iconNode$i);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$h = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$h);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$g = [
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+];
+const LogOut = createLucideIcon("log-out", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18128,53 +18052,24 @@ const __iconNode$f = [
   [
     "path",
     {
-      d: "M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",
-      key: "zw3jo"
+      d: "M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14",
+      key: "e7tb2h"
     }
   ],
-  [
-    "path",
-    {
-      d: "M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12",
-      key: "1wduqc"
-    }
-  ],
-  [
-    "path",
-    {
-      d: "M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17",
-      key: "kqbvx6"
-    }
-  ]
+  ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }],
+  ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
+  ["line", { x1: "12", x2: "12", y1: "22", y2: "12", key: "a4e8g8" }],
+  ["circle", { cx: "18.5", cy: "15.5", r: "2.5", key: "b5zd12" }],
+  ["path", { d: "M20.27 17.27 22 19", key: "1l4muz" }]
 ];
-const Layers = createLucideIcon("layers", __iconNode$f);
+const PackageSearch = createLucideIcon("package-search", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$e = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$e);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$d = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
-];
-const LogOut = createLucideIcon("log-out", __iconNode$d);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
+const __iconNode$e = [
   [
     "path",
     {
@@ -18184,14 +18079,25 @@ const __iconNode$c = [
   ],
   ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$c);
+const Pencil = createLucideIcon("pencil", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$b = [
+const __iconNode$d = [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
+];
+const Plus = createLucideIcon("plus", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
   [
     "path",
     { d: "M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z", key: "q3az6g" }
@@ -18199,7 +18105,20 @@ const __iconNode$b = [
   ["path", { d: "M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8", key: "1h4pet" }],
   ["path", { d: "M12 17.5v-11", key: "1jc1ny" }]
 ];
-const Receipt = createLucideIcon("receipt", __iconNode$b);
+const Receipt = createLucideIcon("receipt", __iconNode$c);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$b = [
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+];
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18207,19 +18126,6 @@ const Receipt = createLucideIcon("receipt", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
-];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$a);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$9 = [
   [
     "path",
     {
@@ -18230,7 +18136,18 @@ const __iconNode$9 = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$9);
+const Save = createLucideIcon("save", __iconNode$a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+const Search = createLucideIcon("search", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18238,17 +18155,6 @@ const Save = createLucideIcon("save", __iconNode$9);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$8 = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
-];
-const Search = createLucideIcon("search", __iconNode$8);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$7 = [
   [
     "path",
     {
@@ -18258,7 +18164,31 @@ const __iconNode$7 = [
   ],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const ShieldCheck = createLucideIcon("shield-check", __iconNode$7);
+const ShieldCheck = createLucideIcon("shield-check", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
+  ["path", { d: "m2 2 20 20", key: "1ooewy" }],
+  [
+    "path",
+    {
+      d: "M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71",
+      key: "1jlk70"
+    }
+  ],
+  [
+    "path",
+    {
+      d: "M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264",
+      key: "18rp1v"
+    }
+  ]
+];
+const ShieldOff = createLucideIcon("shield-off", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18266,17 +18196,13 @@ const ShieldCheck = createLucideIcon("shield-check", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["circle", { cx: "8", cy: "21", r: "1", key: "jimo8o" }],
-  ["circle", { cx: "19", cy: "21", r: "1", key: "13723u" }],
-  [
-    "path",
-    {
-      d: "M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12",
-      key: "9zh506"
-    }
-  ]
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
 ];
-const ShoppingCart = createLucideIcon("shopping-cart", __iconNode$6);
+const Trash2 = createLucideIcon("trash-2", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18284,13 +18210,10 @@ const ShoppingCart = createLucideIcon("shopping-cart", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  ["path", { d: "M16 17h6v-6", key: "t6n2it" }],
+  ["path", { d: "m22 17-8.5-8.5-5 5L2 7", key: "x473p" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$5);
+const TrendingDown = createLucideIcon("trending-down", __iconNode$5);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18298,10 +18221,10 @@ const Trash2 = createLucideIcon("trash-2", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
-  ["path", { d: "M16 17h6v-6", key: "t6n2it" }],
-  ["path", { d: "m22 17-8.5-8.5-5 5L2 7", key: "x473p" }]
+  ["path", { d: "M16 7h6v6", key: "box55l" }],
+  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
 ];
-const TrendingDown = createLucideIcon("trending-down", __iconNode$4);
+const TrendingUp = createLucideIcon("trending-up", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18309,10 +18232,17 @@ const TrendingDown = createLucideIcon("trending-down", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["path", { d: "M16 7h6v6", key: "box55l" }],
-  ["path", { d: "m22 7-8.5 8.5-5-5L2 17", key: "1t1m79" }]
+  [
+    "path",
+    {
+      d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
+      key: "wmoenq"
+    }
+  ],
+  ["path", { d: "M12 9v4", key: "juzpu7" }],
+  ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-const TrendingUp = createLucideIcon("trending-up", __iconNode$3);
+const TriangleAlert = createLucideIcon("triangle-alert", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18469,6 +18399,8 @@ function NavTabs({ activeTab, onTabChange }) {
     ))
   ] }) });
 }
+const STAFF_ID = "156399746";
+const STAFF_PASSWORD = "156399746";
 const MANAGER_PASSWORD = "Ratulcc143@";
 const SECURITY_ANSWER = "Pulak";
 const STORAGE_KEY$1 = "fino_role_v2";
@@ -90560,49 +90492,6 @@ function DialogTitle({
     }
   );
 }
-var NAME = "Separator";
-var DEFAULT_ORIENTATION = "horizontal";
-var ORIENTATIONS = ["horizontal", "vertical"];
-var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
-  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
-  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
-  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Primitive.div,
-    {
-      "data-orientation": orientation,
-      ...semanticProps,
-      ...domProps,
-      ref: forwardedRef
-    }
-  );
-});
-Separator$1.displayName = NAME;
-function isValidOrientation(orientation) {
-  return ORIENTATIONS.includes(orientation);
-}
-var Root$1 = Separator$1;
-function Separator({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root$1,
-    {
-      "data-slot": "separator",
-      decorative,
-      orientation,
-      className: cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className
-      ),
-      ...props
-    }
-  );
-}
 function Table({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     "div",
@@ -90681,63 +90570,112 @@ function TableCell({ className, ...props }) {
 }
 const PENDING_KEY = "fino_inventory_pending";
 const APPROVED_KEY = "fino_inventory_approved";
-function getStatus(qty, reorder) {
-  if (qty === 0) return "out-of-stock";
-  if (qty <= reorder) return "low";
-  return "in-stock";
+function loadPending() {
+  try {
+    return JSON.parse(localStorage.getItem(PENDING_KEY) || "[]");
+  } catch {
+    return [];
+  }
 }
-function statusSortValue(status) {
-  if (status === "out-of-stock") return 0;
-  if (status === "low") return 1;
-  return 2;
+function savePending(items) {
+  localStorage.setItem(PENDING_KEY, JSON.stringify(items));
+}
+function loadApproved() {
+  try {
+    const raw = localStorage.getItem(APPROVED_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return arr.map((p2) => ({
+      ...p2,
+      id: BigInt(String(p2.id)),
+      quantity: BigInt(String(p2.quantity)),
+      reorderPoint: BigInt(String(p2.reorderPoint)),
+      createdAt: BigInt(String(p2.createdAt))
+    }));
+  } catch {
+    return [];
+  }
+}
+function saveApproved(items) {
+  const serializable = items.map((p2) => ({
+    ...p2,
+    id: String(p2.id),
+    quantity: String(p2.quantity),
+    reorderPoint: String(p2.reorderPoint),
+    createdAt: String(p2.createdAt)
+  }));
+  localStorage.setItem(APPROVED_KEY, JSON.stringify(serializable));
 }
 function genId() {
-  return Date.now().toString() + Math.random().toString(36).slice(2);
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
 }
-function StatusBadgeInv({ qty, reorder }) {
-  const status = getStatus(qty, reorder);
-  if (status === "out-of-stock")
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-red-100 text-red-700 border-red-200 hover:bg-red-100", children: "Out of Stock" });
-  if (status === "low")
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-amber-100 text-amber-700 border-amber-200 hover:bg-amber-100", children: "Low Stock" });
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "bg-green-100 text-green-700 border-green-200 hover:bg-green-100", children: "In Stock" });
+function getStatusLabel(product) {
+  const qty = Number(product.quantity);
+  const rp = Number(product.reorderPoint);
+  if (qty === 0) return { label: "Out of Stock", color: "destructive" };
+  if (qty <= rp) return { label: "Low Stock", color: "amber" };
+  return { label: "In Stock", color: "green" };
 }
-function MetricCard({
-  title,
-  value,
-  icon: Icon2,
-  color: color2,
-  subtitle,
-  delay: delay2
+function RoleSwitcher({
+  onSwitchToManager
 }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    motion.div,
+  const { isManager, logoutManager } = useInventoryAuth();
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
     {
-      initial: { opacity: 0, y: 12 },
-      animate: { opacity: 1, y: 0 },
-      transition: { duration: 0.3, delay: delay2 },
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-sm border-border hover:shadow-md transition-shadow h-full", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground font-medium uppercase tracking-wide", children: title }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "p",
+      className: "flex items-center justify-between px-4 py-3 rounded-xl mb-6 border",
+      style: {
+        background: isManager ? "linear-gradient(135deg, #f3f0ff 0%, #ede9fe 100%)" : "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+        borderColor: isManager ? "#c4b5fd" : "#bfdbfe"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+          isManager ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+            ShieldCheck,
             {
-              className: "text-2xl font-bold mt-1.5 truncate",
-              style: { color: color2 },
-              children: value
+              className: "h-5 w-5",
+              style: { color: "var(--brand-red)" }
             }
-          ),
-          subtitle && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-1", children: subtitle })
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldOff, { className: "h-5 w-5 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "font-semibold text-sm",
+                style: { color: isManager ? "var(--brand-red)" : "#1d4ed8" },
+                children: isManager ? "Manager View" : "Staff View"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mt-0.5", children: isManager ? "Full access: approve, edit, delete all records" : "Enter data & submit for approval · Manager approval required to finalize" })
+          ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2", children: isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
           {
-            className: "w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
-            style: { backgroundColor: `${color2}18` },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "w-5 h-5", style: { color: color2 } })
+            variant: "outline",
+            size: "sm",
+            onClick: logoutManager,
+            "data-ocid": "inventory.switch_staff.button",
+            className: "border-purple-300 text-purple-700 hover:bg-purple-50",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { className: "h-4 w-4 mr-1" }),
+              "Switch to Staff"
+            ]
           }
-        )
-      ] }) }) })
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            onClick: onSwitchToManager,
+            "data-ocid": "inventory.switch_manager.button",
+            style: { background: "var(--brand-red)", color: "white" },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldCheck, { className: "h-4 w-4 mr-1" }),
+              "Switch to Manager"
+            ]
+          }
+        ) })
+      ]
     }
   );
 }
@@ -90746,571 +90684,462 @@ function ManagerLoginModal({
   onClose
 }) {
   const { loginAsManager, resetManagerPassword } = useInventoryAuth();
+  const [view, setView] = reactExports.useState("login");
   const [password, setPassword] = reactExports.useState("");
-  const [showForgot, setShowForgot] = reactExports.useState(false);
   const [nickName, setNickName] = reactExports.useState("");
-  const [forgotError, setForgotError] = reactExports.useState("");
-  const [passwordError, setPasswordError] = reactExports.useState("");
-  const handleLogin = () => {
-    if (!password.trim()) {
-      setPasswordError("Please enter the manager password.");
-      return;
-    }
-    const ok = loginAsManager(password);
-    if (ok) {
-      ue.success("Manager access granted");
-      setPassword("");
-      setPasswordError("");
-      onClose();
-    } else {
-      setPasswordError("Incorrect password. Please try again.");
-    }
-  };
-  const handleForgot = () => {
-    if (!nickName.trim()) {
-      setForgotError("Please enter your nick name.");
-      return;
-    }
-    const ok = resetManagerPassword(nickName);
-    if (ok) {
-      ue.success("Manager access granted via security question");
-      setNickName("");
-      setForgotError("");
-      setShowForgot(false);
-      onClose();
-    } else {
-      setForgotError("Incorrect answer. Access denied.");
-    }
-  };
-  const handleClose = () => {
+  const [error, setError] = reactExports.useState("");
+  const [loading, setLoading] = reactExports.useState(false);
+  function handleClose() {
+    setView("login");
     setPassword("");
-    setPasswordError("");
     setNickName("");
-    setForgotError("");
-    setShowForgot(false);
+    setError("");
     onClose();
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange: (v2) => !v2 && handleClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { className: "sm:max-w-md", "data-ocid": "manager_login.dialog", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ShieldCheck,
-        {
-          className: "w-5 h-5",
-          style: { color: "var(--brand-red)" }
-        }
-      ),
-      "Manager Login"
-    ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !showForgot ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.div,
-      {
-        initial: { opacity: 0, x: -10 },
-        animate: { opacity: 1, x: 0 },
-        exit: { opacity: 0, x: 10 },
-        className: "space-y-4",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "mgr-password", children: "Manager Password" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "mgr-password",
-                type: "password",
-                placeholder: "Enter manager password",
-                value: password,
-                onChange: (e3) => {
-                  setPassword(e3.target.value);
-                  setPasswordError("");
-                },
-                onKeyDown: (e3) => e3.key === "Enter" && handleLogin(),
-                "data-ocid": "manager_login.input"
-              }
-            ),
-            passwordError && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "p",
-              {
-                className: "text-xs text-red-600 flex items-center gap-1",
-                "data-ocid": "manager_login.error_state",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-3 h-3" }),
-                  passwordError
-                ]
-              }
-            )
-          ] }),
+  }
+  function handleLogin() {
+    setLoading(true);
+    setError("");
+    setTimeout(() => {
+      const ok = loginAsManager(password);
+      if (ok) {
+        ue.success("Logged in as Manager");
+        handleClose();
+      } else {
+        setError("Incorrect password. Please try again.");
+      }
+      setLoading(false);
+    }, 400);
+  }
+  function handleReset() {
+    setLoading(true);
+    setError("");
+    setTimeout(() => {
+      const ok = resetManagerPassword(nickName);
+      if (ok) {
+        ue.success("Access granted via security question");
+        handleClose();
+      } else {
+        setError("Incorrect answer. Please try again.");
+      }
+      setLoading(false);
+    }, 400);
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange: (v2) => !v2 && handleClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "sm:max-w-sm",
+      "data-ocid": "inventory.manager_login.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
+            ShieldCheck,
             {
-              type: "button",
-              className: "text-xs text-primary underline underline-offset-2 hover:opacity-70 transition-opacity",
-              onClick: () => {
-                setShowForgot(true);
-                setPasswordError("");
-              },
-              "data-ocid": "manager_login.forgot_link",
-              children: "Forgot Password?"
+              className: "h-5 w-5",
+              style: { color: "var(--brand-red)" }
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: "outline",
-                onClick: handleClose,
-                "data-ocid": "manager_login.cancel_button",
-                children: "Cancel"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                onClick: handleLogin,
-                style: { backgroundColor: "var(--brand-red)" },
-                className: "text-white",
-                "data-ocid": "manager_login.submit_button",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(KeyRound, { className: "w-4 h-4 mr-1.5" }),
-                  "Login"
-                ]
-              }
-            )
-          ] })
-        ]
-      },
-      "login"
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.div,
-      {
-        initial: { opacity: 0, x: 10 },
-        animate: { opacity: 1, x: 0 },
-        exit: { opacity: 0, x: -10 },
-        className: "space-y-4",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              className: "p-3 rounded-lg text-sm",
-              style: {
-                backgroundColor: "oklch(0.97 0.012 293.8)",
-                borderLeft: "3px solid var(--brand-red)"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-foreground", children: "Security Question" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-xs mt-0.5", children: "Answer correctly to regain access" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "nick-name", children: "Enter Your Nick Name" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "nick-name",
-                type: "text",
-                placeholder: "Your nick name",
-                value: nickName,
-                onChange: (e3) => {
-                  setNickName(e3.target.value);
-                  setForgotError("");
-                },
-                onKeyDown: (e3) => e3.key === "Enter" && handleForgot(),
-                "data-ocid": "manager_login.nickname_input"
-              }
-            ),
-            forgotError && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "p",
-              {
-                className: "text-xs text-red-600 flex items-center gap-1",
-                "data-ocid": "manager_login.forgot_error_state",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-3 h-3" }),
-                  forgotError
-                ]
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: "outline",
-                onClick: () => {
-                  setShowForgot(false);
-                  setForgotError("");
-                  setNickName("");
-                },
-                "data-ocid": "manager_login.back_button",
-                children: "Back"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
-              {
-                onClick: handleForgot,
-                style: { backgroundColor: "var(--brand-red)" },
-                className: "text-white",
-                "data-ocid": "manager_login.reset_button",
-                children: "Reset Access"
-              }
-            )
-          ] })
-        ]
-      },
-      "forgot"
-    ) })
-  ] }) });
+          "Manager Access"
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: view === "login" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          motion.div,
+          {
+            initial: { opacity: 0, x: -20 },
+            animate: { opacity: 1, x: 0 },
+            exit: { opacity: 0, x: 20 },
+            transition: { duration: 0.2 },
+            className: "space-y-4",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "mgr-pw", children: "Manager Password" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "mgr-pw",
+                    type: "password",
+                    placeholder: "Enter manager password",
+                    value: password,
+                    onChange: (e3) => setPassword(e3.target.value),
+                    onKeyDown: (e3) => e3.key === "Enter" && handleLogin(),
+                    "data-ocid": "inventory.manager_password.input"
+                  }
+                )
+              ] }),
+              error && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-sm text-red-600",
+                  "data-ocid": "inventory.manager_login.error_state",
+                  children: error
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  className: "text-xs text-blue-600 hover:underline",
+                  onClick: () => {
+                    setView("forgot");
+                    setError("");
+                  },
+                  children: "Forgot Password?"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "outline", onClick: handleClose, children: "Cancel" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    onClick: handleLogin,
+                    disabled: loading || !password,
+                    "data-ocid": "inventory.manager_login.submit_button",
+                    style: { background: "var(--brand-red)", color: "white" },
+                    children: [
+                      loading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                      "Login"
+                    ]
+                  }
+                )
+              ] })
+            ]
+          },
+          "login"
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          motion.div,
+          {
+            initial: { opacity: 0, x: 20 },
+            animate: { opacity: 1, x: 0 },
+            exit: { opacity: 0, x: -20 },
+            transition: { duration: 0.2 },
+            className: "space-y-4",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800", children: [
+                "Security Question: ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Enter Your Nick Name" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "nick-name", children: "Your Answer" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "nick-name",
+                    type: "text",
+                    placeholder: "Enter your nick name",
+                    value: nickName,
+                    onChange: (e3) => setNickName(e3.target.value),
+                    onKeyDown: (e3) => e3.key === "Enter" && handleReset(),
+                    "data-ocid": "inventory.security_answer.input"
+                  }
+                )
+              ] }),
+              error && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "p",
+                {
+                  className: "text-sm text-red-600",
+                  "data-ocid": "inventory.security_answer.error_state",
+                  children: error
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button,
+                  {
+                    variant: "outline",
+                    onClick: () => {
+                      setView("login");
+                      setError("");
+                    },
+                    children: "Back"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    onClick: handleReset,
+                    disabled: loading || !nickName,
+                    "data-ocid": "inventory.security_answer.submit_button",
+                    style: { background: "var(--brand-red)", color: "white" },
+                    children: [
+                      loading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                      "Verify"
+                    ]
+                  }
+                )
+              ] })
+            ]
+          },
+          "forgot"
+        ) })
+      ]
+    }
+  ) });
 }
-const emptyAddForm = {
-  name: "",
-  description: "",
-  sku: "",
-  category: "",
-  quantity: "",
-  unitCost: "",
-  salePrice: "",
-  reorderPoint: "",
-  staffUserId: "",
-  staffPassword: ""
-};
 function AddProductModal({
   open,
   onClose,
   isManager,
-  pendingProducts,
   onPendingAdd
 }) {
   const addProduct = useAddProduct();
-  const [form, setForm] = reactExports.useState(emptyAddForm);
-  const [errors, setErrors] = reactExports.useState({});
-  const [isSubmitting, setIsSubmitting] = reactExports.useState(false);
-  const set = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: void 0 }));
-  };
-  const validate = () => {
-    const newErrors = {};
-    if (!form.name.trim()) newErrors.name = "Product name is required";
-    if (!form.sku.trim()) newErrors.sku = "SKU is required";
-    if (!isManager) {
-      if (!form.staffUserId.trim())
-        newErrors.staffUserId = "Staff User ID is required";
-      if (!form.staffPassword.trim())
-        newErrors.staffPassword = "Staff password is required";
+  const [name, setName] = reactExports.useState("");
+  const [description, setDescription] = reactExports.useState("");
+  const [sku, setSku] = reactExports.useState("");
+  const [category, setCategory] = reactExports.useState("");
+  const [quantity, setQuantity] = reactExports.useState("");
+  const [unitCost, setUnitCost] = reactExports.useState("");
+  const [salePrice, setSalePrice] = reactExports.useState("");
+  const [reorderPoint, setReorderPoint] = reactExports.useState("");
+  const [staffId, setStaffId] = reactExports.useState("");
+  const [staffPw, setStaffPw] = reactExports.useState("");
+  const [authError, setAuthError] = reactExports.useState("");
+  const [loading, setLoading] = reactExports.useState(false);
+  function reset() {
+    setName("");
+    setDescription("");
+    setSku("");
+    setCategory("");
+    setQuantity("");
+    setUnitCost("");
+    setSalePrice("");
+    setReorderPoint("");
+    setStaffId("");
+    setStaffPw("");
+    setAuthError("");
+  }
+  function handleClose() {
+    reset();
+    onClose();
+  }
+  async function handleSubmit() {
+    if (!name || !sku || !category) {
+      ue.error("Name, SKU and Category are required");
+      return;
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-  const handleSubmit = async (e3) => {
-    e3.preventDefault();
-    if (!validate()) return;
-    setIsSubmitting(true);
-    try {
-      if (isManager) {
+    if (isManager) {
+      setLoading(true);
+      try {
         await addProduct.mutateAsync({
-          name: form.name.trim(),
-          description: form.description.trim(),
-          sku: form.sku.trim(),
+          name,
+          description,
+          sku,
           barcode: "",
-          category: form.category.trim(),
-          quantity: BigInt(Math.max(0, Number.parseInt(form.quantity) || 0)),
-          unitCost: Number.parseFloat(form.unitCost) || 0,
-          salePrice: Number.parseFloat(form.salePrice) || 0,
-          reorderPoint: BigInt(
-            Math.max(0, Number.parseInt(form.reorderPoint) || 0)
-          )
+          category,
+          quantity: BigInt(Number(quantity) || 0),
+          unitCost: Number(unitCost) || 0,
+          salePrice: Number(salePrice) || 0,
+          reorderPoint: BigInt(Number(reorderPoint) || 0)
         });
         ue.success("Product added successfully");
-        setForm(emptyAddForm);
-        onClose();
-      } else {
-        if (form.staffUserId !== "156399746" || form.staffPassword !== "156399746") {
-          ue.error(
-            "Invalid Staff credentials. Use your assigned User ID and password."
-          );
-          setErrors({
-            staffUserId: "Invalid Staff User ID or Password",
-            staffPassword: "Invalid Staff User ID or Password"
-          });
-          setIsSubmitting(false);
-          return;
-        }
-        const pending = {
-          id: genId(),
-          submittedAt: (/* @__PURE__ */ new Date()).toISOString(),
-          submittedByUserId: form.staffUserId,
-          name: form.name.trim(),
-          description: form.description.trim(),
-          sku: form.sku.trim(),
-          category: form.category.trim(),
-          quantity: Math.max(0, Number.parseInt(form.quantity) || 0),
-          unitCost: Number.parseFloat(form.unitCost) || 0,
-          salePrice: Number.parseFloat(form.salePrice) || 0,
-          reorderPoint: Math.max(0, Number.parseInt(form.reorderPoint) || 0),
-          status: "pending"
-        };
-        onPendingAdd(pending);
-        ue.success("Product submitted for manager approval");
-        setForm(emptyAddForm);
-        onClose();
+        handleClose();
+      } catch (err) {
+        console.error(err);
+        ue.error("Failed to add product");
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.error("Add product error:", err);
-      ue.error("Failed to add product. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      if (staffId !== STAFF_ID || staffPw !== STAFF_PASSWORD) {
+        setAuthError("Invalid Staff User ID or Password");
+        return;
+      }
+      const pending = {
+        id: genId(),
+        submittedAt: (/* @__PURE__ */ new Date()).toISOString(),
+        submittedByUserId: staffId,
+        name,
+        description,
+        sku,
+        category,
+        quantity: Number(quantity) || 0,
+        unitCost: Number(unitCost) || 0,
+        salePrice: Number(salePrice) || 0,
+        reorderPoint: Number(reorderPoint) || 0,
+        status: "pending"
+      };
+      onPendingAdd(pending);
+      ue.success("Product submitted for manager approval");
+      handleClose();
     }
-  };
-  const handleClose = () => {
-    setForm(emptyAddForm);
-    setErrors({});
-    onClose();
-  };
-  const skuTaken = pendingProducts.some(
-    (p2) => p2.sku === form.sku.trim() && form.sku.trim()
-  );
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange: (v2) => !v2 && handleClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     DialogContent,
     {
       className: "sm:max-w-lg max-h-[90vh] overflow-y-auto",
-      "data-ocid": "add_product.dialog",
+      "data-ocid": "inventory.add_product.dialog",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogHeader, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              CirclePlus,
-              {
-                className: "w-5 h-5",
-                style: { color: "var(--brand-red)" }
-              }
-            ),
-            "Add New Product"
-          ] }),
-          !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-md px-3 py-2 mt-2", children: "⚡ Staff submission — will require manager approval before being added to inventory." })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "ap-name", children: [
-              "Product Name ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { children: [
+          "Add Product",
+          " ",
+          !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { className: "ml-2 text-xs bg-amber-100 text-amber-800", children: "Pending Approval" })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2 space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Product Name *" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                id: "ap-name",
+                value: name,
+                onChange: (e3) => setName(e3.target.value),
                 placeholder: "e.g. A4 Paper Ream",
-                value: form.name,
-                onChange: (e3) => set("name", e3.target.value),
-                "data-ocid": "add_product.input"
-              }
-            ),
-            errors.name && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "add_product.name_error",
-                children: errors.name
+                "data-ocid": "inventory.add_product_name.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-desc", children: "Description" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2 space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Description" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                id: "ap-desc",
-                placeholder: "Brief product description",
-                value: form.description,
-                onChange: (e3) => set("description", e3.target.value)
+                value: description,
+                onChange: (e3) => setDescription(e3.target.value),
+                placeholder: "Optional description",
+                "data-ocid": "inventory.add_product_desc.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "ap-sku", children: [
-              "SKU ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "SKU *" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                id: "ap-sku",
-                placeholder: "e.g. PAPER-A4-001",
-                value: form.sku,
-                onChange: (e3) => set("sku", e3.target.value)
+                value: sku,
+                onChange: (e3) => setSku(e3.target.value),
+                placeholder: "e.g. A4-PRM-500",
+                "data-ocid": "inventory.add_product_sku.input"
               }
-            ),
-            errors.sku && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "add_product.sku_error",
-                children: errors.sku
-              }
-            ),
-            skuTaken && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-600", children: "⚠️ A pending product with this SKU already exists" })
+            )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-category", children: "Category" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Category *" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                id: "ap-category",
-                placeholder: "e.g. Stationery, Electronics",
-                value: form.category,
-                onChange: (e3) => set("category", e3.target.value)
+                value: category,
+                onChange: (e3) => setCategory(e3.target.value),
+                placeholder: "e.g. Stationery",
+                "data-ocid": "inventory.add_product_category.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-qty", children: "Initial Quantity" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  id: "ap-qty",
-                  type: "number",
-                  min: "0",
-                  placeholder: "0",
-                  value: form.quantity,
-                  onChange: (e3) => set("quantity", e3.target.value)
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-reorder", children: "Reorder Point" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  id: "ap-reorder",
-                  type: "number",
-                  min: "0",
-                  placeholder: "0",
-                  value: form.reorderPoint,
-                  onChange: (e3) => set("reorderPoint", e3.target.value)
-                }
-              )
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-cost", children: "Unit Cost (₹)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  id: "ap-cost",
-                  type: "number",
-                  min: "0",
-                  step: "0.01",
-                  placeholder: "0.00",
-                  value: form.unitCost,
-                  onChange: (e3) => set("unitCost", e3.target.value)
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-sale", children: "Sale Price (₹)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  id: "ap-sale",
-                  type: "number",
-                  min: "0",
-                  step: "0.01",
-                  placeholder: "0.00",
-                  value: form.salePrice,
-                  onChange: (e3) => set("salePrice", e3.target.value)
-                }
-              )
-            ] })
-          ] }),
-          !isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, {}),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                className: "rounded-lg p-4 space-y-3",
-                style: {
-                  backgroundColor: "oklch(0.97 0.016 72 / 0.4)",
-                  border: "1px solid oklch(0.78 0.18 72 / 0.3)"
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-semibold text-amber-800 flex items-center gap-1.5", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(UserCheck, { className: "w-4 h-4" }),
-                    "Staff Authentication Required"
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700", children: "Enter your Staff credentials to submit this product for manager approval." }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-staff-id", children: "Staff User ID" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        id: "ap-staff-id",
-                        placeholder: "Enter your staff ID",
-                        value: form.staffUserId,
-                        onChange: (e3) => set("staffUserId", e3.target.value),
-                        "data-ocid": "add_product.staff_id_input"
-                      }
-                    ),
-                    errors.staffUserId && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
-                      {
-                        className: "text-xs text-red-600",
-                        "data-ocid": "add_product.staff_id_error",
-                        children: errors.staffUserId
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "ap-staff-pass", children: "Staff Password" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        id: "ap-staff-pass",
-                        type: "password",
-                        placeholder: "Enter your staff password",
-                        value: form.staffPassword,
-                        onChange: (e3) => set("staffPassword", e3.target.value),
-                        "data-ocid": "add_product.staff_password_input"
-                      }
-                    ),
-                    errors.staffPassword && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
-                      {
-                        className: "text-xs text-red-600",
-                        "data-ocid": "add_product.staff_pass_error",
-                        children: errors.staffPassword
-                      }
-                    )
-                  ] })
-                ]
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "pt-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Quantity" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
+              Input,
               {
-                type: "button",
-                variant: "outline",
-                onClick: handleClose,
-                "data-ocid": "add_product.cancel_button",
-                children: "Cancel"
+                type: "number",
+                value: quantity,
+                onChange: (e3) => setQuantity(e3.target.value),
+                placeholder: "0",
+                "data-ocid": "inventory.add_product_qty.input"
               }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Reorder Point" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
               {
-                type: "submit",
-                disabled: isSubmitting || addProduct.isPending || skuTaken && !isManager,
-                style: { backgroundColor: "var(--brand-red)" },
-                className: "text-white",
-                "data-ocid": "add_product.submit_button",
-                children: [
-                  isSubmitting || addProduct.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-1.5 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-4 h-4 mr-1.5" }),
-                  isManager ? "Add Product" : "Submit for Approval"
-                ]
+                type: "number",
+                value: reorderPoint,
+                onChange: (e3) => setReorderPoint(e3.target.value),
+                placeholder: "5",
+                "data-ocid": "inventory.add_product_reorder.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Unit Cost (₹)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: unitCost,
+                onChange: (e3) => setUnitCost(e3.target.value),
+                placeholder: "0.00",
+                "data-ocid": "inventory.add_product_cost.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sale Price (₹)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: salePrice,
+                onChange: (e3) => setSalePrice(e3.target.value),
+                placeholder: "0.00",
+                "data-ocid": "inventory.add_product_price.input"
               }
             )
           ] })
+        ] }),
+        !isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg space-y-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-amber-800", children: "Staff Authentication Required" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Staff User ID" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  value: staffId,
+                  onChange: (e3) => {
+                    setStaffId(e3.target.value);
+                    setAuthError("");
+                  },
+                  placeholder: "Enter User ID",
+                  "data-ocid": "inventory.staff_id.input"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Staff Password" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  type: "password",
+                  value: staffPw,
+                  onChange: (e3) => {
+                    setStaffPw(e3.target.value);
+                    setAuthError("");
+                  },
+                  placeholder: "Enter Password",
+                  "data-ocid": "inventory.staff_password.input"
+                }
+              )
+            ] })
+          ] }),
+          authError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
+            {
+              className: "text-sm text-red-600",
+              "data-ocid": "inventory.staff_auth.error_state",
+              children: authError
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "mt-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: "outline",
+              onClick: handleClose,
+              "data-ocid": "inventory.add_product.cancel_button",
+              children: "Cancel"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              onClick: handleSubmit,
+              disabled: loading,
+              "data-ocid": "inventory.add_product.submit_button",
+              style: { background: "var(--brand-red)", color: "white" },
+              children: [
+                loading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                isManager ? "Add Product" : "Submit for Approval"
+              ]
+            }
+          )
         ] })
       ]
     }
@@ -91318,179 +91147,137 @@ function AddProductModal({
 }
 function PendingEditModal({
   pending,
-  onSave,
-  onClose
+  onClose,
+  onSave
 }) {
-  const [form, setForm] = reactExports.useState({
-    name: "",
-    description: "",
-    sku: "",
-    category: "",
-    quantity: "",
-    unitCost: "",
-    salePrice: "",
-    reorderPoint: ""
-  });
+  const [form, setForm] = reactExports.useState(null);
   reactExports.useEffect(() => {
-    if (pending) {
-      setForm({
-        name: pending.name,
-        description: pending.description,
-        sku: pending.sku,
-        category: pending.category,
-        quantity: String(pending.quantity),
-        unitCost: String(pending.unitCost),
-        salePrice: String(pending.salePrice),
-        reorderPoint: String(pending.reorderPoint)
-      });
-    }
+    if (pending) setForm({ ...pending });
   }, [pending]);
-  const set = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-  };
-  const handleSave = () => {
-    if (!pending) return;
-    if (!form.name.trim() || !form.sku.trim()) {
-      ue.error("Product name and SKU are required.");
-      return;
-    }
-    onSave({
-      ...pending,
-      name: form.name.trim(),
-      description: form.description.trim(),
-      sku: form.sku.trim(),
-      category: form.category.trim(),
-      quantity: Math.max(0, Number.parseInt(form.quantity) || 0),
-      unitCost: Number.parseFloat(form.unitCost) || 0,
-      salePrice: Number.parseFloat(form.salePrice) || 0,
-      reorderPoint: Math.max(0, Number.parseInt(form.reorderPoint) || 0)
-    });
-    ue.success("Pending product updated");
-    onClose();
-  };
+  if (!form) return null;
+  function updateField(field, value) {
+    setForm((prev) => prev ? { ...prev, [field]: value } : prev);
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: !!pending, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     DialogContent,
     {
-      className: "sm:max-w-lg max-h-[90vh] overflow-y-auto",
-      "data-ocid": "pending_edit.dialog",
+      className: "sm:max-w-lg",
+      "data-ocid": "inventory.pending_edit.dialog",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-5 h-5", style: { color: "var(--brand-red)" } }),
-          "Edit Pending Product"
-        ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Product Name *" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Edit Pending Product" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2 space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Product Name" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
                 value: form.name,
-                onChange: (e3) => set("name", e3.target.value)
+                onChange: (e3) => updateField("name", e3.target.value),
+                "data-ocid": "inventory.pending_edit_name.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2 space-y-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Description" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
                 value: form.description,
-                onChange: (e3) => set("description", e3.target.value)
+                onChange: (e3) => updateField("description", e3.target.value),
+                "data-ocid": "inventory.pending_edit_desc.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "SKU *" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "SKU" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
                 value: form.sku,
-                onChange: (e3) => set("sku", e3.target.value)
+                onChange: (e3) => updateField("sku", e3.target.value),
+                "data-ocid": "inventory.pending_edit_sku.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Category" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
                 value: form.category,
-                onChange: (e3) => set("category", e3.target.value)
+                onChange: (e3) => updateField("category", e3.target.value),
+                "data-ocid": "inventory.pending_edit_category.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Initial Quantity" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "number",
-                  min: "0",
-                  value: form.quantity,
-                  onChange: (e3) => set("quantity", e3.target.value)
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Reorder Point" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "number",
-                  min: "0",
-                  value: form.reorderPoint,
-                  onChange: (e3) => set("reorderPoint", e3.target.value)
-                }
-              )
-            ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Quantity" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: form.quantity,
+                onChange: (e3) => updateField("quantity", Number(e3.target.value)),
+                "data-ocid": "inventory.pending_edit_qty.input"
+              }
+            )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Unit Cost (₹)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "number",
-                  min: "0",
-                  step: "0.01",
-                  value: form.unitCost,
-                  onChange: (e3) => set("unitCost", e3.target.value)
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sale Price (₹)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "number",
-                  min: "0",
-                  step: "0.01",
-                  value: form.salePrice,
-                  onChange: (e3) => set("salePrice", e3.target.value)
-                }
-              )
-            ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Reorder Point" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: form.reorderPoint,
+                onChange: (e3) => updateField("reorderPoint", Number(e3.target.value)),
+                "data-ocid": "inventory.pending_edit_reorder.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Unit Cost (₹)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: form.unitCost,
+                onChange: (e3) => updateField("unitCost", Number(e3.target.value)),
+                "data-ocid": "inventory.pending_edit_cost.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sale Price (₹)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: form.salePrice,
+                onChange: (e3) => updateField("salePrice", Number(e3.target.value)),
+                "data-ocid": "inventory.pending_edit_price.input"
+              }
+            )
           ] })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "pt-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "mt-4", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Button,
             {
               variant: "outline",
               onClick: onClose,
-              "data-ocid": "pending_edit.cancel_button",
+              "data-ocid": "inventory.pending_edit.cancel_button",
               children: "Cancel"
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Button,
             {
-              onClick: handleSave,
-              style: { backgroundColor: "var(--brand-red)" },
-              className: "text-white",
-              "data-ocid": "pending_edit.save_button",
+              onClick: () => {
+                onSave(form);
+                onClose();
+              },
+              "data-ocid": "inventory.pending_edit.save_button",
+              style: { background: "var(--brand-red)", color: "white" },
               children: "Save Changes"
             }
           )
@@ -91499,1451 +91286,1125 @@ function PendingEditModal({
     }
   ) });
 }
-const emptyStockForm = {
-  txType: "purchase",
-  quantity: "",
-  adjustSign: "+",
-  note: "",
-  date: todayISO()
-};
-function StockUpdateModal({
-  product,
-  onClose
-}) {
-  const addStockTx = useAddStockTransaction();
-  const [form, setForm] = reactExports.useState(emptyStockForm);
-  reactExports.useEffect(() => {
-    if (product) setForm({ ...emptyStockForm, date: todayISO() });
-  }, [product]);
-  const handleSubmit = async (e3) => {
-    e3.preventDefault();
-    if (!product) return;
-    const qty = Number.parseInt(form.quantity);
-    if (!qty || qty <= 0) {
-      ue.error("Enter a valid quantity.");
-      return;
-    }
-    let change;
-    if (form.txType === "purchase") {
-      change = BigInt(qty);
-    } else if (form.txType === "sale") {
-      change = -BigInt(qty);
-    } else {
-      change = form.adjustSign === "+" ? BigInt(qty) : -BigInt(qty);
-    }
-    try {
-      await addStockTx.mutateAsync({
-        productId: product.id,
-        txType: form.txType,
-        quantityChange: change,
-        note: form.note.trim(),
-        transactionDate: form.date
-      });
-      ue.success("Stock updated");
-      onClose();
-    } catch {
-      ue.error("Failed to update stock.");
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: !!product, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { className: "sm:max-w-md", "data-ocid": "stock_update.dialog", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        RefreshCw,
-        {
-          className: "w-5 h-5",
-          style: { color: "var(--brand-red)" }
-        }
-      ),
-      "Stock Update — ",
-      product == null ? void 0 : product.name
-    ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Transaction Type" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Select,
-          {
-            value: form.txType,
-            onValueChange: (v2) => setForm((f2) => ({ ...f2, txType: v2 })),
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "stock_update.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "purchase", children: "Purchase (Stock In +)" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "sale", children: "Sale (Stock Out −)" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "adjustment", children: "Manual Adjustment" })
-              ] })
-            ]
-          }
-        )
-      ] }),
-      form.txType === "adjustment" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Adjustment Direction" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-2", children: [
-          ["+", "Add Stock"],
-          ["-", "Remove Stock"]
-        ].map(([sign2, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            onClick: () => setForm((f2) => ({ ...f2, adjustSign: sign2 })),
-            className: `flex-1 py-2 rounded-md text-sm font-medium border transition-colors ${form.adjustSign === sign2 ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background text-foreground hover:bg-muted"}`,
-            children: label
-          },
-          sign2
-        )) })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Quantity" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Input,
-          {
-            type: "number",
-            min: "1",
-            placeholder: "Enter quantity",
-            value: form.quantity,
-            onChange: (e3) => setForm((f2) => ({ ...f2, quantity: e3.target.value })),
-            "data-ocid": "stock_update.input"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Date" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Input,
-          {
-            type: "date",
-            value: form.date,
-            onChange: (e3) => setForm((f2) => ({ ...f2, date: e3.target.value }))
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Note (optional)" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Input,
-          {
-            placeholder: "Reason for update",
-            value: form.note,
-            onChange: (e3) => setForm((f2) => ({ ...f2, note: e3.target.value }))
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button,
-          {
-            type: "button",
-            variant: "outline",
-            onClick: onClose,
-            "data-ocid": "stock_update.cancel_button",
-            children: "Cancel"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Button,
-          {
-            type: "submit",
-            disabled: addStockTx.isPending,
-            style: { backgroundColor: "var(--brand-red)" },
-            className: "text-white",
-            "data-ocid": "stock_update.submit_button",
-            children: [
-              addStockTx.isPending && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-1.5 animate-spin" }),
-              "Update Stock"
-            ]
-          }
-        )
-      ] })
-    ] })
-  ] }) });
-}
-function BulkUpdateModal({
-  actionType,
-  selectedCount,
-  onClose,
-  onSubmit,
-  isPending
-}) {
-  const [unitCost, setUnitCost] = reactExports.useState("");
-  const [salePrice, setSalePrice] = reactExports.useState("");
-  const [reorderPoint, setReorderPoint] = reactExports.useState("");
-  const handleSubmit = (e3) => {
-    e3.preventDefault();
-    if (!actionType) return;
-    onSubmit({ type: actionType, unitCost, salePrice, reorderPoint });
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: !!actionType, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { className: "sm:max-w-md", "data-ocid": "bulk_update.dialog", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { children: [
-      "Bulk Update — ",
-      selectedCount,
-      " item",
-      selectedCount > 1 ? "s" : ""
-    ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-4", children: [
-      actionType === "prices" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "New Unit Cost (₹)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              type: "number",
-              min: "0",
-              step: "0.01",
-              placeholder: "0.00",
-              value: unitCost,
-              onChange: (e3) => setUnitCost(e3.target.value)
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "New Sale Price (₹)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Input,
-            {
-              type: "number",
-              min: "0",
-              step: "0.01",
-              placeholder: "0.00",
-              value: salePrice,
-              onChange: (e3) => setSalePrice(e3.target.value)
-            }
-          )
-        ] })
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "New Reorder Point" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Input,
-          {
-            type: "number",
-            min: "0",
-            placeholder: "0",
-            value: reorderPoint,
-            onChange: (e3) => setReorderPoint(e3.target.value)
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button,
-          {
-            type: "button",
-            variant: "outline",
-            onClick: onClose,
-            "data-ocid": "bulk_update.cancel_button",
-            children: "Cancel"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Button,
-          {
-            type: "submit",
-            disabled: isPending,
-            style: { backgroundColor: "var(--brand-red)" },
-            className: "text-white",
-            "data-ocid": "bulk_update.submit_button",
-            children: [
-              isPending && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-1.5 animate-spin" }),
-              "Apply to ",
-              selectedCount,
-              " item",
-              selectedCount > 1 ? "s" : ""
-            ]
-          }
-        )
-      ] })
-    ] })
-  ] }) });
-}
 function EditProductModal({
   product,
   onClose
 }) {
-  const editProductMut = useEditProduct();
-  const [form, setForm] = reactExports.useState({
-    name: "",
-    description: "",
-    sku: "",
-    category: "",
-    unitCost: "",
-    salePrice: "",
-    reorderPoint: ""
-  });
+  const editProduct = useEditProduct();
+  const qc = useQueryClient();
+  const [name, setName] = reactExports.useState("");
+  const [description, setDescription] = reactExports.useState("");
+  const [sku, setSku] = reactExports.useState("");
+  const [category, setCategory] = reactExports.useState("");
+  const [unitCost, setUnitCost] = reactExports.useState("");
+  const [salePrice, setSalePrice] = reactExports.useState("");
+  const [reorderPoint, setReorderPoint] = reactExports.useState("");
+  const [loading, setLoading] = reactExports.useState(false);
   reactExports.useEffect(() => {
     if (product) {
-      setForm({
-        name: product.name,
-        description: product.description,
-        sku: product.sku,
-        category: product.category,
-        unitCost: String(product.unitCost),
-        salePrice: String(product.salePrice),
-        reorderPoint: String(Number(product.reorderPoint))
-      });
+      setName(product.name);
+      setDescription(product.description);
+      setSku(product.sku);
+      setCategory(product.category);
+      setUnitCost(String(product.unitCost));
+      setSalePrice(String(product.salePrice));
+      setReorderPoint(String(product.reorderPoint));
     }
   }, [product]);
-  const set = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-  };
-  const handleSubmit = async (e3) => {
-    e3.preventDefault();
+  async function handleSave() {
     if (!product) return;
-    if (!form.name.trim() || !form.sku.trim()) {
-      ue.error("Product Name and SKU are required.");
-      return;
-    }
+    setLoading(true);
     try {
-      await editProductMut.mutateAsync({
+      await editProduct.mutateAsync({
         id: product.id,
-        name: form.name.trim(),
-        description: form.description.trim(),
-        sku: form.sku.trim(),
-        barcode: "",
-        category: form.category.trim(),
-        unitCost: Number.parseFloat(form.unitCost) || 0,
-        salePrice: Number.parseFloat(form.salePrice) || 0,
-        reorderPoint: BigInt(
-          Math.max(0, Number.parseInt(form.reorderPoint) || 0)
-        )
+        name,
+        description,
+        sku,
+        barcode: product.barcode,
+        category,
+        unitCost: Number(unitCost),
+        salePrice: Number(salePrice),
+        reorderPoint: BigInt(Number(reorderPoint))
       });
+      qc.invalidateQueries({ queryKey: ["inventory"] });
       ue.success("Product updated");
       onClose();
-    } catch {
-      ue.error("Failed to update product.");
+    } catch (err) {
+      console.error(err);
+      ue.error("Failed to update product");
+    } finally {
+      setLoading(false);
     }
-  };
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: !!product, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     DialogContent,
     {
-      className: "sm:max-w-lg max-h-[90vh] overflow-y-auto",
-      "data-ocid": "edit_product.dialog",
+      className: "sm:max-w-lg",
+      "data-ocid": "inventory.edit_product.dialog",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-5 h-5", style: { color: "var(--brand-red)" } }),
-          "Edit Product"
-        ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit, className: "space-y-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Product Name *" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Edit Product" }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2 space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Product Name" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                value: form.name,
-                onChange: (e3) => set("name", e3.target.value),
-                "data-ocid": "edit_product.input"
+                value: name,
+                onChange: (e3) => setName(e3.target.value),
+                "data-ocid": "inventory.edit_name.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "col-span-2 space-y-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Description" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                value: form.description,
-                onChange: (e3) => set("description", e3.target.value)
+                value: description,
+                onChange: (e3) => setDescription(e3.target.value),
+                "data-ocid": "inventory.edit_desc.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "SKU *" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "SKU" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                value: form.sku,
-                onChange: (e3) => set("sku", e3.target.value)
+                value: sku,
+                onChange: (e3) => setSku(e3.target.value),
+                "data-ocid": "inventory.edit_sku.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Category" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
-                value: form.category,
-                onChange: (e3) => set("category", e3.target.value)
+                value: category,
+                onChange: (e3) => setCategory(e3.target.value),
+                "data-ocid": "inventory.edit_category.input"
               }
             )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Unit Cost (₹)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "number",
-                  min: "0",
-                  step: "0.01",
-                  value: form.unitCost,
-                  onChange: (e3) => set("unitCost", e3.target.value)
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sale Price (₹)" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input,
-                {
-                  type: "number",
-                  min: "0",
-                  step: "0.01",
-                  value: form.salePrice,
-                  onChange: (e3) => set("salePrice", e3.target.value)
-                }
-              )
-            ] })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Unit Cost (₹)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: unitCost,
+                onChange: (e3) => setUnitCost(e3.target.value),
+                "data-ocid": "inventory.edit_cost.input"
+              }
+            )
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sale Price (₹)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: salePrice,
+                onChange: (e3) => setSalePrice(e3.target.value),
+                "data-ocid": "inventory.edit_price.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Reorder Point" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
                 type: "number",
-                min: "0",
-                value: form.reorderPoint,
-                onChange: (e3) => set("reorderPoint", e3.target.value)
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
-              {
-                type: "button",
-                variant: "outline",
-                onClick: onClose,
-                "data-ocid": "edit_product.cancel_button",
-                children: "Cancel"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                type: "submit",
-                disabled: editProductMut.isPending,
-                style: { backgroundColor: "var(--brand-red)" },
-                className: "text-white",
-                "data-ocid": "edit_product.save_button",
-                children: [
-                  editProductMut.isPending && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-1.5 animate-spin" }),
-                  "Save Changes"
-                ]
+                value: reorderPoint,
+                onChange: (e3) => setReorderPoint(e3.target.value),
+                "data-ocid": "inventory.edit_reorder.input"
               }
             )
           ] })
-        ] })
-      ]
-    }
-  ) });
-}
-function InventoryInner() {
-  const { isManager, logoutManager } = useInventoryAuth();
-  const today = todayISO();
-  const [pendingProducts, setPendingProducts] = reactExports.useState(
-    () => {
-      try {
-        const stored = localStorage.getItem(PENDING_KEY);
-        return stored ? JSON.parse(stored) : [];
-      } catch {
-        return [];
-      }
-    }
-  );
-  reactExports.useEffect(() => {
-    localStorage.setItem(PENDING_KEY, JSON.stringify(pendingProducts));
-  }, [pendingProducts]);
-  const [localApprovedProducts, setLocalApprovedProducts] = reactExports.useState(() => {
-    try {
-      const stored = localStorage.getItem(APPROVED_KEY);
-      if (!stored) return [];
-      const parsed = JSON.parse(stored);
-      return parsed.map((p2) => ({
-        ...p2,
-        id: BigInt(String(p2.id)),
-        quantity: BigInt(String(p2.quantity)),
-        reorderPoint: BigInt(String(p2.reorderPoint)),
-        createdAt: BigInt(String(p2.createdAt ?? 0))
-      }));
-    } catch {
-      return [];
-    }
-  });
-  reactExports.useEffect(() => {
-    const serializable = localApprovedProducts.map((p2) => ({
-      ...p2,
-      id: String(p2.id),
-      quantity: String(p2.quantity),
-      reorderPoint: String(p2.reorderPoint),
-      createdAt: String(p2.createdAt)
-    }));
-    localStorage.setItem(APPROVED_KEY, JSON.stringify(serializable));
-  }, [localApprovedProducts]);
-  const [search, setSearch] = reactExports.useState("");
-  const [categoryFilter, setCategoryFilter] = reactExports.useState("all");
-  const [sortField, setSortField] = reactExports.useState("name");
-  const [sortDir, setSortDir] = reactExports.useState("asc");
-  const [selectedIds, setSelectedIds] = reactExports.useState(/* @__PURE__ */ new Set());
-  const [managerLoginOpen, setManagerLoginOpen] = reactExports.useState(false);
-  const [addProductOpen, setAddProductOpen] = reactExports.useState(false);
-  const [editProductTarget, setEditProductTarget] = reactExports.useState(null);
-  const [deleteProductId, setDeleteProductId] = reactExports.useState(null);
-  const [stockUpdateProduct, setStockUpdateProduct] = reactExports.useState(null);
-  const [bulkActionType, setBulkActionType] = reactExports.useState(null);
-  const [pendingEditTarget, setPendingEditTarget] = reactExports.useState(null);
-  const [pendingDeleteId, setPendingDeleteId] = reactExports.useState(null);
-  const { data: products = [], isLoading: productsLoading } = useInventoryProducts();
-  const { data: todayTxs = [], isLoading: txLoading } = useTodayStockTransactions(today);
-  const approveProductMut = useAddProduct();
-  const queryClient2 = useQueryClient();
-  const deleteProductMut = useDeleteProduct();
-  const bulkUpdateMut = useBulkUpdateProducts();
-  const mergedProducts = reactExports.useMemo(() => {
-    const backendSkus = new Set(products.map((p2) => p2.sku));
-    const localOnly = localApprovedProducts.filter(
-      (p2) => !backendSkus.has(p2.sku)
-    );
-    return [...products, ...localOnly];
-  }, [products, localApprovedProducts]);
-  const metrics = reactExports.useMemo(() => {
-    const totalValue = mergedProducts.reduce(
-      (sum, p2) => sum + Number(p2.quantity) * p2.unitCost,
-      0
-    );
-    const lowStock = mergedProducts.filter(
-      (p2) => Number(p2.quantity) > 0 && Number(p2.quantity) <= Number(p2.reorderPoint)
-    ).length;
-    const outOfStock = mergedProducts.filter(
-      (p2) => Number(p2.quantity) === 0
-    ).length;
-    return { totalValue, lowStock, outOfStock, monthlyOrders: todayTxs.length };
-  }, [mergedProducts, todayTxs]);
-  const categories = reactExports.useMemo(() => {
-    const cats = new Set(mergedProducts.map((p2) => p2.category).filter(Boolean));
-    return Array.from(cats).sort();
-  }, [mergedProducts]);
-  const filteredProducts = reactExports.useMemo(() => {
-    let list = [...mergedProducts];
-    if (search.trim()) {
-      const q2 = search.toLowerCase();
-      list = list.filter(
-        (p2) => p2.name.toLowerCase().includes(q2) || p2.sku.toLowerCase().includes(q2)
-      );
-    }
-    if (categoryFilter !== "all") {
-      list = list.filter((p2) => p2.category === categoryFilter);
-    }
-    list.sort((a2, b2) => {
-      let cmp = 0;
-      switch (sortField) {
-        case "name":
-          cmp = a2.name.localeCompare(b2.name);
-          break;
-        case "sku":
-          cmp = a2.sku.localeCompare(b2.sku);
-          break;
-        case "category":
-          cmp = a2.category.localeCompare(b2.category);
-          break;
-        case "quantity":
-          cmp = Number(a2.quantity) - Number(b2.quantity);
-          break;
-        case "unitCost":
-          cmp = a2.unitCost - b2.unitCost;
-          break;
-        case "salePrice":
-          cmp = a2.salePrice - b2.salePrice;
-          break;
-        case "reorderPoint":
-          cmp = Number(a2.reorderPoint) - Number(b2.reorderPoint);
-          break;
-        case "status":
-          cmp = statusSortValue(
-            getStatus(Number(a2.quantity), Number(a2.reorderPoint))
-          ) - statusSortValue(
-            getStatus(Number(b2.quantity), Number(b2.reorderPoint))
-          );
-          break;
-      }
-      return sortDir === "asc" ? cmp : -cmp;
-    });
-    return list;
-  }, [mergedProducts, search, categoryFilter, sortField, sortDir]);
-  const handleSort = (field) => {
-    if (sortField === field) {
-      setSortDir((d2) => d2 === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
-      setSortDir("asc");
-    }
-  };
-  const SortIcon = ({ field }) => {
-    if (sortField !== field)
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpDown, { className: "w-3 h-3 ml-1 opacity-40" });
-    return sortDir === "asc" ? /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { className: "w-3 h-3 ml-1", style: { color: "var(--brand-red)" } }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-      ArrowDown,
-      {
-        className: "w-3 h-3 ml-1",
-        style: { color: "var(--brand-red)" }
-      }
-    );
-  };
-  const toggleSelect = (id2) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id2)) next.delete(id2);
-      else next.add(id2);
-      return next;
-    });
-  };
-  const toggleSelectAll = () => {
-    if (selectedIds.size === filteredProducts.length) {
-      setSelectedIds(/* @__PURE__ */ new Set());
-    } else {
-      setSelectedIds(new Set(filteredProducts.map((p2) => String(p2.id))));
-    }
-  };
-  const handleDeleteProduct = async () => {
-    if (deleteProductId === null) return;
-    try {
-      await deleteProductMut.mutateAsync(deleteProductId);
-      ue.success("Product deleted");
-      setDeleteProductId(null);
-    } catch {
-      ue.error("Failed to delete product.");
-    }
-  };
-  const handlePendingAdd = (p2) => {
-    setPendingProducts((prev) => [...prev, p2]);
-  };
-  const handlePendingApprove = (pending) => {
-    const localProduct = {
-      id: BigInt(Date.now()),
-      name: pending.name,
-      description: pending.description,
-      sku: pending.sku,
-      barcode: "",
-      category: pending.category,
-      quantity: BigInt(pending.quantity),
-      unitCost: pending.unitCost,
-      salePrice: pending.salePrice,
-      reorderPoint: BigInt(pending.reorderPoint),
-      createdAt: BigInt(Date.now())
-    };
-    setPendingProducts((prev) => prev.filter((p2) => p2.id !== pending.id));
-    setLocalApprovedProducts((prev) => [...prev, localProduct]);
-    ue.success(`"${pending.name}" approved and added to inventory!`);
-    approveProductMut.mutateAsync({
-      name: pending.name,
-      description: pending.description,
-      sku: pending.sku,
-      barcode: "",
-      category: pending.category,
-      quantity: BigInt(pending.quantity),
-      unitCost: pending.unitCost,
-      salePrice: pending.salePrice,
-      reorderPoint: BigInt(pending.reorderPoint)
-    }).then(() => {
-      setLocalApprovedProducts(
-        (prev) => prev.filter((p2) => p2.sku !== pending.sku)
-      );
-      queryClient2.invalidateQueries({ queryKey: ["inventory"] });
-    }).catch((err) => {
-      console.warn(
-        "Backend sync failed, keeping locally approved product:",
-        err
-      );
-    });
-  };
-  const handlePendingEdit = (updated) => {
-    setPendingProducts(
-      (prev) => prev.map((p2) => p2.id === updated.id ? updated : p2)
-    );
-  };
-  const handlePendingDelete = (id2) => {
-    setPendingProducts((prev) => prev.filter((p2) => p2.id !== id2));
-    setPendingDeleteId(null);
-    ue.success("Pending submission removed");
-  };
-  const handleBulkUpdate = async (data) => {
-    const ids = Array.from(selectedIds).map((id2) => BigInt(id2));
-    const count2 = ids.length;
-    try {
-      if (data.type === "prices") {
-        const uc = Number.parseFloat(data.unitCost ?? "");
-        const sp = Number.parseFloat(data.salePrice ?? "");
-        if (Number.isNaN(uc) || Number.isNaN(sp)) {
-          ue.error("Enter valid price values.");
-          return;
-        }
-        await bulkUpdateMut.mutateAsync({
-          ids,
-          unitCosts: Array(count2).fill(uc),
-          salePrices: Array(count2).fill(sp),
-          reorderPoints: ids.map((id2) => {
-            const p2 = products.find((pr) => pr.id === id2);
-            return p2 ? p2.reorderPoint : 0n;
-          })
-        });
-      } else {
-        const rp = Number.parseInt(data.reorderPoint ?? "");
-        if (Number.isNaN(rp) || rp < 0) {
-          ue.error("Enter a valid reorder point.");
-          return;
-        }
-        await bulkUpdateMut.mutateAsync({
-          ids,
-          unitCosts: ids.map((id2) => {
-            const p2 = products.find((pr) => pr.id === id2);
-            return p2 ? p2.unitCost : 0;
-          }),
-          salePrices: ids.map((id2) => {
-            const p2 = products.find((pr) => pr.id === id2);
-            return p2 ? p2.salePrice : 0;
-          }),
-          reorderPoints: Array(count2).fill(BigInt(rp))
-        });
-      }
-      ue.success(`Updated ${count2} product${count2 > 1 ? "s" : ""}.`);
-      setBulkActionType(null);
-      setSelectedIds(/* @__PURE__ */ new Set());
-    } catch {
-      ue.error("Bulk update failed.");
-    }
-  };
-  const productMap = reactExports.useMemo(() => {
-    const m2 = /* @__PURE__ */ new Map();
-    for (const p2 of products) m2.set(String(p2.id), p2.name);
-    return m2;
-  }, [products]);
-  const formatTime = (createdAt) => {
-    const ms = Number(createdAt) / 1e6;
-    if (!ms || ms < 1e6) return "—";
-    return new Date(ms).toLocaleTimeString("en-IN", {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-  };
-  const txTypeColor = (type) => {
-    if (type === "purchase") return "bg-blue-100 text-blue-700 border-blue-200";
-    if (type === "sale") return "bg-amber-100 text-amber-700 border-amber-200";
-    return "bg-purple-100 text-purple-700 border-purple-200";
-  };
-  if (productsLoading) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", "data-ocid": "inventory.loading_state", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-4", children: [1, 2, 3, 4].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-24 rounded-xl" }, i)) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-12 rounded-lg" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-64 rounded-xl" })
-    ] });
-  }
-  const allFilteredSelected = filteredProducts.length > 0 && filteredProducts.every((p2) => selectedIds.has(String(p2.id)));
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.div,
-      {
-        initial: { opacity: 0, y: -8 },
-        animate: { opacity: 1, y: 0 },
-        className: "flex items-center justify-between flex-wrap gap-3",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                className: "w-10 h-10 rounded-lg flex items-center justify-center",
-                style: { backgroundColor: "oklch(0.369 0.139 293.8 / 0.1)" },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Layers, { className: "w-5 h-5", style: { color: "var(--brand-red)" } })
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-bold text-foreground", children: "Inventory" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: isManager ? "Manager View — Full access" : "Staff View — View & Submit Products" })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 flex-wrap", children: [
-            isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Badge,
-              {
-                className: "flex items-center gap-1.5 px-3 py-1",
-                style: {
-                  backgroundColor: "oklch(0.369 0.139 293.8 / 0.1)",
-                  color: "var(--brand-red)",
-                  border: "1px solid oklch(0.369 0.139 293.8 / 0.3)"
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(ShieldCheck, { className: "w-3.5 h-3.5" }),
-                  "Manager View"
-                ]
-              }
-            ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(Badge, { className: "flex items-center gap-1.5 px-3 py-1 bg-blue-100 text-blue-700 border-blue-200", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(UserCheck, { className: "w-3.5 h-3.5" }),
-              "Staff View"
-            ] }),
-            !isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                size: "sm",
-                variant: "outline",
-                onClick: () => setManagerLoginOpen(true),
-                className: "flex items-center gap-1.5",
-                "data-ocid": "inventory.manager_login_button",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(KeyRound, { className: "w-4 h-4" }),
-                  "Switch to Manager"
-                ]
-              }
-            ),
-            isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Button,
-              {
-                size: "sm",
-                variant: "outline",
-                onClick: logoutManager,
-                className: "flex items-center gap-1.5 text-muted-foreground",
-                "data-ocid": "inventory.logout_button",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { className: "w-4 h-4" }),
-                  "Back to Staff View"
-                ]
-              }
-            )
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        MetricCard,
-        {
-          title: "Total Inventory Value",
-          value: formatINR(metrics.totalValue),
-          icon: IndianRupee,
-          color: "#462980",
-          subtitle: "Current stock valuation",
-          delay: 0
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        MetricCard,
-        {
-          title: "Low Stock Items",
-          value: String(metrics.lowStock),
-          icon: CircleAlert,
-          color: "#d97706",
-          subtitle: "Below reorder point",
-          delay: 0.05
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        MetricCard,
-        {
-          title: "Out of Stock",
-          value: String(metrics.outOfStock),
-          icon: Box,
-          color: "#dc2626",
-          subtitle: "Zero quantity",
-          delay: 0.1
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        MetricCard,
-        {
-          title: "Today's Transactions",
-          value: String(metrics.monthlyOrders),
-          icon: TrendingUp,
-          color: "#059669",
-          subtitle: "Stock moves today",
-          delay: 0.15
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: isManager && pendingProducts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-      motion.div,
-      {
-        initial: { opacity: 0, y: 10 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -10 },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Card,
-          {
-            className: "border-amber-200",
-            style: { backgroundColor: "oklch(0.99 0.025 72)" },
-            "data-ocid": "pending_approvals.card",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base flex items-center gap-2 text-amber-800", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-5 h-5 text-amber-600" }),
-                "Pending Approvals (",
-                pendingProducts.length,
-                ")",
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-normal text-amber-600 ml-1", children: "— Review and approve staff submissions" })
-              ] }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "pt-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "border-amber-200", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800", children: "Product" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800", children: "SKU" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800", children: "Category" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800 text-right", children: "Qty" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800 text-right", children: "Cost" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800", children: "Submitted By" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800", children: "Date" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-amber-800 text-right", children: "Actions" })
-                ] }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: pendingProducts.map((p2, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  TableRow,
-                  {
-                    className: "border-amber-100",
-                    "data-ocid": `pending_approvals.item.${idx + 1}`,
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-sm text-foreground", children: p2.name }),
-                        p2.description && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: p2.description })
-                      ] }) }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-xs", children: p2.sku }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm", children: p2.category || "—" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: p2.quantity }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: formatINR(p2.unitCost) }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-mono", children: p2.submittedByUserId }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-muted-foreground", children: new Date(p2.submittedAt).toLocaleDateString(
-                        "en-IN"
-                      ) }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-end gap-1", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Button,
-                          {
-                            size: "icon",
-                            variant: "ghost",
-                            className: "h-7 w-7 text-green-600 hover:bg-green-50",
-                            title: "Approve",
-                            onClick: () => handlePendingApprove(p2),
-                            "data-ocid": `pending_approvals.confirm_button.${idx + 1}`,
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { className: "w-3.5 h-3.5" })
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Button,
-                          {
-                            size: "icon",
-                            variant: "ghost",
-                            className: "h-7 w-7 text-blue-600 hover:bg-blue-50",
-                            title: "Edit",
-                            onClick: () => setPendingEditTarget(p2),
-                            "data-ocid": `pending_approvals.edit_button.${idx + 1}`,
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-3.5 h-3.5" })
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Button,
-                          {
-                            size: "icon",
-                            variant: "ghost",
-                            className: "h-7 w-7 text-red-600 hover:bg-red-50",
-                            title: "Delete",
-                            onClick: () => setPendingDeleteId(p2.id),
-                            "data-ocid": `pending_approvals.delete_button.${idx + 1}`,
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3.5 h-3.5" })
-                          }
-                        )
-                      ] }) })
-                    ]
-                  },
-                  p2.id
-                )) })
-              ] }) }) })
-            ]
-          }
-        )
-      }
-    ) }),
-    !isManager && pendingProducts.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.div,
-      {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        className: "rounded-lg px-4 py-3 flex items-center gap-3",
-        style: {
-          backgroundColor: "oklch(0.97 0.016 72 / 0.5)",
-          border: "1px solid oklch(0.78 0.18 72 / 0.3)"
-        },
-        "data-ocid": "staff_pending.card",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-4 h-4 text-amber-600 shrink-0" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-amber-800", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-semibold", children: [
-              pendingProducts.length,
-              " submission",
-              pendingProducts.length > 1 ? "s" : "",
-              " pending manager approval."
-            ] }),
-            " ",
-            "Products will appear in inventory once approved."
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      motion.div,
-      {
-        initial: { opacity: 0, y: 8 },
-        animate: { opacity: 1, y: 0 },
-        transition: { delay: 0.2 },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { className: "shadow-sm border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap items-center gap-3", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1 min-w-[200px]", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                placeholder: "Search by name or SKU…",
-                className: "pl-9",
-                value: search,
-                onChange: (e3) => setSearch(e3.target.value),
-                "data-ocid": "inventory.search_input"
-              }
-            )
-          ] }),
-          categories.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Select,
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "mt-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
             {
-              value: categoryFilter,
-              onValueChange: setCategoryFilter,
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  SelectTrigger,
-                  {
-                    className: "w-40",
-                    "data-ocid": "inventory.category_select",
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "All Categories" })
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "all", children: "All Categories" }),
-                  categories.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: c2, children: c2 }, c2))
-                ] })
-              ]
+              variant: "outline",
+              onClick: onClose,
+              "data-ocid": "inventory.edit_product.cancel_button",
+              children: "Cancel"
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
             Button,
             {
-              onClick: () => setAddProductOpen(true),
-              style: { backgroundColor: "var(--brand-red)" },
-              className: "text-white",
-              "data-ocid": "inventory.add_product_button",
+              onClick: handleSave,
+              disabled: loading,
+              "data-ocid": "inventory.edit_product.save_button",
+              style: { background: "var(--brand-red)", color: "white" },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-4 h-4 mr-1.5" }),
-                "Add Product"
+                loading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                "Save Changes"
               ]
             }
-          ),
-          isManager && selectedIds.size > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-muted-foreground", children: [
-              selectedIds.size,
-              " selected"
-            ] }),
+          )
+        ] })
+      ]
+    }
+  ) });
+}
+function StockUpdateModal({
+  product,
+  onClose
+}) {
+  const addTx = useAddStockTransaction();
+  const qc = useQueryClient();
+  const [txType, setTxType] = reactExports.useState("purchase");
+  const [quantityChange, setQuantityChange] = reactExports.useState("");
+  const [note, setNote] = reactExports.useState("");
+  const [txDate, setTxDate] = reactExports.useState(todayISO());
+  const [loading, setLoading] = reactExports.useState(false);
+  function reset() {
+    setTxType("purchase");
+    setQuantityChange("");
+    setNote("");
+    setTxDate(todayISO());
+  }
+  async function handleSubmit() {
+    if (!product) return;
+    if (!quantityChange || Number(quantityChange) <= 0) {
+      ue.error("Enter a valid quantity");
+      return;
+    }
+    setLoading(true);
+    try {
+      await addTx.mutateAsync({
+        productId: product.id,
+        txType,
+        quantityChange: BigInt(Number(quantityChange)),
+        note,
+        transactionDate: txDate
+      });
+      qc.invalidateQueries({ queryKey: ["inventory"] });
+      qc.invalidateQueries({ queryKey: ["stockTransactions"] });
+      ue.success("Stock updated");
+      reset();
+      onClose();
+    } catch (err) {
+      console.error(err);
+      ue.error("Failed to update stock");
+    } finally {
+      setLoading(false);
+    }
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: !!product, onOpenChange: (v2) => !v2 && onClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "sm:max-w-sm",
+      "data-ocid": "inventory.stock_update.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { children: [
+          "Stock Update — ",
+          product == null ? void 0 : product.name
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Transaction Type" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: txType, onValueChange: setTxType, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "inventory.stock_tx_type.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "purchase", children: "Purchase (In)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "sale", children: "Sale (Out)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "adjustment", children: "Adjustment" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Quantity" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
+              Input,
               {
-                size: "sm",
-                variant: "outline",
-                onClick: () => setBulkActionType("prices"),
-                "data-ocid": "inventory.bulk_prices_button",
-                children: "Update Prices"
+                type: "number",
+                value: quantityChange,
+                onChange: (e3) => setQuantityChange(e3.target.value),
+                placeholder: "e.g. 10",
+                "data-ocid": "inventory.stock_qty.input"
               }
-            ),
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Date" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button,
+              Input,
               {
-                size: "sm",
-                variant: "outline",
-                onClick: () => setBulkActionType("reorder"),
-                "data-ocid": "inventory.bulk_reorder_button",
-                children: "Update Reorder"
+                type: "date",
+                value: txDate,
+                onChange: (e3) => setTxDate(e3.target.value),
+                "data-ocid": "inventory.stock_date.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Note" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: note,
+                onChange: (e3) => setNote(e3.target.value),
+                placeholder: "Optional note",
+                "data-ocid": "inventory.stock_note.input"
               }
             )
           ] })
-        ] }) }) })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      motion.div,
-      {
-        initial: { opacity: 0, y: 8 },
-        animate: { opacity: 1, y: 0 },
-        transition: { delay: 0.25 },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-sm border-border", "data-ocid": "inventory.table", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3 border-b border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base", children: [
-              "Products (",
-              filteredProducts.length,
-              ")"
-            ] }),
-            filteredProducts.length === 0 && search && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs text-muted-foreground", children: [
-              'No results for "',
-              search,
-              '"'
-            ] })
-          ] }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: filteredProducts.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "mt-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
             {
-              className: "flex flex-col items-center justify-center py-16 text-center",
-              "data-ocid": "inventory.empty_state",
+              variant: "outline",
+              onClick: onClose,
+              "data-ocid": "inventory.stock_update.cancel_button",
+              children: "Cancel"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              onClick: handleSubmit,
+              disabled: loading,
+              "data-ocid": "inventory.stock_update.submit_button",
+              style: { background: "var(--brand-red)", color: "white" },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Box, { className: "w-12 h-12 text-muted-foreground/30 mb-3" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-medium", children: "No products found" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground/70 mt-1", children: search || categoryFilter !== "all" ? "Try adjusting your search or filters" : "Add your first product to get started" }),
-                !search && categoryFilter === "all" && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  Button,
-                  {
-                    className: "mt-4",
-                    size: "sm",
-                    onClick: () => setAddProductOpen(true),
-                    style: { backgroundColor: "var(--brand-red)" },
-                    "data-ocid": "inventory.empty_add_button",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(CirclePlus, { className: "w-4 h-4 mr-1.5" }),
-                      "Add First Product"
-                    ]
-                  }
-                )
+                loading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                "Update Stock"
               ]
             }
-          ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "border-border bg-muted/30", children: [
-              isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "w-10 pl-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Checkbox,
-                {
-                  checked: allFilteredSelected,
-                  onCheckedChange: toggleSelectAll,
-                  "aria-label": "Select all",
-                  "data-ocid": "inventory.select_all_checkbox"
-                }
-              ) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none",
-                  onClick: () => handleSort("name"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
-                    "Product ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "name" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none",
-                  onClick: () => handleSort("sku"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
-                    "SKU ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "sku" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none",
-                  onClick: () => handleSort("category"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
-                    "Category ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "category" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none text-right",
-                  onClick: () => handleSort("quantity"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center justify-end", children: [
-                    "Qty ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "quantity" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none text-right",
-                  onClick: () => handleSort("unitCost"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center justify-end", children: [
-                    "Unit Cost ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "unitCost" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none text-right",
-                  onClick: () => handleSort("salePrice"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center justify-end", children: [
-                    "Sale Price ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "salePrice" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none text-right",
-                  onClick: () => handleSort("reorderPoint"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center justify-end", children: [
-                    "Reorder ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "reorderPoint" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                TableHead,
-                {
-                  className: "cursor-pointer select-none",
-                  onClick: () => handleSort("status"),
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center", children: [
-                    "Status ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "status" })
-                  ] })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Actions" })
-            ] }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: filteredProducts.map((p2, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              TableRow,
-              {
-                className: "border-border hover:bg-muted/20 transition-colors",
-                "data-ocid": `inventory.item.${idx + 1}`,
-                children: [
-                  isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "pl-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Checkbox,
-                    {
-                      checked: selectedIds.has(String(p2.id)),
-                      onCheckedChange: () => toggleSelect(String(p2.id)),
-                      "data-ocid": `inventory.checkbox.${idx + 1}`
-                    }
-                  ) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-sm text-foreground", children: p2.name }),
-                    p2.description && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground truncate max-w-[200px]", children: p2.description })
-                  ] }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-xs", children: p2.sku }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm", children: p2.category || "—" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm font-medium", children: Number(p2.quantity) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: formatINR(p2.unitCost) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: formatINR(p2.salePrice) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: Number(p2.reorderPoint) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    StatusBadgeInv,
-                    {
-                      qty: Number(p2.quantity),
-                      reorder: Number(p2.reorderPoint)
-                    }
-                  ) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-end gap-1", children: [
-                    isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button,
-                        {
-                          size: "icon",
-                          variant: "ghost",
-                          className: "h-7 w-7",
-                          title: "Update Stock",
-                          onClick: () => setStockUpdateProduct(p2),
-                          "data-ocid": `inventory.stock_update_button.${idx + 1}`,
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3.5 h-3.5" })
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button,
-                        {
-                          size: "icon",
-                          variant: "ghost",
-                          className: "h-7 w-7 text-blue-600 hover:bg-blue-50",
-                          title: "Edit",
-                          onClick: () => setEditProductTarget(p2),
-                          "data-ocid": `inventory.edit_button.${idx + 1}`,
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "w-3.5 h-3.5" })
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button,
-                        {
-                          size: "icon",
-                          variant: "ghost",
-                          className: "h-7 w-7 text-red-600 hover:bg-red-50",
-                          title: "Delete",
-                          onClick: () => setDeleteProductId(p2.id),
-                          "data-ocid": `inventory.delete_button.${idx + 1}`,
-                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3.5 h-3.5" })
-                        }
-                      )
-                    ] }),
-                    !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground italic", children: "View only" })
-                  ] }) })
-                ]
-              },
-              String(p2.id)
-            )) })
-          ] }) }) })
+          )
         ] })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      motion.div,
-      {
-        initial: { opacity: 0, y: 8 },
-        animate: { opacity: 1, y: 0 },
-        transition: { delay: 0.3 },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-sm border-border", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3 border-b border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base flex items-center gap-2", children: [
+      ]
+    }
+  ) });
+}
+function BulkUpdateModal({
+  open,
+  selectedIds,
+  onClose
+}) {
+  const bulkUpdate = useBulkUpdateProducts();
+  const qc = useQueryClient();
+  const [unitCost, setUnitCost] = reactExports.useState("");
+  const [salePrice, setSalePrice] = reactExports.useState("");
+  const [reorderPoint, setReorderPoint] = reactExports.useState("");
+  const [loading, setLoading] = reactExports.useState(false);
+  function handleClose() {
+    setUnitCost("");
+    setSalePrice("");
+    setReorderPoint("");
+    onClose();
+  }
+  async function handleSubmit() {
+    setLoading(true);
+    try {
+      const n2 = selectedIds.length;
+      const uc = unitCost ? Number(unitCost) : void 0;
+      const sp = salePrice ? Number(salePrice) : void 0;
+      const rp = reorderPoint ? BigInt(Number(reorderPoint)) : void 0;
+      await bulkUpdate.mutateAsync({
+        ids: selectedIds,
+        unitCosts: uc !== void 0 ? Array(n2).fill(uc) : Array(n2).fill(0),
+        salePrices: sp !== void 0 ? Array(n2).fill(sp) : Array(n2).fill(0),
+        reorderPoints: rp !== void 0 ? Array(n2).fill(rp) : Array(n2).fill(BigInt(0))
+      });
+      qc.invalidateQueries({ queryKey: ["inventory"] });
+      ue.success(`Updated ${n2} products`);
+      handleClose();
+    } catch (err) {
+      console.error(err);
+      ue.error("Bulk update failed");
+    } finally {
+      setLoading(false);
+    }
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange: (v2) => !v2 && handleClose(), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "sm:max-w-sm",
+      "data-ocid": "inventory.bulk_update.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { children: [
+          "Bulk Update (",
+          selectedIds.length,
+          " items)"
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Unit Cost (₹) — leave blank to skip" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ShoppingCart,
+              Input,
               {
-                className: "w-4 h-4",
-                style: { color: "var(--brand-red)" }
+                type: "number",
+                value: unitCost,
+                onChange: (e3) => setUnitCost(e3.target.value),
+                placeholder: "No change",
+                "data-ocid": "inventory.bulk_cost.input"
               }
-            ),
-            "Today's Transactions",
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "secondary", className: "text-xs", children: todayTxs.length })
-          ] }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: txLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Sale Price (₹) — leave blank to skip" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: salePrice,
+                onChange: (e3) => setSalePrice(e3.target.value),
+                placeholder: "No change",
+                "data-ocid": "inventory.bulk_price.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { children: "Reorder Point — leave blank to skip" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                type: "number",
+                value: reorderPoint,
+                onChange: (e3) => setReorderPoint(e3.target.value),
+                placeholder: "No change",
+                "data-ocid": "inventory.bulk_reorder.input"
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { className: "mt-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
             {
-              className: "p-6 space-y-2",
-              "data-ocid": "transactions.loading_state",
-              children: [1, 2, 3].map((i) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-8 rounded" }, i))
+              variant: "outline",
+              onClick: handleClose,
+              "data-ocid": "inventory.bulk_update.cancel_button",
+              children: "Cancel"
             }
-          ) : todayTxs.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
             {
-              className: "flex flex-col items-center justify-center py-10",
-              "data-ocid": "transactions.empty_state",
+              onClick: handleSubmit,
+              disabled: loading,
+              "data-ocid": "inventory.bulk_update.submit_button",
+              style: { background: "var(--brand-red)", color: "white" },
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingCart, { className: "w-8 h-8 text-muted-foreground/30 mb-2" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "No transactions recorded today" })
+                loading && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                "Apply Updates"
               ]
             }
-          ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "border-border bg-muted/30", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Product" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Type" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Change" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Note" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Time" })
-            ] }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: todayTxs.map((tx, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              TableRow,
-              {
-                className: "border-border",
-                "data-ocid": `transactions.item.${idx + 1}`,
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium text-sm", children: productMap.get(String(tx.productId)) ?? "Unknown" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Badge,
-                    {
-                      className: `text-xs ${txTypeColor(tx.transactionType)}`,
-                      children: tx.transactionType
-                    }
-                  ) }),
+          )
+        ] })
+      ]
+    }
+  ) });
+}
+function PendingApprovalsPanel({
+  pending,
+  onApprove,
+  onEdit,
+  onDelete,
+  approvingIds
+}) {
+  if (pending.length === 0) return null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    motion.div,
+    {
+      initial: { opacity: 0, y: -10 },
+      animate: { opacity: 1, y: 0 },
+      className: "mb-6",
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-amber-300", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "py-3 px-4 bg-amber-50 border-b border-amber-200 rounded-t-lg", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-amber-800 flex items-center gap-2 text-base", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TriangleAlert, { className: "h-5 w-5" }),
+          "Pending Staff Approvals (",
+          pending.length,
+          ")"
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "bg-amber-50/50", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Product Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "SKU" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Category" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Qty" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Unit Cost" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Submitted By" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Submitted At" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: pending.map((p2, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableRow,
+            {
+              "data-ocid": `inventory.pending_approvals.item.${i + 1}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium", children: p2.name }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-xs", children: p2.sku }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: p2.category }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: p2.quantity }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: formatINR(p2.unitCost) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: p2.submittedByUserId }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: new Date(p2.submittedAt).toLocaleString("en-IN") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1 justify-end", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    TableCell,
+                    Button,
                     {
-                      className: `text-right font-bold text-sm ${Number(tx.quantityChange) >= 0 ? "text-green-600" : "text-red-600"}`,
+                      size: "sm",
+                      onClick: () => onApprove(p2),
+                      disabled: approvingIds.has(p2.id),
+                      className: "bg-green-600 hover:bg-green-700 text-white h-7 px-2 text-xs",
+                      "data-ocid": `inventory.approve.button.${i + 1}`,
                       children: [
-                        Number(tx.quantityChange) >= 0 ? "+" : "",
-                        Number(tx.quantityChange)
+                        approvingIds.has(p2.id) ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "h-3 w-3 animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { className: "h-3 w-3 mr-1" }),
+                        "Approve"
                       ]
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm text-muted-foreground", children: tx.note || "—" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-muted-foreground", children: formatTime(tx.createdAt) })
-                ]
-              },
-              String(tx.id)
-            )) })
-          ] }) }) })
-        ] })
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => onEdit(p2),
+                      className: "h-7 px-2 text-xs text-blue-600 border-blue-300",
+                      "data-ocid": `inventory.pending_edit.button.${i + 1}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "h-3 w-3 mr-1" }),
+                        "Edit"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => onDelete(p2.id),
+                      className: "h-7 px-2 text-xs text-red-600 border-red-300",
+                      "data-ocid": `inventory.pending_delete.button.${i + 1}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { className: "h-3 w-3 mr-1" }),
+                        "Delete"
+                      ]
+                    }
+                  )
+                ] }) })
+              ]
+            },
+            p2.id
+          )) })
+        ] }) }) })
+      ] })
+    }
+  );
+}
+function MetricCards({
+  products,
+  todayTxCount
+}) {
+  const totalValue = products.reduce(
+    (acc, p2) => acc + Number(p2.quantity) * p2.unitCost,
+    0
+  );
+  const lowStock = products.filter(
+    (p2) => Number(p2.quantity) > 0 && Number(p2.quantity) <= Number(p2.reorderPoint)
+  ).length;
+  const outOfStock = products.filter((p2) => Number(p2.quantity) === 0).length;
+  const metrics = [
+    {
+      label: "Total Inventory Value",
+      value: formatINR(totalValue),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PackageSearch, { className: "h-5 w-5" }),
+      color: "#462980",
+      bg: "#f3f0ff"
+    },
+    {
+      label: "Low Stock Items",
+      value: String(lowStock),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(TrendingDown, { className: "h-5 w-5" }),
+      color: "#d97706",
+      bg: "#fffbeb"
+    },
+    {
+      label: "Out of Stock",
+      value: String(outOfStock),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(TriangleAlert, { className: "h-5 w-5" }),
+      color: "#dc2626",
+      bg: "#fef2f2"
+    },
+    {
+      label: "Today's Transactions",
+      value: String(todayTxCount),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "h-5 w-5" }),
+      color: "#16a34a",
+      bg: "#f0fdf4"
+    }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-6", children: metrics.map((m2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Card,
+    {
+      className: "border",
+      style: { borderColor: `${m2.color}30` },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 mb-1", children: m2.label }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl font-bold", style: { color: m2.color }, children: m2.value })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "rounded-lg p-2",
+            style: { background: m2.bg, color: m2.color },
+            children: m2.icon
+          }
+        )
+      ] }) })
+    },
+    m2.label
+  )) });
+}
+function Inventory() {
+  const { isManager } = useInventoryAuth();
+  const { data: backendProducts = [], isLoading } = useInventoryProducts();
+  const { data: todayTxs = [] } = useTodayStockTransactions(todayISO());
+  const deleteProduct = useDeleteProduct();
+  const qc = useQueryClient();
+  const [showManagerLogin, setShowManagerLogin] = reactExports.useState(false);
+  const [pendingProducts, setPendingProducts] = reactExports.useState(
+    () => loadPending()
+  );
+  const [localApprovedProducts, setLocalApprovedProducts] = reactExports.useState(() => loadApproved());
+  reactExports.useEffect(() => {
+    savePending(pendingProducts);
+  }, [pendingProducts]);
+  reactExports.useEffect(() => {
+    saveApproved(localApprovedProducts);
+  }, [localApprovedProducts]);
+  const [approvingIds, setApprovingIds] = reactExports.useState(/* @__PURE__ */ new Set());
+  const [showAddProduct, setShowAddProduct] = reactExports.useState(false);
+  const [editingProduct, setEditingProduct] = reactExports.useState(
+    null
+  );
+  const [deletingProductId, setDeletingProductId] = reactExports.useState(
+    null
+  );
+  const [stockUpdateProduct, setStockUpdateProduct] = reactExports.useState(null);
+  const [pendingEditItem, setPendingEditItem] = reactExports.useState(
+    null
+  );
+  const [showBulkModal, setShowBulkModal] = reactExports.useState(false);
+  const [search, setSearch] = reactExports.useState("");
+  const [categoryFilter, setCategoryFilter] = reactExports.useState("all");
+  const [sortField, setSortField] = reactExports.useState("name");
+  const [sortAsc, setSortAsc] = reactExports.useState(true);
+  const [selectedIds, setSelectedIds] = reactExports.useState(/* @__PURE__ */ new Set());
+  const [txPanelOpen, setTxPanelOpen] = reactExports.useState(false);
+  const mergedProducts = reactExports.useMemo(() => {
+    const backendSkus = new Set(backendProducts.map((p2) => p2.sku));
+    const newLocal = localApprovedProducts.filter(
+      (p2) => !backendSkus.has(p2.sku)
+    );
+    return [...backendProducts, ...newLocal];
+  }, [backendProducts, localApprovedProducts]);
+  const categories = reactExports.useMemo(() => {
+    const cats = new Set(mergedProducts.map((p2) => p2.category).filter(Boolean));
+    return ["all", ...Array.from(cats)];
+  }, [mergedProducts]);
+  const displayProducts = reactExports.useMemo(() => {
+    let list = mergedProducts;
+    if (search) {
+      const q2 = search.toLowerCase();
+      list = list.filter(
+        (p2) => p2.name.toLowerCase().includes(q2) || p2.sku.toLowerCase().includes(q2) || p2.category.toLowerCase().includes(q2)
+      );
+    }
+    if (categoryFilter !== "all") {
+      list = list.filter((p2) => p2.category === categoryFilter);
+    }
+    list = [...list].sort((a2, b2) => {
+      let valA;
+      let valB;
+      switch (sortField) {
+        case "name":
+          valA = a2.name;
+          valB = b2.name;
+          break;
+        case "sku":
+          valA = a2.sku;
+          valB = b2.sku;
+          break;
+        case "category":
+          valA = a2.category;
+          valB = b2.category;
+          break;
+        case "quantity":
+          valA = Number(a2.quantity);
+          valB = Number(b2.quantity);
+          break;
+        case "unitCost":
+          valA = a2.unitCost;
+          valB = b2.unitCost;
+          break;
+        case "salePrice":
+          valA = a2.salePrice;
+          valB = b2.salePrice;
+          break;
+        case "reorderPoint":
+          valA = Number(a2.reorderPoint);
+          valB = Number(b2.reorderPoint);
+          break;
+        default:
+          valA = a2.name;
+          valB = b2.name;
       }
-    ),
+      if (valA < valB) return sortAsc ? -1 : 1;
+      if (valA > valB) return sortAsc ? 1 : -1;
+      return 0;
+    });
+    return list;
+  }, [mergedProducts, search, categoryFilter, sortField, sortAsc]);
+  function toggleSort(field) {
+    if (sortField === field) setSortAsc((v2) => !v2);
+    else {
+      setSortField(field);
+      setSortAsc(true);
+    }
+  }
+  function SortIcon({ field }) {
+    if (sortField !== field)
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-1 text-gray-300", children: "↕" });
+    return sortAsc ? /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { className: "inline h-3 w-3 ml-1" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "inline h-3 w-3 ml-1" });
+  }
+  function handlePendingAdd(p2) {
+    setPendingProducts((prev) => [...prev, p2]);
+  }
+  const handleApprove = reactExports.useCallback(
+    (p2) => {
+      const fakeId = BigInt(Date.now());
+      const approvedProduct = {
+        id: fakeId,
+        name: p2.name,
+        description: p2.description,
+        sku: p2.sku,
+        barcode: "",
+        category: p2.category,
+        quantity: BigInt(p2.quantity),
+        unitCost: p2.unitCost,
+        salePrice: p2.salePrice,
+        reorderPoint: BigInt(p2.reorderPoint),
+        createdAt: BigInt(Date.now()),
+        _local: true
+      };
+      setPendingProducts((prev) => prev.filter((x3) => x3.id !== p2.id));
+      setLocalApprovedProducts((prev) => {
+        const withoutDupe = prev.filter((x3) => x3.sku !== p2.sku);
+        return [...withoutDupe, approvedProduct];
+      });
+      setApprovingIds((prev) => {
+        const s2 = new Set(prev);
+        s2.add(p2.id);
+        return s2;
+      });
+      ue.success(`"${p2.name}" approved and added to inventory`);
+      void (async () => {
+        try {
+          await qc.invalidateQueries({ queryKey: ["inventory"] });
+        } catch (err) {
+          console.error("Background sync error:", err);
+        } finally {
+          setApprovingIds((prev) => {
+            const s2 = new Set(prev);
+            s2.delete(p2.id);
+            return s2;
+          });
+        }
+      })();
+    },
+    [qc]
+  );
+  function handlePendingDelete(id2) {
+    setPendingProducts((prev) => prev.filter((p2) => p2.id !== id2));
+    ue.success("Pending submission removed");
+  }
+  function handlePendingSave(updated) {
+    setPendingProducts(
+      (prev) => prev.map((p2) => p2.id === updated.id ? updated : p2)
+    );
+    ue.success("Pending submission updated");
+  }
+  async function handleDeleteProduct() {
+    if (!deletingProductId) return;
+    try {
+      await deleteProduct.mutateAsync(deletingProductId);
+      setLocalApprovedProducts(
+        (prev) => prev.filter((p2) => p2.id !== deletingProductId)
+      );
+      qc.invalidateQueries({ queryKey: ["inventory"] });
+      ue.success("Product deleted");
+    } catch (err) {
+      console.error(err);
+      ue.error("Failed to delete product");
+    } finally {
+      setDeletingProductId(null);
+    }
+  }
+  function toggleSelect(id2) {
+    setSelectedIds((prev) => {
+      const s2 = new Set(prev);
+      if (s2.has(id2)) s2.delete(id2);
+      else s2.add(id2);
+      return s2;
+    });
+  }
+  function toggleSelectAll() {
+    if (selectedIds.size === displayProducts.length) {
+      setSelectedIds(/* @__PURE__ */ new Set());
+    } else {
+      setSelectedIds(new Set(displayProducts.map((p2) => p2.id)));
+    }
+  }
+  function StatusBadge2({ product }) {
+    const { label, color: color2 } = getStatusLabel(product);
+    const cls = color2 === "green" ? "bg-green-100 text-green-800" : color2 === "amber" ? "bg-amber-100 text-amber-800" : "bg-red-100 text-red-800";
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `px-2 py-0.5 rounded-full text-xs font-medium ${cls}`, children: label });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-4 md:p-6 max-w-7xl mx-auto", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcher, { onSwitchToManager: () => setShowManagerLogin(true) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       ManagerLoginModal,
       {
-        open: managerLoginOpen,
-        onClose: () => setManagerLoginOpen(false)
+        open: showManagerLogin,
+        onClose: () => setShowManagerLogin(false)
       }
     ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(MetricCards, { products: mergedProducts, todayTxCount: todayTxs.length }),
+    isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PendingApprovalsPanel,
+      {
+        pending: pendingProducts,
+        onApprove: handleApprove,
+        onEdit: setPendingEditItem,
+        onDelete: handlePendingDelete,
+        approvingIds
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "mb-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { className: "pb-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base font-semibold", children: "Inventory Products" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-2", children: [
+            isManager && selectedIds.size > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                variant: "outline",
+                onClick: () => setShowBulkModal(true),
+                "data-ocid": "inventory.bulk_update.button",
+                children: [
+                  "Bulk Update (",
+                  selectedIds.size,
+                  ")"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                size: "sm",
+                onClick: () => setShowAddProduct(true),
+                "data-ocid": "inventory.add_product.open_modal_button",
+                style: { background: "var(--brand-red)", color: "white" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "h-4 w-4 mr-1" }),
+                  "Add Product"
+                ]
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-2 mt-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: search,
+                onChange: (e3) => setSearch(e3.target.value),
+                placeholder: "Search by name, SKU, category…",
+                className: "pl-9",
+                "data-ocid": "inventory.search.search_input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: categoryFilter, onValueChange: setCategoryFilter, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              SelectTrigger,
+              {
+                className: "w-full sm:w-48",
+                "data-ocid": "inventory.category_filter.select",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "All categories" })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: categories.map((c2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: c2, children: c2 === "all" ? "All Categories" : c2 }, c2)) })
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: "flex items-center justify-center py-16",
+          "data-ocid": "inventory.table.loading_state",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            LoaderCircle,
+            {
+              className: "h-8 w-8 animate-spin",
+              style: { color: "var(--brand-red)" }
+            }
+          )
+        }
+      ) : displayProducts.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "flex flex-col items-center justify-center py-16 text-gray-400",
+          "data-ocid": "inventory.table.empty_state",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(PackageSearch, { className: "h-12 w-12 mb-3" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "No products found" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: "Add a product to get started" })
+          ]
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
+          isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "w-10", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Checkbox,
+            {
+              checked: selectedIds.size > 0 && selectedIds.size === displayProducts.length,
+              onCheckedChange: toggleSelectAll,
+              "data-ocid": "inventory.select_all.checkbox"
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer",
+              onClick: () => toggleSort("name"),
+              children: [
+                "Name ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "name" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer",
+              onClick: () => toggleSort("sku"),
+              children: [
+                "SKU ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "sku" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer",
+              onClick: () => toggleSort("category"),
+              children: [
+                "Category ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "category" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer text-right",
+              onClick: () => toggleSort("quantity"),
+              children: [
+                "Qty ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "quantity" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer text-right",
+              onClick: () => toggleSort("unitCost"),
+              children: [
+                "Unit Cost ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "unitCost" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer text-right",
+              onClick: () => toggleSort("salePrice"),
+              children: [
+                "Sale Price ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "salePrice" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            TableHead,
+            {
+              className: "cursor-pointer text-right",
+              onClick: () => toggleSort("reorderPoint"),
+              children: [
+                "Reorder Pt ",
+                /* @__PURE__ */ jsxRuntimeExports.jsx(SortIcon, { field: "reorderPoint" })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Status" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-right", children: "Actions" })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: displayProducts.map((product, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TableRow,
+          {
+            "data-ocid": `inventory.product.item.${i + 1}`,
+            children: [
+              isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Checkbox,
+                {
+                  checked: selectedIds.has(product.id),
+                  onCheckedChange: () => toggleSelect(product.id),
+                  "data-ocid": `inventory.product.checkbox.${i + 1}`
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium text-sm", children: product.name }),
+                product.description && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500 truncate max-w-xs", children: product.description })
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-xs", children: product.sku }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "secondary", className: "text-xs", children: product.category }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right font-medium", children: String(product.quantity) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: formatINR(product.unitCost) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: formatINR(product.salePrice) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right text-sm", children: String(product.reorderPoint) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(StatusBadge2, { product }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1 justify-end", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    size: "sm",
+                    variant: "outline",
+                    onClick: () => setStockUpdateProduct(product),
+                    className: "h-7 px-2 text-xs",
+                    "data-ocid": `inventory.stock_update.button.${i + 1}`,
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "h-3 w-3 mr-1" }),
+                      "Stock"
+                    ]
+                  }
+                ),
+                isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => setEditingProduct(product),
+                      className: "h-7 px-2 text-xs text-blue-600 border-blue-300",
+                      "data-ocid": `inventory.edit.button.${i + 1}`,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { className: "h-3 w-3" })
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => setDeletingProductId(product.id),
+                      className: "h-7 px-2 text-xs text-red-600 border-red-300",
+                      "data-ocid": `inventory.delete.button.${i + 1}`,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "h-3 w-3" })
+                    }
+                  )
+                ] })
+              ] }) })
+            ]
+          },
+          String(product.id)
+        )) })
+      ] }) }) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "mb-6", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        CardHeader,
+        {
+          className: "py-3 px-4 cursor-pointer flex flex-row items-center justify-between",
+          onClick: () => setTxPanelOpen((v2) => !v2),
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-semibold", children: [
+              "Today's Stock Transactions (",
+              todayTxs.length,
+              ")"
+            ] }),
+            txPanelOpen ? /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "h-4 w-4" })
+          ]
+        }
+      ),
+      txPanelOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: todayTxs.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: "text-center py-8 text-gray-400 text-sm",
+          "data-ocid": "inventory.transactions.empty_state",
+          children: "No stock transactions today"
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Product ID" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Type" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Qty Change" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Date" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { children: "Note" })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: todayTxs.map((tx, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TableRow,
+          {
+            "data-ocid": `inventory.tx.item.${i + 1}`,
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-xs", children: String(tx.productId) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "secondary",
+                  className: tx.transactionType === "purchase" ? "bg-green-100 text-green-800" : tx.transactionType === "sale" ? "bg-blue-100 text-blue-800" : "bg-gray-100 text-gray-800",
+                  children: tx.transactionType
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: String(tx.quantityChange) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { children: tx.transactionDate }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-sm text-gray-600", children: tx.note })
+            ]
+          },
+          String(tx.id)
+        )) })
+      ] }) }) })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       AddProductModal,
       {
-        open: addProductOpen,
-        onClose: () => setAddProductOpen(false),
+        open: showAddProduct,
+        onClose: () => setShowAddProduct(false),
         isManager,
-        pendingProducts,
         onPendingAdd: handlePendingAdd
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       EditProductModal,
       {
-        product: editProductTarget,
-        onClose: () => setEditProductTarget(null)
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      PendingEditModal,
-      {
-        pending: pendingEditTarget,
-        onSave: handlePendingEdit,
-        onClose: () => setPendingEditTarget(null)
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      AlertDialog,
-      {
-        open: deleteProductId !== null,
-        onOpenChange: (v2) => !v2 && setDeleteProductId(null),
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "delete_product.dialog", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Delete Product" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This will permanently remove the product from inventory. This action cannot be undone." })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "delete_product.cancel_button", children: "Cancel" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              AlertDialogAction,
-              {
-                className: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-                onClick: handleDeleteProduct,
-                "data-ocid": "delete_product.confirm_button",
-                children: [
-                  deleteProductMut.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "w-4 h-4 mr-1.5 animate-spin" }) : null,
-                  "Delete Product"
-                ]
-              }
-            )
-          ] })
-        ] })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      AlertDialog,
-      {
-        open: pendingDeleteId !== null,
-        onOpenChange: (v2) => !v2 && setPendingDeleteId(null),
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { "data-ocid": "delete_pending.dialog", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Remove Pending Submission" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogDescription, { children: "This will remove the pending product submission. It will not be added to inventory." })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogCancel, { "data-ocid": "delete_pending.cancel_button", children: "Cancel" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              AlertDialogAction,
-              {
-                className: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-                onClick: () => pendingDeleteId && handlePendingDelete(pendingDeleteId),
-                "data-ocid": "delete_pending.confirm_button",
-                children: "Remove"
-              }
-            )
-          ] })
-        ] })
+        product: editingProduct,
+        onClose: () => setEditingProduct(null)
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -92954,19 +92415,67 @@ function InventoryInner() {
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
+      PendingEditModal,
+      {
+        pending: pendingEditItem,
+        onClose: () => setPendingEditItem(null),
+        onSave: handlePendingSave
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
       BulkUpdateModal,
       {
-        actionType: bulkActionType,
-        selectedCount: selectedIds.size,
-        onClose: () => setBulkActionType(null),
-        onSubmit: handleBulkUpdate,
-        isPending: bulkUpdateMut.isPending
+        open: showBulkModal,
+        selectedIds: Array.from(selectedIds),
+        onClose: () => {
+          setShowBulkModal(false);
+          setSelectedIds(/* @__PURE__ */ new Set());
+        }
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Dialog,
+      {
+        open: !!deletingProductId,
+        onOpenChange: (v2) => !v2 && setDeletingProductId(null),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          DialogContent,
+          {
+            className: "sm:max-w-sm",
+            "data-ocid": "inventory.delete_confirm.dialog",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Confirm Delete" }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-600", children: "Are you sure you want to delete this product? This action cannot be undone." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button,
+                  {
+                    variant: "outline",
+                    onClick: () => setDeletingProductId(null),
+                    "data-ocid": "inventory.delete_confirm.cancel_button",
+                    children: "Cancel"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Button,
+                  {
+                    variant: "destructive",
+                    onClick: handleDeleteProduct,
+                    disabled: deleteProduct.isPending,
+                    "data-ocid": "inventory.delete_confirm.confirm_button",
+                    children: [
+                      deleteProduct.isPending && /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                      "Delete"
+                    ]
+                  }
+                )
+              ] })
+            ]
+          }
+        )
       }
     )
   ] });
-}
-function Inventory() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(InventoryInner, {});
 }
 const STORAGE_KEY = "fino_merchants";
 function loadMerchants() {
@@ -94073,6 +93582,49 @@ function PaymentHeads() {
       }
     )
   ] });
+}
+var NAME = "Separator";
+var DEFAULT_ORIENTATION = "horizontal";
+var ORIENTATIONS = ["horizontal", "vertical"];
+var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
+  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
+  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
+  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.div,
+    {
+      "data-orientation": orientation,
+      ...semanticProps,
+      ...domProps,
+      ref: forwardedRef
+    }
+  );
+});
+Separator$1.displayName = NAME;
+function isValidOrientation(orientation) {
+  return ORIENTATIONS.includes(orientation);
+}
+var Root$1 = Separator$1;
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root$1,
+    {
+      "data-slot": "separator",
+      decorative,
+      orientation,
+      className: cn(
+        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      ),
+      ...props
+    }
+  );
 }
 var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
 var EVENT_OPTIONS = { bubbles: false, cancelable: true };
