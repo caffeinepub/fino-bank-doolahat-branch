@@ -1,4 +1,7 @@
-import * as XLSX from "xlsx";
+/**
+ * Excel export utilities.
+ * xlsx is loaded at runtime via CDN to avoid bundle-time resolution failures.
+ */
 import type { DailyPL, FixedDeposit, Transaction } from "../backend";
 import { formatDate, formatINR } from "./helpers";
 
@@ -6,11 +9,25 @@ const BANK_NAME = "Fino Small Finance Bank - Doolahat Branch";
 const IFSC = "FINO0001599";
 const BRANCH_LINE = "Branch: Doolahat | IFSC: FINO0001599";
 
-function setColWidths(ws: XLSX.WorkSheet, widths: number[]) {
-  ws["!cols"] = widths.map((w) => ({ wch: w }));
+/** Load xlsx from CDN (runtime only, not bundled) */
+async function getXLSX(): Promise<any> {
+  // Check if already loaded from CDN
+  if (typeof window !== "undefined" && (window as any).XLSX) {
+    return (window as any).XLSX;
+  }
+  // Try to load from CDN
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+    script.onload = () => resolve((window as any).XLSX);
+    script.onerror = () => reject(new Error("Failed to load xlsx from CDN"));
+    document.head.appendChild(script);
+  });
 }
 
-export function downloadPLReport(pls: DailyPL[], dateRangeLabel: string) {
+export async function downloadPLReport(pls: DailyPL[], dateRangeLabel: string) {
+  const XLSX = await getXLSX();
   const rows: (string | number)[][] = [
     [BANK_NAME],
     [`IFSC: ${IFSC}`],
@@ -59,13 +76,14 @@ export function downloadPLReport(pls: DailyPL[], dateRangeLabel: string) {
   rows.push(["Net Profit / Loss", formatINR(totalPL)]);
 
   const ws = XLSX.utils.aoa_to_sheet(rows);
-  setColWidths(ws, [18, 24, 22, 22, 20, 18]);
+  ws["!cols"] = [18, 24, 22, 22, 20, 18].map((w: number) => ({ wch: w }));
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "P&L Report");
   XLSX.writeFile(wb, `PL_Report_${dateRangeLabel.replace(/\s/g, "_")}.xlsx`);
 }
 
-export function downloadFDReceipt(fd: FixedDeposit) {
+export async function downloadFDReceipt(fd: FixedDeposit) {
+  const XLSX = await getXLSX();
   const rows: (string | number)[][] = [
     [BANK_NAME, "", "", ""],
     [`IFSC: ${IFSC}`, "", "", ""],
@@ -104,7 +122,7 @@ export function downloadFDReceipt(fd: FixedDeposit) {
   ];
 
   const ws = XLSX.utils.aoa_to_sheet(rows);
-  setColWidths(ws, [28, 30, 28, 20]);
+  ws["!cols"] = [28, 30, 28, 20].map((w: number) => ({ wch: w }));
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "FD Receipt");
   XLSX.writeFile(
@@ -113,7 +131,8 @@ export function downloadFDReceipt(fd: FixedDeposit) {
   );
 }
 
-export function downloadAllFDs(fds: FixedDeposit[]) {
+export async function downloadAllFDs(fds: FixedDeposit[]) {
+  const XLSX = await getXLSX();
   const rows: (string | number)[][] = [
     [BANK_NAME],
     [`IFSC: ${IFSC}`],
@@ -157,7 +176,9 @@ export function downloadAllFDs(fds: FixedDeposit[]) {
   }
 
   const ws = XLSX.utils.aoa_to_sheet(rows);
-  setColWidths(ws, [4, 24, 18, 14, 14, 14, 16, 12, 10, 16, 20, 14, 22]);
+  ws["!cols"] = [4, 24, 18, 14, 14, 14, 16, 12, 10, 16, 20, 14, 22].map(
+    (w: number) => ({ wch: w }),
+  );
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Fixed Deposits");
   XLSX.writeFile(
@@ -166,10 +187,11 @@ export function downloadAllFDs(fds: FixedDeposit[]) {
   );
 }
 
-export function downloadTransactions(
+export async function downloadTransactions(
   transactions: Transaction[],
   label = "All",
 ) {
+  const XLSX = await getXLSX();
   const rows: (string | number)[][] = [
     [BANK_NAME],
     [`IFSC: ${IFSC}`],
@@ -211,7 +233,9 @@ export function downloadTransactions(
   }
 
   const ws = XLSX.utils.aoa_to_sheet(rows);
-  setColWidths(ws, [4, 14, 18, 14, 18, 22, 18, 14, 14, 12, 22, 10]);
+  ws["!cols"] = [4, 14, 18, 14, 18, 22, 18, 14, 14, 12, 22, 10].map(
+    (w: number) => ({ wch: w }),
+  );
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Transactions");
   XLSX.writeFile(
@@ -228,7 +252,8 @@ export interface Merchant {
   address: string;
 }
 
-export function downloadMerchants(merchants: Merchant[]) {
+export async function downloadMerchants(merchants: Merchant[]) {
+  const XLSX = await getXLSX();
   const rows: (string | number)[][] = [
     ["Fino Small Finance Bank - Doolahat Branch"],
     ["IFSC: FINO0001599"],

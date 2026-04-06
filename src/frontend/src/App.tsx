@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import NavTabs from "./components/NavTabs";
 import { InventoryAuthProvider } from "./context/InventoryAuthContext";
+import Complaints from "./pages/Complaints";
 import DailyPLEntry from "./pages/DailyPLEntry";
 import Dashboard from "./pages/Dashboard";
 import FixedDeposits from "./pages/FixedDeposits";
@@ -20,7 +21,8 @@ export type TabId =
   | "transactions"
   | "payment-heads"
   | "merchants"
-  | "inventory";
+  | "inventory"
+  | "complaints";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>("dashboard");
@@ -43,6 +45,8 @@ export default function App() {
         return <Merchants />;
       case "inventory":
         return <Inventory />;
+      case "complaints":
+        return <Complaints />;
       default:
         return <Dashboard onNavigate={setActiveTab} />;
     }
@@ -114,6 +118,7 @@ export default function App() {
                       ["transactions", "Transactions"],
                       ["merchants", "Merchants"],
                       ["inventory", "Inventory"],
+                      ["complaints", "Complaints"],
                     ] as [TabId, string][]
                   ).map(([tab, label]) => (
                     <li key={tab}>

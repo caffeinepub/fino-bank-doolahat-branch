@@ -15,6 +15,7 @@ const tabs: { id: TabId; label: string }[] = [
   { id: "payment-heads", label: "Payment Heads" },
   { id: "merchants", label: "Merchants" },
   { id: "inventory", label: "Inventory" },
+  { id: "complaints", label: "Complaints" },
 ];
 
 export default function NavTabs({ activeTab, onTabChange }: NavTabsProps) {

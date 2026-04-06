@@ -149,6 +149,29 @@ actor {
   let stockTransactions = Map.empty<Nat, StockTransaction>();
   var nextStockTxId = 1;
 
+  // 6. Customer Complaint Types & Logic
+  type Complaint = {
+    id : Nat;
+    customerName : Text;
+    contactNo : Text;
+    accountNo : Text;
+    aadharNo : Text;
+    panNo : Text;
+    dateOfComplaint : Text;
+    complaintBrief : Text;
+    status : Text;
+    createdAt : Int;
+  };
+
+  module Complaint {
+    public func compareById(c1 : Complaint, c2 : Complaint) : Order.Order {
+      Nat.compare(c1.id, c2.id);
+    };
+  };
+
+  let complaints = Map.empty<Nat, Complaint>();
+  var nextComplaintId = 1;
+
   // Seed Default Payment Heads
   func seedDefaultPaymentHeads() {
     addPaymentHeadInternal("Cash Balance", "both", true);
@@ -510,5 +533,105 @@ actor {
       };
       i += 1;
     };
+  };
+
+  // 6. Complaints - Add
+  public shared ({ caller = _ }) func addComplaint(
+    customerName : Text,
+    contactNo : Text,
+    accountNo : Text,
+    aadharNo : Text,
+    panNo : Text,
+    dateOfComplaint : Text,
+    complaintBrief : Text,
+    status : Text,
+  ) : async Nat {
+    let complaint : Complaint = {
+      id = nextComplaintId;
+      customerName;
+      contactNo;
+      accountNo;
+      aadharNo;
+      panNo;
+      dateOfComplaint;
+      complaintBrief;
+      status;
+      createdAt = Time.now();
+    };
+    complaints.add(nextComplaintId, complaint);
+    nextComplaintId += 1;
+    complaint.id;
+  };
+
+  // 6. Complaints - Update Status Only
+  public shared ({ caller = _ }) func updateComplaintStatus(id : Nat, status : Text) : async () {
+    switch (complaints.get(id)) {
+      case (null) { Runtime.trap("Complaint not found") };
+      case (?existing) {
+        let updated : Complaint = {
+          id = existing.id;
+          customerName = existing.customerName;
+          contactNo = existing.contactNo;
+          accountNo = existing.accountNo;
+          aadharNo = existing.aadharNo;
+          panNo = existing.panNo;
+          dateOfComplaint = existing.dateOfComplaint;
+          complaintBrief = existing.complaintBrief;
+          status;
+          createdAt = existing.createdAt;
+        };
+        complaints.add(id, updated);
+      };
+    };
+  };
+
+  // 6. Complaints - Full Update
+  public shared ({ caller = _ }) func updateComplaint(
+    id : Nat,
+    customerName : Text,
+    contactNo : Text,
+    accountNo : Text,
+    aadharNo : Text,
+    panNo : Text,
+    dateOfComplaint : Text,
+    complaintBrief : Text,
+    status : Text,
+  ) : async () {
+    switch (complaints.get(id)) {
+      case (null) { Runtime.trap("Complaint not found") };
+      case (?existing) {
+        let updated : Complaint = {
+          id;
+          customerName;
+          contactNo;
+          accountNo;
+          aadharNo;
+          panNo;
+          dateOfComplaint;
+          complaintBrief;
+          status;
+          createdAt = existing.createdAt;
+        };
+        complaints.add(id, updated);
+      };
+    };
+  };
+
+  // 6. Complaints - Delete
+  public shared ({ caller = _ }) func deleteComplaint(id : Nat) : async () {
+    if (not complaints.containsKey(id)) { Runtime.trap("Complaint not found") };
+    complaints.remove(id);
+  };
+
+  // 6. Complaints - Get All
+  public query ({ caller = _ }) func getAllComplaints() : async [Complaint] {
+    complaints.values().toArray().sort(Complaint.compareById);
+  };
+
+  // 6. Complaints - Get By Status
+  public query ({ caller = _ }) func getComplaintsByStatus(status : Text) : async [Complaint] {
+    complaints.values().filter(
+      func(c) { c.status == status }
+    ).toArray().sort(Complaint.compareById);
   };
 };

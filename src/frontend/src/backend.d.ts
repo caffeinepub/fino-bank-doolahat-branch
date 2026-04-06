@@ -80,6 +80,18 @@ export interface StockTransaction {
     transactionDate: string;
     createdAt: bigint;
 }
+export interface Complaint {
+    id: bigint;
+    customerName: string;
+    contactNo: string;
+    accountNo: string;
+    aadharNo: string;
+    panNo: string;
+    dateOfComplaint: string;
+    complaintBrief: string;
+    status: string;
+    createdAt: bigint;
+}
 export interface backendInterface {
     _initializeAccessControlWithSecret(adminToken: string): Promise<void>;
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
@@ -106,4 +118,10 @@ export interface backendInterface {
     getStockTransactionsByProduct(productId: bigint): Promise<Array<StockTransaction>>;
     getTodayStockTransactions(today: string): Promise<Array<StockTransaction>>;
     bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
+    addComplaint(customerName: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<bigint>;
+    updateComplaintStatus(id: bigint, status: string): Promise<void>;
+    updateComplaint(id: bigint, customerName: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<void>;
+    deleteComplaint(id: bigint): Promise<void>;
+    getAllComplaints(): Promise<Array<Complaint>>;
+    getComplaintsByStatus(status: string): Promise<Array<Complaint>>;
 }
