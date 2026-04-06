@@ -70029,6 +70029,7 @@ function useAddComplaint() {
     mutationFn: async (c2) => {
       if (!actor) throw new Error("No actor");
       return actor.addComplaint(
+        c2.complaintNo,
         c2.customerName,
         c2.contactNo,
         c2.accountNo,
@@ -70050,6 +70051,7 @@ function useUpdateComplaint() {
       if (!actor) throw new Error("No actor");
       return actor.updateComplaint(
         c2.id,
+        c2.complaintNo,
         c2.customerName,
         c2.contactNo,
         c2.accountNo,
@@ -70345,6 +70347,7 @@ function AnalyticsSection({ complaints }) {
   );
 }
 const emptyForm$2 = () => ({
+  complaintNo: "",
   customerName: "",
   contactNo: "",
   accountNo: "",
@@ -70369,6 +70372,7 @@ function ComplaintFormDialog({
     if (v2) {
       if (editTarget) {
         setForm({
+          complaintNo: editTarget.complaintNo ?? "",
           customerName: editTarget.customerName,
           contactNo: editTarget.contactNo,
           accountNo: editTarget.accountNo,
@@ -70440,6 +70444,36 @@ function ComplaintFormDialog({
           editTarget ? "Edit Complaint" : "Add New Complaint"
         ] }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4 py-2", children: [
+          editTarget && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 sm:col-span-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "cf-ticket", className: "text-red-600 font-bold", children: "Ticket No" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "cf-ticket",
+                value: formatTicketId(editTarget.id),
+                readOnly: true,
+                className: "font-bold text-red-600 border-red-200 bg-red-50 cursor-default",
+                "data-ocid": "complaints.form.ticketId.display"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "cf-cno", children: [
+              "Complaint No",
+              " ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground text-xs", children: "(optional)" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "cf-cno",
+                placeholder: "e.g. COMP-2024-001",
+                value: form.complaintNo,
+                onChange: (e3) => set("complaintNo")(e3.target.value),
+                "data-ocid": "complaints.form.complaintNo.input"
+              }
+            )
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "cf-cname", children: [
               "Customer Name ",
@@ -70730,7 +70764,7 @@ function Complaints() {
     if (search.trim()) {
       const q2 = search.trim().toLowerCase();
       list = list.filter(
-        (c2) => c2.customerName.toLowerCase().includes(q2) || formatTicketId(c2.id).toLowerCase().includes(q2) || c2.accountNo.toLowerCase().includes(q2)
+        (c2) => c2.customerName.toLowerCase().includes(q2) || formatTicketId(c2.id).toLowerCase().includes(q2) || c2.accountNo.toLowerCase().includes(q2) || (c2.complaintNo ?? "").toLowerCase().includes(q2)
       );
     }
     return list;
@@ -70925,7 +70959,8 @@ function Complaints() {
             ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { "data-ocid": "complaints.table", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "bg-muted/30 hover:bg-muted/30", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "#" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Ticket ID" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-bold text-red-600", children: "Ticket No" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Complaint No" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Customer Name" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Contact No" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "A/c No" }),
@@ -70943,14 +70978,8 @@ function Complaints() {
                   "data-ocid": `complaints.table.item.${idx + 1}`,
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-muted-foreground", children: idx + 1 }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      TableCell,
-                      {
-                        className: "font-mono text-xs font-semibold",
-                        style: { color: "var(--brand-red)" },
-                        children: formatTicketId(complaint.id)
-                      }
-                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-mono text-xs font-bold text-red-600", children: formatTicketId(complaint.id) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-mono text-muted-foreground", children: complaint.complaintNo || "—" }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium", children: complaint.customerName }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-muted-foreground text-xs", children: complaint.contactNo }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-mono", children: complaint.accountNo }),

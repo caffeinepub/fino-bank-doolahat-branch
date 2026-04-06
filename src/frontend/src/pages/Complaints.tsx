@@ -78,6 +78,7 @@ import { toast } from "sonner";
 // Complaint type defined locally (backend.ts does not re-export it)
 export interface Complaint {
   id: bigint;
+  complaintNo: string;
   customerName: string;
   contactNo: string;
   accountNo: string;
@@ -185,6 +186,7 @@ function useAddComplaint() {
     mutationFn: async (c: Omit<Complaint, "id" | "createdAt">) => {
       if (!actor) throw new Error("No actor");
       return (actor as any).addComplaint(
+        c.complaintNo,
         c.customerName,
         c.contactNo,
         c.accountNo,
@@ -207,6 +209,7 @@ function useUpdateComplaint() {
       if (!actor) throw new Error("No actor");
       return (actor as any).updateComplaint(
         c.id,
+        c.complaintNo,
         c.customerName,
         c.contactNo,
         c.accountNo,
@@ -537,6 +540,7 @@ function AnalyticsSection({ complaints }: { complaints: Complaint[] }) {
 // ── Complaint Form Dialog ─────────────────────────────────────────────────────
 
 interface ComplaintFormData {
+  complaintNo: string;
   customerName: string;
   contactNo: string;
   accountNo: string;
@@ -548,6 +552,7 @@ interface ComplaintFormData {
 }
 
 const emptyForm = (): ComplaintFormData => ({
+  complaintNo: "",
   customerName: "",
   contactNo: "",
   accountNo: "",
@@ -585,6 +590,7 @@ function ComplaintFormDialog({
     if (v) {
       if (editTarget) {
         setForm({
+          complaintNo: editTarget.complaintNo ?? "",
           customerName: editTarget.customerName,
           contactNo: editTarget.contactNo,
           accountNo: editTarget.accountNo,
@@ -660,6 +666,37 @@ function ComplaintFormDialog({
         </DialogHeader>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
+          {/* Ticket No — highlighted, read-only on edit, shown as info on add */}
+          {editTarget && (
+            <div className="space-y-1.5 sm:col-span-2">
+              <Label htmlFor="cf-ticket" className="text-red-600 font-bold">
+                Ticket No
+              </Label>
+              <Input
+                id="cf-ticket"
+                value={formatTicketId(editTarget.id)}
+                readOnly
+                className="font-bold text-red-600 border-red-200 bg-red-50 cursor-default"
+                data-ocid="complaints.form.ticketId.display"
+              />
+            </div>
+          )}
+
+          {/* Complaint No */}
+          <div className="space-y-1.5">
+            <Label htmlFor="cf-cno">
+              Complaint No{" "}
+              <span className="text-muted-foreground text-xs">(optional)</span>
+            </Label>
+            <Input
+              id="cf-cno"
+              placeholder="e.g. COMP-2024-001"
+              value={form.complaintNo}
+              onChange={(e) => set("complaintNo")(e.target.value)}
+              data-ocid="complaints.form.complaintNo.input"
+            />
+          </div>
+
           {/* Customer Name */}
           <div className="space-y-1.5">
             <Label htmlFor="cf-cname">
@@ -973,7 +1010,8 @@ export default function Complaints() {
         (c) =>
           c.customerName.toLowerCase().includes(q) ||
           formatTicketId(c.id).toLowerCase().includes(q) ||
-          c.accountNo.toLowerCase().includes(q),
+          c.accountNo.toLowerCase().includes(q) ||
+          (c.complaintNo ?? "").toLowerCase().includes(q),
       );
     }
     return list;
@@ -1181,8 +1219,11 @@ export default function Complaints() {
                             <TableHead className="text-xs font-semibold">
                               #
                             </TableHead>
+                            <TableHead className="text-xs font-bold text-red-600">
+                              Ticket No
+                            </TableHead>
                             <TableHead className="text-xs font-semibold">
-                              Ticket ID
+                              Complaint No
                             </TableHead>
                             <TableHead className="text-xs font-semibold">
                               Customer Name
@@ -1223,11 +1264,11 @@ export default function Complaints() {
                               <TableCell className="text-xs text-muted-foreground">
                                 {idx + 1}
                               </TableCell>
-                              <TableCell
-                                className="font-mono text-xs font-semibold"
-                                style={{ color: "var(--brand-red)" }}
-                              >
+                              <TableCell className="font-mono text-xs font-bold text-red-600">
                                 {formatTicketId(complaint.id)}
+                              </TableCell>
+                              <TableCell className="text-xs font-mono text-muted-foreground">
+                                {complaint.complaintNo || "—"}
                               </TableCell>
                               <TableCell className="font-medium">
                                 {complaint.customerName}
