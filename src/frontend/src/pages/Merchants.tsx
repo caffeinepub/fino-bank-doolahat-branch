@@ -40,57 +40,49 @@ import { useState } from "react";
 import { toast } from "sonner";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
-import type { Merchant } from "../utils/excelExport";
+import type { Merchant } from "../hooks/useQueries";
+import {
+  useAddMerchant,
+  useDeleteMerchant,
+  useMerchants,
+  useUpdateMerchant,
+} from "../hooks/useQueries";
 import { downloadMerchants } from "../utils/excelExport";
-
-const STORAGE_KEY = "fino_merchants";
-
-function loadMerchants(): Merchant[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Merchant[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveMerchants(merchants: Merchant[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(merchants));
-}
 
 const emptyForm = { name: "", merchantId: "", mobileNo: "", address: "" };
 
 export default function Merchants() {
   const { isManager } = useInventoryAuth();
-  const [merchants, setMerchants] = useState<Merchant[]>(loadMerchants);
+  const { data: merchants = [] } = useMerchants();
+  const addMerchant = useAddMerchant();
+  const updateMerchant = useUpdateMerchant();
+  const deleteMerchant = useDeleteMerchant();
+
   const [addOpen, setAddOpen] = useState(false);
   const [editTarget, setEditTarget] = useState<Merchant | null>(null);
-  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [editForm, setEditForm] = useState(emptyForm);
 
-  const updateMerchants = (updated: Merchant[]) => {
-    setMerchants(updated);
-    saveMerchants(updated);
-  };
-
-  const handleAdd = (e: React.FormEvent) => {
+  const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.merchantId.trim()) {
       toast.error("Name and Merchant ID are required.");
       return;
     }
-    const newMerchant: Merchant = {
-      id: Date.now().toString(),
-      name: form.name.trim(),
-      merchantId: form.merchantId.trim(),
-      mobileNo: form.mobileNo.trim(),
-      address: form.address.trim(),
-    };
-    updateMerchants([...merchants, newMerchant]);
-    toast.success("Merchant added");
-    setForm(emptyForm);
-    setAddOpen(false);
+    try {
+      await addMerchant.mutateAsync({
+        name: form.name.trim(),
+        merchantId: form.merchantId.trim(),
+        mobileNo: form.mobileNo.trim(),
+        address: form.address.trim(),
+      });
+      toast.success("Merchant added");
+      setForm(emptyForm);
+      setAddOpen(false);
+    } catch {
+      toast.error("Failed to add merchant.");
+    }
   };
 
   const openEdit = (merchant: Merchant) => {
@@ -103,35 +95,37 @@ export default function Merchants() {
     });
   };
 
-  const handleEdit = (e: React.FormEvent) => {
+  const handleEdit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editTarget) return;
     if (!editForm.name.trim() || !editForm.merchantId.trim()) {
       toast.error("Name and Merchant ID are required.");
       return;
     }
-    const updated = merchants.map((m) =>
-      m.id === editTarget.id
-        ? {
-            ...m,
-            name: editForm.name.trim(),
-            merchantId: editForm.merchantId.trim(),
-            mobileNo: editForm.mobileNo.trim(),
-            address: editForm.address.trim(),
-          }
-        : m,
-    );
-    updateMerchants(updated);
-    toast.success("Merchant updated");
-    setEditTarget(null);
+    try {
+      await updateMerchant.mutateAsync({
+        id: editTarget.id,
+        name: editForm.name.trim(),
+        merchantId: editForm.merchantId.trim(),
+        mobileNo: editForm.mobileNo.trim(),
+        address: editForm.address.trim(),
+      });
+      toast.success("Merchant updated");
+      setEditTarget(null);
+    } catch {
+      toast.error("Failed to update merchant.");
+    }
   };
 
-  const handleDelete = () => {
-    if (!deleteTarget) return;
-    const updated = merchants.filter((m) => m.id !== deleteTarget);
-    updateMerchants(updated);
-    toast.success("Merchant deleted");
-    setDeleteTarget(null);
+  const handleDelete = async () => {
+    if (deleteTarget === null) return;
+    try {
+      await deleteMerchant.mutateAsync(deleteTarget);
+      toast.success("Merchant deleted");
+      setDeleteTarget(null);
+    } catch {
+      toast.error("Failed to delete merchant.");
+    }
   };
 
   return (
@@ -402,11 +396,12 @@ export default function Merchants() {
               </Button>
               <Button
                 type="submit"
+                disabled={addMerchant.isPending}
                 className="text-white"
                 style={{ backgroundColor: "var(--brand-red)" }}
                 data-ocid="merchants.add.submit_button"
               >
-                Add Merchant
+                {addMerchant.isPending ? "Adding..." : "Add Merchant"}
               </Button>
             </DialogFooter>
           </form>
@@ -482,11 +477,12 @@ export default function Merchants() {
               </Button>
               <Button
                 type="submit"
+                disabled={updateMerchant.isPending}
                 className="text-white"
                 style={{ backgroundColor: "var(--brand-red)" }}
                 data-ocid="merchants.edit.save_button"
               >
-                Save Changes
+                {updateMerchant.isPending ? "Saving..." : "Save Changes"}
               </Button>
             </DialogFooter>
           </form>

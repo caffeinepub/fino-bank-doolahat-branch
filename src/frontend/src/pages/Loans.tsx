@@ -43,9 +43,9 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import type { Loan } from "../backend";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
+import type { Loan } from "../hooks/useQueries";
 import { useAddLoan, useDeleteLoan, useLoans } from "../hooks/useQueries";
 import { downloadLoanSheet } from "../utils/excelExport";
 import { formatDate } from "../utils/helpers";

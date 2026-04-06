@@ -45,11 +45,11 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import type { Transaction } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import StatusBadge from "../components/StatusBadge";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
+import type { Transaction } from "../hooks/useQueries";
 import {
   useAddTransaction,
   useDeleteTransaction,
@@ -647,7 +647,7 @@ function TxTable({
   ocidPrefix,
 }: {
   transactions: Transaction[];
-  onDelete: (id: bigint) => void;
+  onDelete: (id: number) => void;
   ocidPrefix: string;
 }) {
   if (transactions.length === 0) {
@@ -757,7 +757,7 @@ export default function Transactions() {
   const [filterStatus, setFilterStatus] = useState("");
   const [filterDateStart, setFilterDateStart] = useState("");
   const [filterDateEnd, setFilterDateEnd] = useState("");
-  const [deleteId, setDeleteId] = useState<bigint | null>(null);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
   // Role detection — uses shared InventoryAuthContext (reactive, no polling)
   const { isManager } = useInventoryAuth();

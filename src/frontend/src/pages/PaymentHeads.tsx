@@ -31,8 +31,8 @@ import { Pencil, PlusCircle, ShieldCheck, Trash2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
-import type { PaymentHead } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
+import type { PaymentHead } from "../hooks/useQueries";
 import {
   useAddPaymentHead,
   useDeletePaymentHead,
@@ -49,7 +49,7 @@ export default function PaymentHeads() {
   const [editHead, setEditHead] = useState<PaymentHead | null>(null);
   const [editName, setEditName] = useState("");
   const [editType, setEditType] = useState("");
-  const [deleteId, setDeleteId] = useState<bigint | null>(null);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const { data: heads, isLoading } = usePaymentHeads();
   const addHead = useAddPaymentHead();

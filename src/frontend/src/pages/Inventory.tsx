@@ -106,28 +106,14 @@ function loadApproved(): LocalProduct[] {
   try {
     const raw = localStorage.getItem(APPROVED_KEY);
     if (!raw) return [];
-    const arr = JSON.parse(raw);
-    return arr.map((p: Record<string, unknown>) => ({
-      ...p,
-      id: BigInt(String(p.id)),
-      quantity: BigInt(String(p.quantity)),
-      reorderPoint: BigInt(String(p.reorderPoint)),
-      createdAt: BigInt(String(p.createdAt)),
-    }));
+    return JSON.parse(raw);
   } catch {
     return [];
   }
 }
 
 function saveApproved(items: LocalProduct[]) {
-  const serializable = items.map((p) => ({
-    ...p,
-    id: String(p.id),
-    quantity: String(p.quantity),
-    reorderPoint: String(p.reorderPoint),
-    createdAt: String(p.createdAt),
-  }));
-  localStorage.setItem(APPROVED_KEY, JSON.stringify(serializable));
+  localStorage.setItem(APPROVED_KEY, JSON.stringify(items));
 }
 
 function genId(): string {
@@ -456,10 +442,10 @@ function AddProductModal({
           sku,
           barcode: "",
           category,
-          quantity: BigInt(Number(quantity) || 0),
+          quantity: Number(quantity) || 0,
           unitCost: Number(unitCost) || 0,
           salePrice: Number(salePrice) || 0,
-          reorderPoint: BigInt(Number(reorderPoint) || 0),
+          reorderPoint: Number(reorderPoint) || 0,
         });
         toast.success("Product added successfully");
         handleClose();
@@ -827,7 +813,7 @@ function EditProductModal({
         category,
         unitCost: Number(unitCost),
         salePrice: Number(salePrice),
-        reorderPoint: BigInt(Number(reorderPoint)),
+        reorderPoint: Number(reorderPoint) || 0,
       });
       qc.invalidateQueries({ queryKey: ["inventory"] });
       toast.success("Product updated");
@@ -966,8 +952,8 @@ function StockUpdateModal({
     try {
       await addTx.mutateAsync({
         productId: product.id,
-        txType,
-        quantityChange: BigInt(Number(quantityChange)),
+        transactionType: txType,
+        quantityChange: Number(quantityChange) || 0,
         note,
         transactionDate: txDate,
       });
@@ -1066,7 +1052,7 @@ function BulkUpdateModal({
   onClose,
 }: {
   open: boolean;
-  selectedIds: bigint[];
+  selectedIds: number[];
   onClose: () => void;
 }) {
   const bulkUpdate = useBulkUpdateProducts();
@@ -1089,14 +1075,13 @@ function BulkUpdateModal({
       const n = selectedIds.length;
       const uc = unitCost ? Number(unitCost) : undefined;
       const sp = salePrice ? Number(salePrice) : undefined;
-      const rp = reorderPoint ? BigInt(Number(reorderPoint)) : undefined;
+      const rp = reorderPoint ? Number(reorderPoint) : undefined;
 
       await bulkUpdate.mutateAsync({
         ids: selectedIds,
         unitCosts: uc !== undefined ? Array(n).fill(uc) : Array(n).fill(0),
         salePrices: sp !== undefined ? Array(n).fill(sp) : Array(n).fill(0),
-        reorderPoints:
-          rp !== undefined ? Array(n).fill(rp) : Array(n).fill(BigInt(0)),
+        reorderPoints: rp !== undefined ? Array(n).fill(rp) : Array(n).fill(0),
       });
       qc.invalidateQueries({ queryKey: ["inventory"] });
       toast.success(`Updated ${n} products`);
@@ -1397,7 +1382,7 @@ export default function Inventory() {
   const [editingProduct, setEditingProduct] = useState<InventoryProduct | null>(
     null,
   );
-  const [deletingProductId, setDeletingProductId] = useState<bigint | null>(
+  const [deletingProductId, setDeletingProductId] = useState<number | null>(
     null,
   );
   const [stockUpdateProduct, setStockUpdateProduct] =
@@ -1412,7 +1397,7 @@ export default function Inventory() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortField, setSortField] = useState<string>("name");
   const [sortAsc, setSortAsc] = useState(true);
-  const [selectedIds, setSelectedIds] = useState<Set<bigint>>(new Set());
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
   // ── Today's transactions panel
   const [txPanelOpen, setTxPanelOpen] = useState(false);
@@ -1516,7 +1501,7 @@ export default function Inventory() {
   const handleApprove = useCallback(
     (p: PendingProduct) => {
       // Optimistic local-first: update UI immediately
-      const fakeId = BigInt(Date.now());
+      const fakeId = Date.now();
       const approvedProduct: LocalProduct = {
         id: fakeId,
         name: p.name,
@@ -1524,11 +1509,11 @@ export default function Inventory() {
         sku: p.sku,
         barcode: "",
         category: p.category,
-        quantity: BigInt(p.quantity),
+        quantity: p.quantity,
         unitCost: p.unitCost,
         salePrice: p.salePrice,
-        reorderPoint: BigInt(p.reorderPoint),
-        createdAt: BigInt(Date.now()),
+        reorderPoint: p.reorderPoint,
+        createdAt: Date.now(),
         _local: true,
       };
 
@@ -1601,7 +1586,7 @@ export default function Inventory() {
   }
 
   // ── Bulk select
-  function toggleSelect(id: bigint) {
+  function toggleSelect(id: number) {
     setSelectedIds((prev) => {
       const s = new Set(prev);
       if (s.has(id)) s.delete(id);

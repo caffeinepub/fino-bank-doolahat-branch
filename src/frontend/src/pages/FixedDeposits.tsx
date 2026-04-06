@@ -32,10 +32,10 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import type { FixedDeposit } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
+import type { FixedDeposit } from "../hooks/useQueries";
 import {
   useAddFixedDeposit,
   useDeleteFixedDeposit,
@@ -98,7 +98,7 @@ function FDForm({ onClose }: { onClose: () => void }) {
         contactNumber: form.contactNumber,
         openingDate: form.openingDate,
         fdAmount: fdAmountNum,
-        tenure: BigInt(tenureNum),
+        tenure: tenureNum,
         interestRate: rate,
         interestAmount,
         maturityAmount,
@@ -270,7 +270,7 @@ export default function FixedDeposits() {
   const { isManager } = useInventoryAuth();
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
-  const [deleteId, setDeleteId] = useState<bigint | null>(null);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const { data: fds, isLoading } = useFixedDeposits();
   const deleteFD = useDeleteFixedDeposit();

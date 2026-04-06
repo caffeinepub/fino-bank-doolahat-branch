@@ -40,7 +40,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -75,24 +74,16 @@ import {
   YAxis,
 } from "recharts";
 import { toast } from "sonner";
-// Complaint type defined locally (backend.ts does not re-export it)
-export interface Complaint {
-  id: bigint;
-  complaintNo: string;
-  customerName: string;
-  contactNo: string;
-  accountNo: string;
-  aadharNo: string;
-  panNo: string;
-  dateOfComplaint: string;
-  complaintBrief: string;
-  status: string;
-  createdAt: bigint;
-}
-
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
-import { useActor } from "../hooks/useActor";
+import type { Complaint } from "../hooks/useQueries";
+import {
+  useAddComplaint,
+  useComplaints,
+  useDeleteComplaint,
+  useUpdateComplaint,
+  useUpdateComplaintStatus,
+} from "../hooks/useQueries";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -107,7 +98,7 @@ const STATUS_OPTIONS: ComplaintStatus[] = [
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
-function formatTicketId(id: bigint): string {
+function formatTicketId(id: number): string {
   return `TKT-${String(id).padStart(5, "0")}`;
 }
 
@@ -163,89 +154,6 @@ function StatusBadge({ status }: { status: string }) {
       {status}
     </Badge>
   );
-}
-
-// ── Hooks ─────────────────────────────────────────────────────────────────────
-
-function useComplaints() {
-  const { actor, isFetching } = useActor();
-  return useQuery<Complaint[]>({
-    queryKey: ["complaints"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return (actor as any).getAllComplaints();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-function useAddComplaint() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (c: Omit<Complaint, "id" | "createdAt">) => {
-      if (!actor) throw new Error("No actor");
-      return (actor as any).addComplaint(
-        c.customerName,
-        c.complaintNo,
-        c.contactNo,
-        c.accountNo,
-        c.aadharNo,
-        c.panNo,
-        c.dateOfComplaint,
-        c.complaintBrief,
-        c.status,
-      );
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["complaints"] }),
-  });
-}
-
-function useUpdateComplaint() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (c: Omit<Complaint, "createdAt">) => {
-      if (!actor) throw new Error("No actor");
-      return (actor as any).updateComplaint(
-        c.id,
-        c.customerName,
-        c.complaintNo,
-        c.contactNo,
-        c.accountNo,
-        c.aadharNo,
-        c.panNo,
-        c.dateOfComplaint,
-        c.complaintBrief,
-        c.status,
-      );
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["complaints"] }),
-  });
-}
-
-function useUpdateComplaintStatus() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async ({ id, status }: { id: bigint; status: string }) => {
-      if (!actor) throw new Error("No actor");
-      return (actor as any).updateComplaintStatus(id, status);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["complaints"] }),
-  });
-}
-
-function useDeleteComplaint() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (id: bigint) => {
-      if (!actor) throw new Error("No actor");
-      return (actor as any).deleteComplaint(id);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["complaints"] }),
-  });
 }
 
 // ── Analytics Section ─────────────────────────────────────────────────────────
@@ -1045,7 +953,7 @@ export default function Complaints() {
     }
   };
 
-  const handleStatusChange = async (id: bigint, status: string) => {
+  const handleStatusChange = async (id: number, status: string) => {
     try {
       await updateStatus.mutateAsync({ id, status });
       toast.success(`Status updated to ${status}`);

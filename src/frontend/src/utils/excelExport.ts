@@ -2,7 +2,12 @@
  * Excel export utilities.
  * xlsx is loaded at runtime via CDN to avoid bundle-time resolution failures.
  */
-import type { DailyPL, FixedDeposit, Loan, Transaction } from "../backend";
+import type {
+  DailyPL,
+  FixedDeposit,
+  Loan,
+  Transaction,
+} from "../hooks/useQueries";
 import { formatDate, formatINR } from "./helpers";
 
 const BANK_NAME = "Fino Small Finance Bank - Doolahat Branch";
@@ -244,15 +249,10 @@ export async function downloadTransactions(
   );
 }
 
-export interface Merchant {
-  id: string;
-  name: string;
-  merchantId: string;
-  mobileNo: string;
-  address: string;
-}
+export type { Merchant } from "../hooks/useQueries";
+import type { Merchant as MerchantType } from "../hooks/useQueries";
 
-export async function downloadMerchants(merchants: Merchant[]) {
+export async function downloadMerchants(merchants: MerchantType[]) {
   const XLSX = await getXLSX();
   const rows: (string | number)[][] = [
     ["Fino Small Finance Bank - Doolahat Branch"],

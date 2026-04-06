@@ -26,10 +26,10 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import type { HeadBalance } from "../backend";
 import LoadingSpinner from "../components/LoadingSpinner";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
+import type { DailyPL, HeadBalance } from "../hooks/useQueries";
 import {
   useAllDailyPLs,
   useDeleteDailyPL,
@@ -41,7 +41,7 @@ import { formatDate, formatINR, todayISO } from "../utils/helpers";
 // ── Pending P&L Types ────────────────────────────────────────────────────────
 
 interface PendingPLHeadBalance {
-  headId: string; // stored as string (bigint serialization)
+  headId: number;
   headName: string;
   opening: number;
   closing: number;
@@ -245,7 +245,7 @@ export default function DailyPLEntry() {
     setApprovingIds((prev) => new Set(prev).add(entry.id));
     try {
       const hbs: HeadBalance[] = entry.headBalances.map((h) => ({
-        headId: BigInt(h.headId),
+        headId: h.headId,
         headName: h.headName,
         openingBalance: h.opening,
         closingBalance: h.closing,
@@ -273,7 +273,7 @@ export default function DailyPLEntry() {
     toast.success("Pending P&L entry removed.");
   };
 
-  const handleDeleteEntry = async (id: bigint, date: string) => {
+  const handleDeleteEntry = async (id: number, date: string) => {
     try {
       await deleteMutation.mutateAsync(id);
       toast.success(`Entry for ${formatDate(date)} deleted successfully.`);
