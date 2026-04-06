@@ -446,3 +446,53 @@ export function useLoans() {
     enabled: !!actor && !isFetching,
   });
 }
+
+export function useAddLoan() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (loan: {
+      customerName: string;
+      fatherHusbandName: string;
+      fullAddress: string;
+      loanStartDate: string;
+      contactNo: string;
+      nomineeName: string;
+      dateOfBirth: string;
+      loanAmount: number;
+      totalInterestAmount: number;
+      interestRate: number;
+      loanTenureMonths: number;
+      repaymentType: string;
+    }) => {
+      if (!actor) throw new Error("No actor");
+      return (actor as any).addLoan(
+        loan.customerName,
+        loan.fatherHusbandName,
+        loan.fullAddress,
+        loan.loanStartDate,
+        loan.contactNo,
+        loan.nomineeName,
+        loan.dateOfBirth,
+        loan.loanAmount,
+        loan.totalInterestAmount,
+        loan.interestRate,
+        BigInt(loan.loanTenureMonths),
+        loan.repaymentType,
+      );
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] }),
+  });
+}
+
+export function useDeleteLoan() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: bigint) => {
+      if (!actor) throw new Error("No actor");
+      return (actor as any).deleteLoan(id);
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] }),
+  });
+}

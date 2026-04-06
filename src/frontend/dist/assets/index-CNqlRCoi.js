@@ -72673,7 +72673,7 @@ function useBulkUpdateProducts() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] })
   });
 }
-function useLoans$1() {
+function useLoans() {
   const { actor, isFetching } = useActor();
   return useQuery({
     queryKey: ["loans"],
@@ -72682,6 +72682,41 @@ function useLoans$1() {
       return actor.getAllLoans();
     },
     enabled: !!actor && !isFetching
+  });
+}
+function useAddLoan() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (loan) => {
+      if (!actor) throw new Error("No actor");
+      return actor.addLoan(
+        loan.customerName,
+        loan.fatherHusbandName,
+        loan.fullAddress,
+        loan.loanStartDate,
+        loan.contactNo,
+        loan.nomineeName,
+        loan.dateOfBirth,
+        loan.loanAmount,
+        loan.totalInterestAmount,
+        loan.interestRate,
+        BigInt(loan.loanTenureMonths),
+        loan.repaymentType
+      );
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] })
+  });
+}
+function useDeleteLoan() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id2) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteLoan(id2);
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] })
   });
 }
 function formatDate(isoDate) {
@@ -73610,7 +73645,7 @@ function Dashboard({ onNavigate }) {
   const { data: pls, isLoading: plLoading } = useAllDailyPLs();
   const { data: fds, isLoading: fdLoading } = useFixedDeposits();
   const { data: txs, isLoading: txLoading } = useTransactions();
-  const { data: loans, isLoading: loansLoading } = useLoans$1();
+  const { data: loans, isLoading: loansLoading } = useLoans();
   const today = todayISO();
   getLast7DaysRange();
   const todayPL = reactExports.useMemo(() => {
@@ -77075,52 +77110,6 @@ function Separator({
     }
   );
 }
-function useLoans() {
-  const { actor, isFetching } = useActor();
-  return useQuery({
-    queryKey: ["loans"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return actor.getAllLoans();
-    },
-    enabled: !!actor && !isFetching
-  });
-}
-function useAddLoan() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (loan) => {
-      if (!actor) throw new Error("No actor");
-      return actor.addLoan(
-        loan.customerName,
-        loan.fatherHusbandName,
-        loan.fullAddress,
-        loan.loanStartDate,
-        loan.contactNo,
-        loan.nomineeName,
-        loan.dateOfBirth,
-        loan.loanAmount,
-        loan.totalInterestAmount,
-        loan.interestRate,
-        Number(loan.loanTenureMonths),
-        loan.repaymentType
-      );
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] })
-  });
-}
-function useDeleteLoan() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (id2) => {
-      if (!actor) throw new Error("No actor");
-      return actor.deleteLoan(id2);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] })
-  });
-}
 function formatINR2(amount) {
   return `₹${amount.toLocaleString("en-IN", {
     minimumFractionDigits: 2,
@@ -78111,40 +78100,37 @@ function Loans() {
   const [selectedLoan, setSelectedLoan] = reactExports.useState(null);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !isManager ? (
-      /* Staff locked screen */
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        motion.div,
-        {
-          initial: { opacity: 0, scale: 0.97 },
-          animate: { opacity: 1, scale: 1 },
-          exit: { opacity: 0 },
-          transition: { duration: 0.25 },
-          className: "flex flex-col items-center justify-center py-24 space-y-4",
-          "data-ocid": "loans.locked.section",
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                className: "w-16 h-16 rounded-full flex items-center justify-center",
-                style: { backgroundColor: "oklch(0.97 0.018 293.8)" },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  ShieldAlert,
-                  {
-                    className: "w-8 h-8",
-                    style: { color: "var(--brand-red)" }
-                  }
-                )
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center space-y-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold text-foreground", children: "Manager Access Required" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground max-w-xs", children: "The Loan Management module is restricted to Manager access only. Please log in as Manager using the switcher above." })
-            ] })
-          ]
-        },
-        "locked"
-      )
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, scale: 0.97 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0.25 },
+        className: "flex flex-col items-center justify-center py-24 space-y-4",
+        "data-ocid": "loans.locked.section",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              className: "w-16 h-16 rounded-full flex items-center justify-center",
+              style: { backgroundColor: "oklch(0.97 0.018 293.8)" },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ShieldAlert,
+                {
+                  className: "w-8 h-8",
+                  style: { color: "var(--brand-red)" }
+                }
+              )
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center space-y-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold text-foreground", children: "Manager Access Required" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground max-w-xs", children: "The Loan Management module is restricted to Manager access only. Please log in as Manager using the switcher above." })
+          ] })
+        ]
+      },
+      "locked"
     ) : selectedLoan ? /* @__PURE__ */ jsxRuntimeExports.jsx(
       RepaymentSchedule,
       {

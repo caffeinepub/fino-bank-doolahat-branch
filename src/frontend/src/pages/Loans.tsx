@@ -28,7 +28,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft,
   BadgeIndianRupee,
@@ -47,73 +46,9 @@ import { toast } from "sonner";
 import type { Loan } from "../backend";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
-import { useActor } from "../hooks/useActor";
+import { useAddLoan, useDeleteLoan, useLoans } from "../hooks/useQueries";
 import { downloadLoanSheet } from "../utils/excelExport";
 import { formatDate } from "../utils/helpers";
-
-// ── Hooks ─────────────────────────────────────────────────────────────────────
-
-function useLoans() {
-  const { actor, isFetching } = useActor();
-  return useQuery<Loan[]>({
-    queryKey: ["loans"],
-    queryFn: async () => {
-      if (!actor) return [];
-      return (actor as any).getAllLoans();
-    },
-    enabled: !!actor && !isFetching,
-  });
-}
-
-function useAddLoan() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (loan: {
-      customerName: string;
-      fatherHusbandName: string;
-      fullAddress: string;
-      loanStartDate: string;
-      contactNo: string;
-      nomineeName: string;
-      dateOfBirth: string;
-      loanAmount: number;
-      totalInterestAmount: number;
-      interestRate: number;
-      loanTenureMonths: number;
-      repaymentType: string;
-    }) => {
-      if (!actor) throw new Error("No actor");
-      return (actor as any).addLoan(
-        loan.customerName,
-        loan.fatherHusbandName,
-        loan.fullAddress,
-        loan.loanStartDate,
-        loan.contactNo,
-        loan.nomineeName,
-        loan.dateOfBirth,
-        loan.loanAmount,
-        loan.totalInterestAmount,
-        loan.interestRate,
-        Number(loan.loanTenureMonths),
-        loan.repaymentType,
-      );
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] }),
-  });
-}
-
-function useDeleteLoan() {
-  const { actor } = useActor();
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: async (id: bigint) => {
-      if (!actor) throw new Error("No actor");
-      return (actor as any).deleteLoan(id);
-    },
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] }),
-  });
-}
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -178,7 +113,6 @@ interface LoanFormDialogProps {
   onOpenChange: (v: boolean) => void;
 }
 
-// Section header component
 function SectionHeader({
   icon: Icon,
   title,
@@ -298,7 +232,7 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
         </DialogHeader>
 
         <div className="space-y-6 py-2">
-          {/* ── Section 1: Customer Information ── */}
+          {/* Section 1: Customer Information */}
           <div>
             <SectionHeader
               icon={User}
@@ -306,7 +240,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
               subtitle="Personal and contact details of the borrower"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Customer Name */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-cname">
                   Customer Name <span className="text-red-500">*</span>
@@ -327,8 +260,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Father/Husband Name */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-fname">
                   Father/Husband Name <span className="text-red-500">*</span>
@@ -349,8 +280,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Date of Birth */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-dob">
                   Date of Birth <span className="text-red-500">*</span>
@@ -371,8 +300,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Contact No */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-contact">
                   Customer Contact No <span className="text-red-500">*</span>
@@ -393,8 +320,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Nominee Name */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-nominee">
                   Nominee Name <span className="text-red-500">*</span>
@@ -415,8 +340,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Full Address - spans 2 cols */}
               <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="lf-addr">
                   Full Address <span className="text-red-500">*</span>
@@ -443,7 +366,7 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
 
           <Separator />
 
-          {/* ── Section 2: Loan Details ── */}
+          {/* Section 2: Loan Details */}
           <div>
             <SectionHeader
               icon={CalendarDays}
@@ -451,7 +374,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
               subtitle="Loan parameters for calculation and repayment"
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Loan Start Date */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-start">
                   Loan Start Date <span className="text-red-500">*</span>
@@ -472,8 +394,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Loan Tenure */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-tenure">
                   Loan Tenure <span className="text-red-500">*</span>
@@ -505,8 +425,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Loan Amount */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-amount">
                   Loan Amount in ₹ <span className="text-red-500">*</span>
@@ -530,8 +448,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Interest Rate */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-rate">
                   Interest Rate 1–50% <span className="text-red-500">*</span>
@@ -556,8 +472,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                   </p>
                 )}
               </div>
-
-              {/* Repayment Type (read-only) */}
               <div className="space-y-1.5">
                 <Label htmlFor="lf-repay">Repayment Type</Label>
                 <Input
@@ -573,7 +487,7 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
 
           <Separator />
 
-          {/* ── Section 3: Auto-Calculated Summary ── */}
+          {/* Section 3: Auto-Calculated Summary */}
           <div>
             <SectionHeader
               icon={Calculator}
@@ -589,7 +503,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
               data-ocid="loans.form.summary.panel"
             >
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {/* Total Interest */}
                 <div
                   className="bg-white rounded-lg px-4 py-3 border"
                   style={{ borderColor: "oklch(0.88 0.04 293.8)" }}
@@ -608,8 +521,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                     P × R/100 × T/12
                   </p>
                 </div>
-
-                {/* Total Payable */}
                 <div
                   className="bg-white rounded-lg px-4 py-3 border"
                   style={{ borderColor: "oklch(0.88 0.04 293.8)" }}
@@ -627,8 +538,6 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                     Principal + Interest
                   </p>
                 </div>
-
-                {/* Monthly EMI */}
                 <div
                   className="bg-white rounded-lg px-4 py-3 border"
                   style={{ borderColor: "oklch(0.88 0.04 293.8)" }}
@@ -683,7 +592,7 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
   );
 }
 
-// ── Delete Confirm Dialog ──────────────────────────────────────────────────────
+// ── Delete Confirm Dialog ─────────────────────────────────────────────────────
 
 function DeleteLoanDialog({
   open,
@@ -748,15 +657,12 @@ function DeleteLoanDialog({
   );
 }
 
-// ── Repayment Schedule View ────────────────────────────────────────────────────
+// ── Repayment Schedule View ───────────────────────────────────────────────────
 
 function RepaymentSchedule({
   loan,
   onBack,
-}: {
-  loan: Loan;
-  onBack: () => void;
-}) {
+}: { loan: Loan; onBack: () => void }) {
   const n = Number(loan.loanTenureMonths);
   const principalPerInstallment = loan.loanAmount / n;
   const interestPerInstallment = loan.totalInterestAmount / n;
@@ -794,7 +700,6 @@ function RepaymentSchedule({
       className="space-y-5"
       data-ocid="loans.schedule.section"
     >
-      {/* Back + title */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Button
@@ -827,7 +732,6 @@ function RepaymentSchedule({
         </Button>
       </div>
 
-      {/* Summary Card */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle
@@ -839,20 +743,22 @@ function RepaymentSchedule({
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3">
-            {[
-              ["Customer Name", loan.customerName],
-              ["Father/Husband Name", loan.fatherHusbandName],
-              ["Full Address", loan.fullAddress],
-              ["Loan Start Date", formatDate(loan.loanStartDate)],
-              ["Contact No", loan.contactNo],
-              ["Nominee Name", loan.nomineeName],
-              ["Date of Birth", formatDate(loan.dateOfBirth)],
-              ["Loan Amount", formatINR2(loan.loanAmount)],
-              ["Total Interest Amount", formatINR2(loan.totalInterestAmount)],
-              ["Interest Rate", `${loan.interestRate}%`],
-              ["Loan Tenure", `${Number(loan.loanTenureMonths)} months`],
-              ["Repayment Type", loan.repaymentType],
-            ].map(([label, value]) => (
+            {(
+              [
+                ["Customer Name", loan.customerName],
+                ["Father/Husband Name", loan.fatherHusbandName],
+                ["Full Address", loan.fullAddress],
+                ["Loan Start Date", formatDate(loan.loanStartDate)],
+                ["Contact No", loan.contactNo],
+                ["Nominee Name", loan.nomineeName],
+                ["Date of Birth", formatDate(loan.dateOfBirth)],
+                ["Loan Amount", formatINR2(loan.loanAmount)],
+                ["Total Interest Amount", formatINR2(loan.totalInterestAmount)],
+                ["Interest Rate", `${loan.interestRate}%`],
+                ["Loan Tenure", `${Number(loan.loanTenureMonths)} months`],
+                ["Repayment Type", loan.repaymentType],
+              ] as [string, string][]
+            ).map(([label, value]) => (
               <div key={label} className="space-y-0.5">
                 <p className="text-xs text-muted-foreground">{label}</p>
                 <p className="text-sm font-semibold text-foreground">{value}</p>
@@ -862,7 +768,6 @@ function RepaymentSchedule({
         </CardContent>
       </Card>
 
-      {/* Repayment Schedule Table */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold">
@@ -883,7 +788,6 @@ function RepaymentSchedule({
           <div className="overflow-x-auto">
             <Table data-ocid="loans.schedule.table">
               <TableHeader>
-                {/* Group header row */}
                 <TableRow
                   className="bg-muted/40 hover:bg-muted/40"
                   style={{ borderBottom: "none" }}
@@ -1028,7 +932,6 @@ function LoanListView({
       className="space-y-4"
       data-ocid="loans.list.section"
     >
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-foreground flex items-center gap-2">
@@ -1055,7 +958,6 @@ function LoanListView({
         )}
       </div>
 
-      {/* Table */}
       <Card className="border-0 shadow-sm">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold">
@@ -1210,12 +1112,9 @@ export default function Loans() {
 
   return (
     <div className="space-y-4">
-      {/* Role Switcher */}
       <RoleSwitcherBar />
-
       <AnimatePresence mode="wait">
         {!isManager ? (
-          /* Staff locked screen */
           <motion.div
             key="locked"
             initial={{ opacity: 0, scale: 0.97 }}
