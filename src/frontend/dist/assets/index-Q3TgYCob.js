@@ -17873,29 +17873,29 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$E = [
+const __iconNode$G = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$E);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$G);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$D = [
+const __iconNode$F = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$D);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$F);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$E = [
   [
     "path",
     {
@@ -17907,14 +17907,14 @@ const __iconNode$C = [
   ["path", { d: "M8 12h8", key: "1wcyev" }],
   ["path", { d: "m13 17-5-1h1a4 4 0 0 0 0-8", key: "nu2bwa" }]
 ];
-const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$C);
+const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$E);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$B = [
+const __iconNode$D = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -17924,7 +17924,45 @@ const __iconNode$B = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$B);
+const Bell = createLucideIcon("bell", __iconNode$D);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$C = [
+  ["rect", { width: "16", height: "20", x: "4", y: "2", rx: "2", key: "1nb95v" }],
+  ["line", { x1: "8", x2: "16", y1: "6", y2: "6", key: "x4nwl0" }],
+  ["line", { x1: "16", x2: "16", y1: "14", y2: "18", key: "wjye3r" }],
+  ["path", { d: "M16 10h.01", key: "1m94wz" }],
+  ["path", { d: "M12 10h.01", key: "1nrarc" }],
+  ["path", { d: "M8 10h.01", key: "19clt8" }],
+  ["path", { d: "M12 14h.01", key: "1etili" }],
+  ["path", { d: "M8 14h.01", key: "6423bh" }],
+  ["path", { d: "M12 18h.01", key: "mhygvu" }],
+  ["path", { d: "M8 18h.01", key: "lrp35t" }]
+];
+const Calculator = createLucideIcon("calculator", __iconNode$C);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$B = [
+  ["path", { d: "M8 2v4", key: "1cmpym" }],
+  ["path", { d: "M16 2v4", key: "4m81vk" }],
+  ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
+  ["path", { d: "M3 10h18", key: "8toen8" }],
+  ["path", { d: "M8 14h.01", key: "6423bh" }],
+  ["path", { d: "M12 14h.01", key: "1etili" }],
+  ["path", { d: "M16 14h.01", key: "1gbofw" }],
+  ["path", { d: "M8 18h.01", key: "lrp35t" }],
+  ["path", { d: "M12 18h.01", key: "mhygvu" }],
+  ["path", { d: "M16 18h.01", key: "kzsmim" }]
+];
+const CalendarDays = createLucideIcon("calendar-days", __iconNode$B);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -72635,6 +72673,17 @@ function useBulkUpdateProducts() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] })
   });
 }
+function useLoans$1() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["loans"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllLoans();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
 function formatDate(isoDate) {
   if (!isoDate) return "";
   const parts = isoDate.split("-");
@@ -73546,10 +73595,22 @@ function KPICard({
     }
   );
 }
+const TENURE_COLORS = [
+  "#7C3AED",
+  "#2563EB",
+  "#059669",
+  "#D97706",
+  "#DC2626",
+  "#0891B2",
+  "#7C3AED",
+  "#16A34A",
+  "#9333EA"
+];
 function Dashboard({ onNavigate }) {
   const { data: pls, isLoading: plLoading } = useAllDailyPLs();
   const { data: fds, isLoading: fdLoading } = useFixedDeposits();
   const { data: txs, isLoading: txLoading } = useTransactions();
+  const { data: loans, isLoading: loansLoading } = useLoans$1();
   const today = todayISO();
   getLast7DaysRange();
   const todayPL = reactExports.useMemo(() => {
@@ -73579,6 +73640,47 @@ function Dashboard({ onNavigate }) {
     }
     return days;
   }, [pls]);
+  const loanAnalytics = reactExports.useMemo(() => {
+    if (!loans || loans.length === 0) {
+      return {
+        tenureData: [],
+        monthlyData: [],
+        totalDisbursed: 0,
+        totalCount: 0
+      };
+    }
+    const totalCount = loans.length;
+    const totalDisbursed = loans.reduce(
+      (sum, l2) => sum + (l2.loanAmount || 0),
+      0
+    );
+    const tenureMap = {};
+    for (const l2 of loans) {
+      const key = `${Number(l2.loanTenureMonths)} mo`;
+      tenureMap[key] = (tenureMap[key] || 0) + 1;
+    }
+    const tenureData = Object.entries(tenureMap).map(([name, value]) => ({ name, value })).sort((a2, b2) => Number.parseInt(a2.name) - Number.parseInt(b2.name));
+    const monthMap = {};
+    for (const l2 of loans) {
+      if (!l2.loanStartDate) continue;
+      const d2 = new Date(l2.loanStartDate);
+      if (Number.isNaN(d2.getTime())) continue;
+      const key = d2.toLocaleDateString("en-IN", {
+        month: "short",
+        year: "numeric"
+      });
+      monthMap[key] = (monthMap[key] || 0) + (l2.loanAmount || 0);
+    }
+    const allMonthKeys = Object.keys(monthMap).sort((a2, b2) => {
+      return (/* @__PURE__ */ new Date(`01 ${a2}`)).getTime() - (/* @__PURE__ */ new Date(`01 ${b2}`)).getTime();
+    });
+    const last6 = allMonthKeys.slice(-6);
+    const monthlyData = last6.map((month) => ({
+      month,
+      amount: monthMap[month]
+    }));
+    return { tenureData, monthlyData, totalDisbursed, totalCount };
+  }, [loans]);
   const netProfitToday = (todayPL == null ? void 0 : todayPL.totalProfitLoss) ?? 0;
   const totalActiveFDs = (fds == null ? void 0 : fds.length) ?? 0;
   const todayTxCount = todayTxs.length;
@@ -73615,7 +73717,7 @@ function Dashboard({ onNavigate }) {
         ] })
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         KPICard,
         {
@@ -73659,6 +73761,28 @@ function Dashboard({ onNavigate }) {
           icon: FileText,
           color: "#B91C1C",
           isLoading: plLoading
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        KPICard,
+        {
+          title: "Total Loans",
+          value: loanAnalytics.totalCount.toString(),
+          subtitle: "Loan records",
+          icon: BadgeIndianRupee,
+          color: "#7C3AED",
+          isLoading: loansLoading
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        KPICard,
+        {
+          title: "Total Loan Disbursed",
+          value: formatINRShort(loanAnalytics.totalDisbursed),
+          subtitle: "All loans combined",
+          icon: TrendingUp,
+          color: "#2563EB",
+          isLoading: loansLoading
         }
       )
     ] }),
@@ -73728,14 +73852,14 @@ function Dashboard({ onNavigate }) {
             desc: "Record transaction"
           },
           {
-            label: "Manage Heads",
-            tab: "payment-heads",
-            desc: "Payment head config"
-          },
-          {
             label: "Manage Merchants",
             tab: "merchants",
             desc: "Merchant registrations"
+          },
+          {
+            label: "Add New Loan",
+            tab: "loans",
+            desc: "Loan records & schedules"
           }
         ].map(({ label, tab, desc }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button,
@@ -73755,6 +73879,126 @@ function Dashboard({ onNavigate }) {
           tab
         )) })
       ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-card border-border", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-base font-semibold flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          BadgeIndianRupee,
+          {
+            className: "w-4 h-4",
+            style: { color: "var(--brand-red)" }
+          }
+        ),
+        "Loan Portfolio Analytics"
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: loansLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Skeleton,
+        {
+          className: "h-48 w-full",
+          "data-ocid": "dashboard.loans.loading_state"
+        }
+      ) : !loans || loans.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "flex flex-col items-center justify-center py-12 text-center",
+          "data-ocid": "dashboard.loans.empty_state",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(BadgeIndianRupee, { className: "w-10 h-10 text-muted-foreground/30 mb-3" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "No loan data available yet. Add loans from the Loans tab (Manager access)." })
+          ]
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-muted-foreground mb-3 text-center", children: "Loans by Tenure" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ResponsiveContainer, { width: "100%", height: 220, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(PieChart, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Pie,
+              {
+                data: loanAnalytics.tenureData,
+                cx: "50%",
+                cy: "50%",
+                outerRadius: 80,
+                dataKey: "value",
+                nameKey: "name",
+                label: ({ name, value }) => `${name}: ${value}`,
+                labelLine: true,
+                children: loanAnalytics.tenureData.map((entry, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Cell,
+                  {
+                    fill: TENURE_COLORS[idx % TENURE_COLORS.length]
+                  },
+                  `tenure-cell-${entry.name}`
+                ))
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Tooltip,
+              {
+                formatter: (v2, name) => [
+                  `${v2} loan${v2 !== 1 ? "s" : ""}`,
+                  name
+                ],
+                contentStyle: { fontSize: 12, borderRadius: 8 }
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Legend,
+              {
+                iconType: "circle",
+                iconSize: 8,
+                wrapperStyle: { fontSize: 11 }
+              }
+            )
+          ] }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-muted-foreground mb-3 text-center", children: "Monthly Loan Disbursements" }),
+          loanAnalytics.monthlyData.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center h-[220px] text-sm text-muted-foreground", children: "Not enough data for monthly chart" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(ResponsiveContainer, { width: "100%", height: 220, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            BarChart,
+            {
+              data: loanAnalytics.monthlyData,
+              margin: { top: 4, right: 8, left: 0, bottom: 0 },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(CartesianGrid, { strokeDasharray: "3 3", stroke: "#f0f0f0" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  XAxis,
+                  {
+                    dataKey: "month",
+                    tick: { fontSize: 11 },
+                    interval: 0,
+                    angle: -20,
+                    textAnchor: "end",
+                    height: 36
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  YAxis,
+                  {
+                    tick: { fontSize: 11 },
+                    tickFormatter: (v2) => formatINRShort(v2)
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Tooltip,
+                  {
+                    formatter: (v2) => [formatINR(v2), "Disbursed"],
+                    contentStyle: { fontSize: 12, borderRadius: 8 }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Bar,
+                  {
+                    dataKey: "amount",
+                    fill: "#7C3AED",
+                    radius: [4, 4, 0, 0],
+                    name: "Amount"
+                  }
+                )
+              ]
+            }
+          ) })
+        ] })
+      ] }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "shadow-card border-border", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { className: "pb-3 flex flex-row items-center justify-between", children: [
@@ -76788,6 +77032,49 @@ function Inventory() {
     )
   ] });
 }
+var NAME = "Separator";
+var DEFAULT_ORIENTATION = "horizontal";
+var ORIENTATIONS = ["horizontal", "vertical"];
+var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
+  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
+  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
+  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
+  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Primitive.div,
+    {
+      "data-orientation": orientation,
+      ...semanticProps,
+      ...domProps,
+      ref: forwardedRef
+    }
+  );
+});
+Separator$1.displayName = NAME;
+function isValidOrientation(orientation) {
+  return ORIENTATIONS.includes(orientation);
+}
+var Root = Separator$1;
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root,
+    {
+      "data-slot": "separator",
+      decorative,
+      orientation,
+      className: cn(
+        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      ),
+      ...props
+    }
+  );
+}
 function useLoans() {
   const { actor, isFetching } = useActor();
   return useQuery({
@@ -76816,7 +77103,7 @@ function useAddLoan() {
         loan.loanAmount,
         loan.totalInterestAmount,
         loan.interestRate,
-        BigInt(loan.loanTenureMonths),
+        Number(loan.loanTenureMonths),
         loan.repaymentType
       );
     },
@@ -76866,6 +77153,26 @@ function emptyLoanForm() {
 function calcTotalInterest(loanAmount, interestRate, tenureMonths) {
   return loanAmount * (interestRate / 100) * (tenureMonths / 12);
 }
+function SectionHeader({
+  icon: Icon2,
+  title,
+  subtitle
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "w-8 h-8 rounded-lg flex items-center justify-center shrink-0",
+        style: { backgroundColor: "oklch(0.94 0.04 293.8)" },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "w-4 h-4", style: { color: "var(--brand-red)" } })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "var(--brand-red)" }, children: title }),
+      subtitle && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: subtitle })
+    ] })
+  ] });
+}
 function LoanFormDialog({ open, onOpenChange }) {
   const [form, setForm] = reactExports.useState(emptyLoanForm);
   const [errors, setErrors] = reactExports.useState({});
@@ -76878,6 +77185,8 @@ function LoanFormDialog({ open, onOpenChange }) {
     interestRateNum,
     tenureNum
   );
+  const totalPayable = loanAmountNum + totalInterest;
+  const monthlyEMI = tenureNum > 0 ? totalPayable / tenureNum : 0;
   reactExports.useEffect(() => {
     if (!open) {
       setForm(emptyLoanForm());
@@ -76919,10 +77228,10 @@ function LoanFormDialog({ open, onOpenChange }) {
         loanAmount: loanAmountNum,
         totalInterestAmount: totalInterest,
         interestRate: interestRateNum,
-        loanTenureMonths: BigInt(tenureNum),
+        loanTenureMonths: tenureNum,
         repaymentType: "Monthly"
       });
-      ue.success("Loan record added successfully");
+      ue.success("Loan record saved successfully");
       onOpenChange(false);
     } catch (e3) {
       ue.error("Failed to save loan record");
@@ -76932,10 +77241,10 @@ function LoanFormDialog({ open, onOpenChange }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     DialogContent,
     {
-      className: "sm:max-w-2xl max-h-[90vh] overflow-y-auto",
+      className: "sm:max-w-3xl max-h-[90vh] overflow-y-auto",
       "data-ocid": "loans.form.dialog",
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2 text-base", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             BadgeIndianRupee,
             {
@@ -76943,313 +77252,386 @@ function LoanFormDialog({ open, onOpenChange }) {
               style: { color: "var(--brand-red)" }
             }
           ),
-          "Add New Loan"
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Add New Loan Record" })
         ] }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4 py-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-cname", children: [
-              "Customer Name ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6 py-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
+              SectionHeader,
               {
-                id: "lf-cname",
-                placeholder: "e.g. Ramesh Kumar",
-                value: form.customerName,
-                onChange: (e3) => set("customerName")(e3.target.value),
-                "data-ocid": "loans.form.customerName.input"
+                icon: User,
+                title: "Customer Information",
+                subtitle: "Personal and contact details of the borrower"
               }
             ),
-            errors.customerName && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.customerName.error_state",
-                children: errors.customerName
-              }
-            )
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-cname", children: [
+                  "Customer Name ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-cname",
+                    placeholder: "e.g. Ramesh Kumar",
+                    value: form.customerName,
+                    onChange: (e3) => set("customerName")(e3.target.value),
+                    "data-ocid": "loans.form.customerName.input"
+                  }
+                ),
+                errors.customerName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.customerName.error_state",
+                    children: errors.customerName
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-fname", children: [
+                  "Father/Husband Name ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-fname",
+                    placeholder: "e.g. Suresh Kumar",
+                    value: form.fatherHusbandName,
+                    onChange: (e3) => set("fatherHusbandName")(e3.target.value),
+                    "data-ocid": "loans.form.fatherHusbandName.input"
+                  }
+                ),
+                errors.fatherHusbandName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.fatherHusbandName.error_state",
+                    children: errors.fatherHusbandName
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-dob", children: [
+                  "Date of Birth ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-dob",
+                    type: "date",
+                    value: form.dateOfBirth,
+                    onChange: (e3) => set("dateOfBirth")(e3.target.value),
+                    "data-ocid": "loans.form.dateOfBirth.input"
+                  }
+                ),
+                errors.dateOfBirth && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.dateOfBirth.error_state",
+                    children: errors.dateOfBirth
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-contact", children: [
+                  "Customer Contact No ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-contact",
+                    placeholder: "10-digit mobile number",
+                    value: form.contactNo,
+                    onChange: (e3) => set("contactNo")(e3.target.value),
+                    "data-ocid": "loans.form.contactNo.input"
+                  }
+                ),
+                errors.contactNo && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.contactNo.error_state",
+                    children: errors.contactNo
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-nominee", children: [
+                  "Nominee Name ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-nominee",
+                    placeholder: "e.g. Priya Devi",
+                    value: form.nomineeName,
+                    onChange: (e3) => set("nomineeName")(e3.target.value),
+                    "data-ocid": "loans.form.nomineeName.input"
+                  }
+                ),
+                errors.nomineeName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.nomineeName.error_state",
+                    children: errors.nomineeName
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 sm:col-span-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-addr", children: [
+                  "Full Address ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Textarea,
+                  {
+                    id: "lf-addr",
+                    placeholder: "Enter complete postal address including village/city, district, state and PIN code",
+                    rows: 2,
+                    value: form.fullAddress,
+                    onChange: (e3) => set("fullAddress")(e3.target.value),
+                    "data-ocid": "loans.form.fullAddress.textarea"
+                  }
+                ),
+                errors.fullAddress && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.fullAddress.error_state",
+                    children: errors.fullAddress
+                  }
+                )
+              ] })
+            ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-fname", children: [
-              "Father/Husband Name ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, {}),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
+              SectionHeader,
               {
-                id: "lf-fname",
-                placeholder: "e.g. Suresh Kumar",
-                value: form.fatherHusbandName,
-                onChange: (e3) => set("fatherHusbandName")(e3.target.value),
-                "data-ocid": "loans.form.fatherHusbandName.input"
+                icon: CalendarDays,
+                title: "Loan Details",
+                subtitle: "Loan parameters for calculation and repayment"
               }
             ),
-            errors.fatherHusbandName && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.fatherHusbandName.error_state",
-                children: errors.fatherHusbandName
-              }
-            )
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-start", children: [
+                  "Loan Start Date ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-start",
+                    type: "date",
+                    value: form.loanStartDate,
+                    onChange: (e3) => set("loanStartDate")(e3.target.value),
+                    "data-ocid": "loans.form.loanStartDate.input"
+                  }
+                ),
+                errors.loanStartDate && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.loanStartDate.error_state",
+                    children: errors.loanStartDate
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-tenure", children: [
+                  "Loan Tenure ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Select,
+                  {
+                    value: form.loanTenureMonths,
+                    onValueChange: set("loanTenureMonths"),
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectTrigger,
+                        {
+                          id: "lf-tenure",
+                          "data-ocid": "loans.form.loanTenure.select",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select tenure in months" })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: TENURE_OPTIONS.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectItem, { value: String(t2), children: [
+                        t2,
+                        " months"
+                      ] }, t2)) })
+                    ]
+                  }
+                ),
+                errors.loanTenureMonths && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.tenure.error_state",
+                    children: errors.loanTenureMonths
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-amount", children: [
+                  "Loan Amount in ₹ ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-amount",
+                    type: "number",
+                    min: 1,
+                    step: 0.01,
+                    placeholder: "e.g. 50000",
+                    value: form.loanAmount,
+                    onChange: (e3) => set("loanAmount")(e3.target.value),
+                    "data-ocid": "loans.form.loanAmount.input"
+                  }
+                ),
+                errors.loanAmount && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.loanAmount.error_state",
+                    children: errors.loanAmount
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-rate", children: [
+                  "Interest Rate 1–50% ",
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-rate",
+                    type: "number",
+                    min: 1,
+                    max: 50,
+                    step: 0.1,
+                    placeholder: "e.g. 12",
+                    value: form.interestRate,
+                    onChange: (e3) => set("interestRate")(e3.target.value),
+                    "data-ocid": "loans.form.interestRate.input"
+                  }
+                ),
+                errors.interestRate && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs text-red-600",
+                    "data-ocid": "loans.form.interestRate.error_state",
+                    children: errors.interestRate
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "lf-repay", children: "Repayment Type" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    id: "lf-repay",
+                    value: "Monthly",
+                    readOnly: true,
+                    className: "bg-muted cursor-default text-muted-foreground",
+                    "data-ocid": "loans.form.repaymentType.input"
+                  }
+                )
+              ] })
+            ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 sm:col-span-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-addr", children: [
-              "Full Address ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Separator, {}),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Textarea,
+              SectionHeader,
               {
-                id: "lf-addr",
-                placeholder: "Enter full postal address",
-                rows: 2,
-                value: form.fullAddress,
-                onChange: (e3) => set("fullAddress")(e3.target.value),
-                "data-ocid": "loans.form.fullAddress.textarea"
+                icon: Calculator,
+                title: "Auto-Calculated Summary",
+                subtitle: "All values computed from the loan parameters above"
               }
             ),
-            errors.fullAddress && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.fullAddress.error_state",
-                children: errors.fullAddress
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-start", children: [
-              "Loan Start Date ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-start",
-                type: "date",
-                value: form.loanStartDate,
-                onChange: (e3) => set("loanStartDate")(e3.target.value),
-                "data-ocid": "loans.form.loanStartDate.input"
-              }
-            ),
-            errors.loanStartDate && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.loanStartDate.error_state",
-                children: errors.loanStartDate
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-contact", children: [
-              "Customer Contact No ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-contact",
-                placeholder: "10-digit mobile number",
-                value: form.contactNo,
-                onChange: (e3) => set("contactNo")(e3.target.value),
-                "data-ocid": "loans.form.contactNo.input"
-              }
-            ),
-            errors.contactNo && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.contactNo.error_state",
-                children: errors.contactNo
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-nominee", children: [
-              "Nominee Name ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-nominee",
-                placeholder: "e.g. Priya Devi",
-                value: form.nomineeName,
-                onChange: (e3) => set("nomineeName")(e3.target.value),
-                "data-ocid": "loans.form.nomineeName.input"
-              }
-            ),
-            errors.nomineeName && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.nomineeName.error_state",
-                children: errors.nomineeName
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-dob", children: [
-              "Date of Birth ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-dob",
-                type: "date",
-                value: form.dateOfBirth,
-                onChange: (e3) => set("dateOfBirth")(e3.target.value),
-                "data-ocid": "loans.form.dateOfBirth.input"
-              }
-            ),
-            errors.dateOfBirth && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.dateOfBirth.error_state",
-                children: errors.dateOfBirth
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-amount", children: [
-              "Loan Amount (₹) ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-amount",
-                type: "number",
-                min: 1,
-                step: 0.01,
-                placeholder: "e.g. 50000",
-                value: form.loanAmount,
-                onChange: (e3) => set("loanAmount")(e3.target.value),
-                "data-ocid": "loans.form.loanAmount.input"
-              }
-            ),
-            errors.loanAmount && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.loanAmount.error_state",
-                children: errors.loanAmount
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-rate", children: [
-              "Interest Rate (1–50%) ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-rate",
-                type: "number",
-                min: 1,
-                max: 50,
-                step: 0.1,
-                placeholder: "e.g. 12",
-                value: form.interestRate,
-                onChange: (e3) => set("interestRate")(e3.target.value),
-                "data-ocid": "loans.form.interestRate.input"
-              }
-            ),
-            errors.interestRate && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.interestRate.error_state",
-                children: errors.interestRate
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-tenure", children: [
-              "Loan Tenure (months) ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              Select,
-              {
-                value: form.loanTenureMonths,
-                onValueChange: set("loanTenureMonths"),
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    SelectTrigger,
-                    {
-                      id: "lf-tenure",
-                      "data-ocid": "loans.form.loanTenure.select",
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select tenure" })
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: TENURE_OPTIONS.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectItem, { value: String(t2), children: [
-                    t2,
-                    " months"
-                  ] }, t2)) })
-                ]
-              }
-            ),
-            errors.loanTenureMonths && /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs text-red-600",
-                "data-ocid": "loans.form.tenure.error_state",
-                children: errors.loanTenureMonths
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "lf-repay", children: "Repayment Type" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Input,
-              {
-                id: "lf-repay",
-                value: "Monthly",
-                readOnly: true,
-                className: "bg-muted cursor-default text-muted-foreground",
-                "data-ocid": "loans.form.repaymentType.input"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 sm:col-span-2", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "lf-interest", children: "Total Interest Amount (Auto-calculated)" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "div",
               {
-                className: "flex items-center gap-3 rounded-lg border px-4 py-3",
+                className: "rounded-xl border-2 p-4 space-y-3",
                 style: {
-                  backgroundColor: "oklch(0.97 0.018 293.8)",
-                  borderColor: "oklch(0.85 0.05 293.8)"
+                  backgroundColor: "oklch(0.975 0.015 293.8)",
+                  borderColor: "oklch(0.82 0.06 293.8)"
                 },
-                "data-ocid": "loans.form.totalInterest.panel",
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    BadgeIndianRupee,
+                "data-ocid": "loans.form.summary.panel",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-4", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
                     {
-                      className: "w-5 h-5 shrink-0",
-                      style: { color: "var(--brand-red)" }
+                      className: "bg-white rounded-lg px-4 py-3 border",
+                      style: { borderColor: "oklch(0.88 0.04 293.8)" },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mb-1", children: "Total Interest Amount" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-lg font-bold",
+                            style: { color: "var(--brand-red)" },
+                            "data-ocid": "loans.form.totalInterest.display",
+                            children: formatINR2(totalInterest)
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-muted-foreground mt-0.5", children: "P × R/100 × T/12" })
+                      ]
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "p",
-                      {
-                        className: "text-lg font-bold",
-                        style: { color: "var(--brand-red)" },
-                        "data-ocid": "loans.form.totalInterest.display",
-                        children: formatINR2(totalInterest)
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Formula: Loan Amount × (Rate ÷ 100) × (Tenure ÷ 12)" })
-                  ] })
-                ]
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "bg-white rounded-lg px-4 py-3 border",
+                      style: { borderColor: "oklch(0.88 0.04 293.8)" },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mb-1", children: "Total Payable Amount" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-lg font-bold text-foreground",
+                            "data-ocid": "loans.form.totalPayable.display",
+                            children: formatINR2(totalPayable)
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-muted-foreground mt-0.5", children: "Principal + Interest" })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "bg-white rounded-lg px-4 py-3 border",
+                      style: { borderColor: "oklch(0.88 0.04 293.8)" },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mb-1", children: "Monthly EMI" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "p",
+                          {
+                            className: "text-lg font-bold",
+                            style: { color: "#15803d" },
+                            "data-ocid": "loans.form.monthlyEMI.display",
+                            children: formatINR2(monthlyEMI)
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-muted-foreground mt-0.5", children: "Total Payable ÷ Tenure" })
+                      ]
+                    }
+                  )
+                ] })
               }
             )
           ] })
@@ -77276,7 +77658,7 @@ function LoanFormDialog({ open, onOpenChange }) {
               children: addLoan.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
                 "Saving..."
-              ] }) : "Add Loan"
+              ] }) : "Save Loan Record"
             }
           )
         ] })
@@ -77551,7 +77933,8 @@ function RepaymentSchedule({
 function LoanListView({
   loans,
   isLoading,
-  onView
+  onView,
+  isManager
 }) {
   const [formOpen, setFormOpen] = reactExports.useState(false);
   const [deleteOpen, setDeleteOpen] = reactExports.useState(false);
@@ -77599,7 +77982,7 @@ function LoanListView({
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage loan records and repayment schedules — Manager access only" })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(
             Button,
             {
               onClick: () => setFormOpen(true),
@@ -77687,7 +78070,7 @@ function LoanListView({
                         children: "View Schedule"
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    isManager && /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Button,
                       {
                         size: "sm",
@@ -77705,17 +78088,19 @@ function LoanListView({
             )) })
           ] }) }) })
         ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(LoanFormDialog, { open: formOpen, onOpenChange: setFormOpen }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          DeleteLoanDialog,
-          {
-            open: deleteOpen,
-            onOpenChange: setDeleteOpen,
-            loan: deleteTarget,
-            onConfirm: handleDeleteConfirm,
-            isDeleting: deleteLoan.isPending
-          }
-        )
+        isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(LoanFormDialog, { open: formOpen, onOpenChange: setFormOpen }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            DeleteLoanDialog,
+            {
+              open: deleteOpen,
+              onOpenChange: setDeleteOpen,
+              loan: deleteTarget,
+              onConfirm: handleDeleteConfirm,
+              isDeleting: deleteLoan.isPending
+            }
+          )
+        ] })
       ]
     }
   );
@@ -77726,19 +78111,6 @@ function Loans() {
   const [selectedLoan, setSelectedLoan] = reactExports.useState(null);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
-    !selectedLoan && !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "text-xl font-bold text-foreground flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          ShieldAlert,
-          {
-            className: "w-5 h-5",
-            style: { color: "var(--brand-red)" }
-          }
-        ),
-        "Loan Management"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage loan records and repayment schedules — Manager access only" })
-    ] }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !isManager ? (
       /* Staff locked screen */
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -77785,7 +78157,8 @@ function Loans() {
       {
         loans,
         isLoading,
-        onView: setSelectedLoan
+        onView: setSelectedLoan,
+        isManager
       },
       "list"
     ) })
@@ -78935,49 +79308,6 @@ function PaymentHeads() {
       }
     )
   ] });
-}
-var NAME = "Separator";
-var DEFAULT_ORIENTATION = "horizontal";
-var ORIENTATIONS = ["horizontal", "vertical"];
-var Separator$1 = reactExports.forwardRef((props, forwardedRef) => {
-  const { decorative, orientation: orientationProp = DEFAULT_ORIENTATION, ...domProps } = props;
-  const orientation = isValidOrientation(orientationProp) ? orientationProp : DEFAULT_ORIENTATION;
-  const ariaOrientation = orientation === "vertical" ? orientation : void 0;
-  const semanticProps = decorative ? { role: "none" } : { "aria-orientation": ariaOrientation, role: "separator" };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Primitive.div,
-    {
-      "data-orientation": orientation,
-      ...semanticProps,
-      ...domProps,
-      ref: forwardedRef
-    }
-  );
-});
-Separator$1.displayName = NAME;
-function isValidOrientation(orientation) {
-  return ORIENTATIONS.includes(orientation);
-}
-var Root = Separator$1;
-function Separator({
-  className,
-  orientation = "horizontal",
-  decorative = true,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root,
-    {
-      "data-slot": "separator",
-      decorative,
-      orientation,
-      className: cn(
-        "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
-        className
-      ),
-      ...props
-    }
-  );
 }
 var TABS_NAME = "Tabs";
 var [createTabsContext] = createContextScope(TABS_NAME, [

@@ -432,3 +432,17 @@ export function useBulkUpdateProducts() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] }),
   });
 }
+
+// ── Loan Hooks ───────────────────────────────────────────────────────────────
+
+export function useLoans() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["loans"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return (actor as any).getAllLoans() as Promise<any[]>;
+    },
+    enabled: !!actor && !isFetching,
+  });
+}

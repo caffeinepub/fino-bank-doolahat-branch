@@ -1,4 +1,4 @@
-import Migration "migration";
+
 import Runtime "mo:core/Runtime";
 import Array "mo:core/Array";
 import Time "mo:core/Time";
@@ -13,7 +13,7 @@ import Principal "mo:core/Principal";
 import AccessControl "authorization/access-control";
 import MixinAuthorization "authorization/MixinAuthorization";
 
-(with migration = Migration.run)
+
 actor {
   // Initialize access control
   let accessControlState = AccessControl.initState();

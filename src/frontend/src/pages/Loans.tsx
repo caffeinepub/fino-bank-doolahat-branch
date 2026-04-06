@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -31,11 +32,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft,
   BadgeIndianRupee,
+  Calculator,
+  CalendarDays,
   Download,
   Loader2,
   Plus,
   ShieldAlert,
   Trash2,
+  User,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
@@ -65,7 +69,20 @@ function useAddLoan() {
   const { actor } = useActor();
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async (loan: Omit<Loan, "id" | "createdAt">) => {
+    mutationFn: async (loan: {
+      customerName: string;
+      fatherHusbandName: string;
+      fullAddress: string;
+      loanStartDate: string;
+      contactNo: string;
+      nomineeName: string;
+      dateOfBirth: string;
+      loanAmount: number;
+      totalInterestAmount: number;
+      interestRate: number;
+      loanTenureMonths: number;
+      repaymentType: string;
+    }) => {
       if (!actor) throw new Error("No actor");
       return (actor as any).addLoan(
         loan.customerName,
@@ -78,7 +95,7 @@ function useAddLoan() {
         loan.loanAmount,
         loan.totalInterestAmount,
         loan.interestRate,
-        BigInt(loan.loanTenureMonths),
+        Number(loan.loanTenureMonths),
         loan.repaymentType,
       );
     },
@@ -161,6 +178,36 @@ interface LoanFormDialogProps {
   onOpenChange: (v: boolean) => void;
 }
 
+// Section header component
+function SectionHeader({
+  icon: Icon,
+  title,
+  subtitle,
+}: {
+  icon: React.ElementType;
+  title: string;
+  subtitle?: string;
+}) {
+  return (
+    <div className="flex items-center gap-2 mb-4">
+      <div
+        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+        style={{ backgroundColor: "oklch(0.94 0.04 293.8)" }}
+      >
+        <Icon className="w-4 h-4" style={{ color: "var(--brand-red)" }} />
+      </div>
+      <div>
+        <h3 className="text-sm font-bold" style={{ color: "var(--brand-red)" }}>
+          {title}
+        </h3>
+        {subtitle && (
+          <p className="text-xs text-muted-foreground">{subtitle}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
   const [form, setForm] = useState<LoanFormData>(emptyLoanForm);
   const [errors, setErrors] = useState<
@@ -176,6 +223,8 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
     interestRateNum,
     tenureNum,
   );
+  const totalPayable = loanAmountNum + totalInterest;
+  const monthlyEMI = tenureNum > 0 ? totalPayable / tenureNum : 0;
 
   useEffect(() => {
     if (!open) {
@@ -221,10 +270,10 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
         loanAmount: loanAmountNum,
         totalInterestAmount: totalInterest,
         interestRate: interestRateNum,
-        loanTenureMonths: BigInt(tenureNum),
+        loanTenureMonths: tenureNum,
         repaymentType: "Monthly",
       });
-      toast.success("Loan record added successfully");
+      toast.success("Loan record saved successfully");
       onOpenChange(false);
     } catch (e) {
       toast.error("Failed to save loan record");
@@ -235,299 +284,369 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="sm:max-w-2xl max-h-[90vh] overflow-y-auto"
+        className="sm:max-w-3xl max-h-[90vh] overflow-y-auto"
         data-ocid="loans.form.dialog"
       >
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle className="flex items-center gap-2 text-base">
             <BadgeIndianRupee
               className="w-5 h-5"
               style={{ color: "var(--brand-red)" }}
             />
-            Add New Loan
+            <span>Add New Loan Record</span>
           </DialogTitle>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
-          {/* Customer Name */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-cname">
-              Customer Name <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-cname"
-              placeholder="e.g. Ramesh Kumar"
-              value={form.customerName}
-              onChange={(e) => set("customerName")(e.target.value)}
-              data-ocid="loans.form.customerName.input"
+        <div className="space-y-6 py-2">
+          {/* ── Section 1: Customer Information ── */}
+          <div>
+            <SectionHeader
+              icon={User}
+              title="Customer Information"
+              subtitle="Personal and contact details of the borrower"
             />
-            {errors.customerName && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.customerName.error_state"
-              >
-                {errors.customerName}
-              </p>
-            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Customer Name */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-cname">
+                  Customer Name <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-cname"
+                  placeholder="e.g. Ramesh Kumar"
+                  value={form.customerName}
+                  onChange={(e) => set("customerName")(e.target.value)}
+                  data-ocid="loans.form.customerName.input"
+                />
+                {errors.customerName && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.customerName.error_state"
+                  >
+                    {errors.customerName}
+                  </p>
+                )}
+              </div>
+
+              {/* Father/Husband Name */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-fname">
+                  Father/Husband Name <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-fname"
+                  placeholder="e.g. Suresh Kumar"
+                  value={form.fatherHusbandName}
+                  onChange={(e) => set("fatherHusbandName")(e.target.value)}
+                  data-ocid="loans.form.fatherHusbandName.input"
+                />
+                {errors.fatherHusbandName && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.fatherHusbandName.error_state"
+                  >
+                    {errors.fatherHusbandName}
+                  </p>
+                )}
+              </div>
+
+              {/* Date of Birth */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-dob">
+                  Date of Birth <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-dob"
+                  type="date"
+                  value={form.dateOfBirth}
+                  onChange={(e) => set("dateOfBirth")(e.target.value)}
+                  data-ocid="loans.form.dateOfBirth.input"
+                />
+                {errors.dateOfBirth && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.dateOfBirth.error_state"
+                  >
+                    {errors.dateOfBirth}
+                  </p>
+                )}
+              </div>
+
+              {/* Contact No */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-contact">
+                  Customer Contact No <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-contact"
+                  placeholder="10-digit mobile number"
+                  value={form.contactNo}
+                  onChange={(e) => set("contactNo")(e.target.value)}
+                  data-ocid="loans.form.contactNo.input"
+                />
+                {errors.contactNo && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.contactNo.error_state"
+                  >
+                    {errors.contactNo}
+                  </p>
+                )}
+              </div>
+
+              {/* Nominee Name */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-nominee">
+                  Nominee Name <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-nominee"
+                  placeholder="e.g. Priya Devi"
+                  value={form.nomineeName}
+                  onChange={(e) => set("nomineeName")(e.target.value)}
+                  data-ocid="loans.form.nomineeName.input"
+                />
+                {errors.nomineeName && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.nomineeName.error_state"
+                  >
+                    {errors.nomineeName}
+                  </p>
+                )}
+              </div>
+
+              {/* Full Address - spans 2 cols */}
+              <div className="space-y-1.5 sm:col-span-2">
+                <Label htmlFor="lf-addr">
+                  Full Address <span className="text-red-500">*</span>
+                </Label>
+                <Textarea
+                  id="lf-addr"
+                  placeholder="Enter complete postal address including village/city, district, state and PIN code"
+                  rows={2}
+                  value={form.fullAddress}
+                  onChange={(e) => set("fullAddress")(e.target.value)}
+                  data-ocid="loans.form.fullAddress.textarea"
+                />
+                {errors.fullAddress && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.fullAddress.error_state"
+                  >
+                    {errors.fullAddress}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* Father/Husband Name */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-fname">
-              Father/Husband Name <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-fname"
-              placeholder="e.g. Suresh Kumar"
-              value={form.fatherHusbandName}
-              onChange={(e) => set("fatherHusbandName")(e.target.value)}
-              data-ocid="loans.form.fatherHusbandName.input"
+          <Separator />
+
+          {/* ── Section 2: Loan Details ── */}
+          <div>
+            <SectionHeader
+              icon={CalendarDays}
+              title="Loan Details"
+              subtitle="Loan parameters for calculation and repayment"
             />
-            {errors.fatherHusbandName && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.fatherHusbandName.error_state"
-              >
-                {errors.fatherHusbandName}
-              </p>
-            )}
-          </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Loan Start Date */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-start">
+                  Loan Start Date <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-start"
+                  type="date"
+                  value={form.loanStartDate}
+                  onChange={(e) => set("loanStartDate")(e.target.value)}
+                  data-ocid="loans.form.loanStartDate.input"
+                />
+                {errors.loanStartDate && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.loanStartDate.error_state"
+                  >
+                    {errors.loanStartDate}
+                  </p>
+                )}
+              </div>
 
-          {/* Full Address */}
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="lf-addr">
-              Full Address <span className="text-red-500">*</span>
-            </Label>
-            <Textarea
-              id="lf-addr"
-              placeholder="Enter full postal address"
-              rows={2}
-              value={form.fullAddress}
-              onChange={(e) => set("fullAddress")(e.target.value)}
-              data-ocid="loans.form.fullAddress.textarea"
-            />
-            {errors.fullAddress && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.fullAddress.error_state"
-              >
-                {errors.fullAddress}
-              </p>
-            )}
-          </div>
-
-          {/* Loan Start Date */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-start">
-              Loan Start Date <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-start"
-              type="date"
-              value={form.loanStartDate}
-              onChange={(e) => set("loanStartDate")(e.target.value)}
-              data-ocid="loans.form.loanStartDate.input"
-            />
-            {errors.loanStartDate && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.loanStartDate.error_state"
-              >
-                {errors.loanStartDate}
-              </p>
-            )}
-          </div>
-
-          {/* Contact No */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-contact">
-              Customer Contact No <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-contact"
-              placeholder="10-digit mobile number"
-              value={form.contactNo}
-              onChange={(e) => set("contactNo")(e.target.value)}
-              data-ocid="loans.form.contactNo.input"
-            />
-            {errors.contactNo && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.contactNo.error_state"
-              >
-                {errors.contactNo}
-              </p>
-            )}
-          </div>
-
-          {/* Nominee Name */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-nominee">
-              Nominee Name <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-nominee"
-              placeholder="e.g. Priya Devi"
-              value={form.nomineeName}
-              onChange={(e) => set("nomineeName")(e.target.value)}
-              data-ocid="loans.form.nomineeName.input"
-            />
-            {errors.nomineeName && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.nomineeName.error_state"
-              >
-                {errors.nomineeName}
-              </p>
-            )}
-          </div>
-
-          {/* Date of Birth */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-dob">
-              Date of Birth <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-dob"
-              type="date"
-              value={form.dateOfBirth}
-              onChange={(e) => set("dateOfBirth")(e.target.value)}
-              data-ocid="loans.form.dateOfBirth.input"
-            />
-            {errors.dateOfBirth && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.dateOfBirth.error_state"
-              >
-                {errors.dateOfBirth}
-              </p>
-            )}
-          </div>
-
-          {/* Loan Amount */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-amount">
-              Loan Amount (₹) <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-amount"
-              type="number"
-              min={1}
-              step={0.01}
-              placeholder="e.g. 50000"
-              value={form.loanAmount}
-              onChange={(e) => set("loanAmount")(e.target.value)}
-              data-ocid="loans.form.loanAmount.input"
-            />
-            {errors.loanAmount && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.loanAmount.error_state"
-              >
-                {errors.loanAmount}
-              </p>
-            )}
-          </div>
-
-          {/* Interest Rate */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-rate">
-              Interest Rate (1–50%) <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="lf-rate"
-              type="number"
-              min={1}
-              max={50}
-              step={0.1}
-              placeholder="e.g. 12"
-              value={form.interestRate}
-              onChange={(e) => set("interestRate")(e.target.value)}
-              data-ocid="loans.form.interestRate.input"
-            />
-            {errors.interestRate && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.interestRate.error_state"
-              >
-                {errors.interestRate}
-              </p>
-            )}
-          </div>
-
-          {/* Loan Tenure */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-tenure">
-              Loan Tenure (months) <span className="text-red-500">*</span>
-            </Label>
-            <Select
-              value={form.loanTenureMonths}
-              onValueChange={set("loanTenureMonths")}
-            >
-              <SelectTrigger
-                id="lf-tenure"
-                data-ocid="loans.form.loanTenure.select"
-              >
-                <SelectValue placeholder="Select tenure" />
-              </SelectTrigger>
-              <SelectContent>
-                {TENURE_OPTIONS.map((t) => (
-                  <SelectItem key={t} value={String(t)}>
-                    {t} months
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.loanTenureMonths && (
-              <p
-                className="text-xs text-red-600"
-                data-ocid="loans.form.tenure.error_state"
-              >
-                {errors.loanTenureMonths}
-              </p>
-            )}
-          </div>
-
-          {/* Repayment Type (read-only) */}
-          <div className="space-y-1.5">
-            <Label htmlFor="lf-repay">Repayment Type</Label>
-            <Input
-              id="lf-repay"
-              value="Monthly"
-              readOnly
-              className="bg-muted cursor-default text-muted-foreground"
-              data-ocid="loans.form.repaymentType.input"
-            />
-          </div>
-
-          {/* Total Interest (auto-calculated) */}
-          <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="lf-interest">
-              Total Interest Amount (Auto-calculated)
-            </Label>
-            <div
-              className="flex items-center gap-3 rounded-lg border px-4 py-3"
-              style={{
-                backgroundColor: "oklch(0.97 0.018 293.8)",
-                borderColor: "oklch(0.85 0.05 293.8)",
-              }}
-              data-ocid="loans.form.totalInterest.panel"
-            >
-              <BadgeIndianRupee
-                className="w-5 h-5 shrink-0"
-                style={{ color: "var(--brand-red)" }}
-              />
-              <div>
-                <p
-                  className="text-lg font-bold"
-                  style={{ color: "var(--brand-red)" }}
-                  data-ocid="loans.form.totalInterest.display"
+              {/* Loan Tenure */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-tenure">
+                  Loan Tenure <span className="text-red-500">*</span>
+                </Label>
+                <Select
+                  value={form.loanTenureMonths}
+                  onValueChange={set("loanTenureMonths")}
                 >
-                  {formatINR2(totalInterest)}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Formula: Loan Amount × (Rate ÷ 100) × (Tenure ÷ 12)
-                </p>
+                  <SelectTrigger
+                    id="lf-tenure"
+                    data-ocid="loans.form.loanTenure.select"
+                  >
+                    <SelectValue placeholder="Select tenure in months" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {TENURE_OPTIONS.map((t) => (
+                      <SelectItem key={t} value={String(t)}>
+                        {t} months
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.loanTenureMonths && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.tenure.error_state"
+                  >
+                    {errors.loanTenureMonths}
+                  </p>
+                )}
+              </div>
+
+              {/* Loan Amount */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-amount">
+                  Loan Amount in ₹ <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-amount"
+                  type="number"
+                  min={1}
+                  step={0.01}
+                  placeholder="e.g. 50000"
+                  value={form.loanAmount}
+                  onChange={(e) => set("loanAmount")(e.target.value)}
+                  data-ocid="loans.form.loanAmount.input"
+                />
+                {errors.loanAmount && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.loanAmount.error_state"
+                  >
+                    {errors.loanAmount}
+                  </p>
+                )}
+              </div>
+
+              {/* Interest Rate */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-rate">
+                  Interest Rate 1–50% <span className="text-red-500">*</span>
+                </Label>
+                <Input
+                  id="lf-rate"
+                  type="number"
+                  min={1}
+                  max={50}
+                  step={0.1}
+                  placeholder="e.g. 12"
+                  value={form.interestRate}
+                  onChange={(e) => set("interestRate")(e.target.value)}
+                  data-ocid="loans.form.interestRate.input"
+                />
+                {errors.interestRate && (
+                  <p
+                    className="text-xs text-red-600"
+                    data-ocid="loans.form.interestRate.error_state"
+                  >
+                    {errors.interestRate}
+                  </p>
+                )}
+              </div>
+
+              {/* Repayment Type (read-only) */}
+              <div className="space-y-1.5">
+                <Label htmlFor="lf-repay">Repayment Type</Label>
+                <Input
+                  id="lf-repay"
+                  value="Monthly"
+                  readOnly
+                  className="bg-muted cursor-default text-muted-foreground"
+                  data-ocid="loans.form.repaymentType.input"
+                />
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* ── Section 3: Auto-Calculated Summary ── */}
+          <div>
+            <SectionHeader
+              icon={Calculator}
+              title="Auto-Calculated Summary"
+              subtitle="All values computed from the loan parameters above"
+            />
+            <div
+              className="rounded-xl border-2 p-4 space-y-3"
+              style={{
+                backgroundColor: "oklch(0.975 0.015 293.8)",
+                borderColor: "oklch(0.82 0.06 293.8)",
+              }}
+              data-ocid="loans.form.summary.panel"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Total Interest */}
+                <div
+                  className="bg-white rounded-lg px-4 py-3 border"
+                  style={{ borderColor: "oklch(0.88 0.04 293.8)" }}
+                >
+                  <p className="text-xs text-muted-foreground mb-1">
+                    Total Interest Amount
+                  </p>
+                  <p
+                    className="text-lg font-bold"
+                    style={{ color: "var(--brand-red)" }}
+                    data-ocid="loans.form.totalInterest.display"
+                  >
+                    {formatINR2(totalInterest)}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">
+                    P × R/100 × T/12
+                  </p>
+                </div>
+
+                {/* Total Payable */}
+                <div
+                  className="bg-white rounded-lg px-4 py-3 border"
+                  style={{ borderColor: "oklch(0.88 0.04 293.8)" }}
+                >
+                  <p className="text-xs text-muted-foreground mb-1">
+                    Total Payable Amount
+                  </p>
+                  <p
+                    className="text-lg font-bold text-foreground"
+                    data-ocid="loans.form.totalPayable.display"
+                  >
+                    {formatINR2(totalPayable)}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">
+                    Principal + Interest
+                  </p>
+                </div>
+
+                {/* Monthly EMI */}
+                <div
+                  className="bg-white rounded-lg px-4 py-3 border"
+                  style={{ borderColor: "oklch(0.88 0.04 293.8)" }}
+                >
+                  <p className="text-xs text-muted-foreground mb-1">
+                    Monthly EMI
+                  </p>
+                  <p
+                    className="text-lg font-bold"
+                    style={{ color: "#15803d" }}
+                    data-ocid="loans.form.monthlyEMI.display"
+                  >
+                    {formatINR2(monthlyEMI)}
+                  </p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">
+                    Total Payable ÷ Tenure
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -555,7 +674,7 @@ function LoanFormDialog({ open, onOpenChange }: LoanFormDialogProps) {
                 Saving...
               </>
             ) : (
-              "Add Loan"
+              "Save Loan Record"
             )}
           </Button>
         </DialogFooter>
@@ -867,10 +986,12 @@ function LoanListView({
   loans,
   isLoading,
   onView,
+  isManager,
 }: {
   loans: Loan[];
   isLoading: boolean;
   onView: (loan: Loan) => void;
+  isManager: boolean;
 }) {
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -921,15 +1042,17 @@ function LoanListView({
             Manage loan records and repayment schedules — Manager access only
           </p>
         </div>
-        <Button
-          onClick={() => setFormOpen(true)}
-          className="gap-2 text-white"
-          style={{ backgroundColor: "var(--brand-red)" }}
-          data-ocid="loans.list.add_button"
-        >
-          <Plus className="w-4 h-4" />
-          Add New Loan
-        </Button>
+        {isManager && (
+          <Button
+            onClick={() => setFormOpen(true)}
+            className="gap-2 text-white"
+            style={{ backgroundColor: "var(--brand-red)" }}
+            data-ocid="loans.list.add_button"
+          >
+            <Plus className="w-4 h-4" />
+            Add New Loan
+          </Button>
+        )}
       </div>
 
       {/* Table */}
@@ -1040,15 +1163,17 @@ function LoanListView({
                           >
                             View Schedule
                           </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="h-7 w-7 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                            onClick={() => handleDeleteClick(loan)}
-                            data-ocid={`loans.list.delete_button.${idx + 1}`}
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </Button>
+                          {isManager && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-7 w-7 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                              onClick={() => handleDeleteClick(loan)}
+                              data-ocid={`loans.list.delete_button.${idx + 1}`}
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </Button>
+                          )}
                         </div>
                       </TableCell>
                     </TableRow>
@@ -1060,14 +1185,18 @@ function LoanListView({
         </CardContent>
       </Card>
 
-      <LoanFormDialog open={formOpen} onOpenChange={setFormOpen} />
-      <DeleteLoanDialog
-        open={deleteOpen}
-        onOpenChange={setDeleteOpen}
-        loan={deleteTarget}
-        onConfirm={handleDeleteConfirm}
-        isDeleting={deleteLoan.isPending}
-      />
+      {isManager && (
+        <>
+          <LoanFormDialog open={formOpen} onOpenChange={setFormOpen} />
+          <DeleteLoanDialog
+            open={deleteOpen}
+            onOpenChange={setDeleteOpen}
+            loan={deleteTarget}
+            onConfirm={handleDeleteConfirm}
+            isDeleting={deleteLoan.isPending}
+          />
+        </>
+      )}
     </motion.div>
   );
 }
@@ -1083,24 +1212,6 @@ export default function Loans() {
     <div className="space-y-4">
       {/* Role Switcher */}
       <RoleSwitcherBar />
-
-      {/* Page Header (only shown when not in schedule view) */}
-      {!selectedLoan && !isManager && (
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <ShieldAlert
-                className="w-5 h-5"
-                style={{ color: "var(--brand-red)" }}
-              />
-              Loan Management
-            </h1>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              Manage loan records and repayment schedules — Manager access only
-            </p>
-          </div>
-        </div>
-      )}
 
       <AnimatePresence mode="wait">
         {!isManager ? (
@@ -1145,6 +1256,7 @@ export default function Loans() {
             loans={loans}
             isLoading={isLoading}
             onView={setSelectedLoan}
+            isManager={isManager}
           />
         )}
       </AnimatePresence>

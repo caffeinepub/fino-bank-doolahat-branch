@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   ArrowRight,
+  BadgeIndianRupee,
   CreditCard,
   FileText,
   Landmark,
@@ -16,6 +17,9 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
+  Legend,
+  Pie,
+  PieChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -26,6 +30,7 @@ import StatusBadge from "../components/StatusBadge";
 import {
   useAllDailyPLs,
   useFixedDeposits,
+  useLoans,
   useTransactions,
 } from "../hooks/useQueries";
 import {
@@ -104,13 +109,25 @@ function KPICard({
   );
 }
 
+const TENURE_COLORS = [
+  "#7C3AED",
+  "#2563EB",
+  "#059669",
+  "#D97706",
+  "#DC2626",
+  "#0891B2",
+  "#7C3AED",
+  "#16A34A",
+  "#9333EA",
+];
+
 export default function Dashboard({ onNavigate }: DashboardProps) {
   const { data: pls, isLoading: plLoading } = useAllDailyPLs();
   const { data: fds, isLoading: fdLoading } = useFixedDeposits();
   const { data: txs, isLoading: txLoading } = useTransactions();
+  const { data: loans, isLoading: loansLoading } = useLoans();
 
   const today = todayISO();
-  // getLast7DaysRange used for reference (chart computed below)
   const _range = getLast7DaysRange();
   void _range;
 
@@ -146,6 +163,59 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
     }
     return days;
   }, [pls]);
+
+  // Loan analytics
+  const loanAnalytics = useMemo(() => {
+    if (!loans || loans.length === 0) {
+      return {
+        tenureData: [],
+        monthlyData: [],
+        totalDisbursed: 0,
+        totalCount: 0,
+      };
+    }
+
+    const totalCount = loans.length;
+    const totalDisbursed = loans.reduce(
+      (sum: number, l: any) => sum + (l.loanAmount || 0),
+      0,
+    );
+
+    // Tenure distribution
+    const tenureMap: Record<string, number> = {};
+    for (const l of loans) {
+      const key = `${Number(l.loanTenureMonths)} mo`;
+      tenureMap[key] = (tenureMap[key] || 0) + 1;
+    }
+    const tenureData = Object.entries(tenureMap)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => Number.parseInt(a.name) - Number.parseInt(b.name));
+
+    // Monthly loan disbursements (last 6 months)
+    const monthMap: Record<string, number> = {};
+    for (const l of loans) {
+      if (!l.loanStartDate) continue;
+      const d = new Date(l.loanStartDate);
+      if (Number.isNaN(d.getTime())) continue;
+      const key = d.toLocaleDateString("en-IN", {
+        month: "short",
+        year: "numeric",
+      });
+      monthMap[key] = (monthMap[key] || 0) + (l.loanAmount || 0);
+    }
+
+    // Build sorted month keys (last 6 unique months found in data, or up to 6)
+    const allMonthKeys = Object.keys(monthMap).sort((a, b) => {
+      return new Date(`01 ${a}`).getTime() - new Date(`01 ${b}`).getTime();
+    });
+    const last6 = allMonthKeys.slice(-6);
+    const monthlyData = last6.map((month) => ({
+      month,
+      amount: monthMap[month],
+    }));
+
+    return { tenureData, monthlyData, totalDisbursed, totalCount };
+  }, [loans]);
 
   const netProfitToday = todayPL?.totalProfitLoss ?? 0;
   const totalActiveFDs = fds?.length ?? 0;
@@ -191,8 +261,8 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
         </div>
       </motion.div>
 
-      {/* KPI Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* KPI Row — 6 cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         <KPICard
           title="Total Active FDs"
           value={totalActiveFDs.toString()}
@@ -225,6 +295,22 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           icon={FileText}
           color="#B91C1C"
           isLoading={plLoading}
+        />
+        <KPICard
+          title="Total Loans"
+          value={loanAnalytics.totalCount.toString()}
+          subtitle="Loan records"
+          icon={BadgeIndianRupee}
+          color="#7C3AED"
+          isLoading={loansLoading}
+        />
+        <KPICard
+          title="Total Loan Disbursed"
+          value={formatINRShort(loanAnalytics.totalDisbursed)}
+          subtitle="All loans combined"
+          icon={TrendingUp}
+          color="#2563EB"
+          isLoading={loansLoading}
         />
       </div>
 
@@ -303,14 +389,14 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
                 desc: "Record transaction",
               },
               {
-                label: "Manage Heads",
-                tab: "payment-heads" as TabId,
-                desc: "Payment head config",
-              },
-              {
                 label: "Manage Merchants",
                 tab: "merchants" as TabId,
                 desc: "Merchant registrations",
+              },
+              {
+                label: "Add New Loan",
+                tab: "loans" as TabId,
+                desc: "Loan records & schedules",
               },
             ].map(({ label, tab, desc }) => (
               <Button
@@ -330,6 +416,123 @@ export default function Dashboard({ onNavigate }: DashboardProps) {
           </CardContent>
         </Card>
       </div>
+
+      {/* Loan Portfolio Analytics */}
+      <Card className="shadow-card border-border">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
+            <BadgeIndianRupee
+              className="w-4 h-4"
+              style={{ color: "var(--brand-red)" }}
+            />
+            Loan Portfolio Analytics
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {loansLoading ? (
+            <Skeleton
+              className="h-48 w-full"
+              data-ocid="dashboard.loans.loading_state"
+            />
+          ) : !loans || loans.length === 0 ? (
+            <div
+              className="flex flex-col items-center justify-center py-12 text-center"
+              data-ocid="dashboard.loans.empty_state"
+            >
+              <BadgeIndianRupee className="w-10 h-10 text-muted-foreground/30 mb-3" />
+              <p className="text-sm text-muted-foreground">
+                No loan data available yet. Add loans from the Loans tab
+                (Manager access).
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Tenure Distribution Pie Chart */}
+              <div>
+                <h4 className="text-sm font-semibold text-muted-foreground mb-3 text-center">
+                  Loans by Tenure
+                </h4>
+                <ResponsiveContainer width="100%" height={220}>
+                  <PieChart>
+                    <Pie
+                      data={loanAnalytics.tenureData}
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={80}
+                      dataKey="value"
+                      nameKey="name"
+                      label={({ name, value }) => `${name}: ${value}`}
+                      labelLine={true}
+                    >
+                      {loanAnalytics.tenureData.map((entry, idx) => (
+                        <Cell
+                          key={`tenure-cell-${entry.name}`}
+                          fill={TENURE_COLORS[idx % TENURE_COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      formatter={(v: number, name: string) => [
+                        `${v} loan${v !== 1 ? "s" : ""}`,
+                        name,
+                      ]}
+                      contentStyle={{ fontSize: 12, borderRadius: 8 }}
+                    />
+                    <Legend
+                      iconType="circle"
+                      iconSize={8}
+                      wrapperStyle={{ fontSize: 11 }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Monthly Disbursement Bar Chart */}
+              <div>
+                <h4 className="text-sm font-semibold text-muted-foreground mb-3 text-center">
+                  Monthly Loan Disbursements
+                </h4>
+                {loanAnalytics.monthlyData.length === 0 ? (
+                  <div className="flex items-center justify-center h-[220px] text-sm text-muted-foreground">
+                    Not enough data for monthly chart
+                  </div>
+                ) : (
+                  <ResponsiveContainer width="100%" height={220}>
+                    <BarChart
+                      data={loanAnalytics.monthlyData}
+                      margin={{ top: 4, right: 8, left: 0, bottom: 0 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                      <XAxis
+                        dataKey="month"
+                        tick={{ fontSize: 11 }}
+                        interval={0}
+                        angle={-20}
+                        textAnchor="end"
+                        height={36}
+                      />
+                      <YAxis
+                        tick={{ fontSize: 11 }}
+                        tickFormatter={(v) => formatINRShort(v as number)}
+                      />
+                      <Tooltip
+                        formatter={(v: number) => [formatINR(v), "Disbursed"]}
+                        contentStyle={{ fontSize: 12, borderRadius: 8 }}
+                      />
+                      <Bar
+                        dataKey="amount"
+                        fill="#7C3AED"
+                        radius={[4, 4, 0, 0]}
+                        name="Amount"
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                )}
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       {/* Recent Transactions Table */}
       <Card className="shadow-card border-border">
