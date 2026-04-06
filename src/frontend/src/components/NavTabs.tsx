@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { ExternalLink, Star } from "lucide-react";
 import type { TabId } from "../App";
 
 interface NavTabsProps {
@@ -6,7 +6,7 @@ interface NavTabsProps {
   onTabChange: (tab: TabId) => void;
 }
 
-const tabs: { id: TabId; label: string }[] = [
+const tabs: { id: TabId; label: string; external?: boolean }[] = [
   { id: "dashboard", label: "Dashboard" },
   { id: "daily-pl", label: "Daily P&L Entry" },
   { id: "pl-reports", label: "P&L Reports" },
@@ -17,6 +17,7 @@ const tabs: { id: TabId; label: string }[] = [
   { id: "inventory", label: "Inventory" },
   { id: "complaints", label: "Complaints" },
   { id: "loans", label: "Loans" },
+  { id: "upi-collection", label: "UPI Collection", external: true },
 ];
 
 export default function NavTabs({ activeTab, onTabChange }: NavTabsProps) {
@@ -37,19 +38,22 @@ export default function NavTabs({ activeTab, onTabChange }: NavTabsProps) {
             key={tab.id}
             type="button"
             onClick={() => onTabChange(tab.id)}
-            className={`px-4 py-3.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap ${
-              activeTab === tab.id
+            className={`px-4 py-3.5 text-sm font-medium border-b-2 transition-all whitespace-nowrap flex items-center gap-1 ${
+              activeTab === tab.id && !tab.external
                 ? "border-current"
                 : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
             }`}
             style={
-              activeTab === tab.id
+              activeTab === tab.id && !tab.external
                 ? { borderColor: "var(--brand-red)", color: "var(--brand-red)" }
-                : {}
+                : tab.external
+                  ? { color: "#16a34a" }
+                  : {}
             }
             data-ocid={`nav.${tab.id}.tab`}
           >
             {tab.label}
+            {tab.external && <ExternalLink className="w-3 h-3" />}
           </button>
         ))}
       </div>

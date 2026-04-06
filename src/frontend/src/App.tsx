@@ -24,10 +24,22 @@ export type TabId =
   | "merchants"
   | "inventory"
   | "complaints"
-  | "loans";
+  | "loans"
+  | "upi-collection";
+
+const UPI_COLLECTION_URL =
+  "https://zohosecurepay.in/checkout/35xqxag0-145mz21pbqhzh/FINO-PAYMENTS-BANK-DOOLAHAT-BRANCH";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>("dashboard");
+
+  const handleTabChange = (tab: TabId) => {
+    if (tab === "upi-collection") {
+      window.open(UPI_COLLECTION_URL, "_blank", "noopener,noreferrer");
+      return;
+    }
+    setActiveTab(tab);
+  };
 
   const renderPage = () => {
     switch (activeTab) {
@@ -63,7 +75,7 @@ export default function App() {
         style={{ backgroundColor: "var(--page-bg)" }}
       >
         <Header />
-        <NavTabs activeTab={activeTab} onTabChange={setActiveTab} />
+        <NavTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
         <main className="flex-1 px-6 py-6 max-w-screen-2xl mx-auto w-full">
           {renderPage()}
@@ -129,13 +141,23 @@ export default function App() {
                     <li key={tab}>
                       <button
                         type="button"
-                        onClick={() => setActiveTab(tab)}
+                        onClick={() => handleTabChange(tab)}
                         className="text-xs text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {label}
                       </button>
                     </li>
                   ))}
+                  <li>
+                    <a
+                      href={UPI_COLLECTION_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      UPI Collection ↗
+                    </a>
+                  </li>
                 </ul>
               </div>
 
