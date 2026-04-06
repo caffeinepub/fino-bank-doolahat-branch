@@ -22,6 +22,55 @@ export interface Transaction {
     accountNumber: string;
     amount: number;
 }
+export interface DailyPL {
+    id: bigint;
+    totalProfitLoss: number;
+    date: string;
+    createdAt: bigint;
+    headBalances: Array<HeadBalance>;
+}
+export interface Complaint {
+    id: bigint;
+    customerName: string;
+    status: string;
+    complaintNo: string;
+    accountNo: string;
+    createdAt: bigint;
+    aadharNo: string;
+    contactNo: string;
+    panNo: string;
+    dateOfComplaint: string;
+    complaintBrief: string;
+}
+export interface InventoryProduct {
+    id: bigint;
+    sku: string;
+    reorderPoint: bigint;
+    name: string;
+    createdAt: bigint;
+    description: string;
+    barcode: string;
+    quantity: bigint;
+    category: string;
+    salePrice: number;
+    unitCost: number;
+}
+export interface Loan {
+    id: bigint;
+    loanStartDate: string;
+    customerName: string;
+    loanAmount: number;
+    dateOfBirth: string;
+    createdAt: bigint;
+    fatherHusbandName: string;
+    totalInterestAmount: number;
+    interestRate: number;
+    nomineeName: string;
+    loanTenureMonths: bigint;
+    repaymentType: string;
+    contactNo: string;
+    fullAddress: string;
+}
 export interface FixedDeposit {
     id: bigint;
     customerName: string;
@@ -38,12 +87,14 @@ export interface FixedDeposit {
     tenure: bigint;
     interestAmount: number;
 }
-export interface DailyPL {
+export interface StockTransaction {
     id: bigint;
-    totalProfitLoss: number;
-    date: string;
+    transactionDate: string;
+    transactionType: string;
+    quantityChange: bigint;
+    note: string;
     createdAt: bigint;
-    headBalances: Array<HeadBalance>;
+    productId: bigint;
 }
 export interface HeadBalance {
     headName: string;
@@ -52,76 +103,59 @@ export interface HeadBalance {
     openingBalance: number;
     headId: bigint;
 }
+export interface UserProfile {
+    name: string;
+}
 export interface PaymentHead {
     id: bigint;
     headType: string;
     name: string;
     isDefault: boolean;
 }
-export interface InventoryProduct {
-    id: bigint;
-    name: string;
-    description: string;
-    sku: string;
-    barcode: string;
-    category: string;
-    quantity: bigint;
-    unitCost: number;
-    salePrice: number;
-    reorderPoint: bigint;
-    createdAt: bigint;
-}
-export interface StockTransaction {
-    id: bigint;
-    productId: bigint;
-    transactionType: string;
-    quantityChange: bigint;
-    note: string;
-    transactionDate: string;
-    createdAt: bigint;
-}
-export interface Complaint {
-    id: bigint;
-    customerName: string;
-    contactNo: string;
-    accountNo: string;
-    aadharNo: string;
-    panNo: string;
-    dateOfComplaint: string;
-    complaintBrief: string;
-    status: string;
-    createdAt: bigint;
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
 }
 export interface backendInterface {
-    _initializeAccessControlWithSecret(adminToken: string): Promise<void>;
+    addComplaint(customerName: string, complaintNo: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<bigint>;
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
+    addLoan(customerName: string, fatherHusbandName: string, fullAddress: string, loanStartDate: string, contactNo: string, nomineeName: string, dateOfBirth: string, loanAmount: number, totalInterestAmount: number, interestRate: number, loanTenureMonths: bigint, repaymentType: string): Promise<bigint>;
     addPaymentHead(name: string, headType: string): Promise<bigint>;
+    addProduct(name: string, description: string, sku: string, barcode: string, category: string, quantity: bigint, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<bigint>;
+    addStockTransaction(productId: bigint, txType: string, quantityChange: bigint, note: string, transactionDate: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
+    deleteComplaint(id: bigint): Promise<void>;
     deleteDailyPL(id: bigint): Promise<void>;
     deleteFixedDeposit(id: bigint): Promise<void>;
+    deleteLoan(id: bigint): Promise<void>;
     deletePaymentHead(id: bigint): Promise<void>;
+    deleteProduct(id: bigint): Promise<void>;
     deleteTransaction(id: bigint): Promise<void>;
     editPaymentHead(id: bigint, name: string, headType: string): Promise<void>;
+    editProduct(id: bigint, name: string, description: string, sku: string, barcode: string, category: string, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<void>;
+    getAllComplaints(): Promise<Array<Complaint>>;
     getAllDailyPLs(): Promise<Array<DailyPL>>;
     getAllFixedDeposits(): Promise<Array<FixedDeposit>>;
+    getAllLoans(): Promise<Array<Loan>>;
     getAllPaymentHeads(): Promise<Array<PaymentHead>>;
-    getAllTransactions(): Promise<Array<Transaction>>;
-    getDailyPLByDateRange(startDate: string, endDate: string): Promise<Array<DailyPL>>;
-    getTransactionsByTypeAndStatus(txType: string, status: string): Promise<Array<Transaction>>;
-    saveDailyPL(date: string, headBalances: Array<HeadBalance>): Promise<bigint>;
-    addProduct(name: string, description: string, sku: string, barcode: string, category: string, quantity: bigint, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<bigint>;
-    editProduct(id: bigint, name: string, description: string, sku: string, barcode: string, category: string, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<void>;
-    deleteProduct(id: bigint): Promise<void>;
     getAllProducts(): Promise<Array<InventoryProduct>>;
-    addStockTransaction(productId: bigint, txType: string, quantityChange: bigint, note: string, transactionDate: string): Promise<bigint>;
     getAllStockTransactions(): Promise<Array<StockTransaction>>;
+    getAllTransactions(): Promise<Array<Transaction>>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
+    getCallerUserRole(): Promise<UserRole>;
+    getComplaintsByStatus(status: string): Promise<Array<Complaint>>;
+    getDailyPLByDateRange(startDate: string, endDate: string): Promise<Array<DailyPL>>;
+    getLoanById(id: bigint): Promise<Loan | null>;
     getStockTransactionsByProduct(productId: bigint): Promise<Array<StockTransaction>>;
     getTodayStockTransactions(today: string): Promise<Array<StockTransaction>>;
-    bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
-    addComplaint(customerName: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<bigint>;
+    getTransactionsByTypeAndStatus(txType: string, status: string): Promise<Array<Transaction>>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
+    isCallerAdmin(): Promise<boolean>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    saveDailyPL(date: string, headBalances: Array<HeadBalance>): Promise<bigint>;
+    updateComplaint(id: bigint, customerName: string, complaintNo: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<void>;
     updateComplaintStatus(id: bigint, status: string): Promise<void>;
-    updateComplaint(id: bigint, customerName: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<void>;
-    deleteComplaint(id: bigint): Promise<void>;
-    getAllComplaints(): Promise<Array<Complaint>>;
-    getComplaintsByStatus(status: string): Promise<Array<Complaint>>;
 }

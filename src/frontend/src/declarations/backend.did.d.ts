@@ -10,6 +10,19 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface Complaint {
+  'id' : bigint,
+  'customerName' : string,
+  'status' : string,
+  'complaintNo' : string,
+  'accountNo' : string,
+  'createdAt' : bigint,
+  'aadharNo' : string,
+  'contactNo' : string,
+  'panNo' : string,
+  'dateOfComplaint' : string,
+  'complaintBrief' : string,
+}
 export interface DailyPL {
   'id' : bigint,
   'totalProfitLoss' : number,
@@ -40,11 +53,49 @@ export interface HeadBalance {
   'openingBalance' : number,
   'headId' : bigint,
 }
+export interface InventoryProduct {
+  'id' : bigint,
+  'sku' : string,
+  'reorderPoint' : bigint,
+  'name' : string,
+  'createdAt' : bigint,
+  'description' : string,
+  'barcode' : string,
+  'quantity' : bigint,
+  'category' : string,
+  'salePrice' : number,
+  'unitCost' : number,
+}
+export interface Loan {
+  'id' : bigint,
+  'loanStartDate' : string,
+  'customerName' : string,
+  'loanAmount' : number,
+  'dateOfBirth' : string,
+  'createdAt' : bigint,
+  'fatherHusbandName' : string,
+  'totalInterestAmount' : number,
+  'interestRate' : number,
+  'nomineeName' : string,
+  'loanTenureMonths' : bigint,
+  'repaymentType' : string,
+  'contactNo' : string,
+  'fullAddress' : string,
+}
 export interface PaymentHead {
   'id' : bigint,
   'headType' : string,
   'name' : string,
   'isDefault' : boolean,
+}
+export interface StockTransaction {
+  'id' : bigint,
+  'transactionDate' : string,
+  'transactionType' : string,
+  'quantityChange' : bigint,
+  'note' : string,
+  'createdAt' : bigint,
+  'productId' : bigint,
 }
 export interface Transaction {
   'id' : bigint,
@@ -61,7 +112,16 @@ export interface Transaction {
   'accountNumber' : string,
   'amount' : number,
 }
+export interface UserProfile { 'name' : string }
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
+  'addComplaint' : ActorMethod<
+    [string, string, string, string, string, string, string, string, string],
+    bigint
+  >,
   'addFixedDeposit' : ActorMethod<
     [
       string,
@@ -79,23 +139,92 @@ export interface _SERVICE {
     ],
     bigint
   >,
+  'addLoan' : ActorMethod<
+    [
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      number,
+      number,
+      number,
+      bigint,
+      string,
+    ],
+    bigint
+  >,
   'addPaymentHead' : ActorMethod<[string, string], bigint>,
+  'addProduct' : ActorMethod<
+    [string, string, string, string, string, bigint, number, number, bigint],
+    bigint
+  >,
+  'addStockTransaction' : ActorMethod<
+    [bigint, string, bigint, string, string],
+    bigint
+  >,
   'addTransaction' : ActorMethod<[Transaction], bigint>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'bulkUpdateProducts' : ActorMethod<
+    [Array<bigint>, Array<number>, Array<number>, Array<bigint>],
+    undefined
+  >,
+  'deleteComplaint' : ActorMethod<[bigint], undefined>,
   'deleteDailyPL' : ActorMethod<[bigint], undefined>,
   'deleteFixedDeposit' : ActorMethod<[bigint], undefined>,
+  'deleteLoan' : ActorMethod<[bigint], undefined>,
   'deletePaymentHead' : ActorMethod<[bigint], undefined>,
+  'deleteProduct' : ActorMethod<[bigint], undefined>,
   'deleteTransaction' : ActorMethod<[bigint], undefined>,
   'editPaymentHead' : ActorMethod<[bigint, string, string], undefined>,
+  'editProduct' : ActorMethod<
+    [bigint, string, string, string, string, string, number, number, bigint],
+    undefined
+  >,
+  'getAllComplaints' : ActorMethod<[], Array<Complaint>>,
   'getAllDailyPLs' : ActorMethod<[], Array<DailyPL>>,
   'getAllFixedDeposits' : ActorMethod<[], Array<FixedDeposit>>,
+  'getAllLoans' : ActorMethod<[], Array<Loan>>,
   'getAllPaymentHeads' : ActorMethod<[], Array<PaymentHead>>,
+  'getAllProducts' : ActorMethod<[], Array<InventoryProduct>>,
+  'getAllStockTransactions' : ActorMethod<[], Array<StockTransaction>>,
   'getAllTransactions' : ActorMethod<[], Array<Transaction>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getComplaintsByStatus' : ActorMethod<[string], Array<Complaint>>,
   'getDailyPLByDateRange' : ActorMethod<[string, string], Array<DailyPL>>,
+  'getLoanById' : ActorMethod<[bigint], [] | [Loan]>,
+  'getStockTransactionsByProduct' : ActorMethod<
+    [bigint],
+    Array<StockTransaction>
+  >,
+  'getTodayStockTransactions' : ActorMethod<[string], Array<StockTransaction>>,
   'getTransactionsByTypeAndStatus' : ActorMethod<
     [string, string],
     Array<Transaction>
   >,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'saveDailyPL' : ActorMethod<[string, Array<HeadBalance>], bigint>,
+  'updateComplaint' : ActorMethod<
+    [
+      bigint,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+      string,
+    ],
+    undefined
+  >,
+  'updateComplaintStatus' : ActorMethod<[bigint, string], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

@@ -2,7 +2,7 @@
  * Excel export utilities.
  * xlsx is loaded at runtime via CDN to avoid bundle-time resolution failures.
  */
-import type { DailyPL, FixedDeposit, Transaction } from "../backend";
+import type { DailyPL, FixedDeposit, Loan, Transaction } from "../backend";
 import { formatDate, formatINR } from "./helpers";
 
 const BANK_NAME = "Fino Small Finance Bank - Doolahat Branch";
@@ -278,5 +278,97 @@ export async function downloadMerchants(merchants: Merchant[]) {
   XLSX.writeFile(
     wb,
     `Merchants_Report_${new Date().toISOString().split("T")[0]}.xlsx`,
+  );
+}
+
+/** Add months to an ISO date string and return as DD/MM/YYYY */
+function addMonthsFormatted(isoDate: string, months: number): string {
+  const date = new Date(isoDate);
+  date.setMonth(date.getMonth() + months);
+  const d = String(date.getDate()).padStart(2, "0");
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const y = date.getFullYear();
+  return `${d}/${m}/${y}`;
+}
+
+/** Download a full loan repayment schedule as an Excel file */
+export async function downloadLoanSheet(loan: Loan): Promise<void> {
+  const XLSX = await getXLSX();
+  const n = Number(loan.loanTenureMonths);
+  const principalPerInstallment = loan.loanAmount / n;
+  const interestPerInstallment = loan.totalInterestAmount / n;
+  const totalInstallment = principalPerInstallment + interestPerInstallment;
+
+  const rows: (string | number)[][] = [
+    [BANK_NAME],
+    [`IFSC: ${IFSC}`],
+    ["LOAN REPAYMENT SCHEDULE"],
+    [],
+    ["Loan Details"],
+    [],
+    ["Customer Name", loan.customerName],
+    ["Father/Husband Name", loan.fatherHusbandName],
+    ["Full Address", loan.fullAddress],
+    ["Loan Start Date", formatDate(loan.loanStartDate)],
+    ["Contact No", loan.contactNo],
+    ["Nominee Name", loan.nomineeName],
+    ["Date of Birth", formatDate(loan.dateOfBirth)],
+    ["Loan Amount (\u20b9)", loan.loanAmount],
+    [
+      "Total Interest Amount (\u20b9)",
+      Number.parseFloat(loan.totalInterestAmount.toFixed(2)),
+    ],
+    ["Interest Rate (%)", loan.interestRate],
+    ["Loan Tenure (months)", n],
+    ["Repayment Type", loan.repaymentType],
+    [],
+    // Header row 1 - group header
+    [
+      "S.No",
+      "Repayment Date",
+      "Repayable Amount",
+      "",
+      "",
+      "Remaining Amount",
+      "Collection Officer Sign",
+    ],
+    // Header row 2 - sub-columns
+    [
+      "",
+      "",
+      "Principal (\u20b9)",
+      "Interest (\u20b9)",
+      "Total (\u20b9)",
+      "",
+      "",
+    ],
+  ];
+
+  // Installment rows
+  for (let i = 0; i < n; i++) {
+    const remaining =
+      i === n - 1
+        ? 0
+        : Number.parseFloat(
+            (loan.loanAmount - principalPerInstallment * (i + 1)).toFixed(2),
+          );
+    rows.push([
+      i + 1,
+      addMonthsFormatted(loan.loanStartDate, i + 1),
+      Number.parseFloat(principalPerInstallment.toFixed(2)),
+      Number.parseFloat(interestPerInstallment.toFixed(2)),
+      Number.parseFloat(totalInstallment.toFixed(2)),
+      remaining,
+      "",
+    ]);
+  }
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"] = [8, 18, 18, 18, 18, 20, 28].map((w: number) => ({ wch: w }));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Loan Schedule");
+  XLSX.writeFile(
+    wb,
+    `Loan_${loan.customerName.replace(/\s+/g, "_")}_Schedule.xlsx`,
   );
 }

@@ -1,16 +1,54 @@
+import Migration "migration";
 import Runtime "mo:core/Runtime";
 import Array "mo:core/Array";
 import Time "mo:core/Time";
 import Map "mo:core/Map";
 import Order "mo:core/Order";
-import Text "mo:core/Text";
-import Float "mo:core/Float";
 import Iter "mo:core/Iter";
 import Nat "mo:core/Nat";
 import Int "mo:core/Int";
+import Text "mo:core/Text";
+import Float "mo:core/Float";
+import Principal "mo:core/Principal";
+import AccessControl "authorization/access-control";
+import MixinAuthorization "authorization/MixinAuthorization";
 
+(with migration = Migration.run)
 actor {
-  // 1. Payment Heads Types & Logic
+  // Initialize access control
+  let accessControlState = AccessControl.initState();
+  include MixinAuthorization(accessControlState);
+
+  // User Profile Type
+  public type UserProfile = {
+    name : Text;
+  };
+
+  let userProfiles = Map.empty<Principal, UserProfile>();
+
+  // User Profile Management
+  public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view profiles");
+    };
+    userProfiles.get(caller);
+  };
+
+  public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
+    if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Can only view your own profile");
+    };
+    userProfiles.get(user);
+  };
+
+  public shared ({ caller }) func saveCallerUserProfile(profile : UserProfile) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can save profiles");
+    };
+    userProfiles.add(caller, profile);
+  };
+
+  // Payment Head Type
   type PaymentHead = {
     id : Nat;
     name : Text;
@@ -26,8 +64,79 @@ actor {
 
   let paymentHeads = Map.empty<Nat, PaymentHead>();
   var nextHeadId = 1;
+  func seedDefaultPaymentHeads() {
+    addPaymentHeadInternal("Cash Balance", "both", true);
+    addPaymentHeadInternal("Fino(R) Balance", "both", true);
+    addPaymentHeadInternal("Fino(S) Balance", "both", true);
+    addPaymentHeadInternal("DPL Balance", "both", true);
+  };
 
-  // 2. Daily P&L Types & Logic
+  func addPaymentHeadInternal(name : Text, headType : Text, isDefault : Bool) {
+    let head : PaymentHead = {
+      id = nextHeadId;
+      name;
+      headType;
+      isDefault;
+    };
+    paymentHeads.add(nextHeadId, head);
+    nextHeadId += 1;
+  };
+
+  public shared ({ caller }) func addPaymentHead(name : Text, headType : Text) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add payment heads");
+    };
+    if (paymentHeads.size() == 0) { seedDefaultPaymentHeads() };
+    let head : PaymentHead = {
+      id = nextHeadId;
+      name;
+      headType;
+      isDefault = false;
+    };
+    paymentHeads.add(nextHeadId, head);
+    nextHeadId += 1;
+    head.id;
+  };
+
+  public shared ({ caller }) func editPaymentHead(id : Nat, name : Text, headType : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can edit payment heads");
+    };
+    switch (paymentHeads.get(id)) {
+      case (null) { Runtime.trap("Payment head not found") };
+      case (?existing) {
+        let updated : PaymentHead = {
+          id;
+          name;
+          headType;
+          isDefault = existing.isDefault;
+        };
+        paymentHeads.add(id, updated);
+      };
+    };
+  };
+
+  public shared ({ caller }) func deletePaymentHead(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete payment heads");
+    };
+    switch (paymentHeads.get(id)) {
+      case (null) { Runtime.trap("Payment head not found") };
+      case (?head) {
+        if (head.isDefault) { Runtime.trap("Cannot delete default payment head") };
+        paymentHeads.remove(id);
+      };
+    };
+  };
+
+  public query ({ caller }) func getAllPaymentHeads() : async [PaymentHead] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view payment heads");
+    };
+    paymentHeads.values().toArray().sort(PaymentHead.compareById);
+  };
+
+  // Head Balance & Daily PL
   type HeadBalance = {
     headId : Nat;
     headName : Text;
@@ -53,7 +162,43 @@ actor {
   let dailyPLs = Map.empty<Nat, DailyPL>();
   var nextPLId = 1;
 
-  // 3. Fixed Deposit Types & Logic
+  public shared ({ caller }) func saveDailyPL(date : Text, headBalances : [HeadBalance]) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can save daily P&L");
+    };
+    let totalPL = headBalances.foldLeft(
+      0.0,
+      func(sum, h) { sum + (h.closingBalance - h.openingBalance) },
+    );
+
+    let newPl : DailyPL = {
+      id = nextPLId;
+      date;
+      headBalances;
+      totalProfitLoss = totalPL;
+      createdAt = Time.now();
+    };
+    dailyPLs.add(nextPLId, newPl);
+    nextPLId += 1;
+    newPl.id;
+  };
+
+  public query ({ caller }) func getAllDailyPLs() : async [DailyPL] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view daily P&L");
+    };
+    dailyPLs.values().toArray().sort(DailyPL.compareById);
+  };
+
+  public shared ({ caller }) func deleteDailyPL(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete daily P&L");
+    };
+    if (not dailyPLs.containsKey(id)) { Runtime.trap("Daily P&L entry not found") };
+    dailyPLs.remove(id);
+  };
+
+  // Fixed Deposit
   type FixedDeposit = {
     id : Nat;
     customerName : Text;
@@ -80,7 +225,60 @@ actor {
   let fixedDeposits = Map.empty<Nat, FixedDeposit>();
   var nextFDId = 1;
 
-  // 4. Transaction Types & Logic
+  public shared ({ caller }) func addFixedDeposit(
+    customerName : Text,
+    accountNumber : Text,
+    cifNumber : Text,
+    contactNumber : Text,
+    openingDate : Text,
+    fdAmount : Float,
+    tenure : Nat,
+    interestRate : Float,
+    interestAmount : Float,
+    maturityAmount : Float,
+    closureDate : Text,
+    maturityDepositDate : Text,
+  ) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add fixed deposits");
+    };
+    let fd : FixedDeposit = {
+      id = nextFDId;
+      customerName;
+      accountNumber;
+      cifNumber;
+      contactNumber;
+      openingDate;
+      fdAmount;
+      tenure;
+      interestRate;
+      interestAmount;
+      maturityAmount;
+      closureDate;
+      maturityDepositDate;
+      createdAt = Time.now();
+    };
+    fixedDeposits.add(nextFDId, fd);
+    nextFDId += 1;
+    fd.id;
+  };
+
+  public query ({ caller }) func getAllFixedDeposits() : async [FixedDeposit] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view fixed deposits");
+    };
+    fixedDeposits.values().toArray().sort(FixedDeposit.compareById);
+  };
+
+  public shared ({ caller }) func deleteFixedDeposit(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete fixed deposits");
+    };
+    if (not fixedDeposits.containsKey(id)) { Runtime.trap("FD not found") };
+    fixedDeposits.remove(id);
+  };
+
+  // Transaction
   type Transaction = {
     id : Nat;
     referenceId : Text;
@@ -106,7 +304,72 @@ actor {
   let transactions = Map.empty<Nat, Transaction>();
   var nextTxId = 1;
 
-  // 5. Inventory Types & Logic
+  public shared ({ caller }) func addTransaction(tx : Transaction) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add transactions");
+    };
+    let newTx : Transaction = {
+      id = nextTxId;
+      referenceId = tx.referenceId;
+      transactionType = tx.transactionType;
+      accountNumber = tx.accountNumber;
+      accountHolderName = tx.accountHolderName;
+      bankName = tx.bankName;
+      ifscCode = tx.ifscCode;
+      amount = tx.amount;
+      transactionDate = tx.transactionDate;
+      frequencyType = tx.frequencyType;
+      remark = tx.remark;
+      status = tx.status;
+      createdAt = Time.now();
+    };
+    transactions.add(nextTxId, newTx);
+    nextTxId += 1;
+    newTx.id;
+  };
+
+  public query ({ caller }) func getAllTransactions() : async [Transaction] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view transactions");
+    };
+    transactions.values().toArray().sort(Transaction.compareById);
+  };
+
+  public shared ({ caller }) func deleteTransaction(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete transactions");
+    };
+    if (not transactions.containsKey(id)) { Runtime.trap("Transaction not found") };
+    transactions.remove(id);
+  };
+
+  func dateBetween(date : Text, startDate : Text, endDate : Text) : Bool {
+    Text.compare(date, startDate) != #less and Text.compare(date, endDate) != #greater;
+  };
+
+  public query ({ caller }) func getDailyPLByDateRange(startDate : Text, endDate : Text) : async [DailyPL] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view daily P&L");
+    };
+    dailyPLs.values().filter(
+      func(pl) {
+        dateBetween(pl.date, startDate, endDate);
+      }
+    ).toArray();
+  };
+
+  public query ({ caller }) func getTransactionsByTypeAndStatus(txType : Text, status : Text) : async [Transaction] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view transactions");
+    };
+    transactions.values().filter(
+      func(tx) {
+        tx.transactionType == txType and tx.status == status
+      }
+    ).toArray();
+  };
+
+  // Inventory
   type InventoryProduct = {
     id : Nat;
     name : Text;
@@ -145,229 +408,10 @@ actor {
 
   let inventoryProducts = Map.empty<Nat, InventoryProduct>();
   var nextProductId = 1;
-
   let stockTransactions = Map.empty<Nat, StockTransaction>();
   var nextStockTxId = 1;
 
-  // 6. Customer Complaint Types & Logic
-  type Complaint = {
-    id : Nat;
-    customerName : Text;
-    contactNo : Text;
-    accountNo : Text;
-    aadharNo : Text;
-    panNo : Text;
-    dateOfComplaint : Text;
-    complaintBrief : Text;
-    status : Text;
-    createdAt : Int;
-  };
-
-  module Complaint {
-    public func compareById(c1 : Complaint, c2 : Complaint) : Order.Order {
-      Nat.compare(c1.id, c2.id);
-    };
-  };
-
-  let complaints = Map.empty<Nat, Complaint>();
-  var nextComplaintId = 1;
-
-  // Seed Default Payment Heads
-  func seedDefaultPaymentHeads() {
-    addPaymentHeadInternal("Cash Balance", "both", true);
-    addPaymentHeadInternal("Fino(R) Balance", "both", true);
-    addPaymentHeadInternal("Fino(S) Balance", "both", true);
-    addPaymentHeadInternal("DPL Balance", "both", true);
-  };
-
-  func addPaymentHeadInternal(name : Text, headType : Text, isDefault : Bool) {
-    let head : PaymentHead = {
-      id = nextHeadId;
-      name;
-      headType;
-      isDefault;
-    };
-    paymentHeads.add(nextHeadId, head);
-    nextHeadId += 1;
-  };
-
-  // 1. Payment Heads - Add
-  public shared ({ caller = _ }) func addPaymentHead(name : Text, headType : Text) : async Nat {
-    if (paymentHeads.size() == 0) { seedDefaultPaymentHeads() };
-    let head : PaymentHead = {
-      id = nextHeadId;
-      name;
-      headType;
-      isDefault = false;
-    };
-    paymentHeads.add(nextHeadId, head);
-    nextHeadId += 1;
-    head.id;
-  };
-
-  // 1. Payment Heads - Edit
-  public shared ({ caller = _ }) func editPaymentHead(id : Nat, name : Text, headType : Text) : async () {
-    switch (paymentHeads.get(id)) {
-      case (null) { Runtime.trap("Payment head not found") };
-      case (?existing) {
-        let updated : PaymentHead = {
-          id;
-          name;
-          headType;
-          isDefault = existing.isDefault;
-        };
-        paymentHeads.add(id, updated);
-      };
-    };
-  };
-
-  // 1. Payment Heads - Delete (non-default only)
-  public shared ({ caller = _ }) func deletePaymentHead(id : Nat) : async () {
-    switch (paymentHeads.get(id)) {
-      case (null) { Runtime.trap("Payment head not found") };
-      case (?head) {
-        if (head.isDefault) { Runtime.trap("Cannot delete default payment head") };
-        paymentHeads.remove(id);
-      };
-    };
-  };
-
-  public query ({ caller = _ }) func getAllPaymentHeads() : async [PaymentHead] {
-    paymentHeads.values().toArray().sort(PaymentHead.compareById);
-  };
-
-  // 2. Daily P&L - Save Entry
-  public shared ({ caller = _ }) func saveDailyPL(date : Text, headBalances : [HeadBalance]) : async Nat {
-    let totalPL = headBalances.foldLeft(
-      0.0,
-      func(sum, h) { sum + (h.closingBalance - h.openingBalance) },
-    );
-
-    let newPl : DailyPL = {
-      id = nextPLId;
-      date;
-      headBalances;
-      totalProfitLoss = totalPL;
-      createdAt = Time.now();
-    };
-    dailyPLs.add(nextPLId, newPl);
-    nextPLId += 1;
-    newPl.id;
-  };
-
-  public query ({ caller = _ }) func getAllDailyPLs() : async [DailyPL] {
-    dailyPLs.values().toArray().sort(DailyPL.compareById);
-  };
-
-  // 2. Daily P&L - Delete Entry
-  public shared ({ caller = _ }) func deleteDailyPL(id : Nat) : async () {
-    if (not dailyPLs.containsKey(id)) { Runtime.trap("Daily P&L entry not found") };
-    dailyPLs.remove(id);
-  };
-
-  // 3. FDs - Add FD
-  public shared ({ caller = _ }) func addFixedDeposit(
-    customerName : Text,
-    accountNumber : Text,
-    cifNumber : Text,
-    contactNumber : Text,
-    openingDate : Text,
-    fdAmount : Float,
-    tenure : Nat,
-    interestRate : Float,
-    interestAmount : Float,
-    maturityAmount : Float,
-    closureDate : Text,
-    maturityDepositDate : Text,
-  ) : async Nat {
-    let fd : FixedDeposit = {
-      id = nextFDId;
-      customerName;
-      accountNumber;
-      cifNumber;
-      contactNumber;
-      openingDate;
-      fdAmount;
-      tenure;
-      interestRate;
-      interestAmount;
-      maturityAmount;
-      closureDate;
-      maturityDepositDate;
-      createdAt = Time.now();
-    };
-    fixedDeposits.add(nextFDId, fd);
-    nextFDId += 1;
-    fd.id;
-  };
-
-  public query ({ caller = _ }) func getAllFixedDeposits() : async [FixedDeposit] {
-    fixedDeposits.values().toArray().sort(FixedDeposit.compareById);
-  };
-
-  // 3. FDs - Delete FD
-  public shared ({ caller = _ }) func deleteFixedDeposit(id : Nat) : async () {
-    if (not fixedDeposits.containsKey(id)) { Runtime.trap("FD not found") };
-    fixedDeposits.remove(id);
-  };
-
-  // 4. Transactions - Add
-  public shared ({ caller = _ }) func addTransaction(tx : Transaction) : async Nat {
-    let newTx : Transaction = {
-      id = nextTxId;
-      referenceId = tx.referenceId;
-      transactionType = tx.transactionType;
-      accountNumber = tx.accountNumber;
-      accountHolderName = tx.accountHolderName;
-      bankName = tx.bankName;
-      ifscCode = tx.ifscCode;
-      amount = tx.amount;
-      transactionDate = tx.transactionDate;
-      frequencyType = tx.frequencyType;
-      remark = tx.remark;
-      status = tx.status;
-      createdAt = Time.now();
-    };
-    transactions.add(nextTxId, newTx);
-    nextTxId += 1;
-    newTx.id;
-  };
-
-  public query ({ caller = _ }) func getAllTransactions() : async [Transaction] {
-    transactions.values().toArray().sort(Transaction.compareById);
-  };
-
-  // 4. Transactions - Delete
-  public shared ({ caller = _ }) func deleteTransaction(id : Nat) : async () {
-    if (not transactions.containsKey(id)) { Runtime.trap("Transaction not found") };
-    transactions.remove(id);
-  };
-
-  // Utility - Date Between (ISO format)
-  func dateBetween(date : Text, startDate : Text, endDate : Text) : Bool {
-    Text.compare(date, startDate) != #less and Text.compare(date, endDate) != #greater;
-  };
-
-  // Daily PL - Get by Date Range
-  public query ({ caller = _ }) func getDailyPLByDateRange(startDate : Text, endDate : Text) : async [DailyPL] {
-    dailyPLs.values().filter(
-      func(pl) {
-        dateBetween(pl.date, startDate, endDate);
-      }
-    ).toArray();
-  };
-
-  // Transactions - Filter by Type/Status
-  public query ({ caller = _ }) func getTransactionsByTypeAndStatus(txType : Text, status : Text) : async [Transaction] {
-    transactions.values().filter(
-      func(tx) {
-        tx.transactionType == txType and tx.status == status
-      }
-    ).toArray();
-  };
-
-  // 5. Inventory - Add Product
-  public shared ({ caller = _ }) func addProduct(
+  public shared ({ caller }) func addProduct(
     name : Text,
     description : Text,
     sku : Text,
@@ -378,6 +422,9 @@ actor {
     salePrice : Float,
     reorderPoint : Nat,
   ) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add products");
+    };
     let product : InventoryProduct = {
       id = nextProductId;
       name;
@@ -396,8 +443,7 @@ actor {
     product.id;
   };
 
-  // 5. Inventory - Edit Product
-  public shared ({ caller = _ }) func editProduct(
+  public shared ({ caller }) func editProduct(
     id : Nat,
     name : Text,
     description : Text,
@@ -408,6 +454,9 @@ actor {
     salePrice : Float,
     reorderPoint : Nat,
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can edit products");
+    };
     switch (inventoryProducts.get(id)) {
       case (null) { Runtime.trap("Product not found") };
       case (?existing) {
@@ -429,25 +478,31 @@ actor {
     };
   };
 
-  // 5. Inventory - Delete Product
-  public shared ({ caller = _ }) func deleteProduct(id : Nat) : async () {
+  public shared ({ caller }) func deleteProduct(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete products");
+    };
     if (not inventoryProducts.containsKey(id)) { Runtime.trap("Product not found") };
     inventoryProducts.remove(id);
   };
 
-  // 5. Inventory - Get All Products
-  public query ({ caller = _ }) func getAllProducts() : async [InventoryProduct] {
+  public query ({ caller }) func getAllProducts() : async [InventoryProduct] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view products");
+    };
     inventoryProducts.values().toArray().sort(InventoryProduct.compareById);
   };
 
-  // 5. Inventory - Add Stock Transaction (updates product quantity)
-  public shared ({ caller = _ }) func addStockTransaction(
+  public shared ({ caller }) func addStockTransaction(
     productId : Nat,
     txType : Text,
     quantityChange : Int,
     note : Text,
     transactionDate : Text,
   ) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add stock transactions");
+    };
     switch (inventoryProducts.get(productId)) {
       case (null) { Runtime.trap("Product not found") };
       case (?product) {
@@ -483,32 +538,40 @@ actor {
     };
   };
 
-  // 5. Inventory - Get All Stock Transactions
-  public query ({ caller = _ }) func getAllStockTransactions() : async [StockTransaction] {
+  public query ({ caller }) func getAllStockTransactions() : async [StockTransaction] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view stock transactions");
+    };
     stockTransactions.values().toArray().sort(StockTransaction.compareById);
   };
 
-  // 5. Inventory - Get Stock Transactions for a Product
-  public query ({ caller = _ }) func getStockTransactionsByProduct(productId : Nat) : async [StockTransaction] {
+  public query ({ caller }) func getStockTransactionsByProduct(productId : Nat) : async [StockTransaction] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view stock transactions");
+    };
     stockTransactions.values().filter(
       func(stx) { stx.productId == productId }
     ).toArray().sort(StockTransaction.compareById);
   };
 
-  // 5. Inventory - Get Today's Stock Transactions
-  public query ({ caller = _ }) func getTodayStockTransactions(today : Text) : async [StockTransaction] {
+  public query ({ caller }) func getTodayStockTransactions(today : Text) : async [StockTransaction] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view stock transactions");
+    };
     stockTransactions.values().filter(
       func(stx) { stx.transactionDate == today }
     ).toArray().sort(StockTransaction.compareById);
   };
 
-  // 5. Inventory - Bulk Update Products (prices and reorder points)
-  public shared ({ caller = _ }) func bulkUpdateProducts(
+  public shared ({ caller }) func bulkUpdateProducts(
     ids : [Nat],
     unitCosts : [Float],
     salePrices : [Float],
     reorderPoints : [Nat],
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can bulk update products");
+    };
     var i = 0;
     while (i < ids.size()) {
       let id = ids[i];
@@ -535,9 +598,34 @@ actor {
     };
   };
 
-  // 6. Complaints - Add
-  public shared ({ caller = _ }) func addComplaint(
+  // Complaint Type (Updated: add complaintNo field)
+  type Complaint = {
+    id : Nat;
+    customerName : Text;
+    complaintNo : Text;
+    contactNo : Text;
+    accountNo : Text;
+    aadharNo : Text;
+    panNo : Text;
+    dateOfComplaint : Text;
+    complaintBrief : Text;
+    status : Text;
+    createdAt : Int;
+  };
+
+  module Complaint {
+    public func compareById(c1 : Complaint, c2 : Complaint) : Order.Order {
+      Nat.compare(c1.id, c2.id);
+    };
+  };
+
+  let complaints = Map.empty<Nat, Complaint>();
+  var nextComplaintId = 1;
+
+  // Add Complaint (Updated: add complaintNo)
+  public shared ({ caller }) func addComplaint(
     customerName : Text,
+    complaintNo : Text,
     contactNo : Text,
     accountNo : Text,
     aadharNo : Text,
@@ -546,9 +634,13 @@ actor {
     complaintBrief : Text,
     status : Text,
   ) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add complaints");
+    };
     let complaint : Complaint = {
       id = nextComplaintId;
       customerName;
+      complaintNo;
       contactNo;
       accountNo;
       aadharNo;
@@ -563,14 +655,17 @@ actor {
     complaint.id;
   };
 
-  // 6. Complaints - Update Status Only
-  public shared ({ caller = _ }) func updateComplaintStatus(id : Nat, status : Text) : async () {
+  public shared ({ caller }) func updateComplaintStatus(id : Nat, status : Text) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can update complaint status");
+    };
     switch (complaints.get(id)) {
       case (null) { Runtime.trap("Complaint not found") };
       case (?existing) {
         let updated : Complaint = {
           id = existing.id;
           customerName = existing.customerName;
+          complaintNo = existing.complaintNo;
           contactNo = existing.contactNo;
           accountNo = existing.accountNo;
           aadharNo = existing.aadharNo;
@@ -585,10 +680,11 @@ actor {
     };
   };
 
-  // 6. Complaints - Full Update
-  public shared ({ caller = _ }) func updateComplaint(
+  // Update Complaint (Updated: complaintNo)
+  public shared ({ caller }) func updateComplaint(
     id : Nat,
     customerName : Text,
+    complaintNo : Text,
     contactNo : Text,
     accountNo : Text,
     aadharNo : Text,
@@ -597,12 +693,16 @@ actor {
     complaintBrief : Text,
     status : Text,
   ) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can update complaints");
+    };
     switch (complaints.get(id)) {
       case (null) { Runtime.trap("Complaint not found") };
       case (?existing) {
         let updated : Complaint = {
           id;
           customerName;
+          complaintNo;
           contactNo;
           accountNo;
           aadharNo;
@@ -617,21 +717,130 @@ actor {
     };
   };
 
-  // 6. Complaints - Delete
-  public shared ({ caller = _ }) func deleteComplaint(id : Nat) : async () {
+  public shared ({ caller }) func deleteComplaint(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete complaints");
+    };
     if (not complaints.containsKey(id)) { Runtime.trap("Complaint not found") };
     complaints.remove(id);
   };
 
-  // 6. Complaints - Get All
-  public query ({ caller = _ }) func getAllComplaints() : async [Complaint] {
+  public query ({ caller }) func getAllComplaints() : async [Complaint] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view complaints");
+    };
     complaints.values().toArray().sort(Complaint.compareById);
   };
 
-  // 6. Complaints - Get By Status
-  public query ({ caller = _ }) func getComplaintsByStatus(status : Text) : async [Complaint] {
+  public query ({ caller }) func getComplaintsByStatus(status : Text) : async [Complaint] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view complaints");
+    };
     complaints.values().filter(
       func(c) { c.status == status }
     ).toArray().sort(Complaint.compareById);
+  };
+
+  // ----------- Loan Management (NEW) -----------
+  type Loan = {
+    id : Nat;
+    customerName : Text;
+    fatherHusbandName : Text;
+    fullAddress : Text;
+    loanStartDate : Text;
+    contactNo : Text;
+    nomineeName : Text;
+    dateOfBirth : Text;
+    loanAmount : Float;
+    totalInterestAmount : Float;
+    interestRate : Float;
+    loanTenureMonths : Nat;
+    repaymentType : Text;
+    createdAt : Int;
+  };
+
+  module Loan {
+    public func compareById(loan1 : Loan, loan2 : Loan) : Order.Order {
+      Nat.compare(loan1.id, loan2.id);
+    };
+  };
+
+  let loans = Map.empty<Nat, Loan>();
+  var nextLoanId = 1;
+
+  // Add Loan
+  public shared ({ caller }) func addLoan(
+    customerName : Text,
+    fatherHusbandName : Text,
+    fullAddress : Text,
+    loanStartDate : Text,
+    contactNo : Text,
+    nomineeName : Text,
+    dateOfBirth : Text,
+    loanAmount : Float,
+    totalInterestAmount : Float,
+    interestRate : Float,
+    loanTenureMonths : Nat,
+    repaymentType : Text,
+  ) : async Nat {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can add loans");
+    };
+    if (interestRate <= 0 or interestRate > 50) {
+      Runtime.trap("Interest rate must be between 1% and 50%");
+    };
+    switch (loanTenureMonths) {
+      case (12 or 18 or 24 or 30 or 36 or 42 or 48 or 54 or 60) {};
+      case (_) { Runtime.trap("Invalid tenure") };
+    };
+    if (loanAmount <= 0) { Runtime.trap("Loan amount must be positive") };
+    if (totalInterestAmount < 0) { Runtime.trap("Total interest must be >= 0") };
+    if (not (repaymentType == "Monthly")) {
+      Runtime.trap("Repayment type must be `Monthly`");
+    };
+    let loan : Loan = {
+      id = nextLoanId;
+      customerName;
+      fatherHusbandName;
+      fullAddress;
+      loanStartDate;
+      contactNo;
+      nomineeName;
+      dateOfBirth;
+      loanAmount;
+      totalInterestAmount;
+      interestRate;
+      loanTenureMonths;
+      repaymentType;
+      createdAt = Time.now();
+    };
+    loans.add(nextLoanId, loan);
+    nextLoanId += 1;
+    loan.id;
+  };
+
+  // Get All Loans
+  public query ({ caller }) func getAllLoans() : async [Loan] {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view loans");
+    };
+    loans.values().toArray().sort(Loan.compareById);
+  };
+
+  // Get Loan by ID
+  public query ({ caller }) func getLoanById(id : Nat) : async ?Loan {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can view loans");
+    };
+    loans.get(id);
+  };
+
+  // Delete Loan
+  public shared ({ caller }) func deleteLoan(id : Nat) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can delete loans");
+    };
+    if (not loans.containsKey(id)) { Runtime.trap("Loan not found") };
+    loans.remove(id);
   };
 };

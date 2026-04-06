@@ -104,6 +104,55 @@ export interface Transaction {
     accountNumber: string;
     amount: number;
 }
+export interface DailyPL {
+    id: bigint;
+    totalProfitLoss: number;
+    date: string;
+    createdAt: bigint;
+    headBalances: Array<HeadBalance>;
+}
+export interface Complaint {
+    id: bigint;
+    customerName: string;
+    status: string;
+    complaintNo: string;
+    accountNo: string;
+    createdAt: bigint;
+    aadharNo: string;
+    contactNo: string;
+    panNo: string;
+    dateOfComplaint: string;
+    complaintBrief: string;
+}
+export interface InventoryProduct {
+    id: bigint;
+    sku: string;
+    reorderPoint: bigint;
+    name: string;
+    createdAt: bigint;
+    description: string;
+    barcode: string;
+    quantity: bigint;
+    category: string;
+    salePrice: number;
+    unitCost: number;
+}
+export interface Loan {
+    id: bigint;
+    loanStartDate: string;
+    customerName: string;
+    loanAmount: number;
+    dateOfBirth: string;
+    createdAt: bigint;
+    fatherHusbandName: string;
+    totalInterestAmount: number;
+    interestRate: number;
+    nomineeName: string;
+    loanTenureMonths: bigint;
+    repaymentType: string;
+    contactNo: string;
+    fullAddress: string;
+}
 export interface FixedDeposit {
     id: bigint;
     customerName: string;
@@ -120,12 +169,14 @@ export interface FixedDeposit {
     tenure: bigint;
     interestAmount: number;
 }
-export interface DailyPL {
+export interface StockTransaction {
     id: bigint;
-    totalProfitLoss: number;
-    date: string;
+    transactionDate: string;
+    transactionType: string;
+    quantityChange: bigint;
+    note: string;
     createdAt: bigint;
-    headBalances: Array<HeadBalance>;
+    productId: bigint;
 }
 export interface HeadBalance {
     headName: string;
@@ -134,34 +185,93 @@ export interface HeadBalance {
     openingBalance: number;
     headId: bigint;
 }
+export interface UserProfile {
+    name: string;
+}
 export interface PaymentHead {
     id: bigint;
     headType: string;
     name: string;
     isDefault: boolean;
 }
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
+}
 export interface backendInterface {
-    _initializeAccessControlWithSecret(adminToken: string): Promise<void>;
+    _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
+    addComplaint(customerName: string, complaintNo: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<bigint>;
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
+    addLoan(customerName: string, fatherHusbandName: string, fullAddress: string, loanStartDate: string, contactNo: string, nomineeName: string, dateOfBirth: string, loanAmount: number, totalInterestAmount: number, interestRate: number, loanTenureMonths: bigint, repaymentType: string): Promise<bigint>;
     addPaymentHead(name: string, headType: string): Promise<bigint>;
+    addProduct(name: string, description: string, sku: string, barcode: string, category: string, quantity: bigint, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<bigint>;
+    addStockTransaction(productId: bigint, txType: string, quantityChange: bigint, note: string, transactionDate: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
+    deleteComplaint(id: bigint): Promise<void>;
     deleteDailyPL(id: bigint): Promise<void>;
     deleteFixedDeposit(id: bigint): Promise<void>;
+    deleteLoan(id: bigint): Promise<void>;
     deletePaymentHead(id: bigint): Promise<void>;
+    deleteProduct(id: bigint): Promise<void>;
     deleteTransaction(id: bigint): Promise<void>;
     editPaymentHead(id: bigint, name: string, headType: string): Promise<void>;
+    editProduct(id: bigint, name: string, description: string, sku: string, barcode: string, category: string, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<void>;
+    getAllComplaints(): Promise<Array<Complaint>>;
     getAllDailyPLs(): Promise<Array<DailyPL>>;
     getAllFixedDeposits(): Promise<Array<FixedDeposit>>;
+    getAllLoans(): Promise<Array<Loan>>;
     getAllPaymentHeads(): Promise<Array<PaymentHead>>;
+    getAllProducts(): Promise<Array<InventoryProduct>>;
+    getAllStockTransactions(): Promise<Array<StockTransaction>>;
     getAllTransactions(): Promise<Array<Transaction>>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
+    getCallerUserRole(): Promise<UserRole>;
+    getComplaintsByStatus(status: string): Promise<Array<Complaint>>;
     getDailyPLByDateRange(startDate: string, endDate: string): Promise<Array<DailyPL>>;
+    getLoanById(id: bigint): Promise<Loan | null>;
+    getStockTransactionsByProduct(productId: bigint): Promise<Array<StockTransaction>>;
+    getTodayStockTransactions(today: string): Promise<Array<StockTransaction>>;
     getTransactionsByTypeAndStatus(txType: string, status: string): Promise<Array<Transaction>>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
+    isCallerAdmin(): Promise<boolean>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
     saveDailyPL(date: string, headBalances: Array<HeadBalance>): Promise<bigint>;
+    updateComplaint(id: bigint, customerName: string, complaintNo: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<void>;
+    updateComplaintStatus(id: bigint, status: string): Promise<void>;
 }
+import type { Loan as _Loan, UserProfile as _UserProfile, UserRole as _UserRole } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async _initializeAccessControlWithSecret(arg0: string): Promise<void> {
-        try { await (this.actor as any)._initializeAccessControlWithSecret(arg0); } catch(_e) {}
+        if (this.processError) {
+            try {
+                const result = await this.actor._initializeAccessControlWithSecret(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor._initializeAccessControlWithSecret(arg0);
+            return result;
+        }
+    }
+    async addComplaint(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string, arg7: string, arg8: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            return result;
+        }
     }
     async addFixedDeposit(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: number, arg6: bigint, arg7: number, arg8: number, arg9: number, arg10: string, arg11: string): Promise<bigint> {
         if (this.processError) {
@@ -174,6 +284,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addFixedDeposit(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+            return result;
+        }
+    }
+    async addLoan(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string, arg7: number, arg8: number, arg9: number, arg10: bigint, arg11: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addLoan(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addLoan(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
             return result;
         }
     }
@@ -191,6 +315,34 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async addProduct(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: bigint, arg6: number, arg7: number, arg8: bigint): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            return result;
+        }
+    }
+    async addStockTransaction(arg0: bigint, arg1: string, arg2: bigint, arg3: string, arg4: string): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.addStockTransaction(arg0, arg1, arg2, arg3, arg4);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.addStockTransaction(arg0, arg1, arg2, arg3, arg4);
+            return result;
+        }
+    }
     async addTransaction(arg0: Transaction): Promise<bigint> {
         if (this.processError) {
             try {
@@ -202,6 +354,48 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addTransaction(arg0);
+            return result;
+        }
+    }
+    async assignCallerUserRole(arg0: Principal, arg1: UserRole): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+            return result;
+        }
+    }
+    async bulkUpdateProducts(arg0: Array<bigint>, arg1: Array<number>, arg2: Array<number>, arg3: Array<bigint>): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.bulkUpdateProducts(arg0, arg1, arg2, arg3);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.bulkUpdateProducts(arg0, arg1, arg2, arg3);
+            return result;
+        }
+    }
+    async deleteComplaint(arg0: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteComplaint(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteComplaint(arg0);
             return result;
         }
     }
@@ -233,6 +427,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async deleteLoan(arg0: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteLoan(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteLoan(arg0);
+            return result;
+        }
+    }
     async deletePaymentHead(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
@@ -244,6 +452,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.deletePaymentHead(arg0);
+            return result;
+        }
+    }
+    async deleteProduct(arg0: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteProduct(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteProduct(arg0);
             return result;
         }
     }
@@ -275,6 +497,34 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async editProduct(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: number, arg7: number, arg8: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.editProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.editProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            return result;
+        }
+    }
+    async getAllComplaints(): Promise<Array<Complaint>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllComplaints();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllComplaints();
+            return result;
+        }
+    }
     async getAllDailyPLs(): Promise<Array<DailyPL>> {
         if (this.processError) {
             try {
@@ -303,6 +553,20 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getAllLoans(): Promise<Array<Loan>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllLoans();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllLoans();
+            return result;
+        }
+    }
     async getAllPaymentHeads(): Promise<Array<PaymentHead>> {
         if (this.processError) {
             try {
@@ -314,6 +578,34 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getAllPaymentHeads();
+            return result;
+        }
+    }
+    async getAllProducts(): Promise<Array<InventoryProduct>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllProducts();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllProducts();
+            return result;
+        }
+    }
+    async getAllStockTransactions(): Promise<Array<StockTransaction>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllStockTransactions();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllStockTransactions();
             return result;
         }
     }
@@ -331,6 +623,48 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getCallerUserProfile(): Promise<UserProfile | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCallerUserProfile();
+                return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCallerUserProfile();
+            return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getCallerUserRole(): Promise<UserRole> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCallerUserRole();
+                return from_candid_UserRole_n4(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCallerUserRole();
+            return from_candid_UserRole_n4(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getComplaintsByStatus(arg0: string): Promise<Array<Complaint>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getComplaintsByStatus(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getComplaintsByStatus(arg0);
+            return result;
+        }
+    }
     async getDailyPLByDateRange(arg0: string, arg1: string): Promise<Array<DailyPL>> {
         if (this.processError) {
             try {
@@ -342,6 +676,48 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.getDailyPLByDateRange(arg0, arg1);
+            return result;
+        }
+    }
+    async getLoanById(arg0: bigint): Promise<Loan | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getLoanById(arg0);
+                return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getLoanById(arg0);
+            return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getStockTransactionsByProduct(arg0: bigint): Promise<Array<StockTransaction>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getStockTransactionsByProduct(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getStockTransactionsByProduct(arg0);
+            return result;
+        }
+    }
+    async getTodayStockTransactions(arg0: string): Promise<Array<StockTransaction>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getTodayStockTransactions(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getTodayStockTransactions(arg0);
             return result;
         }
     }
@@ -359,6 +735,48 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async getUserProfile(arg0: Principal): Promise<UserProfile | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getUserProfile(arg0);
+                return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getUserProfile(arg0);
+            return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async isCallerAdmin(): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.isCallerAdmin();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.isCallerAdmin();
+            return result;
+        }
+    }
+    async saveCallerUserProfile(arg0: UserProfile): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.saveCallerUserProfile(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.saveCallerUserProfile(arg0);
+            return result;
+        }
+    }
     async saveDailyPL(arg0: string, arg1: Array<HeadBalance>): Promise<bigint> {
         if (this.processError) {
             try {
@@ -373,6 +791,70 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async updateComplaint(arg0: bigint, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string, arg7: string, arg8: string, arg9: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+            return result;
+        }
+    }
+    async updateComplaintStatus(arg0: bigint, arg1: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateComplaintStatus(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateComplaintStatus(arg0, arg1);
+            return result;
+        }
+    }
+}
+function from_candid_UserRole_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _UserRole): UserRole {
+    return from_candid_variant_n5(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_UserProfile]): UserProfile | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_Loan]): Loan | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_variant_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    admin: null;
+} | {
+    user: null;
+} | {
+    guest: null;
+}): UserRole {
+    return "admin" in value ? UserRole.admin : "user" in value ? UserRole.user : "guest" in value ? UserRole.guest : value;
+}
+function to_candid_UserRole_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UserRole): _UserRole {
+    return to_candid_variant_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UserRole): {
+    admin: null;
+} | {
+    user: null;
+} | {
+    guest: null;
+} {
+    return value == UserRole.admin ? {
+        admin: null
+    } : value == UserRole.user ? {
+        user: null
+    } : value == UserRole.guest ? {
+        guest: null
+    } : value;
 }
 export interface CreateActorOptions {
     agent?: Agent;

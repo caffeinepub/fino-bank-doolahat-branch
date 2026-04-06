@@ -186,8 +186,8 @@ function useAddComplaint() {
     mutationFn: async (c: Omit<Complaint, "id" | "createdAt">) => {
       if (!actor) throw new Error("No actor");
       return (actor as any).addComplaint(
-        c.complaintNo,
         c.customerName,
+        c.complaintNo,
         c.contactNo,
         c.accountNo,
         c.aadharNo,
@@ -209,8 +209,8 @@ function useUpdateComplaint() {
       if (!actor) throw new Error("No actor");
       return (actor as any).updateComplaint(
         c.id,
-        c.complaintNo,
         c.customerName,
+        c.complaintNo,
         c.contactNo,
         c.accountNo,
         c.aadharNo,

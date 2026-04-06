@@ -17873,11 +17873,41 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$E = [
+  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
+  ["path", { d: "M19 12H5", key: "x3x0zl" }]
+];
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$E);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$D = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$C);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$D);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$C = [
+  [
+    "path",
+    {
+      d: "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z",
+      key: "3c2336"
+    }
+  ],
+  ["path", { d: "M8 8h8", key: "1bis0t" }],
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "m13 17-5-1h1a4 4 0 0 0 0-8", key: "nu2bwa" }]
+];
+const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$C);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -18493,7 +18523,8 @@ const tabs = [
   { id: "payment-heads", label: "Payment Heads" },
   { id: "merchants", label: "Merchants" },
   { id: "inventory", label: "Inventory" },
-  { id: "complaints", label: "Complaints" }
+  { id: "complaints", label: "Complaints" },
+  { id: "loans", label: "Loans" }
 ];
 function NavTabs({ activeTab, onTabChange }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "bg-white border-b border-border sticky top-16 z-30", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center px-6 gap-0 overflow-x-auto", children: [
@@ -67388,6 +67419,24 @@ const Transaction = Record({
   "accountNumber": Text2,
   "amount": Float64
 });
+const UserRole = Variant({
+  "admin": Null,
+  "user": Null,
+  "guest": Null
+});
+const Complaint = Record({
+  "id": Nat,
+  "customerName": Text2,
+  "status": Text2,
+  "complaintNo": Text2,
+  "accountNo": Text2,
+  "createdAt": Int,
+  "aadharNo": Text2,
+  "contactNo": Text2,
+  "panNo": Text2,
+  "dateOfComplaint": Text2,
+  "complaintBrief": Text2
+});
 const HeadBalance = Record({
   "headName": Text2,
   "profitLoss": Float64,
@@ -67418,13 +67467,68 @@ const FixedDeposit = Record({
   "tenure": Nat,
   "interestAmount": Float64
 });
+const Loan = Record({
+  "id": Nat,
+  "loanStartDate": Text2,
+  "customerName": Text2,
+  "loanAmount": Float64,
+  "dateOfBirth": Text2,
+  "createdAt": Int,
+  "fatherHusbandName": Text2,
+  "totalInterestAmount": Float64,
+  "interestRate": Float64,
+  "nomineeName": Text2,
+  "loanTenureMonths": Nat,
+  "repaymentType": Text2,
+  "contactNo": Text2,
+  "fullAddress": Text2
+});
 const PaymentHead = Record({
   "id": Nat,
   "headType": Text2,
   "name": Text2,
   "isDefault": Bool
 });
+const InventoryProduct = Record({
+  "id": Nat,
+  "sku": Text2,
+  "reorderPoint": Nat,
+  "name": Text2,
+  "createdAt": Int,
+  "description": Text2,
+  "barcode": Text2,
+  "quantity": Nat,
+  "category": Text2,
+  "salePrice": Float64,
+  "unitCost": Float64
+});
+const StockTransaction = Record({
+  "id": Nat,
+  "transactionDate": Text2,
+  "transactionType": Text2,
+  "quantityChange": Int,
+  "note": Text2,
+  "createdAt": Int,
+  "productId": Nat
+});
+const UserProfile = Record({ "name": Text2 });
 Service({
+  "_initializeAccessControlWithSecret": Func([Text2], [], []),
+  "addComplaint": Func(
+    [
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2
+    ],
+    [Nat],
+    []
+  ),
   "addFixedDeposit": Func(
     [
       Text2,
@@ -67443,20 +67547,113 @@ Service({
     [Nat],
     []
   ),
+  "addLoan": Func(
+    [
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Float64,
+      Float64,
+      Float64,
+      Nat,
+      Text2
+    ],
+    [Nat],
+    []
+  ),
   "addPaymentHead": Func([Text2, Text2], [Nat], []),
+  "addProduct": Func(
+    [
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Nat,
+      Float64,
+      Float64,
+      Nat
+    ],
+    [Nat],
+    []
+  ),
+  "addStockTransaction": Func(
+    [Nat, Text2, Int, Text2, Text2],
+    [Nat],
+    []
+  ),
   "addTransaction": Func([Transaction], [Nat], []),
+  "assignCallerUserRole": Func([Principal2, UserRole], [], []),
+  "bulkUpdateProducts": Func(
+    [
+      Vec(Nat),
+      Vec(Float64),
+      Vec(Float64),
+      Vec(Nat)
+    ],
+    [],
+    []
+  ),
+  "deleteComplaint": Func([Nat], [], []),
   "deleteDailyPL": Func([Nat], [], []),
   "deleteFixedDeposit": Func([Nat], [], []),
+  "deleteLoan": Func([Nat], [], []),
   "deletePaymentHead": Func([Nat], [], []),
+  "deleteProduct": Func([Nat], [], []),
   "deleteTransaction": Func([Nat], [], []),
   "editPaymentHead": Func([Nat, Text2, Text2], [], []),
+  "editProduct": Func(
+    [
+      Nat,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Float64,
+      Float64,
+      Nat
+    ],
+    [],
+    []
+  ),
+  "getAllComplaints": Func([], [Vec(Complaint)], ["query"]),
   "getAllDailyPLs": Func([], [Vec(DailyPL)], ["query"]),
   "getAllFixedDeposits": Func([], [Vec(FixedDeposit)], ["query"]),
+  "getAllLoans": Func([], [Vec(Loan)], ["query"]),
   "getAllPaymentHeads": Func([], [Vec(PaymentHead)], ["query"]),
+  "getAllProducts": Func([], [Vec(InventoryProduct)], ["query"]),
+  "getAllStockTransactions": Func(
+    [],
+    [Vec(StockTransaction)],
+    ["query"]
+  ),
   "getAllTransactions": Func([], [Vec(Transaction)], ["query"]),
+  "getCallerUserProfile": Func([], [Opt(UserProfile)], ["query"]),
+  "getCallerUserRole": Func([], [UserRole], ["query"]),
+  "getComplaintsByStatus": Func(
+    [Text2],
+    [Vec(Complaint)],
+    ["query"]
+  ),
   "getDailyPLByDateRange": Func(
     [Text2, Text2],
     [Vec(DailyPL)],
+    ["query"]
+  ),
+  "getLoanById": Func([Nat], [Opt(Loan)], ["query"]),
+  "getStockTransactionsByProduct": Func(
+    [Nat],
+    [Vec(StockTransaction)],
+    ["query"]
+  ),
+  "getTodayStockTransactions": Func(
+    [Text2],
+    [Vec(StockTransaction)],
     ["query"]
   ),
   "getTransactionsByTypeAndStatus": Func(
@@ -67464,7 +67661,31 @@ Service({
     [Vec(Transaction)],
     ["query"]
   ),
-  "saveDailyPL": Func([Text2, Vec(HeadBalance)], [Nat], [])
+  "getUserProfile": Func(
+    [Principal2],
+    [Opt(UserProfile)],
+    ["query"]
+  ),
+  "isCallerAdmin": Func([], [Bool], ["query"]),
+  "saveCallerUserProfile": Func([UserProfile], [], []),
+  "saveDailyPL": Func([Text2, Vec(HeadBalance)], [Nat], []),
+  "updateComplaint": Func(
+    [
+      Nat,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2,
+      Text2
+    ],
+    [],
+    []
+  ),
+  "updateComplaintStatus": Func([Nat, Text2], [], [])
 });
 const idlFactory = ({ IDL: IDL2 }) => {
   const Transaction2 = IDL2.Record({
@@ -67481,6 +67702,24 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "bankName": IDL2.Text,
     "accountNumber": IDL2.Text,
     "amount": IDL2.Float64
+  });
+  const UserRole2 = IDL2.Variant({
+    "admin": IDL2.Null,
+    "user": IDL2.Null,
+    "guest": IDL2.Null
+  });
+  const Complaint2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "customerName": IDL2.Text,
+    "status": IDL2.Text,
+    "complaintNo": IDL2.Text,
+    "accountNo": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "aadharNo": IDL2.Text,
+    "contactNo": IDL2.Text,
+    "panNo": IDL2.Text,
+    "dateOfComplaint": IDL2.Text,
+    "complaintBrief": IDL2.Text
   });
   const HeadBalance2 = IDL2.Record({
     "headName": IDL2.Text,
@@ -67512,13 +67751,68 @@ const idlFactory = ({ IDL: IDL2 }) => {
     "tenure": IDL2.Nat,
     "interestAmount": IDL2.Float64
   });
+  const Loan2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "loanStartDate": IDL2.Text,
+    "customerName": IDL2.Text,
+    "loanAmount": IDL2.Float64,
+    "dateOfBirth": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "fatherHusbandName": IDL2.Text,
+    "totalInterestAmount": IDL2.Float64,
+    "interestRate": IDL2.Float64,
+    "nomineeName": IDL2.Text,
+    "loanTenureMonths": IDL2.Nat,
+    "repaymentType": IDL2.Text,
+    "contactNo": IDL2.Text,
+    "fullAddress": IDL2.Text
+  });
   const PaymentHead2 = IDL2.Record({
     "id": IDL2.Nat,
     "headType": IDL2.Text,
     "name": IDL2.Text,
     "isDefault": IDL2.Bool
   });
+  const InventoryProduct2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "sku": IDL2.Text,
+    "reorderPoint": IDL2.Nat,
+    "name": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "description": IDL2.Text,
+    "barcode": IDL2.Text,
+    "quantity": IDL2.Nat,
+    "category": IDL2.Text,
+    "salePrice": IDL2.Float64,
+    "unitCost": IDL2.Float64
+  });
+  const StockTransaction2 = IDL2.Record({
+    "id": IDL2.Nat,
+    "transactionDate": IDL2.Text,
+    "transactionType": IDL2.Text,
+    "quantityChange": IDL2.Int,
+    "note": IDL2.Text,
+    "createdAt": IDL2.Int,
+    "productId": IDL2.Nat
+  });
+  const UserProfile2 = IDL2.Record({ "name": IDL2.Text });
   return IDL2.Service({
+    "_initializeAccessControlWithSecret": IDL2.Func([IDL2.Text], [], []),
+    "addComplaint": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text
+      ],
+      [IDL2.Nat],
+      []
+    ),
     "addFixedDeposit": IDL2.Func(
       [
         IDL2.Text,
@@ -67537,20 +67831,113 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [IDL2.Nat],
       []
     ),
+    "addLoan": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Float64,
+        IDL2.Float64,
+        IDL2.Float64,
+        IDL2.Nat,
+        IDL2.Text
+      ],
+      [IDL2.Nat],
+      []
+    ),
     "addPaymentHead": IDL2.Func([IDL2.Text, IDL2.Text], [IDL2.Nat], []),
+    "addProduct": IDL2.Func(
+      [
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Nat,
+        IDL2.Float64,
+        IDL2.Float64,
+        IDL2.Nat
+      ],
+      [IDL2.Nat],
+      []
+    ),
+    "addStockTransaction": IDL2.Func(
+      [IDL2.Nat, IDL2.Text, IDL2.Int, IDL2.Text, IDL2.Text],
+      [IDL2.Nat],
+      []
+    ),
     "addTransaction": IDL2.Func([Transaction2], [IDL2.Nat], []),
+    "assignCallerUserRole": IDL2.Func([IDL2.Principal, UserRole2], [], []),
+    "bulkUpdateProducts": IDL2.Func(
+      [
+        IDL2.Vec(IDL2.Nat),
+        IDL2.Vec(IDL2.Float64),
+        IDL2.Vec(IDL2.Float64),
+        IDL2.Vec(IDL2.Nat)
+      ],
+      [],
+      []
+    ),
+    "deleteComplaint": IDL2.Func([IDL2.Nat], [], []),
     "deleteDailyPL": IDL2.Func([IDL2.Nat], [], []),
     "deleteFixedDeposit": IDL2.Func([IDL2.Nat], [], []),
+    "deleteLoan": IDL2.Func([IDL2.Nat], [], []),
     "deletePaymentHead": IDL2.Func([IDL2.Nat], [], []),
+    "deleteProduct": IDL2.Func([IDL2.Nat], [], []),
     "deleteTransaction": IDL2.Func([IDL2.Nat], [], []),
     "editPaymentHead": IDL2.Func([IDL2.Nat, IDL2.Text, IDL2.Text], [], []),
+    "editProduct": IDL2.Func(
+      [
+        IDL2.Nat,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Float64,
+        IDL2.Float64,
+        IDL2.Nat
+      ],
+      [],
+      []
+    ),
+    "getAllComplaints": IDL2.Func([], [IDL2.Vec(Complaint2)], ["query"]),
     "getAllDailyPLs": IDL2.Func([], [IDL2.Vec(DailyPL2)], ["query"]),
     "getAllFixedDeposits": IDL2.Func([], [IDL2.Vec(FixedDeposit2)], ["query"]),
+    "getAllLoans": IDL2.Func([], [IDL2.Vec(Loan2)], ["query"]),
     "getAllPaymentHeads": IDL2.Func([], [IDL2.Vec(PaymentHead2)], ["query"]),
+    "getAllProducts": IDL2.Func([], [IDL2.Vec(InventoryProduct2)], ["query"]),
+    "getAllStockTransactions": IDL2.Func(
+      [],
+      [IDL2.Vec(StockTransaction2)],
+      ["query"]
+    ),
     "getAllTransactions": IDL2.Func([], [IDL2.Vec(Transaction2)], ["query"]),
+    "getCallerUserProfile": IDL2.Func([], [IDL2.Opt(UserProfile2)], ["query"]),
+    "getCallerUserRole": IDL2.Func([], [UserRole2], ["query"]),
+    "getComplaintsByStatus": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Vec(Complaint2)],
+      ["query"]
+    ),
     "getDailyPLByDateRange": IDL2.Func(
       [IDL2.Text, IDL2.Text],
       [IDL2.Vec(DailyPL2)],
+      ["query"]
+    ),
+    "getLoanById": IDL2.Func([IDL2.Nat], [IDL2.Opt(Loan2)], ["query"]),
+    "getStockTransactionsByProduct": IDL2.Func(
+      [IDL2.Nat],
+      [IDL2.Vec(StockTransaction2)],
+      ["query"]
+    ),
+    "getTodayStockTransactions": IDL2.Func(
+      [IDL2.Text],
+      [IDL2.Vec(StockTransaction2)],
       ["query"]
     ),
     "getTransactionsByTypeAndStatus": IDL2.Func(
@@ -67558,7 +67945,31 @@ const idlFactory = ({ IDL: IDL2 }) => {
       [IDL2.Vec(Transaction2)],
       ["query"]
     ),
-    "saveDailyPL": IDL2.Func([IDL2.Text, IDL2.Vec(HeadBalance2)], [IDL2.Nat], [])
+    "getUserProfile": IDL2.Func(
+      [IDL2.Principal],
+      [IDL2.Opt(UserProfile2)],
+      ["query"]
+    ),
+    "isCallerAdmin": IDL2.Func([], [IDL2.Bool], ["query"]),
+    "saveCallerUserProfile": IDL2.Func([UserProfile2], [], []),
+    "saveDailyPL": IDL2.Func([IDL2.Text, IDL2.Vec(HeadBalance2)], [IDL2.Nat], []),
+    "updateComplaint": IDL2.Func(
+      [
+        IDL2.Nat,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text,
+        IDL2.Text
+      ],
+      [],
+      []
+    ),
+    "updateComplaintStatus": IDL2.Func([IDL2.Nat, IDL2.Text], [], [])
   });
 };
 class ExternalBlob {
@@ -67607,9 +68018,31 @@ class Backend {
     this.processError = processError2;
   }
   async _initializeAccessControlWithSecret(arg0) {
-    try {
-      await this.actor._initializeAccessControlWithSecret(arg0);
-    } catch (_e2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor._initializeAccessControlWithSecret(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor._initializeAccessControlWithSecret(arg0);
+      return result;
+    }
+  }
+  async addComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+      return result;
     }
   }
   async addFixedDeposit(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) {
@@ -67623,6 +68056,20 @@ class Backend {
       }
     } else {
       const result = await this.actor.addFixedDeposit(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+      return result;
+    }
+  }
+  async addLoan(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addLoan(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addLoan(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
       return result;
     }
   }
@@ -67640,6 +68087,34 @@ class Backend {
       return result;
     }
   }
+  async addProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+      return result;
+    }
+  }
+  async addStockTransaction(arg0, arg1, arg2, arg3, arg4) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.addStockTransaction(arg0, arg1, arg2, arg3, arg4);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.addStockTransaction(arg0, arg1, arg2, arg3, arg4);
+      return result;
+    }
+  }
   async addTransaction(arg0) {
     if (this.processError) {
       try {
@@ -67651,6 +68126,48 @@ class Backend {
       }
     } else {
       const result = await this.actor.addTransaction(arg0);
+      return result;
+    }
+  }
+  async assignCallerUserRole(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+      return result;
+    }
+  }
+  async bulkUpdateProducts(arg0, arg1, arg2, arg3) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.bulkUpdateProducts(arg0, arg1, arg2, arg3);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.bulkUpdateProducts(arg0, arg1, arg2, arg3);
+      return result;
+    }
+  }
+  async deleteComplaint(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteComplaint(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteComplaint(arg0);
       return result;
     }
   }
@@ -67682,6 +68199,20 @@ class Backend {
       return result;
     }
   }
+  async deleteLoan(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteLoan(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteLoan(arg0);
+      return result;
+    }
+  }
   async deletePaymentHead(arg0) {
     if (this.processError) {
       try {
@@ -67693,6 +68224,20 @@ class Backend {
       }
     } else {
       const result = await this.actor.deletePaymentHead(arg0);
+      return result;
+    }
+  }
+  async deleteProduct(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteProduct(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteProduct(arg0);
       return result;
     }
   }
@@ -67724,6 +68269,34 @@ class Backend {
       return result;
     }
   }
+  async editProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.editProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.editProduct(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+      return result;
+    }
+  }
+  async getAllComplaints() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllComplaints();
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllComplaints();
+      return result;
+    }
+  }
   async getAllDailyPLs() {
     if (this.processError) {
       try {
@@ -67752,6 +68325,20 @@ class Backend {
       return result;
     }
   }
+  async getAllLoans() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllLoans();
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllLoans();
+      return result;
+    }
+  }
   async getAllPaymentHeads() {
     if (this.processError) {
       try {
@@ -67763,6 +68350,34 @@ class Backend {
       }
     } else {
       const result = await this.actor.getAllPaymentHeads();
+      return result;
+    }
+  }
+  async getAllProducts() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllProducts();
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllProducts();
+      return result;
+    }
+  }
+  async getAllStockTransactions() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllStockTransactions();
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllStockTransactions();
       return result;
     }
   }
@@ -67780,6 +68395,48 @@ class Backend {
       return result;
     }
   }
+  async getCallerUserProfile() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getCallerUserProfile();
+        return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getCallerUserProfile();
+      return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getCallerUserRole() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getCallerUserRole();
+        return from_candid_UserRole_n4(this._uploadFile, this._downloadFile, result);
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getCallerUserRole();
+      return from_candid_UserRole_n4(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getComplaintsByStatus(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getComplaintsByStatus(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getComplaintsByStatus(arg0);
+      return result;
+    }
+  }
   async getDailyPLByDateRange(arg0, arg1) {
     if (this.processError) {
       try {
@@ -67791,6 +68448,48 @@ class Backend {
       }
     } else {
       const result = await this.actor.getDailyPLByDateRange(arg0, arg1);
+      return result;
+    }
+  }
+  async getLoanById(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getLoanById(arg0);
+        return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getLoanById(arg0);
+      return from_candid_opt_n6(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async getStockTransactionsByProduct(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getStockTransactionsByProduct(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getStockTransactionsByProduct(arg0);
+      return result;
+    }
+  }
+  async getTodayStockTransactions(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getTodayStockTransactions(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getTodayStockTransactions(arg0);
       return result;
     }
   }
@@ -67808,6 +68507,48 @@ class Backend {
       return result;
     }
   }
+  async getUserProfile(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getUserProfile(arg0);
+        return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getUserProfile(arg0);
+      return from_candid_opt_n3(this._uploadFile, this._downloadFile, result);
+    }
+  }
+  async isCallerAdmin() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.isCallerAdmin();
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.isCallerAdmin();
+      return result;
+    }
+  }
+  async saveCallerUserProfile(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.saveCallerUserProfile(arg0);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.saveCallerUserProfile(arg0);
+      return result;
+    }
+  }
   async saveDailyPL(arg0, arg1) {
     if (this.processError) {
       try {
@@ -67822,6 +68563,58 @@ class Backend {
       return result;
     }
   }
+  async updateComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateComplaint(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+      return result;
+    }
+  }
+  async updateComplaintStatus(arg0, arg1) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateComplaintStatus(arg0, arg1);
+        return result;
+      } catch (e3) {
+        this.processError(e3);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateComplaintStatus(arg0, arg1);
+      return result;
+    }
+  }
+}
+function from_candid_UserRole_n4(_uploadFile, _downloadFile, value) {
+  return from_candid_variant_n5(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n3(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n6(_uploadFile, _downloadFile, value) {
+  return value.length === 0 ? null : value[0];
+}
+function from_candid_variant_n5(_uploadFile, _downloadFile, value) {
+  return "admin" in value ? "admin" : "user" in value ? "user" : "guest" in value ? "guest" : value;
+}
+function to_candid_UserRole_n1(_uploadFile, _downloadFile, value) {
+  return to_candid_variant_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_variant_n2(_uploadFile, _downloadFile, value) {
+  return value == "admin" ? {
+    admin: null
+  } : value == "user" ? {
+    user: null
+  } : value == "guest" ? {
+    guest: null
+  } : value;
 }
 function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
   const agent = options.agent || HttpAgent.createSync({
@@ -70029,8 +70822,8 @@ function useAddComplaint() {
     mutationFn: async (c2) => {
       if (!actor) throw new Error("No actor");
       return actor.addComplaint(
-        c2.complaintNo,
         c2.customerName,
+        c2.complaintNo,
         c2.contactNo,
         c2.accountNo,
         c2.aadharNo,
@@ -70051,8 +70844,8 @@ function useUpdateComplaint() {
       if (!actor) throw new Error("No actor");
       return actor.updateComplaint(
         c2.id,
-        c2.complaintNo,
         c2.customerName,
+        c2.complaintNo,
         c2.contactNo,
         c2.accountNo,
         c2.aadharNo,
@@ -73277,6 +74070,87 @@ async function downloadMerchants(merchants) {
     `Merchants_Report_${(/* @__PURE__ */ new Date()).toISOString().split("T")[0]}.xlsx`
   );
 }
+function addMonthsFormatted(isoDate, months) {
+  const date2 = new Date(isoDate);
+  date2.setMonth(date2.getMonth() + months);
+  const d2 = String(date2.getDate()).padStart(2, "0");
+  const m2 = String(date2.getMonth() + 1).padStart(2, "0");
+  const y2 = date2.getFullYear();
+  return `${d2}/${m2}/${y2}`;
+}
+async function downloadLoanSheet(loan) {
+  const XLSX = await getXLSX();
+  const n2 = Number(loan.loanTenureMonths);
+  const principalPerInstallment = loan.loanAmount / n2;
+  const interestPerInstallment = loan.totalInterestAmount / n2;
+  const totalInstallment = principalPerInstallment + interestPerInstallment;
+  const rows = [
+    [BANK_NAME],
+    [`IFSC: ${IFSC}`],
+    ["LOAN REPAYMENT SCHEDULE"],
+    [],
+    ["Loan Details"],
+    [],
+    ["Customer Name", loan.customerName],
+    ["Father/Husband Name", loan.fatherHusbandName],
+    ["Full Address", loan.fullAddress],
+    ["Loan Start Date", formatDate(loan.loanStartDate)],
+    ["Contact No", loan.contactNo],
+    ["Nominee Name", loan.nomineeName],
+    ["Date of Birth", formatDate(loan.dateOfBirth)],
+    ["Loan Amount (₹)", loan.loanAmount],
+    [
+      "Total Interest Amount (₹)",
+      Number.parseFloat(loan.totalInterestAmount.toFixed(2))
+    ],
+    ["Interest Rate (%)", loan.interestRate],
+    ["Loan Tenure (months)", n2],
+    ["Repayment Type", loan.repaymentType],
+    [],
+    // Header row 1 - group header
+    [
+      "S.No",
+      "Repayment Date",
+      "Repayable Amount",
+      "",
+      "",
+      "Remaining Amount",
+      "Collection Officer Sign"
+    ],
+    // Header row 2 - sub-columns
+    [
+      "",
+      "",
+      "Principal (₹)",
+      "Interest (₹)",
+      "Total (₹)",
+      "",
+      ""
+    ]
+  ];
+  for (let i = 0; i < n2; i++) {
+    const remaining = i === n2 - 1 ? 0 : Number.parseFloat(
+      (loan.loanAmount - principalPerInstallment * (i + 1)).toFixed(2)
+    );
+    rows.push([
+      i + 1,
+      addMonthsFormatted(loan.loanStartDate, i + 1),
+      Number.parseFloat(principalPerInstallment.toFixed(2)),
+      Number.parseFloat(interestPerInstallment.toFixed(2)),
+      Number.parseFloat(totalInstallment.toFixed(2)),
+      remaining,
+      ""
+    ]);
+  }
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"] = [8, 18, 18, 18, 18, 20, 28].map((w2) => ({ wch: w2 }));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Loan Schedule");
+  XLSX.writeFile(
+    wb,
+    `Loan_${loan.customerName.replace(/\s+/g, "_")}_Schedule.xlsx`
+  );
+}
 const TENURES = [1, 2, 3, 4, 5];
 function FDForm({ onClose }) {
   const [form, setForm] = reactExports.useState({
@@ -75914,6 +76788,1009 @@ function Inventory() {
     )
   ] });
 }
+function useLoans() {
+  const { actor, isFetching } = useActor();
+  return useQuery({
+    queryKey: ["loans"],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllLoans();
+    },
+    enabled: !!actor && !isFetching
+  });
+}
+function useAddLoan() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (loan) => {
+      if (!actor) throw new Error("No actor");
+      return actor.addLoan(
+        loan.customerName,
+        loan.fatherHusbandName,
+        loan.fullAddress,
+        loan.loanStartDate,
+        loan.contactNo,
+        loan.nomineeName,
+        loan.dateOfBirth,
+        loan.loanAmount,
+        loan.totalInterestAmount,
+        loan.interestRate,
+        BigInt(loan.loanTenureMonths),
+        loan.repaymentType
+      );
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] })
+  });
+}
+function useDeleteLoan() {
+  const { actor } = useActor();
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: async (id2) => {
+      if (!actor) throw new Error("No actor");
+      return actor.deleteLoan(id2);
+    },
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["loans"] })
+  });
+}
+function formatINR2(amount) {
+  return `₹${amount.toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })}`;
+}
+function addMonthsToDate(isoDate, months) {
+  const date2 = new Date(isoDate);
+  date2.setMonth(date2.getMonth() + months);
+  const d2 = String(date2.getDate()).padStart(2, "0");
+  const m2 = String(date2.getMonth() + 1).padStart(2, "0");
+  const y2 = date2.getFullYear();
+  return `${d2}/${m2}/${y2}`;
+}
+const TENURE_OPTIONS = [12, 18, 24, 30, 36, 42, 48, 54, 60];
+function emptyLoanForm() {
+  return {
+    customerName: "",
+    fatherHusbandName: "",
+    fullAddress: "",
+    loanStartDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+    contactNo: "",
+    nomineeName: "",
+    dateOfBirth: "",
+    loanAmount: "",
+    interestRate: "",
+    loanTenureMonths: ""
+  };
+}
+function calcTotalInterest(loanAmount, interestRate, tenureMonths) {
+  return loanAmount * (interestRate / 100) * (tenureMonths / 12);
+}
+function LoanFormDialog({ open, onOpenChange }) {
+  const [form, setForm] = reactExports.useState(emptyLoanForm);
+  const [errors, setErrors] = reactExports.useState({});
+  const addLoan = useAddLoan();
+  const loanAmountNum = Number.parseFloat(form.loanAmount) || 0;
+  const interestRateNum = Number.parseFloat(form.interestRate) || 0;
+  const tenureNum = Number.parseInt(form.loanTenureMonths) || 0;
+  const totalInterest = calcTotalInterest(
+    loanAmountNum,
+    interestRateNum,
+    tenureNum
+  );
+  reactExports.useEffect(() => {
+    if (!open) {
+      setForm(emptyLoanForm());
+      setErrors({});
+    }
+  }, [open]);
+  const set = (field) => (val) => {
+    setForm((prev) => ({ ...prev, [field]: val }));
+    setErrors((prev) => ({ ...prev, [field]: void 0 }));
+  };
+  const validate = () => {
+    const errs = {};
+    if (!form.customerName.trim()) errs.customerName = "Required";
+    if (!form.fatherHusbandName.trim()) errs.fatherHusbandName = "Required";
+    if (!form.fullAddress.trim()) errs.fullAddress = "Required";
+    if (!form.loanStartDate) errs.loanStartDate = "Required";
+    if (!form.contactNo.trim()) errs.contactNo = "Required";
+    if (!form.nomineeName.trim()) errs.nomineeName = "Required";
+    if (!form.dateOfBirth) errs.dateOfBirth = "Required";
+    if (!form.loanAmount || loanAmountNum <= 0)
+      errs.loanAmount = "Must be a positive number";
+    if (!form.interestRate || interestRateNum < 1 || interestRateNum > 50)
+      errs.interestRate = "Must be between 1 and 50";
+    if (!form.loanTenureMonths) errs.loanTenureMonths = "Required";
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+  const handleSubmit = async () => {
+    if (!validate()) return;
+    try {
+      await addLoan.mutateAsync({
+        customerName: form.customerName.trim(),
+        fatherHusbandName: form.fatherHusbandName.trim(),
+        fullAddress: form.fullAddress.trim(),
+        loanStartDate: form.loanStartDate,
+        contactNo: form.contactNo.trim(),
+        nomineeName: form.nomineeName.trim(),
+        dateOfBirth: form.dateOfBirth,
+        loanAmount: loanAmountNum,
+        totalInterestAmount: totalInterest,
+        interestRate: interestRateNum,
+        loanTenureMonths: BigInt(tenureNum),
+        repaymentType: "Monthly"
+      });
+      ue.success("Loan record added successfully");
+      onOpenChange(false);
+    } catch (e3) {
+      ue.error("Failed to save loan record");
+      console.error(e3);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    DialogContent,
+    {
+      className: "sm:max-w-2xl max-h-[90vh] overflow-y-auto",
+      "data-ocid": "loans.form.dialog",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            BadgeIndianRupee,
+            {
+              className: "w-5 h-5",
+              style: { color: "var(--brand-red)" }
+            }
+          ),
+          "Add New Loan"
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4 py-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-cname", children: [
+              "Customer Name ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-cname",
+                placeholder: "e.g. Ramesh Kumar",
+                value: form.customerName,
+                onChange: (e3) => set("customerName")(e3.target.value),
+                "data-ocid": "loans.form.customerName.input"
+              }
+            ),
+            errors.customerName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.customerName.error_state",
+                children: errors.customerName
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-fname", children: [
+              "Father/Husband Name ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-fname",
+                placeholder: "e.g. Suresh Kumar",
+                value: form.fatherHusbandName,
+                onChange: (e3) => set("fatherHusbandName")(e3.target.value),
+                "data-ocid": "loans.form.fatherHusbandName.input"
+              }
+            ),
+            errors.fatherHusbandName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.fatherHusbandName.error_state",
+                children: errors.fatherHusbandName
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 sm:col-span-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-addr", children: [
+              "Full Address ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Textarea,
+              {
+                id: "lf-addr",
+                placeholder: "Enter full postal address",
+                rows: 2,
+                value: form.fullAddress,
+                onChange: (e3) => set("fullAddress")(e3.target.value),
+                "data-ocid": "loans.form.fullAddress.textarea"
+              }
+            ),
+            errors.fullAddress && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.fullAddress.error_state",
+                children: errors.fullAddress
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-start", children: [
+              "Loan Start Date ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-start",
+                type: "date",
+                value: form.loanStartDate,
+                onChange: (e3) => set("loanStartDate")(e3.target.value),
+                "data-ocid": "loans.form.loanStartDate.input"
+              }
+            ),
+            errors.loanStartDate && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.loanStartDate.error_state",
+                children: errors.loanStartDate
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-contact", children: [
+              "Customer Contact No ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-contact",
+                placeholder: "10-digit mobile number",
+                value: form.contactNo,
+                onChange: (e3) => set("contactNo")(e3.target.value),
+                "data-ocid": "loans.form.contactNo.input"
+              }
+            ),
+            errors.contactNo && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.contactNo.error_state",
+                children: errors.contactNo
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-nominee", children: [
+              "Nominee Name ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-nominee",
+                placeholder: "e.g. Priya Devi",
+                value: form.nomineeName,
+                onChange: (e3) => set("nomineeName")(e3.target.value),
+                "data-ocid": "loans.form.nomineeName.input"
+              }
+            ),
+            errors.nomineeName && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.nomineeName.error_state",
+                children: errors.nomineeName
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-dob", children: [
+              "Date of Birth ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-dob",
+                type: "date",
+                value: form.dateOfBirth,
+                onChange: (e3) => set("dateOfBirth")(e3.target.value),
+                "data-ocid": "loans.form.dateOfBirth.input"
+              }
+            ),
+            errors.dateOfBirth && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.dateOfBirth.error_state",
+                children: errors.dateOfBirth
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-amount", children: [
+              "Loan Amount (₹) ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-amount",
+                type: "number",
+                min: 1,
+                step: 0.01,
+                placeholder: "e.g. 50000",
+                value: form.loanAmount,
+                onChange: (e3) => set("loanAmount")(e3.target.value),
+                "data-ocid": "loans.form.loanAmount.input"
+              }
+            ),
+            errors.loanAmount && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.loanAmount.error_state",
+                children: errors.loanAmount
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-rate", children: [
+              "Interest Rate (1–50%) ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-rate",
+                type: "number",
+                min: 1,
+                max: 50,
+                step: 0.1,
+                placeholder: "e.g. 12",
+                value: form.interestRate,
+                onChange: (e3) => set("interestRate")(e3.target.value),
+                "data-ocid": "loans.form.interestRate.input"
+              }
+            ),
+            errors.interestRate && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.interestRate.error_state",
+                children: errors.interestRate
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { htmlFor: "lf-tenure", children: [
+              "Loan Tenure (months) ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500", children: "*" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.loanTenureMonths,
+                onValueChange: set("loanTenureMonths"),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    SelectTrigger,
+                    {
+                      id: "lf-tenure",
+                      "data-ocid": "loans.form.loanTenure.select",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select tenure" })
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: TENURE_OPTIONS.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectItem, { value: String(t2), children: [
+                    t2,
+                    " months"
+                  ] }, t2)) })
+                ]
+              }
+            ),
+            errors.loanTenureMonths && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "p",
+              {
+                className: "text-xs text-red-600",
+                "data-ocid": "loans.form.tenure.error_state",
+                children: errors.loanTenureMonths
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "lf-repay", children: "Repayment Type" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "lf-repay",
+                value: "Monthly",
+                readOnly: true,
+                className: "bg-muted cursor-default text-muted-foreground",
+                "data-ocid": "loans.form.repaymentType.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5 sm:col-span-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "lf-interest", children: "Total Interest Amount (Auto-calculated)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                className: "flex items-center gap-3 rounded-lg border px-4 py-3",
+                style: {
+                  backgroundColor: "oklch(0.97 0.018 293.8)",
+                  borderColor: "oklch(0.85 0.05 293.8)"
+                },
+                "data-ocid": "loans.form.totalInterest.panel",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    BadgeIndianRupee,
+                    {
+                      className: "w-5 h-5 shrink-0",
+                      style: { color: "var(--brand-red)" }
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "p",
+                      {
+                        className: "text-lg font-bold",
+                        style: { color: "var(--brand-red)" },
+                        "data-ocid": "loans.form.totalInterest.display",
+                        children: formatINR2(totalInterest)
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Formula: Loan Amount × (Rate ÷ 100) × (Tenure ÷ 12)" })
+                  ] })
+                ]
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: "outline",
+              onClick: () => onOpenChange(false),
+              disabled: addLoan.isPending,
+              "data-ocid": "loans.form.cancel_button",
+              children: "Cancel"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              onClick: handleSubmit,
+              disabled: addLoan.isPending,
+              className: "text-white",
+              style: { backgroundColor: "var(--brand-red)" },
+              "data-ocid": "loans.form.submit_button",
+              children: addLoan.isPending ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+                "Saving..."
+              ] }) : "Add Loan"
+            }
+          )
+        ] })
+      ]
+    }
+  ) });
+}
+function DeleteLoanDialog({
+  open,
+  onOpenChange,
+  loan,
+  onConfirm,
+  isDeleting
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { className: "sm:max-w-sm", "data-ocid": "loans.delete.dialog", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogTitle, { className: "flex items-center gap-2 text-red-600", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-5 h-5" }),
+      "Delete Loan Record"
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "py-2 space-y-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Are you sure you want to delete this loan record? This action cannot be undone." }),
+      loan && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-muted rounded-lg px-3 py-2 text-sm font-medium", children: [
+        loan.customerName,
+        " — ",
+        formatINR2(loan.loanAmount)
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogFooter, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button,
+        {
+          variant: "outline",
+          onClick: () => onOpenChange(false),
+          disabled: isDeleting,
+          "data-ocid": "loans.delete.cancel_button",
+          children: "Cancel"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button,
+        {
+          variant: "destructive",
+          onClick: onConfirm,
+          disabled: isDeleting,
+          "data-ocid": "loans.delete.confirm_button",
+          children: isDeleting ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LoaderCircle, { className: "mr-2 h-4 w-4 animate-spin" }),
+            "Deleting..."
+          ] }) : "Delete"
+        }
+      )
+    ] })
+  ] }) });
+}
+function RepaymentSchedule({
+  loan,
+  onBack
+}) {
+  const n2 = Number(loan.loanTenureMonths);
+  const principalPerInstallment = loan.loanAmount / n2;
+  const interestPerInstallment = loan.totalInterestAmount / n2;
+  const totalInstallment = principalPerInstallment + interestPerInstallment;
+  const installments = Array.from({ length: n2 }, (_2, i) => {
+    const remaining = i === n2 - 1 ? 0 : loan.loanAmount - principalPerInstallment * (i + 1);
+    return {
+      sno: i + 1,
+      repaymentDate: addMonthsToDate(loan.loanStartDate, i + 1),
+      principal: principalPerInstallment,
+      interest: interestPerInstallment,
+      total: totalInstallment,
+      remaining
+    };
+  });
+  const handleDownload = async () => {
+    try {
+      await downloadLoanSheet(loan);
+      ue.success("Excel sheet downloaded");
+    } catch (e3) {
+      ue.error("Failed to download Excel sheet");
+      console.error(e3);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0, x: 20 },
+      animate: { opacity: 1, x: 0 },
+      exit: { opacity: 0, x: -20 },
+      transition: { duration: 0.25 },
+      className: "space-y-5",
+      "data-ocid": "loans.schedule.section",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                variant: "outline",
+                size: "sm",
+                onClick: onBack,
+                className: "gap-1.5",
+                "data-ocid": "loans.schedule.back_button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-4 h-4" }),
+                  "Back to List"
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-bold text-foreground", children: loan.customerName }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Loan Repayment Schedule" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              onClick: handleDownload,
+              className: "gap-2 text-white",
+              style: { backgroundColor: "var(--brand-red)" },
+              "data-ocid": "loans.schedule.download_button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { className: "w-4 h-4" }),
+                "Download Excel"
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-0 shadow-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CardTitle,
+            {
+              className: "text-sm font-semibold",
+              style: { color: "var(--brand-red)" },
+              children: "Loan Details"
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-3", children: [
+            ["Customer Name", loan.customerName],
+            ["Father/Husband Name", loan.fatherHusbandName],
+            ["Full Address", loan.fullAddress],
+            ["Loan Start Date", formatDate(loan.loanStartDate)],
+            ["Contact No", loan.contactNo],
+            ["Nominee Name", loan.nomineeName],
+            ["Date of Birth", formatDate(loan.dateOfBirth)],
+            ["Loan Amount", formatINR2(loan.loanAmount)],
+            ["Total Interest Amount", formatINR2(loan.totalInterestAmount)],
+            ["Interest Rate", `${loan.interestRate}%`],
+            ["Loan Tenure", `${Number(loan.loanTenureMonths)} months`],
+            ["Repayment Type", loan.repaymentType]
+          ].map(([label, value]) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-0.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: label }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-foreground", children: value })
+          ] }, label)) }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-0 shadow-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-semibold", children: [
+            "Repayment Installments",
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Badge,
+              {
+                variant: "outline",
+                className: "ml-2 text-xs font-normal",
+                style: {
+                  borderColor: "var(--brand-red)",
+                  color: "var(--brand-red)"
+                },
+                children: [
+                  n2,
+                  " installments"
+                ]
+              }
+            )
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { "data-ocid": "loans.schedule.table", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(TableHeader, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                TableRow,
+                {
+                  className: "bg-muted/40 hover:bg-muted/40",
+                  style: { borderBottom: "none" },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      TableHead,
+                      {
+                        rowSpan: 2,
+                        className: "text-xs font-semibold align-middle border-r border-border",
+                        children: "S.No"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      TableHead,
+                      {
+                        rowSpan: 2,
+                        className: "text-xs font-semibold align-middle border-r border-border",
+                        children: "Repayment Date"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      TableHead,
+                      {
+                        colSpan: 3,
+                        className: "text-xs font-semibold text-center border-r border-border",
+                        style: { color: "var(--brand-red)" },
+                        children: "Repayable Amount"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      TableHead,
+                      {
+                        rowSpan: 2,
+                        className: "text-xs font-semibold align-middle border-r border-border",
+                        children: "Remaining Amount"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      TableHead,
+                      {
+                        rowSpan: 2,
+                        className: "text-xs font-semibold align-middle",
+                        children: "Collection Officer Sign"
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "bg-muted/30 hover:bg-muted/30", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-medium border-r border-border", children: "Principal (₹)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-medium border-r border-border", children: "Interest (₹)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-medium border-r border-border", children: "Total (₹)" })
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: installments.map((inst, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              TableRow,
+              {
+                className: "text-sm hover:bg-muted/20",
+                "data-ocid": `loans.schedule.item.${idx + 1}`,
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-medium text-muted-foreground border-r border-border", children: inst.sno }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs border-r border-border", children: inst.repaymentDate }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs border-r border-border", children: inst.principal.toFixed(2) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs border-r border-border", children: inst.interest.toFixed(2) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    TableCell,
+                    {
+                      className: "text-xs font-semibold border-r border-border",
+                      style: { color: "var(--brand-red)" },
+                      children: inst.total.toFixed(2)
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    TableCell,
+                    {
+                      className: "text-xs border-r border-border",
+                      style: {
+                        color: inst.remaining === 0 ? "#16a34a" : void 0,
+                        fontWeight: inst.remaining === 0 ? 600 : void 0
+                      },
+                      children: inst.remaining.toFixed(2)
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b border-gray-400 w-36 min-h-[1.5rem]" }) })
+                ]
+              },
+              inst.sno
+            )) })
+          ] }) }) })
+        ] })
+      ]
+    }
+  );
+}
+function LoanListView({
+  loans,
+  isLoading,
+  onView
+}) {
+  const [formOpen, setFormOpen] = reactExports.useState(false);
+  const [deleteOpen, setDeleteOpen] = reactExports.useState(false);
+  const [deleteTarget, setDeleteTarget] = reactExports.useState(null);
+  const deleteLoan = useDeleteLoan();
+  const handleDeleteClick = (loan) => {
+    setDeleteTarget(loan);
+    setDeleteOpen(true);
+  };
+  const handleDeleteConfirm = async () => {
+    if (!deleteTarget) return;
+    try {
+      await deleteLoan.mutateAsync(deleteTarget.id);
+      ue.success("Loan record deleted");
+      setDeleteOpen(false);
+      setDeleteTarget(null);
+    } catch (e3) {
+      ue.error("Failed to delete loan record");
+      console.error(e3);
+    }
+  };
+  const sorted = [...loans].sort(
+    (a2, b2) => Number(b2.createdAt) - Number(a2.createdAt)
+  );
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "space-y-4",
+      "data-ocid": "loans.list.section",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "text-xl font-bold text-foreground flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                BadgeIndianRupee,
+                {
+                  className: "w-5 h-5",
+                  style: { color: "var(--brand-red)" }
+                }
+              ),
+              "Loan Management"
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage loan records and repayment schedules — Manager access only" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              onClick: () => setFormOpen(true),
+              className: "gap-2 text-white",
+              style: { backgroundColor: "var(--brand-red)" },
+              "data-ocid": "loans.list.add_button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4" }),
+                "Add New Loan"
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "border-0 shadow-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { className: "text-sm font-semibold", children: [
+            "All Loans",
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-2 text-xs text-muted-foreground font-normal", children: [
+              "(",
+              sorted.length,
+              " records)"
+            ] })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-6 space-y-3", "data-ocid": "loans.list.loading_state", children: [1, 2, 3].map((k2) => /* @__PURE__ */ jsxRuntimeExports.jsx(Skeleton, { className: "h-10 rounded-lg" }, k2)) }) : sorted.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "flex flex-col items-center justify-center py-16 text-center",
+              "data-ocid": "loans.list.empty_state",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(BadgeIndianRupee, { className: "w-12 h-12 text-muted-foreground/30 mb-3" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground font-medium", children: 'No loan records yet. Click "Add New Loan" to get started.' })
+              ]
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { "data-ocid": "loans.list.table", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(TableRow, { className: "bg-muted/30 hover:bg-muted/30", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "#" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Customer Name" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Father/Husband Name" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Contact No" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Loan Amount (₹)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Interest Rate (%)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Tenure (months)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold", children: "Loan Start Date" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-xs font-semibold text-right", children: "Actions" })
+            ] }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: sorted.map((loan, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              TableRow,
+              {
+                className: "text-sm hover:bg-muted/20",
+                "data-ocid": `loans.list.item.${idx + 1}`,
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-muted-foreground", children: idx + 1 }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "font-medium", children: loan.customerName }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-muted-foreground text-xs", children: loan.fatherHusbandName }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: loan.contactNo }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    TableCell,
+                    {
+                      className: "text-xs font-semibold",
+                      style: { color: "var(--brand-red)" },
+                      children: formatINR2(loan.loanAmount)
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: "text-xs", children: [
+                    loan.interestRate,
+                    "%"
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(TableCell, { className: "text-xs", children: [
+                    Number(loan.loanTenureMonths),
+                    " months"
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: formatDate(loan.loanStartDate) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-right", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-end gap-1", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "outline",
+                        className: "h-7 text-xs gap-1",
+                        onClick: () => onView(loan),
+                        style: {
+                          borderColor: "var(--brand-red)",
+                          color: "var(--brand-red)"
+                        },
+                        "data-ocid": `loans.list.view_button.${idx + 1}`,
+                        children: "View Schedule"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "ghost",
+                        className: "h-7 w-7 p-0 text-red-500 hover:text-red-700 hover:bg-red-50",
+                        onClick: () => handleDeleteClick(loan),
+                        "data-ocid": `loans.list.delete_button.${idx + 1}`,
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3.5 h-3.5" })
+                      }
+                    )
+                  ] }) })
+                ]
+              },
+              String(loan.id)
+            )) })
+          ] }) }) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(LoanFormDialog, { open: formOpen, onOpenChange: setFormOpen }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          DeleteLoanDialog,
+          {
+            open: deleteOpen,
+            onOpenChange: setDeleteOpen,
+            loan: deleteTarget,
+            onConfirm: handleDeleteConfirm,
+            isDeleting: deleteLoan.isPending
+          }
+        )
+      ]
+    }
+  );
+}
+function Loans() {
+  const { isManager } = useInventoryAuth();
+  const { data: loans = [], isLoading } = useLoans();
+  const [selectedLoan, setSelectedLoan] = reactExports.useState(null);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+    !selectedLoan && !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-between", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("h1", { className: "text-xl font-bold text-foreground flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          ShieldAlert,
+          {
+            className: "w-5 h-5",
+            style: { color: "var(--brand-red)" }
+          }
+        ),
+        "Loan Management"
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground mt-0.5", children: "Manage loan records and repayment schedules — Manager access only" })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: !isManager ? (
+      /* Staff locked screen */
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          initial: { opacity: 0, scale: 0.97 },
+          animate: { opacity: 1, scale: 1 },
+          exit: { opacity: 0 },
+          transition: { duration: 0.25 },
+          className: "flex flex-col items-center justify-center py-24 space-y-4",
+          "data-ocid": "loans.locked.section",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "w-16 h-16 rounded-full flex items-center justify-center",
+                style: { backgroundColor: "oklch(0.97 0.018 293.8)" },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  ShieldAlert,
+                  {
+                    className: "w-8 h-8",
+                    style: { color: "var(--brand-red)" }
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold text-foreground", children: "Manager Access Required" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground max-w-xs", children: "The Loan Management module is restricted to Manager access only. Please log in as Manager using the switcher above." })
+            ] })
+          ]
+        },
+        "locked"
+      )
+    ) : selectedLoan ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      RepaymentSchedule,
+      {
+        loan: selectedLoan,
+        onBack: () => setSelectedLoan(null)
+      },
+      `schedule-${String(selectedLoan.id)}`
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+      LoanListView,
+      {
+        loans,
+        isLoading,
+        onView: setSelectedLoan
+      },
+      "list"
+    ) })
+  ] });
+}
 const STORAGE_KEY = "fino_merchants";
 function loadMerchants() {
   try {
@@ -78490,6 +80367,8 @@ function App() {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Inventory, {});
       case "complaints":
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Complaints, {});
+      case "loans":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Loans, {});
       default:
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, { onNavigate: setActiveTab });
     }
@@ -78549,7 +80428,8 @@ function App() {
                 ["transactions", "Transactions"],
                 ["merchants", "Merchants"],
                 ["inventory", "Inventory"],
-                ["complaints", "Complaints"]
+                ["complaints", "Complaints"],
+                ["loans", "Loans"]
               ].map(([tab, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "button",
                 {
