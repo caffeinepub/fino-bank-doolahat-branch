@@ -8,6 +8,7 @@ import DailyPLEntry from "./pages/DailyPLEntry";
 import Dashboard from "./pages/Dashboard";
 import FixedDeposits from "./pages/FixedDeposits";
 import Inventory from "./pages/Inventory";
+import LienTransaction from "./pages/LienTransaction";
 import Loans from "./pages/Loans";
 import Merchants from "./pages/Merchants";
 import PLReports from "./pages/PLReports";
@@ -25,6 +26,7 @@ export type TabId =
   | "inventory"
   | "complaints"
   | "loans"
+  | "lien-transaction"
   | "upi-collection";
 
 const UPI_COLLECTION_URL =
@@ -63,6 +65,8 @@ export default function App() {
         return <Complaints />;
       case "loans":
         return <Loans />;
+      case "lien-transaction":
+        return <LienTransaction />;
       default:
         return <Dashboard onNavigate={setActiveTab} />;
     }
@@ -136,6 +140,7 @@ export default function App() {
                       ["inventory", "Inventory"],
                       ["complaints", "Complaints"],
                       ["loans", "Loans"],
+                      ["lien-transaction", "Lien Transaction"],
                     ] as [TabId, string][]
                   ).map(([tab, label]) => (
                     <li key={tab}>
