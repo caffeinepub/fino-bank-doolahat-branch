@@ -22323,6 +22323,19 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const __iconNode$S = [
+  ["path", { d: "M8 3 4 7l4 4", key: "9rb6wj" }],
+  ["path", { d: "M4 7h16", key: "6tx8e3" }],
+  ["path", { d: "m16 21 4-4-4-4", key: "siv7j2" }],
+  ["path", { d: "M20 17H4", key: "h6l3hr" }]
+];
+const ArrowLeftRight = createLucideIcon("arrow-left-right", __iconNode$S);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const __iconNode$R = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
@@ -23744,7 +23757,7 @@ var DismissableLayer = reactExports.forwardRef(
   }
 );
 DismissableLayer.displayName = DISMISSABLE_LAYER_NAME;
-var BRANCH_NAME = "DismissableLayerBranch";
+var BRANCH_NAME$1 = "DismissableLayerBranch";
 var DismissableLayerBranch = reactExports.forwardRef((props, forwardedRef) => {
   const context = reactExports.useContext(DismissableLayerContext);
   const ref = reactExports.useRef(null);
@@ -23760,7 +23773,7 @@ var DismissableLayerBranch = reactExports.forwardRef((props, forwardedRef) => {
   }, [context.branches]);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive$1.div, { ...props, ref: composedRefs });
 });
-DismissableLayerBranch.displayName = BRANCH_NAME;
+DismissableLayerBranch.displayName = BRANCH_NAME$1;
 function usePointerDownOutside(onPointerDownOutside, ownerDocument = globalThis == null ? void 0 : globalThis.document) {
   const handlePointerDownOutside = useCallbackRef$1(onPointerDownOutside);
   const isPointerInsideReactTreeRef = reactExports.useRef(false);
@@ -62217,7 +62230,7 @@ function useDeleteMerchant() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["merchants"] })
   });
 }
-const STATUS_OPTIONS = [
+const STATUS_OPTIONS$1 = [
   "Pending",
   "Resolved",
   "Cancelled",
@@ -62809,7 +62822,7 @@ function ComplaintFormDialog({
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: form.status, onValueChange: set("status"), children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "complaints.form.status.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select status" }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: STATUS_OPTIONS.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: s2, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: STATUS_OPTIONS$1.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: s2, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "span",
                   {
@@ -63128,7 +63141,7 @@ function Complaints() {
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "All", children: "All Statuses" }),
-                        STATUS_OPTIONS.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: s2, children: s2 }, s2))
+                        STATUS_OPTIONS$1.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: s2, children: s2 }, s2))
                       ] })
                     ]
                   }
@@ -63197,7 +63210,7 @@ function Complaints() {
                         {
                           align: "start",
                           className: "w-40",
-                          children: STATUS_OPTIONS.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          children: STATUS_OPTIONS$1.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                             DropdownMenuItem,
                             {
                               onClick: () => handleStatusChange(complaint.id, s2),
@@ -63508,7 +63521,741 @@ function TabsContent({
     }
   );
 }
-const RECORDS_KEY = "fino_account_opening_records";
+const RECORDS_KEY$2 = "fino_account_closure_records";
+const COUNTER_KEY$1 = "closure_counter";
+const BANK_NAME$1 = "Fino Small Finance Bank";
+const BRANCH_NAME = "Doolahat Branch";
+const CLOSURE_REASONS = [
+  "Customer Request",
+  "Transfer to Another Branch",
+  "Duplicate Account",
+  "Inoperative",
+  "Deceased",
+  "Other"
+];
+const SETTLEMENT_MODES = [
+  "Cash",
+  "Transfer to Another Account",
+  "Demand Draft"
+];
+const STATUS_OPTIONS = ["Pending", "Approved", "Rejected"];
+function getCounter$2() {
+  try {
+    const v2 = localStorage.getItem(COUNTER_KEY$1);
+    return v2 ? Number.parseInt(v2, 10) : 1;
+  } catch {
+    return 1;
+  }
+}
+function claimReferenceNo$1() {
+  const n2 = getCounter$2();
+  const ref = `AC/${String(n2).padStart(3, "0")}`;
+  localStorage.setItem(COUNTER_KEY$1, String(n2 + 1));
+  return ref;
+}
+function getInitialForm$2() {
+  return {
+    accountNo: "",
+    customerName: "",
+    fatherHusbandName: "",
+    contactNo: "",
+    accountType: "",
+    dateOfOpening: "",
+    dateOfClosureRequest: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+    reasonForClosure: "",
+    otherReason: "",
+    outstandingBalance: "",
+    modeOfSettlement: "",
+    settlementAccountNo: "",
+    remarks: ""
+  };
+}
+function generateRTF$2(rec) {
+  const safe = (v2) => (v2 || "—").replace(/[\\{}]/g, "");
+  const field = (label, value) => `{\\b ${safe(label)}:} ${safe(value)}\\line `;
+  const reasonDisplay = rec.reasonForClosure === "Other" && rec.otherReason ? `Other — ${rec.otherReason}` : rec.reasonForClosure;
+  const settlementBlock = rec.modeOfSettlement === "Transfer to Another Account" && rec.settlementAccountNo ? `${rec.modeOfSettlement} (A/c: ${rec.settlementAccountNo})` : rec.modeOfSettlement;
+  return [
+    "{\\rtf1\\ansi\\deff0",
+    "{\\fonttbl{\\f0\\froman Times New Roman;}{\\f1\\fswiss Arial;}}",
+    "{\\colortbl ;\\red70\\green41\\blue128;\\red180\\green0\\blue0;}",
+    "\\paperw11907\\paperh16838\\margl1440\\margr1440\\margt1440\\margb1440",
+    "\\pard\\qc{\\f1\\b\\fs32\\cf1 ACCOUNT CLOSURE FORM}\\par",
+    `\\pard\\qc{\\f1\\b\\fs20 ${BANK_NAME$1} — ${BRANCH_NAME}}\\par\\par`,
+    `\\pard\\ql{\\f1\\b\\fs22 Reference No: ${safe(rec.referenceNo)}}\\par`,
+    `\\pard\\ql{\\f1\\fs18 Closure Request Date: ${safe(rec.dateOfClosureRequest)}}\\par`,
+    `\\pard\\ql{\\f1\\b\\fs18\\cf2 Status: ${safe(rec.status)}}\\par\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 Customer Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${field("Account No", rec.accountNo)}${field("Customer Name", rec.customerName)}${field("Father / Husband Name", rec.fatherHusbandName)}${field("Contact No", rec.contactNo)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 Account Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${field("Account Type", rec.accountType)}${field("Date of Opening", rec.dateOfOpening)}${field("Outstanding Balance (Rs.)", rec.outstandingBalance)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 Closure Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${field("Reason for Closure", reasonDisplay)}${field("Mode of Settlement", settlementBlock)}${field("Remarks", rec.remarks)}}\\par\\par`,
+    "\\pard\\qj{\\f1\\fs20 \\ul                                        \\ulnone                               \\ul                                        \\ulnone}\\par",
+    "\\pard\\qj{\\f1\\fs16 Signature of Account Holder                                          Signature of Branch Manager}\\par",
+    "}"
+  ].join("\n");
+}
+function FieldRow$2({
+  label,
+  required,
+  children
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { className: "text-xs font-semibold text-foreground", children: [
+      label,
+      required && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500 ml-0.5", children: "*" })
+    ] }),
+    children
+  ] });
+}
+function statusColor(status) {
+  if (status === "Approved")
+    return "text-green-700 border-green-300 bg-green-50";
+  if (status === "Rejected") return "text-red-700 border-red-300 bg-red-50";
+  return "text-amber-700 border-amber-300 bg-amber-50";
+}
+function AccountClosureForm({ onBack }) {
+  const { isManager } = useInventoryAuth();
+  const [tab, setTab] = reactExports.useState("new-entry");
+  const [search, setSearch] = reactExports.useState("");
+  const [editId, setEditId] = reactExports.useState(null);
+  const [records, setRecords] = reactExports.useState(
+    () => loadItems(RECORDS_KEY$2)
+  );
+  const [form, setForm] = reactExports.useState(getInitialForm$2());
+  const [errors, setErrors] = reactExports.useState({});
+  const refreshRecords = () => setRecords(loadItems(RECORDS_KEY$2));
+  const setF = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
+  function validate() {
+    const errs = {};
+    if (!form.accountNo.trim()) errs.accountNo = "Account No is required";
+    if (!form.customerName.trim())
+      errs.customerName = "Customer Name is required";
+    if (!form.fatherHusbandName.trim())
+      errs.fatherHusbandName = "Father/Husband Name is required";
+    if (!form.contactNo || !/^\d{10}$/.test(form.contactNo))
+      errs.contactNo = "Enter valid 10-digit contact number";
+    if (!form.accountType) errs.accountType = "Account Type is required";
+    if (!form.dateOfOpening) errs.dateOfOpening = "Date of Opening is required";
+    if (!form.dateOfClosureRequest)
+      errs.dateOfClosureRequest = "Closure Request Date is required";
+    if (!form.reasonForClosure)
+      errs.reasonForClosure = "Reason for Closure is required";
+    if (form.reasonForClosure === "Other" && !form.otherReason.trim())
+      errs.otherReason = "Please specify the other reason";
+    if (!form.outstandingBalance.trim())
+      errs.outstandingBalance = "Outstanding Balance is required";
+    if (!form.modeOfSettlement)
+      errs.modeOfSettlement = "Mode of Settlement is required";
+    if (form.modeOfSettlement === "Transfer to Another Account" && !form.settlementAccountNo.trim())
+      errs.settlementAccountNo = "Settlement Account No is required";
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return false;
+    }
+    return true;
+  }
+  function handleSubmit() {
+    if (!validate()) {
+      ue.error("Please fix the errors before submitting.");
+      return;
+    }
+    const existing = loadItems(RECORDS_KEY$2);
+    if (editId !== null) {
+      const updated = existing.map(
+        (r2) => r2.id === editId ? { ...r2, ...form } : r2
+      );
+      saveItems(RECORDS_KEY$2, updated);
+      ue.success("Closure record updated successfully!");
+      setEditId(null);
+    } else {
+      const refNo = claimReferenceNo$1();
+      const newRecord = {
+        ...form,
+        id: existing.length > 0 ? Math.max(...existing.map((r2) => r2.id)) + 1 : 1,
+        referenceNo: refNo,
+        status: "Pending",
+        submittedAt: (/* @__PURE__ */ new Date()).toISOString()
+      };
+      saveItems(RECORDS_KEY$2, [...existing, newRecord]);
+      ue.success(`Closure request saved! Ref No: ${refNo}`);
+    }
+    refreshRecords();
+    setForm(getInitialForm$2());
+    setErrors({});
+    setTab("saved-records");
+  }
+  function handleStatusChange(id2, status) {
+    const existing = loadItems(RECORDS_KEY$2);
+    const updated = existing.map((r2) => r2.id === id2 ? { ...r2, status } : r2);
+    saveItems(RECORDS_KEY$2, updated);
+    refreshRecords();
+    ue.success(`Status updated to ${status}`);
+  }
+  function handleDownload(rec) {
+    const rtf = generateRTF$2(rec);
+    const blob = new Blob([rtf], { type: "application/rtf" });
+    const url = URL.createObjectURL(blob);
+    const a2 = document.createElement("a");
+    a2.href = url;
+    a2.download = `AccountClosure_${rec.referenceNo.replace(/\//g, "_")}.rtf`;
+    a2.click();
+    URL.revokeObjectURL(url);
+    ue.success("Closure form downloaded");
+  }
+  function handleEdit(rec) {
+    const { id: id2, referenceNo, status, submittedAt, ...rest } = rec;
+    setForm(rest);
+    setEditId(id2);
+    setErrors({});
+    setTab("new-entry");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function handleDelete(id2) {
+    if (!window.confirm("Delete this closure record permanently?")) return;
+    removeItem(RECORDS_KEY$2, id2);
+    refreshRecords();
+    ue.success("Record deleted");
+  }
+  const filtered = records.filter(
+    (r2) => !search || r2.accountNo.toLowerCase().includes(search.toLowerCase()) || r2.customerName.toLowerCase().includes(search.toLowerCase())
+  );
+  const err = (key) => errors[key] ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-0.5", children: errors[key] }) : null;
+  if (!isManager) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "account_closure.page", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          variant: "ghost",
+          size: "sm",
+          onClick: onBack,
+          className: "gap-1 text-xs",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-3.5 h-3.5" }),
+            " Customer Services"
+          ]
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "py-16 flex flex-col items-center gap-3 text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-10 h-10", style: { color: "#462980" } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base font-semibold text-foreground", children: "Manager Access Required" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground max-w-xs", children: "This section is accessible to managers only. Please switch to Manager view to access the Account Closure Form." })
+      ] }) })
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "account_closure.page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          variant: "ghost",
+          size: "sm",
+          onClick: onBack,
+          className: "gap-1 text-xs",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-3.5 h-3.5" }),
+            " Customer Services"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "w-7 h-7 rounded-lg flex items-center justify-center text-white",
+            style: { backgroundColor: "#462980" },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleX, { className: "w-4 h-4" })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-base font-bold text-foreground", children: "Account Closure Form" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground", children: [
+            BANK_NAME$1,
+            " — ",
+            BRANCH_NAME
+          ] })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Tabs, { value: tab, onValueChange: setTab, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(TabsList, { className: "mb-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TabsTrigger,
+          {
+            value: "new-entry",
+            "data-ocid": "account_closure.new_entry.tab",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-3.5 h-3.5 mr-1" }),
+              editId ? "Edit Record" : "New Entry"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TabsTrigger,
+          {
+            value: "saved-records",
+            "data-ocid": "account_closure.saved_records.tab",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-3.5 h-3.5 mr-1" }),
+              "Saved Records",
+              records.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  className: "ml-1.5 text-[10px] px-1 py-0 h-4",
+                  style: { backgroundColor: "#462980", color: "#fff" },
+                  children: records.length
+                }
+              )
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContent, { value: "new-entry", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          CardHeader,
+          {
+            className: "pb-3 border-b",
+            style: { backgroundColor: "#f5f0ff" },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                CardTitle,
+                {
+                  className: "text-xl font-bold tracking-widest uppercase",
+                  style: { color: "#462980" },
+                  children: "ACCOUNT CLOSURE FORM"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-semibold text-muted-foreground mt-1", children: [
+                BANK_NAME$1,
+                " — ",
+                BRANCH_NAME
+              ] })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-5 space-y-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$2, { label: "Bank Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: BANK_NAME$1,
+                disabled: true,
+                className: "h-8 text-sm bg-muted"
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$2, { label: "Branch", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: BRANCH_NAME,
+                disabled: true,
+                className: "h-8 text-sm bg-muted"
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Customer Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Account No", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.accountNo,
+                    onChange: (e3) => setF("accountNo", e3.target.value),
+                    placeholder: "Enter Account No",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.account_no.input"
+                  }
+                ),
+                err("accountNo")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Customer Name", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.customerName,
+                    onChange: (e3) => setF("customerName", e3.target.value.toUpperCase()),
+                    placeholder: "IN BLOCK LETTERS",
+                    className: "h-8 text-sm uppercase font-semibold tracking-wide",
+                    "data-ocid": "account_closure.customer_name.input"
+                  }
+                ),
+                err("customerName")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Father / Husband Name", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.fatherHusbandName,
+                    onChange: (e3) => setF("fatherHusbandName", e3.target.value),
+                    placeholder: "Father or Husband Name",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.father.input"
+                  }
+                ),
+                err("fatherHusbandName")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Contact No (10 digits)", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.contactNo,
+                    onChange: (e3) => {
+                      if (/^\d{0,10}$/.test(e3.target.value))
+                        setF("contactNo", e3.target.value);
+                    },
+                    placeholder: "9876543210",
+                    maxLength: 10,
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.contact.input"
+                  }
+                ),
+                err("contactNo")
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Account Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Account Type", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Select,
+                  {
+                    value: form.accountType,
+                    onValueChange: (v2) => setF("accountType", v2),
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectTrigger,
+                        {
+                          className: "h-8 text-sm",
+                          "data-ocid": "account_closure.account_type.select",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select type..." })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Savings", children: "Savings" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Current", children: "Current" })
+                      ] })
+                    ]
+                  }
+                ),
+                err("accountType")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Date of Opening", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    type: "date",
+                    value: form.dateOfOpening,
+                    onChange: (e3) => setF("dateOfOpening", e3.target.value),
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.date_opening.input"
+                  }
+                ),
+                err("dateOfOpening")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Closure Request Date", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    type: "date",
+                    value: form.dateOfClosureRequest,
+                    onChange: (e3) => setF("dateOfClosureRequest", e3.target.value),
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.date_closure.input"
+                  }
+                ),
+                err("dateOfClosureRequest")
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Closure Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Reason for Closure", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Select,
+                  {
+                    value: form.reasonForClosure,
+                    onValueChange: (v2) => {
+                      setF("reasonForClosure", v2);
+                      if (v2 !== "Other") setF("otherReason", "");
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectTrigger,
+                        {
+                          className: "h-8 text-sm",
+                          "data-ocid": "account_closure.reason.select",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select reason..." })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: CLOSURE_REASONS.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: r2, children: r2 }, r2)) })
+                    ]
+                  }
+                ),
+                err("reasonForClosure")
+              ] }),
+              form.reasonForClosure === "Other" && /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Please Specify", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.otherReason,
+                    onChange: (e3) => setF("otherReason", e3.target.value),
+                    placeholder: "Describe the reason",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.other_reason.input"
+                  }
+                ),
+                err("otherReason")
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Outstanding Balance (Rs.)", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2 border border-r-0 rounded-l-md bg-muted text-sm text-muted-foreground", children: "₹" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      value: form.outstandingBalance,
+                      onChange: (e3) => setF("outstandingBalance", e3.target.value),
+                      placeholder: "0.00",
+                      className: "h-8 text-sm rounded-l-none",
+                      "data-ocid": "account_closure.balance.input"
+                    }
+                  )
+                ] }),
+                err("outstandingBalance")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Mode of Settlement", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Select,
+                  {
+                    value: form.modeOfSettlement,
+                    onValueChange: (v2) => {
+                      setF("modeOfSettlement", v2);
+                      if (v2 !== "Transfer to Another Account")
+                        setF("settlementAccountNo", "");
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectTrigger,
+                        {
+                          className: "h-8 text-sm",
+                          "data-ocid": "account_closure.settlement_mode.select",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select mode..." })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: SETTLEMENT_MODES.map((m2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: m2, children: m2 }, m2)) })
+                    ]
+                  }
+                ),
+                err("modeOfSettlement")
+              ] }),
+              form.modeOfSettlement === "Transfer to Another Account" && /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$2, { label: "Settlement Account No", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.settlementAccountNo,
+                    onChange: (e3) => setF("settlementAccountNo", e3.target.value),
+                    placeholder: "Account No for transfer",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_closure.settlement_account.input"
+                  }
+                ),
+                err("settlementAccountNo")
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$2, { label: "Remarks (optional)", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Textarea,
+              {
+                value: form.remarks,
+                onChange: (e3) => setF("remarks", e3.target.value),
+                placeholder: "Additional remarks...",
+                className: "text-sm resize-none",
+                rows: 3,
+                "data-ocid": "account_closure.remarks.input"
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Signatures" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-8 mt-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground h-8 mb-1" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Account Holder" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground h-8 mb-1" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Branch Manager" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 pt-2 flex-wrap", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                onClick: handleSubmit,
+                className: "text-white",
+                style: { backgroundColor: "#462980" },
+                "data-ocid": "account_closure.submit.button",
+                children: editId ? "Update Record" : "Submit & Save"
+              }
+            ),
+            editId && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                variant: "ghost",
+                onClick: () => {
+                  setEditId(null);
+                  setForm(getInitialForm$2());
+                  setErrors({});
+                },
+                children: "Cancel Edit"
+              }
+            )
+          ] })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContent, { value: "saved-records", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3 border-b", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base", children: "Saved Records" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: search,
+                onChange: (e3) => setSearch(e3.target.value),
+                placeholder: "Search by Account No or Name...",
+                className: "pl-8 h-8 text-sm w-60",
+                "data-ocid": "account_closure.search.input"
+              }
+            )
+          ] })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: filtered.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "py-12 text-center text-muted-foreground",
+            "data-ocid": "account_closure.empty_state",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(CircleX, { className: "w-8 h-8 mx-auto mb-2 opacity-30" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: search ? "No records match your search" : "No records yet. Fill the form to add one." })
+            ]
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "w-full text-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: "border-b bg-muted/40", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Ref No" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Account No" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Customer Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Account Type" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Closure Date" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Status" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-right px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: filtered.map((rec) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "tr",
+            {
+              className: "border-b hover:bg-muted/20 transition-colors",
+              "data-ocid": `account_closure.record_row.${rec.id}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "td",
+                  {
+                    className: "px-4 py-2.5 font-mono text-xs font-semibold",
+                    style: { color: "#462980" },
+                    children: rec.referenceNo
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs font-medium", children: rec.accountNo }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs font-medium", children: rec.customerName }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: rec.accountType }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: new Date(
+                  rec.dateOfClosureRequest
+                ).toLocaleDateString("en-IN") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Select,
+                  {
+                    value: rec.status,
+                    onValueChange: (v2) => handleStatusChange(rec.id, v2),
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectTrigger,
+                        {
+                          className: `h-6 text-[10px] px-1.5 w-24 border font-semibold ${statusColor(rec.status)}`,
+                          "data-ocid": `account_closure.status_select.${rec.id}`,
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: STATUS_OPTIONS.map((s2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectItem,
+                        {
+                          value: s2,
+                          className: "text-xs",
+                          children: s2
+                        },
+                        s2
+                      )) })
+                    ]
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 justify-end", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleDownload(rec),
+                      className: "h-7 text-xs gap-1 px-2",
+                      "data-ocid": `account_closure.download_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { className: "w-3 h-3" }),
+                        " .rtf"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleEdit(rec),
+                      className: "h-7 text-xs gap-1 px-2",
+                      "data-ocid": `account_closure.edit_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { className: "w-3 h-3" }),
+                        " Edit"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleDelete(rec.id),
+                      className: "h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200",
+                      "data-ocid": `account_closure.delete_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" }),
+                        " Del"
+                      ]
+                    }
+                  )
+                ] }) })
+              ]
+            },
+            rec.id
+          )) })
+        ] }) }) })
+      ] }) })
+    ] })
+  ] });
+}
+const RECORDS_KEY$1 = "fino_account_opening_records";
 const COUNTER_FINO_KEY = "reg_counter_fino";
 const COUNTER_CSP_KEY = "reg_counter_csp";
 const ACCOUNT_TYPES = [
@@ -63589,7 +64336,7 @@ function getInitialServices() {
     eStatement: ""
   };
 }
-function getInitialForm() {
+function getInitialForm$1() {
   return {
     category: "",
     accountType: "",
@@ -63627,7 +64374,7 @@ function getCurrentFY() {
   if (month >= 4) return `${year}-${String(year + 1).slice(2)}`;
   return `${year - 1}-${String(year).slice(2)}`;
 }
-function getCounter(key, defaultVal) {
+function getCounter$1(key, defaultVal) {
   try {
     const v2 = localStorage.getItem(key);
     return v2 ? Number.parseInt(v2, 10) : defaultVal;
@@ -63641,11 +64388,11 @@ function setCounter(key, val) {
 function previewRegNumber(category) {
   const fy = getCurrentFY();
   if (category === "fino") {
-    const serial = getCounter(COUNTER_FINO_KEY, 781);
+    const serial = getCounter$1(COUNTER_FINO_KEY, 781);
     return `FB/${serial}/${fy}`;
   }
   if (category === "csp") {
-    const serial = getCounter(COUNTER_CSP_KEY, 1);
+    const serial = getCounter$1(COUNTER_CSP_KEY, 1);
     return `FB/BC/${String(serial).padStart(2, "0")}/${fy}`;
   }
   return "—";
@@ -63653,13 +64400,13 @@ function previewRegNumber(category) {
 function claimRegNumber(category) {
   const fy = getCurrentFY();
   if (category === "fino") {
-    const serial = getCounter(COUNTER_FINO_KEY, 781);
+    const serial = getCounter$1(COUNTER_FINO_KEY, 781);
     const regNo = `FB/${serial}/${fy}`;
     setCounter(COUNTER_FINO_KEY, serial + 1);
     return regNo;
   }
   if (category === "csp") {
-    const serial = getCounter(COUNTER_CSP_KEY, 1);
+    const serial = getCounter$1(COUNTER_CSP_KEY, 1);
     const regNo = `FB/BC/${String(serial).padStart(2, "0")}/${fy}`;
     setCounter(COUNTER_CSP_KEY, serial + 1);
     return regNo;
@@ -63840,7 +64587,7 @@ function RadioGroup({
     o.value
   )) });
 }
-function FieldRow({
+function FieldRow$1({
   label,
   required,
   children
@@ -63859,12 +64606,12 @@ function AccountOpeningForm({ onBack }) {
   const [search, setSearch] = reactExports.useState("");
   const [editId, setEditId] = reactExports.useState(null);
   const [records, setRecords] = reactExports.useState(
-    () => loadItems(RECORDS_KEY)
+    () => loadItems(RECORDS_KEY$1)
   );
-  const [form, setForm] = reactExports.useState(getInitialForm());
+  const [form, setForm] = reactExports.useState(getInitialForm$1());
   const [errors, setErrors] = reactExports.useState({});
   const previewReg = previewRegNumber(form.category);
-  const refreshRecords = () => setRecords(loadItems(RECORDS_KEY));
+  const refreshRecords = () => setRecords(loadItems(RECORDS_KEY$1));
   const setF = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
   const setService = (key, val) => setF("services", { ...form.services, [key]: val });
   const emailRequired = form.services.eStatement === "yes";
@@ -63904,12 +64651,12 @@ function AccountOpeningForm({ onBack }) {
       ue.error("Please fix the errors before submitting.");
       return;
     }
-    const existing = loadItems(RECORDS_KEY);
+    const existing = loadItems(RECORDS_KEY$1);
     if (editId !== null) {
       const updated = existing.map(
         (r2) => r2.id === editId ? { ...r2, ...form, category: form.category } : r2
       );
-      saveItems(RECORDS_KEY, updated);
+      saveItems(RECORDS_KEY$1, updated);
       ue.success("Record updated successfully!");
       setEditId(null);
     } else {
@@ -63921,11 +64668,11 @@ function AccountOpeningForm({ onBack }) {
         category: form.category,
         submittedAt: (/* @__PURE__ */ new Date()).toISOString()
       };
-      saveItems(RECORDS_KEY, [...existing, newRecord]);
+      saveItems(RECORDS_KEY$1, [...existing, newRecord]);
       ue.success(`Account opening form saved! Reg No: ${regNo}`);
     }
     refreshRecords();
-    setForm(getInitialForm());
+    setForm(getInitialForm$1());
     setErrors({});
     setTab("saved-records");
   }
@@ -63963,7 +64710,7 @@ function AccountOpeningForm({ onBack }) {
   }
   function handleDelete(id2) {
     if (!window.confirm("Delete this record permanently?")) return;
-    removeItem(RECORDS_KEY, id2);
+    removeItem(RECORDS_KEY$1, id2);
     refreshRecords();
     ue.success("Record deleted");
   }
@@ -64057,7 +64804,7 @@ function AccountOpeningForm({ onBack }) {
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-5 space-y-6", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-4 items-start justify-between", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 space-y-1", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Category", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "Category", required: true, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   Select,
                   {
@@ -64116,7 +64863,7 @@ function AccountOpeningForm({ onBack }) {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "A. Type of Account" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Account Type", required: true, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "Account Type", required: true, children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 Select,
                 {
@@ -64140,7 +64887,7 @@ function AccountOpeningForm({ onBack }) {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "B. Mode of Operation" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Mode", required: true, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "Mode", required: true, children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 RadioGroup,
                 {
@@ -64183,7 +64930,7 @@ function AccountOpeningForm({ onBack }) {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "D. Education Qualification" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Qualification", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "Qualification", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Select,
               {
                 value: form.eduQualification,
@@ -64216,7 +64963,7 @@ function AccountOpeningForm({ onBack }) {
                 ]
               }
             ),
-            form.panAvailable === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pl-2 mt-2 space-y-1", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "PAN Number (ABCDE1234F format)", children: [
+            form.panAvailable === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pl-2 mt-2 space-y-1", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "PAN Number (ABCDE1234F format)", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Input,
                 {
@@ -64354,7 +65101,7 @@ function AccountOpeningForm({ onBack }) {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "F–I. Contact & Identity Details" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "F. Aadhar No (12 digits)", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "F. Aadhar No (12 digits)", required: true, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
                   {
@@ -64371,7 +65118,7 @@ function AccountOpeningForm({ onBack }) {
                 ),
                 err("aadharNo")
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "G. Contact No (10 digits)", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "G. Contact No (10 digits)", required: true, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
                   {
@@ -64388,7 +65135,7 @@ function AccountOpeningForm({ onBack }) {
                 ),
                 err("contactNo")
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "H. Initial Deposit Amount (Rs.)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "H. Initial Deposit Amount (Rs.)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2 border border-r-0 rounded-l-md bg-muted text-sm text-muted-foreground", children: "₹" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
@@ -64401,7 +65148,7 @@ function AccountOpeningForm({ onBack }) {
                 )
               ] }) }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                FieldRow,
+                FieldRow$1,
                 {
                   label: `I. Email ID${emailRequired ? " *" : " (optional)"}`,
                   required: emailRequired,
@@ -64428,7 +65175,7 @@ function AccountOpeningForm({ onBack }) {
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "J–M. Applicant Details" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                FieldRow,
+                FieldRow$1,
                 {
                   label: "J. Applicant's Name (Block Letters)",
                   required: true,
@@ -64447,7 +65194,7 @@ function AccountOpeningForm({ onBack }) {
                   ]
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "K. Date of Birth", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "K. Date of Birth", required: true, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
                   {
@@ -64460,7 +65207,7 @@ function AccountOpeningForm({ onBack }) {
                 ),
                 err("dob")
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "L. Father / Husband Name", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "L. Father / Husband Name", required: true, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   Input,
                   {
@@ -64473,7 +65220,7 @@ function AccountOpeningForm({ onBack }) {
                 ),
                 err("fatherHusbandName")
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "M. Mother's Maiden Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "M. Mother's Maiden Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Input,
                 {
                   value: form.motherMaidenName,
@@ -64500,7 +65247,7 @@ function AccountOpeningForm({ onBack }) {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "O. Permanent Address" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Same as Current Address?", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "Same as Current Address?", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               RadioGroup,
               {
                 name: "permanentSame",
@@ -64539,7 +65286,7 @@ function AccountOpeningForm({ onBack }) {
                 ]
               }
             ),
-            form.isMinor === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Guardian Contact No", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            form.isMinor === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "Guardian Contact No", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               Input,
               {
                 value: form.guardianContactNo,
@@ -64557,7 +65304,7 @@ function AccountOpeningForm({ onBack }) {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Q. Nominee Details" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-4", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "a. Nominee Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "a. Nominee Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Input,
                 {
                   value: form.nomineeName,
@@ -64567,7 +65314,7 @@ function AccountOpeningForm({ onBack }) {
                   "data-ocid": "account_opening.nominee_name.input"
                 }
               ) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "b. Nominee Date of Birth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "b. Nominee Date of Birth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Input,
                 {
                   type: "date",
@@ -64576,7 +65323,7 @@ function AccountOpeningForm({ onBack }) {
                   className: "h-8 text-sm"
                 }
               ) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "c. Relationship to Nominee", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "c. Relationship to Nominee", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 Select,
                 {
                   value: form.nomineeRelationship,
@@ -64598,7 +65345,7 @@ function AccountOpeningForm({ onBack }) {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "R. Applicant's Occupation" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Occupation", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "Occupation", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Select,
               {
                 value: form.occupation,
@@ -64645,7 +65392,7 @@ function AccountOpeningForm({ onBack }) {
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "a. Customer ID", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow$1, { label: "a. Customer ID", children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Input,
                       {
@@ -64660,7 +65407,7 @@ function AccountOpeningForm({ onBack }) {
                     ),
                     !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-muted-foreground", children: "Manager access required" })
                   ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "b. Account No", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow$1, { label: "b. Account No", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Input,
                     {
                       value: form.bankAccountNo,
@@ -64710,7 +65457,7 @@ function AccountOpeningForm({ onBack }) {
                 variant: "ghost",
                 onClick: () => {
                   setEditId(null);
-                  setForm(getInitialForm());
+                  setForm(getInitialForm$1());
                   setErrors({});
                 },
                 children: "Cancel Edit"
@@ -64832,6 +65579,574 @@ function AccountOpeningForm({ onBack }) {
     ] })
   ] });
 }
+const RECORDS_KEY = "fino_account_transfer_records";
+const COUNTER_KEY = "transfer_counter";
+const TRANSFER_FEE = "₹236.00 (Including GST)";
+function getCounter() {
+  try {
+    const v2 = localStorage.getItem(COUNTER_KEY);
+    return v2 ? Number.parseInt(v2, 10) : 1;
+  } catch {
+    return 1;
+  }
+}
+function claimReferenceNo() {
+  const n2 = getCounter();
+  const ref = `AT/${String(n2).padStart(3, "0")}`;
+  localStorage.setItem(COUNTER_KEY, String(n2 + 1));
+  return ref;
+}
+function getInitialForm() {
+  return {
+    accountNo: "",
+    customerName: "",
+    fatherHusbandName: "",
+    contactNo: "",
+    fromBranch: "Doolahat Branch",
+    toBranch: "",
+    transferReason: "",
+    applicationDate: (/* @__PURE__ */ new Date()).toISOString().split("T")[0],
+    remarks: ""
+  };
+}
+function generateRTF$1(rec) {
+  const safe = (v2) => (v2 || "—").replace(/[\\{}]/g, "");
+  const field = (label, value) => `{\\b ${safe(label)}:} ${safe(value)}\\line `;
+  return [
+    "{\\rtf1\\ansi\\deff0",
+    "{\\fonttbl{\\f0\\froman Times New Roman;}{\\f1\\fswiss Arial;}}",
+    "{\\colortbl ;\\red70\\green41\\blue128;\\red180\\green0\\blue0;}",
+    "\\paperw11907\\paperh16838\\margl1440\\margr1440\\margt1440\\margb1440",
+    "\\pard\\qc{\\f1\\b\\fs32\\cf1 BANK ACCOUNT TRANSFER FORM}\\par",
+    "\\pard\\qc{\\f1\\b\\fs20 Fino Small Finance Bank — Doolahat Branch}\\par\\par",
+    `\\pard\\ql{\\f1\\b\\fs22 Reference No: ${safe(rec.referenceNo)}}\\par`,
+    `\\pard\\ql{\\f1\\fs18 Application Date: ${safe(rec.applicationDate)}}\\par\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 Customer Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${field("Account No", rec.accountNo)}${field("Customer Name", rec.customerName)}${field("Father / Husband Name", rec.fatherHusbandName)}${field("Contact No", rec.contactNo)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 Transfer Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${field("From Branch", rec.fromBranch)}${field("To Branch", rec.toBranch)}${field("Transfer Reason", rec.transferReason)}}\\par`,
+    `\\pard\\ql{\\f1\\b\\fs20\\cf2 Transfer Fee: ${TRANSFER_FEE}}\\par\\par`,
+    `\\pard\\ql{\\f1\\fs18 ${field("Remarks", rec.remarks)}}\\par\\par`,
+    "\\pard\\qj{\\f1\\fs20 \\ul                                        \\ulnone                               \\ul                                        \\ulnone}\\par",
+    "\\pard\\qj{\\f1\\fs16 Signature of Account Holder                                          Signature of Branch Manager}\\par",
+    "}"
+  ].join("\n");
+}
+function FieldRow({
+  label,
+  required,
+  children
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { className: "text-xs font-semibold text-foreground", children: [
+      label,
+      required && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500 ml-0.5", children: "*" })
+    ] }),
+    children
+  ] });
+}
+function AccountTransferForm({ onBack }) {
+  const { isManager } = useInventoryAuth();
+  const [tab, setTab] = reactExports.useState("new-entry");
+  const [search, setSearch] = reactExports.useState("");
+  const [editId, setEditId] = reactExports.useState(null);
+  const [records, setRecords] = reactExports.useState(
+    () => loadItems(RECORDS_KEY)
+  );
+  const [form, setForm] = reactExports.useState(getInitialForm());
+  const [errors, setErrors] = reactExports.useState({});
+  const refreshRecords = () => setRecords(loadItems(RECORDS_KEY));
+  const setF = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
+  function validate() {
+    const errs = {};
+    if (!form.accountNo.trim()) errs.accountNo = "Account No is required";
+    if (!form.customerName.trim())
+      errs.customerName = "Customer Name is required";
+    if (!form.fatherHusbandName.trim())
+      errs.fatherHusbandName = "Father/Husband Name is required";
+    if (!form.contactNo || !/^\d{10}$/.test(form.contactNo))
+      errs.contactNo = "Enter valid 10-digit contact number";
+    if (!form.fromBranch.trim()) errs.fromBranch = "From Branch is required";
+    if (!form.toBranch.trim()) errs.toBranch = "To Branch is required";
+    if (!form.applicationDate)
+      errs.applicationDate = "Application Date is required";
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return false;
+    }
+    return true;
+  }
+  function handleSubmit() {
+    if (!validate()) {
+      ue.error("Please fix the errors before submitting.");
+      return;
+    }
+    const existing = loadItems(RECORDS_KEY);
+    if (editId !== null) {
+      const updated = existing.map(
+        (r2) => r2.id === editId ? { ...r2, ...form } : r2
+      );
+      saveItems(RECORDS_KEY, updated);
+      ue.success("Transfer record updated successfully!");
+      setEditId(null);
+    } else {
+      const refNo = claimReferenceNo();
+      const newRecord = {
+        ...form,
+        id: existing.length > 0 ? Math.max(...existing.map((r2) => r2.id)) + 1 : 1,
+        referenceNo: refNo,
+        submittedAt: (/* @__PURE__ */ new Date()).toISOString()
+      };
+      saveItems(RECORDS_KEY, [...existing, newRecord]);
+      ue.success(`Transfer record saved! Ref No: ${refNo}`);
+    }
+    refreshRecords();
+    setForm(getInitialForm());
+    setErrors({});
+    setTab("saved-records");
+  }
+  function handleDownload(rec) {
+    const rtf = generateRTF$1(rec);
+    const blob = new Blob([rtf], { type: "application/rtf" });
+    const url = URL.createObjectURL(blob);
+    const a2 = document.createElement("a");
+    a2.href = url;
+    a2.download = `AccountTransfer_${rec.referenceNo.replace(/\//g, "_")}.rtf`;
+    a2.click();
+    URL.revokeObjectURL(url);
+    ue.success("Transfer form downloaded");
+  }
+  function handleEdit(rec) {
+    const { id: id2, referenceNo, submittedAt, ...rest } = rec;
+    setForm(rest);
+    setEditId(id2);
+    setErrors({});
+    setTab("new-entry");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function handleDelete(id2) {
+    if (!window.confirm("Delete this transfer record permanently?")) return;
+    removeItem(RECORDS_KEY, id2);
+    refreshRecords();
+    ue.success("Record deleted");
+  }
+  const filtered = records.filter(
+    (r2) => !search || r2.accountNo.toLowerCase().includes(search.toLowerCase()) || r2.customerName.toLowerCase().includes(search.toLowerCase())
+  );
+  const err = (key) => errors[key] ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-0.5", children: errors[key] }) : null;
+  if (!isManager) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "account_transfer.page", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          variant: "ghost",
+          size: "sm",
+          onClick: onBack,
+          className: "gap-1 text-xs",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-3.5 h-3.5" }),
+            " Customer Services"
+          ]
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "py-16 flex flex-col items-center gap-3 text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { className: "w-10 h-10", style: { color: "#462980" } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base font-semibold text-foreground", children: "Manager Access Required" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground max-w-xs", children: "This section is accessible to managers only. Please switch to Manager view to access the Bank Account Transfer Form." })
+      ] }) })
+    ] });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "account_transfer.page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          variant: "ghost",
+          size: "sm",
+          onClick: onBack,
+          className: "gap-1 text-xs",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-3.5 h-3.5" }),
+            " Customer Services"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "w-7 h-7 rounded-lg flex items-center justify-center text-white",
+            style: { backgroundColor: "#462980" },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeftRight, { className: "w-4 h-4" })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-base font-bold text-foreground", children: "Bank Account Transfer Form" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground", children: [
+            "Branch-to-branch transfer — Transfer Fee: ",
+            TRANSFER_FEE
+          ] })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Tabs, { value: tab, onValueChange: setTab, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(TabsList, { className: "mb-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TabsTrigger,
+          {
+            value: "new-entry",
+            "data-ocid": "account_transfer.new_entry.tab",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-3.5 h-3.5 mr-1" }),
+              editId ? "Edit Record" : "New Entry"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TabsTrigger,
+          {
+            value: "saved-records",
+            "data-ocid": "account_transfer.saved_records.tab",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-3.5 h-3.5 mr-1" }),
+              "Saved Records",
+              records.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  className: "ml-1.5 text-[10px] px-1 py-0 h-4",
+                  style: { backgroundColor: "#462980", color: "#fff" },
+                  children: records.length
+                }
+              )
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContent, { value: "new-entry", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          CardHeader,
+          {
+            className: "pb-3 border-b",
+            style: { backgroundColor: "#f5f0ff" },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                CardTitle,
+                {
+                  className: "text-xl font-bold tracking-widest uppercase",
+                  style: { color: "#462980" },
+                  children: "BANK ACCOUNT TRANSFER FORM"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-muted-foreground mt-1", children: "Fino Small Finance Bank — Doolahat Branch" })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-5 space-y-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "flex items-center gap-3 rounded-lg border px-4 py-3",
+              style: { backgroundColor: "#f0ebff", borderColor: "#462980" },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  ArrowLeftRight,
+                  {
+                    className: "w-5 h-5 shrink-0",
+                    style: { color: "#462980" }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-xs font-semibold",
+                      style: { color: "#462980" },
+                      children: "Transfer Fee"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base font-bold text-foreground", children: TRANSFER_FEE })
+                ] })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Customer Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Account No", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.accountNo,
+                    onChange: (e3) => setF("accountNo", e3.target.value),
+                    placeholder: "Enter Account No",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_transfer.account_no.input"
+                  }
+                ),
+                err("accountNo")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Customer Name", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.customerName,
+                    onChange: (e3) => setF("customerName", e3.target.value.toUpperCase()),
+                    placeholder: "IN BLOCK LETTERS",
+                    className: "h-8 text-sm uppercase font-semibold tracking-wide",
+                    "data-ocid": "account_transfer.customer_name.input"
+                  }
+                ),
+                err("customerName")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Father / Husband Name", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.fatherHusbandName,
+                    onChange: (e3) => setF("fatherHusbandName", e3.target.value),
+                    placeholder: "Father or Husband Name",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_transfer.father.input"
+                  }
+                ),
+                err("fatherHusbandName")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Contact No (10 digits)", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.contactNo,
+                    onChange: (e3) => {
+                      if (/^\d{0,10}$/.test(e3.target.value))
+                        setF("contactNo", e3.target.value);
+                    },
+                    placeholder: "9876543210",
+                    maxLength: 10,
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_transfer.contact.input"
+                  }
+                ),
+                err("contactNo")
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Transfer Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "From Branch", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.fromBranch,
+                    onChange: (e3) => setF("fromBranch", e3.target.value),
+                    placeholder: "Source Branch",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_transfer.from_branch.input"
+                  }
+                ),
+                err("fromBranch")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "To Branch (Destination)", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.toBranch,
+                    onChange: (e3) => setF("toBranch", e3.target.value),
+                    placeholder: "Destination Branch Name",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_transfer.to_branch.input"
+                  }
+                ),
+                err("toBranch")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Application Date", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    type: "date",
+                    value: form.applicationDate,
+                    onChange: (e3) => setF("applicationDate", e3.target.value),
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_transfer.date.input"
+                  }
+                ),
+                err("applicationDate")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Transfer Reason (optional)", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  value: form.transferReason,
+                  onChange: (e3) => setF("transferReason", e3.target.value),
+                  placeholder: "Reason for transfer",
+                  className: "h-8 text-sm",
+                  "data-ocid": "account_transfer.reason.input"
+                }
+              ) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Remarks (optional)", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Textarea,
+              {
+                value: form.remarks,
+                onChange: (e3) => setF("remarks", e3.target.value),
+                placeholder: "Additional remarks...",
+                className: "text-sm resize-none",
+                rows: 3,
+                "data-ocid": "account_transfer.remarks.input"
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Signatures" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-8 mt-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground h-8 mb-1" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Account Holder" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground h-8 mb-1" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Branch Manager" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 pt-2 flex-wrap", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                onClick: handleSubmit,
+                className: "text-white",
+                style: { backgroundColor: "#462980" },
+                "data-ocid": "account_transfer.submit.button",
+                children: editId ? "Update Record" : "Submit & Save"
+              }
+            ),
+            editId && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                variant: "ghost",
+                onClick: () => {
+                  setEditId(null);
+                  setForm(getInitialForm());
+                  setErrors({});
+                },
+                children: "Cancel Edit"
+              }
+            )
+          ] })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContent, { value: "saved-records", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3 border-b", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base", children: "Saved Records" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: search,
+                onChange: (e3) => setSearch(e3.target.value),
+                placeholder: "Search by Account No or Name...",
+                className: "pl-8 h-8 text-sm w-60",
+                "data-ocid": "account_transfer.search.input"
+              }
+            )
+          ] })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: filtered.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "py-12 text-center text-muted-foreground",
+            "data-ocid": "account_transfer.empty_state",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeftRight, { className: "w-8 h-8 mx-auto mb-2 opacity-30" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: search ? "No records match your search" : "No records yet. Fill the form to add one." })
+            ]
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "w-full text-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: "border-b bg-muted/40", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Ref No" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Account No" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Customer Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "From Branch" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "To Branch" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Date" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-right px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: filtered.map((rec) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "tr",
+            {
+              className: "border-b hover:bg-muted/20 transition-colors",
+              "data-ocid": `account_transfer.record_row.${rec.id}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "td",
+                  {
+                    className: "px-4 py-2.5 font-mono text-xs font-semibold",
+                    style: { color: "#462980" },
+                    children: rec.referenceNo
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs font-medium", children: rec.accountNo }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs font-medium", children: rec.customerName }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: rec.fromBranch }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: rec.toBranch }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: new Date(rec.applicationDate).toLocaleDateString(
+                  "en-IN"
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 justify-end", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleDownload(rec),
+                      className: "h-7 text-xs gap-1 px-2",
+                      "data-ocid": `account_transfer.download_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { className: "w-3 h-3" }),
+                        " .rtf"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleEdit(rec),
+                      className: "h-7 text-xs gap-1 px-2",
+                      "data-ocid": `account_transfer.edit_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { className: "w-3 h-3" }),
+                        " Edit"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleDelete(rec.id),
+                      className: "h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200",
+                      "data-ocid": `account_transfer.delete_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" }),
+                        " Del"
+                      ]
+                    }
+                  )
+                ] }) })
+              ]
+            },
+            rec.id
+          )) })
+        ] }) }) })
+      ] }) })
+    ] })
+  ] });
+}
 const services = [
   {
     id: "account-opening",
@@ -64848,7 +66163,7 @@ const services = [
     icon: FolderOpen,
     title: "Bank Account Transfer Form",
     desc: "Branch-to-branch account transfer form. Transfer fee: ₹236.00 (including GST). Manager access required.",
-    available: false,
+    available: true,
     staffAllowed: false
   },
   {
@@ -64857,7 +66172,7 @@ const services = [
     icon: ClipboardList,
     title: "Account Closure Form",
     desc: "Initiate account closure for bank customers with all required documentation. Manager access required.",
-    available: false,
+    available: true,
     staffAllowed: false
   }
 ];
@@ -64866,6 +66181,12 @@ function CustomerServices() {
   const [active, setActive] = reactExports.useState("menu");
   if (active === "account-opening") {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(AccountOpeningForm, { onBack: () => setActive("menu") });
+  }
+  if (active === "account-transfer") {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(AccountTransferForm, { onBack: () => setActive("menu") });
+  }
+  if (active === "account-closure") {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(AccountClosureForm, { onBack: () => setActive("menu") });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "customer_services.page", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),

@@ -4,7 +4,9 @@ import { ClipboardList, FileText, FolderOpen } from "lucide-react";
 import { useState } from "react";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
+import AccountClosureForm from "./AccountClosureForm";
 import AccountOpeningForm from "./AccountOpeningForm";
+import AccountTransferForm from "./AccountTransferForm";
 
 type ServiceOption =
   | "menu"
@@ -28,7 +30,7 @@ const services = [
     icon: FolderOpen,
     title: "Bank Account Transfer Form",
     desc: "Branch-to-branch account transfer form. Transfer fee: ₹236.00 (including GST). Manager access required.",
-    available: false,
+    available: true,
     staffAllowed: false,
   },
   {
@@ -37,7 +39,7 @@ const services = [
     icon: ClipboardList,
     title: "Account Closure Form",
     desc: "Initiate account closure for bank customers with all required documentation. Manager access required.",
-    available: false,
+    available: true,
     staffAllowed: false,
   },
 ];
@@ -48,6 +50,14 @@ export default function CustomerServices() {
 
   if (active === "account-opening") {
     return <AccountOpeningForm onBack={() => setActive("menu")} />;
+  }
+
+  if (active === "account-transfer") {
+    return <AccountTransferForm onBack={() => setActive("menu")} />;
+  }
+
+  if (active === "account-closure") {
+    return <AccountClosureForm onBack={() => setActive("menu")} />;
   }
 
   return (
