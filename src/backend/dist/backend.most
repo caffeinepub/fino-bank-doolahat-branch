@@ -1,0 +1,240 @@
+// Version: 3.0.0
+type Complaint__548743374 =
+  {
+    aadharNo : Text;
+    accountNo : Text;
+    complaintBrief : Text;
+    complaintNo : Text;
+    contactNo : Text;
+    createdAt : Int;
+    customerName : Text;
+    dateOfComplaint : Text;
+    id : Nat;
+    panNo : Text;
+    status : Text
+  };
+type DailyPL__454727901 =
+  {
+    createdAt : Int;
+    date : Text;
+    headBalances : [HeadBalance__25700098];
+    id : Nat;
+    totalProfitLoss : Float
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type FixedDeposit__569757724 =
+  {
+    accountNumber : Text;
+    cifNumber : Text;
+    closureDate : Text;
+    contactNumber : Text;
+    createdAt : Int;
+    customerName : Text;
+    fdAmount : Float;
+    id : Nat;
+    interestAmount : Float;
+    interestRate : Float;
+    maturityAmount : Float;
+    maturityDepositDate : Text;
+    openingDate : Text;
+    tenure : Nat
+  };
+type HeadBalance__25700098 =
+  {
+    closingBalance : Float;
+    headId : Nat;
+    headName : Text;
+    openingBalance : Float;
+    profitLoss : Float
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type InventoryProduct__31742920 =
+  {
+    barcode : Text;
+    category : Text;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    name : Text;
+    quantity : Nat;
+    reorderPoint : Nat;
+    salePrice : Float;
+    sku : Text;
+    unitCost : Float
+  };
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Loan__728552456 =
+  {
+    contactNo : Text;
+    createdAt : Int;
+    customerName : Text;
+    dateOfBirth : Text;
+    fatherHusbandName : Text;
+    fullAddress : Text;
+    id : Nat;
+    interestRate : Float;
+    loanAmount : Float;
+    loanStartDate : Text;
+    loanTenureMonths : Nat;
+    nomineeName : Text;
+    repaymentType : Text;
+    totalInterestAmount : Float
+  };
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldAccessControlState__841599830 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__605269027<Principal, UserRole__717262347>
+  };
+type PaymentHead__1014555176 =
+  {headType : Text; id : Nat; isDefault : Bool; name : Text};
+type StockTransaction__664879671 =
+  {
+    createdAt : Int;
+    id : Nat;
+    note : Text;
+    productId : Nat;
+    quantityChange : Int;
+    transactionDate : Text;
+    transactionType : Text
+  };
+type Transaction__865268250 =
+  {
+    accountHolderName : Text;
+    accountNumber : Text;
+    amount : Float;
+    bankName : Text;
+    createdAt : Int;
+    frequencyType : Text;
+    id : Nat;
+    ifscCode : Text;
+    referenceId : Text;
+    remark : Text;
+    status : Text;
+    transactionDate : Text;
+    transactionType : Text
+  };
+type UserProfile__491224006 = {name : Text};
+type UserRole__521596351 = {#admin; #guest; #user};
+type UserRole__717262347 = {#admin; #guest; #user};
+actor ({
+  in accessControlState : OldAccessControlState__841599830;
+  stable complaints :
+    {
+      var root : Node__46230540<Nat, Complaint__548743374>;
+      var size : Nat__490723111
+    };
+  stable dailyPLs :
+    {
+      var root : Node__46230540<Nat, DailyPL__454727901>;
+      var size : Nat__490723111
+    };
+  stable fixedDeposits :
+    {
+      var root : Node__46230540<Nat, FixedDeposit__569757724>;
+      var size : Nat__490723111
+    };
+  stable inventoryProducts :
+    {
+      var root : Node__46230540<Nat, InventoryProduct__31742920>;
+      var size : Nat__490723111
+    };
+  stable loans :
+    {
+      var root : Node__46230540<Nat, Loan__728552456>;
+      var size : Nat__490723111
+    };
+  stable var nextComplaintId : Nat;
+  stable var nextFDId : Nat;
+  stable var nextHeadId : Nat;
+  stable var nextLoanId : Nat;
+  stable var nextPLId : Nat;
+  stable var nextProductId : Nat;
+  stable var nextStockTxId : Nat;
+  stable var nextTxId : Nat;
+  stable paymentHeads :
+    {
+      var root : Node__46230540<Nat, PaymentHead__1014555176>;
+      var size : Nat__490723111
+    };
+  stable stockTransactions :
+    {
+      var root : Node__46230540<Nat, StockTransaction__664879671>;
+      var size : Nat__490723111
+    };
+  stable transactions :
+    {
+      var root : Node__46230540<Nat, Transaction__865268250>;
+      var size : Nat__490723111
+    };
+  stable userProfiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__491224006>;
+      var size : Nat__490723111
+    }
+}, {
+  stable accessControlState :
+    {userRoles : Map__605269027<Principal, UserRole__521596351>};
+  stable complaints :
+    {
+      var root : Node__46230540<Nat, Complaint__548743374>;
+      var size : Nat__490723111
+    };
+  stable dailyPLs :
+    {
+      var root : Node__46230540<Nat, DailyPL__454727901>;
+      var size : Nat__490723111
+    };
+  stable fixedDeposits :
+    {
+      var root : Node__46230540<Nat, FixedDeposit__569757724>;
+      var size : Nat__490723111
+    };
+  stable inventoryProducts :
+    {
+      var root : Node__46230540<Nat, InventoryProduct__31742920>;
+      var size : Nat__490723111
+    };
+  stable loans :
+    {
+      var root : Node__46230540<Nat, Loan__728552456>;
+      var size : Nat__490723111
+    };
+  stable var nextComplaintId : Nat;
+  stable var nextFDId : Nat;
+  stable var nextHeadId : Nat;
+  stable var nextLoanId : Nat;
+  stable var nextPLId : Nat;
+  stable var nextProductId : Nat;
+  stable var nextStockTxId : Nat;
+  stable var nextTxId : Nat;
+  stable paymentHeads :
+    {
+      var root : Node__46230540<Nat, PaymentHead__1014555176>;
+      var size : Nat__490723111
+    };
+  stable stockTransactions :
+    {
+      var root : Node__46230540<Nat, StockTransaction__664879671>;
+      var size : Nat__490723111
+    };
+  stable transactions :
+    {
+      var root : Node__46230540<Nat, Transaction__865268250>;
+      var size : Nat__490723111
+    };
+  stable userProfiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__491224006>;
+      var size : Nat__490723111
+    }
+}) ;

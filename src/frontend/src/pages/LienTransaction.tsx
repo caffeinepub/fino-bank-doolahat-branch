@@ -103,6 +103,26 @@ function saveTransactions(txns: LienTransaction[]) {
   localStorage.setItem(TXNS_KEY, JSON.stringify(txns));
 }
 
+// ── Masking helper ─────────────────────────────────────────────────────────
+
+/**
+ * For staff: show only the last 4 characters of the value, prefixed with "••••".
+ * Start Date is NEVER masked.
+ * Manager always sees the full value.
+ */
+function maskField(
+  value: string | undefined,
+  isManager: boolean,
+  fieldName?: string,
+): string {
+  if (!value) return "—";
+  if (isManager) return value;
+  if (fieldName === "startDate") return value;
+  // Show last 4 chars only
+  if (value.length <= 4) return "••••";
+  return `••••${value.slice(-4)}`;
+}
+
 // ── Utility helpers ────────────────────────────────────────────────────────
 
 function generateRefNo(
@@ -156,8 +176,6 @@ function statusStyle(status: string): React.CSSProperties {
 }
 
 // ── RTF generator ──────────────────────────────────────────────────────────
-// Uses Rich Text Format which opens natively in Word/LibreOffice.
-// Avoids docx/jszip dependencies.
 
 function buildRtfRow(cells: string[], bold = false): string {
   const fmt = bold ? "\\b\\fs18" : "\\fs18";
@@ -240,9 +258,42 @@ function generateRTF(
   ].join("\n");
 }
 
+// ── DetailCell ─────────────────────────────────────────────────────────────
+
+function DetailCell({
+  label,
+  value,
+  highlight,
+}: {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}) {
+  return (
+    <div className="flex flex-col gap-0.5 min-w-0">
+      <span className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium truncate">
+        {label}
+      </span>
+      <span
+        className={`text-sm font-semibold truncate ${
+          highlight ? "text-green-600" : "text-foreground"
+        }`}
+      >
+        {value || "—"}
+      </span>
+    </div>
+  );
+}
+
 // ── AccountDetailsCard ─────────────────────────────────────────────────────
 
-function AccountDetailsCard({ account }: { account: LienAccount | null }) {
+function AccountDetailsCard({
+  account,
+  isManager,
+}: {
+  account: LienAccount | null;
+  isManager: boolean;
+}) {
   if (!account) {
     return (
       <Card className="mb-6" data-ocid="lien.account_details.card">
@@ -265,6 +316,9 @@ function AccountDetailsCard({ account }: { account: LienAccount | null }) {
     );
   }
 
+  const m = (val: string | undefined, field?: string) =>
+    maskField(val, isManager, field);
+
   return (
     <Card className="mb-6" data-ocid="lien.account_details.card">
       <CardHeader className="pb-3">
@@ -276,59 +330,57 @@ function AccountDetailsCard({ account }: { account: LienAccount | null }) {
             <User className="w-4 h-4" />
             Account Details
           </CardTitle>
-          <Badge style={statusStyle(account.accountStatus)}>
-            {account.accountStatus}
-          </Badge>
+          <div className="flex items-center gap-2">
+            {!isManager && (
+              <span className="text-[10px] text-muted-foreground bg-amber-50 border border-amber-200 rounded px-2 py-0.5">
+                Sensitive fields masked for staff
+              </span>
+            )}
+            <Badge style={statusStyle(account.accountStatus)}>
+              {account.accountStatus}
+            </Badge>
+          </div>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3">
-          <div className="space-y-2.5">
-            <DetailRow label="CIF No" value={account.cifNo} />
-            <DetailRow label="Customer Name" value={account.customerName} />
-            <DetailRow label="Start Date" value={account.startDate} />
-            <DetailRow label="Mobile No" value={account.mobileNo} />
-            <DetailRow label="Aadhar No" value={account.aadharNo} />
-            <DetailRow label="PAN No" value={account.panNo} />
-          </div>
-          <div className="space-y-2.5">
-            <DetailRow label="Account No" value={account.accountNo} />
-            <DetailRow label="Account Type" value={account.accountType} />
-            <DetailRow label="Account Status" value={account.accountStatus} />
-            <DetailRow
-              label="Balance"
-              value={formatCurrency(account.balance)}
-              highlight
-            />
-          </div>
+      <CardContent className="space-y-4">
+        {/* Row 1: Identity fields */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
+          <DetailCell label="CIF No" value={m(account.cifNo)} />
+          <DetailCell
+            label="Customer Name"
+            value={account.customerName || "—"}
+          />
+          <DetailCell
+            label="Start Date"
+            value={m(account.startDate, "startDate")}
+          />
+          <DetailCell label="Mobile No" value={m(account.mobileNo)} />
+        </div>
+        {/* Row 2: Aadhar, PAN, Account No, Account Type — each separate column */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
+          <DetailCell label="Aadhar No" value={m(account.aadharNo)} />
+          <DetailCell label="PAN No" value={m(account.panNo)} />
+          <DetailCell label="Account No" value={m(account.accountNo)} />
+          <DetailCell label="Account Type" value={account.accountType || "—"} />
+        </div>
+        {/* Row 3: Account Status and Balance — each separate column */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <DetailCell
+            label="Account Status"
+            value={account.accountStatus || "—"}
+          />
+          <DetailCell
+            label="Balance (Rs.)"
+            value={
+              isManager
+                ? formatCurrency(account.balance)
+                : `••••${String(account.balance).slice(-4)}`
+            }
+            highlight
+          />
         </div>
       </CardContent>
     </Card>
-  );
-}
-
-function DetailRow({
-  label,
-  value,
-  highlight,
-}: {
-  label: string;
-  value: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div className="flex items-start gap-2">
-      <span className="text-xs text-muted-foreground min-w-[110px] shrink-0">
-        {label}:
-      </span>
-      <span
-        className={`text-sm font-medium ${
-          highlight ? "text-green-600 font-bold" : "text-foreground"
-        }`}
-      >
-        {value || "\u2014"}
-      </span>
-    </div>
   );
 }
 
@@ -383,7 +435,11 @@ function AccountProfileTab({
     toast.success("Account profile saved successfully");
   };
 
+  // Staff view: read-only with masking on all numerical fields
   if (!isManager) {
+    const m = (val: string | undefined, field?: string) =>
+      maskField(val, false, field);
+
     return (
       <div className="space-y-4" data-ocid="lien.account_profile.panel">
         <div
@@ -393,31 +449,39 @@ function AccountProfileTab({
         >
           <AlertCircle className="w-4 h-4 shrink-0" />
           Account updates can only be done by the Manager. Switch to Manager
-          View to edit account details.
+          View to edit account details. Sensitive fields are masked below.
         </div>
         {account ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-            <div className="space-y-3">
-              <ReadonlyField label="CIF No" value={account.cifNo} />
+          <div className="space-y-4">
+            {/* Row 1 */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
+              <ReadonlyField label="CIF No" value={m(account.cifNo)} />
               <ReadonlyField
                 label="Customer Name"
                 value={account.customerName}
               />
-              <ReadonlyField label="Start Date" value={account.startDate} />
-              <ReadonlyField label="Mobile No" value={account.mobileNo} />
-              <ReadonlyField label="Aadhar No" value={account.aadharNo} />
-              <ReadonlyField label="PAN No" value={account.panNo} />
+              <ReadonlyField
+                label="Start Date"
+                value={m(account.startDate, "startDate")}
+              />
+              <ReadonlyField label="Mobile No" value={m(account.mobileNo)} />
             </div>
-            <div className="space-y-3">
-              <ReadonlyField label="Account No" value={account.accountNo} />
+            {/* Row 2 */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
+              <ReadonlyField label="Aadhar No" value={m(account.aadharNo)} />
+              <ReadonlyField label="PAN No" value={m(account.panNo)} />
+              <ReadonlyField label="Account No" value={m(account.accountNo)} />
               <ReadonlyField label="Account Type" value={account.accountType} />
+            </div>
+            {/* Row 3 */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <ReadonlyField
                 label="Account Status"
                 value={account.accountStatus}
               />
               <ReadonlyField
                 label="Balance (Rs.)"
-                value={String(account.balance)}
+                value={`••••${String(account.balance).slice(-4)}`}
               />
             </div>
           </div>
@@ -430,6 +494,7 @@ function AccountProfileTab({
     );
   }
 
+  // Manager view: full edit form
   return (
     <div className="space-y-5" data-ocid="lien.account_profile.panel">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
@@ -588,9 +653,11 @@ function AccountProfileTab({
 function ReadonlyField({ label, value }: { label: string; value: string }) {
   return (
     <div className="space-y-1">
-      <span className="text-xs text-muted-foreground">{label}</span>
-      <p className="text-sm font-medium text-foreground border border-border rounded-md px-3 py-2 bg-muted/30">
-        {value || "\u2014"}
+      <span className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium">
+        {label}
+      </span>
+      <p className="text-sm font-medium text-foreground border border-border rounded-md px-3 py-2 bg-muted/30 truncate">
+        {value || "—"}
       </p>
     </div>
   );
@@ -1011,7 +1078,7 @@ export default function LienTransactionPage() {
         </div>
       </div>
 
-      <AccountDetailsCard account={account} />
+      <AccountDetailsCard account={account} isManager={isManager} />
 
       <Card data-ocid="lien.operations.panel">
         <CardContent className="pt-5">

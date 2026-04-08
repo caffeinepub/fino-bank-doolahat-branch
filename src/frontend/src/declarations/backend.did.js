@@ -192,7 +192,7 @@ export const idlService = IDL.Service({
       [],
     ),
   'addTransaction' : IDL.Func([Transaction], [IDL.Nat], []),
-  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'assignCallerUserRole' : IDL.Func([UserRole], [], []),
   'bulkUpdateProducts' : IDL.Func(
       [
         IDL.Vec(IDL.Nat),
@@ -480,7 +480,7 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'addTransaction' : IDL.Func([Transaction], [IDL.Nat], []),
-    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'assignCallerUserRole' : IDL.Func([UserRole], [], []),
     'bulkUpdateProducts' : IDL.Func(
         [
           IDL.Vec(IDL.Nat),

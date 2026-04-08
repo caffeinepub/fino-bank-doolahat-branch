@@ -1,0 +1,181 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = record {name: text;};
+type Transaction = 
+ record {
+   accountHolderName: text;
+   accountNumber: text;
+   amount: float64;
+   bankName: text;
+   createdAt: int;
+   frequencyType: text;
+   id: nat;
+   ifscCode: text;
+   referenceId: text;
+   remark: text;
+   status: text;
+   transactionDate: text;
+   transactionType: text;
+ };
+type StockTransaction = 
+ record {
+   createdAt: int;
+   id: nat;
+   note: text;
+   productId: nat;
+   quantityChange: int;
+   transactionDate: text;
+   transactionType: text;
+ };
+type PaymentHead = 
+ record {
+   headType: text;
+   id: nat;
+   isDefault: bool;
+   name: text;
+ };
+type Loan = 
+ record {
+   contactNo: text;
+   createdAt: int;
+   customerName: text;
+   dateOfBirth: text;
+   fatherHusbandName: text;
+   fullAddress: text;
+   id: nat;
+   interestRate: float64;
+   loanAmount: float64;
+   loanStartDate: text;
+   loanTenureMonths: nat;
+   nomineeName: text;
+   repaymentType: text;
+   totalInterestAmount: float64;
+ };
+type InventoryProduct = 
+ record {
+   barcode: text;
+   category: text;
+   createdAt: int;
+   description: text;
+   id: nat;
+   name: text;
+   quantity: nat;
+   reorderPoint: nat;
+   salePrice: float64;
+   sku: text;
+   unitCost: float64;
+ };
+type HeadBalance = 
+ record {
+   closingBalance: float64;
+   headId: nat;
+   headName: text;
+   openingBalance: float64;
+   profitLoss: float64;
+ };
+type FixedDeposit = 
+ record {
+   accountNumber: text;
+   cifNumber: text;
+   closureDate: text;
+   contactNumber: text;
+   createdAt: int;
+   customerName: text;
+   fdAmount: float64;
+   id: nat;
+   interestAmount: float64;
+   interestRate: float64;
+   maturityAmount: float64;
+   maturityDepositDate: text;
+   openingDate: text;
+   tenure: nat;
+ };
+type DailyPL = 
+ record {
+   createdAt: int;
+   date: text;
+   headBalances: vec HeadBalance;
+   id: nat;
+   totalProfitLoss: float64;
+ };
+type Complaint = 
+ record {
+   aadharNo: text;
+   accountNo: text;
+   complaintBrief: text;
+   complaintNo: text;
+   contactNo: text;
+   createdAt: int;
+   customerName: text;
+   dateOfComplaint: text;
+   id: nat;
+   panNo: text;
+   status: text;
+ };
+service : {
+  _initializeAccessControlWithSecret: (_secret: text) -> ();
+  addComplaint: (customerName: text, complaintNo: text, contactNo: text,
+   accountNo: text, aadharNo: text, panNo: text, dateOfComplaint: text,
+   complaintBrief: text, status: text) -> (nat);
+  addFixedDeposit: (customerName: text, accountNumber: text, cifNumber: 
+   text, contactNumber: text, openingDate: text, fdAmount: float64, tenure:
+   nat, interestRate: float64, interestAmount: float64, maturityAmount:
+   float64, closureDate: text, maturityDepositDate: text) -> (nat);
+  addLoan: (customerName: text, fatherHusbandName: text, fullAddress: 
+   text, loanStartDate: text, contactNo: text, nomineeName: text,
+   dateOfBirth: text, loanAmount: float64, totalInterestAmount: float64,
+   interestRate: float64, loanTenureMonths: nat, repaymentType: text) ->
+   (nat);
+  addPaymentHead: (name: text, headType: text) -> (nat);
+  addProduct: (name: text, description: text, sku: text, barcode: text,
+   category: text, quantity: nat, unitCost: float64, salePrice: float64,
+   reorderPoint: nat) -> (nat);
+  addStockTransaction: (productId: nat, txType: text, quantityChange: 
+   int, note: text, transactionDate: text) -> (nat);
+  addTransaction: (tx: Transaction) -> (nat);
+  assignCallerUserRole: (role: UserRole) -> ();
+  bulkUpdateProducts: (ids: vec nat, unitCosts: vec float64, salePrices:
+   vec float64, reorderPoints: vec nat) -> ();
+  deleteComplaint: (id: nat) -> ();
+  deleteDailyPL: (id: nat) -> ();
+  deleteFixedDeposit: (id: nat) -> ();
+  deleteLoan: (id: nat) -> ();
+  deletePaymentHead: (id: nat) -> ();
+  deleteProduct: (id: nat) -> ();
+  deleteTransaction: (id: nat) -> ();
+  editPaymentHead: (id: nat, name: text, headType: text) -> ();
+  editProduct: (id: nat, name: text, description: text, sku: text, barcode:
+   text, category: text, unitCost: float64, salePrice: float64, reorderPoint:
+   nat) -> ();
+  getAllComplaints: () -> (vec Complaint) query;
+  getAllDailyPLs: () -> (vec DailyPL) query;
+  getAllFixedDeposits: () -> (vec FixedDeposit) query;
+  getAllLoans: () -> (vec Loan) query;
+  getAllPaymentHeads: () -> (vec PaymentHead) query;
+  getAllProducts: () -> (vec InventoryProduct) query;
+  getAllStockTransactions: () -> (vec StockTransaction) query;
+  getAllTransactions: () -> (vec Transaction) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getComplaintsByStatus: (status: text) -> (vec Complaint) query;
+  getDailyPLByDateRange: (startDate: text, endDate: text) ->
+   (vec DailyPL) query;
+  getLoanById: (id: nat) -> (opt Loan) query;
+  getStockTransactionsByProduct: (productId: nat) ->
+   (vec StockTransaction) query;
+  getTodayStockTransactions: (today: text) -> (vec StockTransaction) query;
+  getTransactionsByTypeAndStatus: (txType: text, status: text) ->
+   (vec Transaction) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  saveDailyPL: (date: text, headBalances: vec HeadBalance) -> (nat);
+  updateComplaint: (id: nat, customerName: text, complaintNo: text,
+   contactNo: text, accountNo: text, aadharNo: text, panNo: text,
+   dateOfComplaint: text, complaintBrief: text, status: text) -> ();
+  updateComplaintStatus: (id: nat, status: text) -> ();
+}

@@ -200,7 +200,7 @@ export enum UserRole {
     guest = "guest"
 }
 export interface backendInterface {
-    _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
+    _initializeAccessControlWithSecret(_secret: string): Promise<void>;
     addComplaint(customerName: string, complaintNo: string, contactNo: string, accountNo: string, aadharNo: string, panNo: string, dateOfComplaint: string, complaintBrief: string, status: string): Promise<bigint>;
     addFixedDeposit(customerName: string, accountNumber: string, cifNumber: string, contactNumber: string, openingDate: string, fdAmount: number, tenure: bigint, interestRate: number, interestAmount: number, maturityAmount: number, closureDate: string, maturityDepositDate: string): Promise<bigint>;
     addLoan(customerName: string, fatherHusbandName: string, fullAddress: string, loanStartDate: string, contactNo: string, nomineeName: string, dateOfBirth: string, loanAmount: number, totalInterestAmount: number, interestRate: number, loanTenureMonths: bigint, repaymentType: string): Promise<bigint>;
@@ -208,7 +208,7 @@ export interface backendInterface {
     addProduct(name: string, description: string, sku: string, barcode: string, category: string, quantity: bigint, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<bigint>;
     addStockTransaction(productId: bigint, txType: string, quantityChange: bigint, note: string, transactionDate: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
-    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    assignCallerUserRole(role: UserRole): Promise<void>;
     bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
     deleteComplaint(id: bigint): Promise<void>;
     deleteDailyPL(id: bigint): Promise<void>;
@@ -357,17 +357,17 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async assignCallerUserRole(arg0: Principal, arg1: UserRole): Promise<void> {
+    async assignCallerUserRole(arg0: UserRole): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+                const result = await this.actor.assignCallerUserRole(to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg0));
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.assignCallerUserRole(arg0, to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg1));
+            const result = await this.actor.assignCallerUserRole(to_candid_UserRole_n1(this._uploadFile, this._downloadFile, arg0));
             return result;
         }
     }

@@ -1,67 +1,56 @@
 import Map "mo:core/Map";
 import Principal "mo:core/Principal";
-import Runtime "mo:core/Runtime";
 
 module {
-  public type UserRole = {
-    #admin;
-    #user;
-    #guest;
-  };
+  /// Roles ordered by privilege level (guest < user < admin)
+  public type UserRole = { #guest; #user; #admin };
 
   public type AccessControlState = {
-    var adminAssigned : Bool;
     userRoles : Map.Map<Principal, UserRole>;
   };
 
+  /// Create a fresh AccessControlState
   public func initState() : AccessControlState {
-    {
-      var adminAssigned = false;
-      userRoles = Map.empty<Principal, UserRole>();
+    { userRoles = Map.empty<Principal, UserRole>() };
+  };
+
+  /// Assign a role to a principal (overwrites any existing role)
+  public func setUserRole(state : AccessControlState, user : Principal, role : UserRole) {
+    state.userRoles.add(user, role);
+  };
+
+  /// Get the role for a principal. Anonymous callers get #guest; authenticated callers default to #user.
+  public func getUserRole(state : AccessControlState, user : Principal) : UserRole {
+    if (user == Principal.anonymous()) { return #guest };
+    switch (state.userRoles.get(user)) {
+      case (?role) { role };
+      case null { #user };
     };
   };
 
-  // First principal that calls this function becomes admin, all other principals become users.
-  public func initialize(state : AccessControlState, caller : Principal, adminToken : Text, userProvidedToken : Text) {
-    if (caller.isAnonymous()) { return };
-    switch (state.userRoles.get(caller)) {
-      case (?_) {};
-      case (null) {
-        if (not state.adminAssigned and userProvidedToken == adminToken) {
-          state.userRoles.add(caller, #admin);
-          state.adminAssigned := true;
-        } else {
-          state.userRoles.add(caller, #user);
+  /// True if caller's role is at least as privileged as the required role.
+  /// Privilege order: #guest < #user < #admin
+  public func hasPermission(state : AccessControlState, caller : Principal, required : UserRole) : Bool {
+    let role = getUserRole(state, caller);
+    switch (required) {
+      case (#guest) { true };
+      case (#user) {
+        switch (role) {
+          case (#user or #admin) { true };
+          case (#guest) { false };
+        };
+      };
+      case (#admin) {
+        switch (role) {
+          case (#admin) { true };
+          case (_) { false };
         };
       };
     };
   };
 
-  public func getUserRole(state : AccessControlState, caller : Principal) : UserRole {
-    if (caller.isAnonymous()) { return #guest };
-    switch (state.userRoles.get(caller)) {
-      case (?role) { role };
-      case (null) {
-        Runtime.trap("User is not registered");
-      };
-    };
-  };
-
-  public func assignRole(state : AccessControlState, caller : Principal, user : Principal, role : UserRole) {
-    if (not (isAdmin(state, caller))) {
-      Runtime.trap("Unauthorized: Only admins can assign user roles");
-    };
-    state.userRoles.add(user, role);
-  };
-
-  public func hasPermission(state : AccessControlState, caller : Principal, requiredRole : UserRole) : Bool {
-    let userRole = getUserRole(state, caller);
-    if (userRole == #admin or requiredRole == #guest) { true } else {
-      userRole == requiredRole;
-    };
-  };
-
+  /// Convenience: true if the caller has the #admin role
   public func isAdmin(state : AccessControlState, caller : Principal) : Bool {
-    getUserRole(state, caller) == #admin;
+    hasPermission(state, caller, #admin);
   };
 };

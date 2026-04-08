@@ -125,7 +125,7 @@ export interface backendInterface {
     addProduct(name: string, description: string, sku: string, barcode: string, category: string, quantity: bigint, unitCost: number, salePrice: number, reorderPoint: bigint): Promise<bigint>;
     addStockTransaction(productId: bigint, txType: string, quantityChange: bigint, note: string, transactionDate: string): Promise<bigint>;
     addTransaction(tx: Transaction): Promise<bigint>;
-    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    assignCallerUserRole(role: UserRole): Promise<void>;
     bulkUpdateProducts(ids: Array<bigint>, unitCosts: Array<number>, salePrices: Array<number>, reorderPoints: Array<bigint>): Promise<void>;
     deleteComplaint(id: bigint): Promise<void>;
     deleteDailyPL(id: bigint): Promise<void>;

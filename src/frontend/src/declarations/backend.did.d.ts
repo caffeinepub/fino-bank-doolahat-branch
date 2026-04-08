@@ -166,7 +166,7 @@ export interface _SERVICE {
     bigint
   >,
   'addTransaction' : ActorMethod<[Transaction], bigint>,
-  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'assignCallerUserRole' : ActorMethod<[UserRole], undefined>,
   'bulkUpdateProducts' : ActorMethod<
     [Array<bigint>, Array<number>, Array<number>, Array<bigint>],
     undefined
