@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import NavTabs from "./components/NavTabs";
 import { InventoryAuthProvider } from "./context/InventoryAuthContext";
 import Complaints from "./pages/Complaints";
+import CustomerServices from "./pages/CustomerServices";
 import DailyPLEntry from "./pages/DailyPLEntry";
 import Dashboard from "./pages/Dashboard";
 import FixedDeposits from "./pages/FixedDeposits";
@@ -27,6 +28,7 @@ export type TabId =
   | "complaints"
   | "loans"
   | "lien-transaction"
+  | "customer-services"
   | "upi-collection";
 
 const UPI_COLLECTION_URL =
@@ -67,6 +69,8 @@ export default function App() {
         return <Loans />;
       case "lien-transaction":
         return <LienTransaction />;
+      case "customer-services":
+        return <CustomerServices />;
       default:
         return <Dashboard onNavigate={setActiveTab} />;
     }
@@ -141,6 +145,7 @@ export default function App() {
                       ["complaints", "Complaints"],
                       ["loans", "Loans"],
                       ["lien-transaction", "Lien Transaction"],
+                      ["customer-services", "Customer Services"],
                     ] as [TabId, string][]
                   ).map(([tab, label]) => (
                     <li key={tab}>

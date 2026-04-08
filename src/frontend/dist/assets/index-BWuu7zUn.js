@@ -22323,29 +22323,29 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$P = [
+const __iconNode$R = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$P);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$R);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$O = [
+const __iconNode$Q = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$O);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$Q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$N = [
+const __iconNode$P = [
   [
     "path",
     {
@@ -22357,14 +22357,14 @@ const __iconNode$N = [
   ["path", { d: "M8 12h8", key: "1wcyev" }],
   ["path", { d: "m13 17-5-1h1a4 4 0 0 0 0-8", key: "nu2bwa" }]
 ];
-const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$N);
+const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$P);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$M = [
+const __iconNode$O = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -22374,14 +22374,14 @@ const __iconNode$M = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$M);
+const Bell = createLucideIcon("bell", __iconNode$O);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$L = [
+const __iconNode$N = [
   ["rect", { width: "16", height: "20", x: "4", y: "2", rx: "2", key: "1nb95v" }],
   ["line", { x1: "8", x2: "16", y1: "6", y2: "6", key: "x4nwl0" }],
   ["line", { x1: "16", x2: "16", y1: "14", y2: "18", key: "wjye3r" }],
@@ -22393,14 +22393,14 @@ const __iconNode$L = [
   ["path", { d: "M12 18h.01", key: "mhygvu" }],
   ["path", { d: "M8 18h.01", key: "lrp35t" }]
 ];
-const Calculator = createLucideIcon("calculator", __iconNode$L);
+const Calculator = createLucideIcon("calculator", __iconNode$N);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$K = [
+const __iconNode$M = [
   ["path", { d: "M8 2v4", key: "1cmpym" }],
   ["path", { d: "M16 2v4", key: "4m81vk" }],
   ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
@@ -22412,39 +22412,63 @@ const __iconNode$K = [
   ["path", { d: "M12 18h.01", key: "mhygvu" }],
   ["path", { d: "M16 18h.01", key: "kzsmim" }]
 ];
-const CalendarDays = createLucideIcon("calendar-days", __iconNode$K);
+const CalendarDays = createLucideIcon("calendar-days", __iconNode$M);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$J = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$J);
+const __iconNode$L = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$L);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$I = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$I);
+const __iconNode$K = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$K);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$H = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$H);
+const __iconNode$J = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$J);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$G = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$G);
+const __iconNode$I = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$I);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$H = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$H);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$G = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }],
+  ["path", { d: "m8 12 4 4 4-4", key: "k98ssh" }]
+];
+const CircleArrowDown = createLucideIcon("circle-arrow-down", __iconNode$G);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22453,10 +22477,10 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$G);
  */
 const __iconNode$F = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+  ["path", { d: "m16 12-4-4-4 4", key: "177agl" }],
+  ["path", { d: "M12 16V8", key: "1sbj14" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$F);
+const CircleArrowUp = createLucideIcon("circle-arrow-up", __iconNode$F);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22464,11 +22488,10 @@ const CircleAlert = createLucideIcon("circle-alert", __iconNode$F);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$E = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }],
-  ["path", { d: "m8 12 4 4 4-4", key: "k98ssh" }]
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
 ];
-const CircleArrowDown = createLucideIcon("circle-arrow-down", __iconNode$E);
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$E);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22477,10 +22500,9 @@ const CircleArrowDown = createLucideIcon("circle-arrow-down", __iconNode$E);
  */
 const __iconNode$D = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m16 12-4-4-4 4", key: "177agl" }],
-  ["path", { d: "M12 16V8", key: "1sbj14" }]
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const CircleArrowUp = createLucideIcon("circle-arrow-up", __iconNode$D);
+const CircleCheck = createLucideIcon("circle-check", __iconNode$D);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22488,10 +22510,11 @@ const CircleArrowUp = createLucideIcon("circle-arrow-up", __iconNode$D);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$C = [
-  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
-  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
+  ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$C);
+const CircleHelp = createLucideIcon("circle-help", __iconNode$C);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22500,9 +22523,10 @@ const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$C);
  */
 const __iconNode$B = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$B);
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$B);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22511,10 +22535,10 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$B);
  */
 const __iconNode$A = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
-  ["path", { d: "M12 17h.01", key: "p32p05" }]
+  ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
+  ["path", { d: "m9 9 6 6", key: "z0biqf" }]
 ];
-const CircleHelp = createLucideIcon("circle-help", __iconNode$A);
+const CircleX = createLucideIcon("circle-x", __iconNode$A);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22522,30 +22546,6 @@ const CircleHelp = createLucideIcon("circle-help", __iconNode$A);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$z = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
-];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$z);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$y = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
-  ["path", { d: "m9 9 6 6", key: "z0biqf" }]
-];
-const CircleX = createLucideIcon("circle-x", __iconNode$y);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$x = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -22559,7 +22559,29 @@ const __iconNode$x = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-const ClipboardList = createLucideIcon("clipboard-list", __iconNode$x);
+const ClipboardList = createLucideIcon("clipboard-list", __iconNode$z);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$y = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+];
+const Clock = createLucideIcon("clock", __iconNode$y);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$x = [
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+];
+const CreditCard = createLucideIcon("credit-card", __iconNode$x);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22567,10 +22589,11 @@ const ClipboardList = createLucideIcon("clipboard-list", __iconNode$x);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$w = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$w);
+const Download = createLucideIcon("download", __iconNode$w);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22578,10 +22601,11 @@ const Clock = createLucideIcon("clock", __iconNode$w);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$v = [
-  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
-  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const CreditCard = createLucideIcon("credit-card", __iconNode$v);
+const ExternalLink = createLucideIcon("external-link", __iconNode$v);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22589,11 +22613,16 @@ const CreditCard = createLucideIcon("credit-card", __iconNode$v);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$u = [
-  ["path", { d: "M12 15V3", key: "m9g1x1" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
+  [
+    "path",
+    {
+      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
+      key: "1nclc0"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Download = createLucideIcon("download", __iconNode$u);
+const Eye = createLucideIcon("eye", __iconNode$u);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22601,11 +22630,13 @@ const Download = createLucideIcon("download", __iconNode$u);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$t = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$t);
+const FileText = createLucideIcon("file-text", __iconNode$t);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22616,13 +22647,12 @@ const __iconNode$s = [
   [
     "path",
     {
-      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
-      key: "1nclc0"
+      d: "m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2",
+      key: "usdka0"
     }
-  ],
-  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+  ]
 ];
-const Eye = createLucideIcon("eye", __iconNode$s);
+const FolderOpen = createLucideIcon("folder-open", __iconNode$s);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22630,20 +22660,6 @@ const Eye = createLucideIcon("eye", __iconNode$s);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$r = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$r);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$q = [
   [
     "path",
     {
@@ -22652,7 +22668,19 @@ const __iconNode$q = [
     }
   ]
 ];
-const Funnel = createLucideIcon("funnel", __iconNode$q);
+const Funnel = createLucideIcon("funnel", __iconNode$r);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$q = [
+  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+  ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
+  ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
+];
+const History = createLucideIcon("history", __iconNode$q);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22660,11 +22688,11 @@ const Funnel = createLucideIcon("funnel", __iconNode$q);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$p = [
-  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
-  ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
-  ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 16v-4", key: "1dtifu" }],
+  ["path", { d: "M12 8h.01", key: "e9boi3" }]
 ];
-const History = createLucideIcon("history", __iconNode$p);
+const Info = createLucideIcon("info", __iconNode$p);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22672,18 +22700,6 @@ const History = createLucideIcon("history", __iconNode$p);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$o = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 16v-4", key: "1dtifu" }],
-  ["path", { d: "M12 8h.01", key: "e9boi3" }]
-];
-const Info = createLucideIcon("info", __iconNode$o);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$n = [
   ["path", { d: "M10 18v-7", key: "wt116b" }],
   [
     "path",
@@ -22697,14 +22713,14 @@ const __iconNode$n = [
   ["path", { d: "M3 22h18", key: "8prr45" }],
   ["path", { d: "M6 18v-7", key: "1ivflk" }]
 ];
-const Landmark = createLucideIcon("landmark", __iconNode$n);
+const Landmark = createLucideIcon("landmark", __iconNode$o);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$m = [
+const __iconNode$n = [
   ["path", { d: "M3 12h.01", key: "nlz23k" }],
   ["path", { d: "M3 18h.01", key: "1tta3j" }],
   ["path", { d: "M3 6h.01", key: "1rqtza" }],
@@ -22712,15 +22728,26 @@ const __iconNode$m = [
   ["path", { d: "M8 18h13", key: "1lx6n3" }],
   ["path", { d: "M8 6h13", key: "ik3vkj" }]
 ];
-const List$1 = createLucideIcon("list", __iconNode$m);
+const List$1 = createLucideIcon("list", __iconNode$n);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$l = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
-const LoaderCircle = createLucideIcon("loader-circle", __iconNode$l);
+const __iconNode$m = [["path", { d: "M21 12a9 9 0 1 1-6.219-8.56", key: "13zald" }]];
+const LoaderCircle = createLucideIcon("loader-circle", __iconNode$m);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$l = [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
+];
+const Lock = createLucideIcon("lock", __iconNode$l);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22728,10 +22755,11 @@ const LoaderCircle = createLucideIcon("loader-circle", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
-  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
-  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-const Lock = createLucideIcon("lock", __iconNode$k);
+const LogOut = createLucideIcon("log-out", __iconNode$k);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22739,18 +22767,6 @@ const Lock = createLucideIcon("lock", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
-];
-const LogOut = createLucideIcon("log-out", __iconNode$j);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$i = [
   [
     "path",
     {
@@ -22764,7 +22780,23 @@ const __iconNode$i = [
   ["circle", { cx: "18.5", cy: "15.5", r: "2.5", key: "b5zd12" }],
   ["path", { d: "M20.27 17.27 22 19", key: "1l4muz" }]
 ];
-const PackageSearch = createLucideIcon("package-search", __iconNode$i);
+const PackageSearch = createLucideIcon("package-search", __iconNode$j);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$i = [
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ]
+];
+const Pen = createLucideIcon("pen", __iconNode$i);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -23132,6 +23164,7 @@ const tabs = [
   { id: "complaints", label: "Complaints" },
   { id: "loans", label: "Loans" },
   { id: "lien-transaction", label: "Lien Transaction" },
+  { id: "customer-services", label: "Customer Services" },
   { id: "upi-collection", label: "UPI Collection", external: true }
 ];
 function NavTabs({ activeTab, onTabChange }) {
@@ -23155,7 +23188,7 @@ function NavTabs({ activeTab, onTabChange }) {
     ))
   ] }) });
 }
-const STAFF_ID = "156399746";
+const STAFF_IDS = ["156399746", "332"];
 const STAFF_PASSWORD = "156399746";
 const MANAGER_PASSWORD = "Ratulcc143@";
 const SECURITY_ANSWER = "Pulak";
@@ -28642,7 +28675,7 @@ var Group = MenuGroup;
 var Label$3 = MenuLabel;
 var Item2$1 = MenuItem;
 var CheckboxItem = MenuCheckboxItem;
-var RadioGroup = MenuRadioGroup;
+var RadioGroup$1 = MenuRadioGroup;
 var RadioItem = MenuRadioItem;
 var ItemIndicator$1 = MenuItemIndicator;
 var Separator$2 = MenuSeparator;
@@ -28814,7 +28847,7 @@ var RADIO_GROUP_NAME = "DropdownMenuRadioGroup";
 var DropdownMenuRadioGroup = reactExports.forwardRef((props, forwardedRef) => {
   const { __scopeDropdownMenu, ...radioGroupProps } = props;
   const menuScope = useMenuScope(__scopeDropdownMenu);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(RadioGroup, { ...menuScope, ...radioGroupProps, ref: forwardedRef });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(RadioGroup$1, { ...menuScope, ...radioGroupProps, ref: forwardedRef });
 });
 DropdownMenuRadioGroup.displayName = RADIO_GROUP_NAME;
 var RADIO_ITEM_NAME = "DropdownMenuRadioItem";
@@ -40599,10 +40632,10 @@ function y(p2) {
   return p2[1];
 }
 function shapeLine(x$12, y$1) {
-  var defined3 = constant$3(true), context = null, curve = curveLinear, output = null, path = withPath(line);
+  var defined3 = constant$3(true), context = null, curve = curveLinear, output = null, path = withPath(line2);
   x$12 = typeof x$12 === "function" ? x$12 : x$12 === void 0 ? x : constant$3(x$12);
   y$1 = typeof y$1 === "function" ? y$1 : y$1 === void 0 ? y : constant$3(y$1);
-  function line(data) {
+  function line2(data) {
     var i, n2 = (data = array(data)).length, d2, defined0 = false, buffer;
     if (context == null) output = curve(buffer = path());
     for (i = 0; i <= n2; ++i) {
@@ -40614,22 +40647,22 @@ function shapeLine(x$12, y$1) {
     }
     if (buffer) return output = null, buffer + "" || null;
   }
-  line.x = function(_) {
-    return arguments.length ? (x$12 = typeof _ === "function" ? _ : constant$3(+_), line) : x$12;
+  line2.x = function(_) {
+    return arguments.length ? (x$12 = typeof _ === "function" ? _ : constant$3(+_), line2) : x$12;
   };
-  line.y = function(_) {
-    return arguments.length ? (y$1 = typeof _ === "function" ? _ : constant$3(+_), line) : y$1;
+  line2.y = function(_) {
+    return arguments.length ? (y$1 = typeof _ === "function" ? _ : constant$3(+_), line2) : y$1;
   };
-  line.defined = function(_) {
-    return arguments.length ? (defined3 = typeof _ === "function" ? _ : constant$3(!!_), line) : defined3;
+  line2.defined = function(_) {
+    return arguments.length ? (defined3 = typeof _ === "function" ? _ : constant$3(!!_), line2) : defined3;
   };
-  line.curve = function(_) {
-    return arguments.length ? (curve = _, context != null && (output = curve(context)), line) : curve;
+  line2.curve = function(_) {
+    return arguments.length ? (curve = _, context != null && (output = curve(context)), line2) : curve;
   };
-  line.context = function(_) {
-    return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), line) : context;
+  line2.context = function(_) {
+    return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), line2) : context;
   };
-  return line;
+  return line2;
 }
 function shapeArea(x0, y0, y1) {
   var x1 = null, defined3 = constant$3(true), context = null, curve = curveLinear, output = null, path = withPath(area);
@@ -44856,8 +44889,8 @@ var Text = function Text2(_ref5) {
     className: clsx("recharts-text", className),
     textAnchor,
     fill: fill.includes("url") ? DEFAULT_FILL : fill
-  }), wordsByLines.map(function(line, index2) {
-    var words = line.words.join(breakAll ? "" : " ");
+  }), wordsByLines.map(function(line2, index2) {
+    var words = line2.words.join(breakAll ? "" : " ");
     return (
       // duplicate words will cause duplicate keys
       // eslint-disable-next-line react/no-array-index-key
@@ -57165,17 +57198,17 @@ function _extends$7() {
   return _extends$7.apply(this, arguments);
 }
 var renderLine = function renderLine2(option, props) {
-  var line;
+  var line2;
   if (/* @__PURE__ */ React$2.isValidElement(option)) {
-    line = /* @__PURE__ */ React$2.cloneElement(option, props);
+    line2 = /* @__PURE__ */ React$2.cloneElement(option, props);
   } else if (isFunction$4(option)) {
-    line = option(props);
+    line2 = option(props);
   } else {
-    line = /* @__PURE__ */ React$2.createElement("line", _extends$7({}, props, {
+    line2 = /* @__PURE__ */ React$2.createElement("line", _extends$7({}, props, {
       className: "recharts-reference-line-line"
     }));
   }
-  return line;
+  return line2;
 };
 var getEndPoints = function getEndPoints2(scales, isFixedX, isFixedY, isSegment, viewBox, position, xAxisOrientation, yAxisOrientation, props) {
   var x2 = viewBox.x, y2 = viewBox.y, width = viewBox.width, height = viewBox.height;
@@ -63243,6 +63276,1687 @@ function Complaints() {
     )
   ] }) });
 }
+var TABS_NAME = "Tabs";
+var [createTabsContext] = createContextScope(TABS_NAME, [
+  createRovingFocusGroupScope
+]);
+var useRovingFocusGroupScope = createRovingFocusGroupScope();
+var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
+var Tabs$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeTabs,
+      value: valueProp,
+      onValueChange,
+      defaultValue,
+      orientation = "horizontal",
+      dir,
+      activationMode = "automatic",
+      ...tabsProps
+    } = props;
+    const direction = useDirection(dir);
+    const [value, setValue] = useControllableState({
+      prop: valueProp,
+      onChange: onValueChange,
+      defaultProp: defaultValue ?? "",
+      caller: TABS_NAME
+    });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      TabsProvider,
+      {
+        scope: __scopeTabs,
+        baseId: useId(),
+        value,
+        onValueChange: setValue,
+        orientation,
+        dir: direction,
+        activationMode,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive$1.div,
+          {
+            dir: direction,
+            "data-orientation": orientation,
+            ...tabsProps,
+            ref: forwardedRef
+          }
+        )
+      }
+    );
+  }
+);
+Tabs$1.displayName = TABS_NAME;
+var TAB_LIST_NAME = "TabsList";
+var TabsList$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTabs, loop = true, ...listProps } = props;
+    const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
+    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Root$4,
+      {
+        asChild: true,
+        ...rovingFocusGroupScope,
+        orientation: context.orientation,
+        dir: context.dir,
+        loop,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive$1.div,
+          {
+            role: "tablist",
+            "aria-orientation": context.orientation,
+            ...listProps,
+            ref: forwardedRef
+          }
+        )
+      }
+    );
+  }
+);
+TabsList$1.displayName = TAB_LIST_NAME;
+var TRIGGER_NAME$2 = "TabsTrigger";
+var TabsTrigger$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
+    const context = useTabsContext(TRIGGER_NAME$2, __scopeTabs);
+    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+    const triggerId = makeTriggerId(context.baseId, value);
+    const contentId = makeContentId(context.baseId, value);
+    const isSelected = value === context.value;
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Item$1,
+      {
+        asChild: true,
+        ...rovingFocusGroupScope,
+        focusable: !disabled,
+        active: isSelected,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive$1.button,
+          {
+            type: "button",
+            role: "tab",
+            "aria-selected": isSelected,
+            "aria-controls": contentId,
+            "data-state": isSelected ? "active" : "inactive",
+            "data-disabled": disabled ? "" : void 0,
+            disabled,
+            id: triggerId,
+            ...triggerProps,
+            ref: forwardedRef,
+            onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
+              if (!disabled && event.button === 0 && event.ctrlKey === false) {
+                context.onValueChange(value);
+              } else {
+                event.preventDefault();
+              }
+            }),
+            onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
+              if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
+            }),
+            onFocus: composeEventHandlers(props.onFocus, () => {
+              const isAutomaticActivation = context.activationMode !== "manual";
+              if (!isSelected && !disabled && isAutomaticActivation) {
+                context.onValueChange(value);
+              }
+            })
+          }
+        )
+      }
+    );
+  }
+);
+TabsTrigger$1.displayName = TRIGGER_NAME$2;
+var CONTENT_NAME$1 = "TabsContent";
+var TabsContent$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
+    const context = useTabsContext(CONTENT_NAME$1, __scopeTabs);
+    const triggerId = makeTriggerId(context.baseId, value);
+    const contentId = makeContentId(context.baseId, value);
+    const isSelected = value === context.value;
+    const isMountAnimationPreventedRef = reactExports.useRef(isSelected);
+    reactExports.useEffect(() => {
+      const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
+      return () => cancelAnimationFrame(rAF);
+    }, []);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isSelected, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive$1.div,
+      {
+        "data-state": isSelected ? "active" : "inactive",
+        "data-orientation": context.orientation,
+        role: "tabpanel",
+        "aria-labelledby": triggerId,
+        hidden: !present,
+        id: contentId,
+        tabIndex: 0,
+        ...contentProps,
+        ref: forwardedRef,
+        style: {
+          ...props.style,
+          animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
+        },
+        children: present && children
+      }
+    ) });
+  }
+);
+TabsContent$1.displayName = CONTENT_NAME$1;
+function makeTriggerId(baseId, value) {
+  return `${baseId}-trigger-${value}`;
+}
+function makeContentId(baseId, value) {
+  return `${baseId}-content-${value}`;
+}
+var Root2$1 = Tabs$1;
+var List = TabsList$1;
+var Trigger = TabsTrigger$1;
+var Content = TabsContent$1;
+function Tabs({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Root2$1,
+    {
+      "data-slot": "tabs",
+      className: cn("flex flex-col gap-2", className),
+      ...props
+    }
+  );
+}
+function TabsList({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    List,
+    {
+      "data-slot": "tabs-list",
+      className: cn(
+        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TabsTrigger({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Trigger,
+    {
+      "data-slot": "tabs-trigger",
+      className: cn(
+        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TabsContent({
+  className,
+  ...props
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Content,
+    {
+      "data-slot": "tabs-content",
+      className: cn("flex-1 outline-none", className),
+      ...props
+    }
+  );
+}
+const RECORDS_KEY = "fino_account_opening_records";
+const COUNTER_FINO_KEY = "reg_counter_fino";
+const COUNTER_CSP_KEY = "reg_counter_csp";
+const ACCOUNT_TYPES = [
+  "Gati Savings Account",
+  "Jan Savings Account",
+  "Subh Savings Account",
+  "Bhavishya Savings Account",
+  "Gullak Savings Account",
+  "Saral Savings Account",
+  "Suvidha DMT Account",
+  "Arambh Savings Account",
+  "Women Savings Account",
+  "FinoPay Digital Account",
+  "Pragati Current Account",
+  "Sahaj Current Account",
+  "Sampann Current Account"
+];
+const EDU_QUALIFICATIONS = [
+  "Illiterate",
+  "Below Primary",
+  "Primary",
+  "Middle School",
+  "High School",
+  "Higher Secondary School",
+  "Graduate",
+  "Post Graduate"
+];
+const NOMINEE_RELATIONSHIPS = [
+  "Father",
+  "Husband",
+  "Mother",
+  "Brother",
+  "Sister",
+  "Son",
+  "Daughter",
+  "Wife",
+  "Grand Father",
+  "Grand Mother"
+];
+const OCCUPATIONS = [
+  "Agriculture",
+  "Salaried",
+  "Self Employed",
+  "SE Professional",
+  "Student",
+  "Housewife"
+];
+const SERVICE_ITEMS = [
+  { key: "atm", label: "ATM cum Debit Card" },
+  { key: "netBanking", label: "Net Banking" },
+  { key: "aeps", label: "AEPS Service" },
+  { key: "aadharSeeding", label: "Aadhar Seeding (DBT Link)" },
+  { key: "eStatement", label: "eStatement" }
+];
+const EMPTY_ADDRESS = {
+  village: "",
+  postOffice: "",
+  subDistrict: "",
+  district: "",
+  state: "Assam",
+  pinCode: ""
+};
+const EMPTY_FORM60 = {
+  txnAmount: "",
+  txnDate: "",
+  panApplied: "",
+  panApplicationDate: "",
+  panAcknowledgementNo: "",
+  agriIncome: "",
+  otherIncome: ""
+};
+function getInitialServices() {
+  return {
+    atm: "",
+    netBanking: "",
+    aeps: "",
+    aadharSeeding: "",
+    eStatement: ""
+  };
+}
+function getInitialForm() {
+  return {
+    category: "",
+    accountType: "",
+    modeOfOperation: "",
+    services: getInitialServices(),
+    eduQualification: "",
+    panAvailable: "",
+    panNo: "",
+    form60: { ...EMPTY_FORM60 },
+    aadharNo: "",
+    contactNo: "",
+    initialDeposit: "",
+    email: "",
+    applicantName: "",
+    dob: "",
+    fatherHusbandName: "",
+    motherMaidenName: "",
+    currentAddress: { ...EMPTY_ADDRESS },
+    permanentSameAsCurrent: "",
+    permanentAddress: { ...EMPTY_ADDRESS },
+    isMinor: "",
+    guardianContactNo: "",
+    nomineeName: "",
+    nomineeDob: "",
+    nomineeRelationship: "",
+    occupation: "",
+    bankCustomerId: "",
+    bankAccountNo: ""
+  };
+}
+function getCurrentFY() {
+  const now2 = /* @__PURE__ */ new Date();
+  const year = now2.getFullYear();
+  const month = now2.getMonth() + 1;
+  if (month >= 4) return `${year}-${String(year + 1).slice(2)}`;
+  return `${year - 1}-${String(year).slice(2)}`;
+}
+function getCounter(key, defaultVal) {
+  try {
+    const v2 = localStorage.getItem(key);
+    return v2 ? Number.parseInt(v2, 10) : defaultVal;
+  } catch {
+    return defaultVal;
+  }
+}
+function setCounter(key, val) {
+  localStorage.setItem(key, String(val));
+}
+function previewRegNumber(category) {
+  const fy = getCurrentFY();
+  if (category === "fino") {
+    const serial = getCounter(COUNTER_FINO_KEY, 781);
+    return `FB/${serial}/${fy}`;
+  }
+  if (category === "csp") {
+    const serial = getCounter(COUNTER_CSP_KEY, 1);
+    return `FB/BC/${String(serial).padStart(2, "0")}/${fy}`;
+  }
+  return "—";
+}
+function claimRegNumber(category) {
+  const fy = getCurrentFY();
+  if (category === "fino") {
+    const serial = getCounter(COUNTER_FINO_KEY, 781);
+    const regNo = `FB/${serial}/${fy}`;
+    setCounter(COUNTER_FINO_KEY, serial + 1);
+    return regNo;
+  }
+  if (category === "csp") {
+    const serial = getCounter(COUNTER_CSP_KEY, 1);
+    const regNo = `FB/BC/${String(serial).padStart(2, "0")}/${fy}`;
+    setCounter(COUNTER_CSP_KEY, serial + 1);
+    return regNo;
+  }
+  return "";
+}
+function line(label, value) {
+  const safe = (v2) => v2.replace(/[\\{}]/g, "");
+  return `{\\b ${safe(label)}:} ${safe(value || "—")}\\line `;
+}
+function generateDocx(rec) {
+  const svcLines = SERVICE_ITEMS.map(
+    (s2) => `${s2.label}: ${rec.services[s2.key] || "—"}`
+  ).join(" | ");
+  const addrStr = (a2) => `${a2.village}, P.O: ${a2.postOffice}, Sub-Dist: ${a2.subDistrict}, Dist: ${a2.district}, ${a2.state} - ${a2.pinCode}`;
+  const permanentBlock = rec.permanentSameAsCurrent === "yes" ? "Same as Current Address" : addrStr(rec.permanentAddress);
+  const panBlock = rec.panAvailable === "yes" ? `PAN No: ${rec.panNo}` : [
+    `Form 60 — Amount: ${rec.form60.txnAmount}, Date: ${rec.form60.txnDate}`,
+    `PAN Applied: ${rec.form60.panApplied}`,
+    rec.form60.panApplied === "yes" ? `App Date: ${rec.form60.panApplicationDate}, Ack No: ${rec.form60.panAcknowledgementNo}` : "",
+    `Agri Income: ${rec.form60.agriIncome}, Other Income: ${rec.form60.otherIncome}`
+  ].filter(Boolean).join("\\line ");
+  return [
+    "{\\rtf1\\ansi\\deff0",
+    "{\\fonttbl{\\f0\\froman Times New Roman;}{\\f1\\fswiss Arial;}}",
+    "{\\colortbl ;\\red70\\green41\\blue128;\\red180\\green0\\blue0;}",
+    "\\paperw11907\\paperh16838\\margl1440\\margr1440\\margt1440\\margb1440",
+    // Heading
+    "\\pard\\qc{\\f1\\b\\fs32\\cf1 ACCOUNT OPENING FORM}\\par",
+    "\\pard\\qc{\\f1\\b\\fs22 MINOR | SAVINGS | CURRENT ACCOUNT}\\par\\par",
+    // Reg No
+    `\\pard\\ql{\\f1\\b\\fs22 Registration No: ${rec.registrationNumber}}\\par`,
+    `\\pard\\ql{\\f1\\fs18 Category: ${rec.category === "fino" ? "Fino Bank Doolahat Account" : "CSP Account"}}\\par`,
+    `\\pard\\ql{\\f1\\fs18 Date: ${new Date(rec.submittedAt).toLocaleDateString("en-IN")}}\\par`,
+    // Photo box
+    "\\pard\\qr{\\f1\\fs18 \\box\\brdrs\\brdrw15\\brdrsp20 \\pard\\qc\\f1\\fs16 [Paste Photo Here] }\\par\\par",
+    // Fields
+    "\\pard\\ql{\\f1\\b\\fs20 A. Account Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${line("Type of Account", rec.accountType)}${line("Mode of Operation", rec.modeOfOperation)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 B. Additional Services}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${svcLines}}\\par\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 C. Personal Details}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${line("Education Qualification", rec.eduQualification)}${line("PAN Available", rec.panAvailable)}${panBlock}\\line ${line("Aadhar No", rec.aadharNo)}${line("Contact No", rec.contactNo)}${line("Initial Deposit (Rs.)", rec.initialDeposit)}${line("Email ID", rec.email)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 D. Applicant Information}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${line("Applicant Name", rec.applicantName)}${line("Date of Birth", rec.dob)}${line("Father / Husband Name", rec.fatherHusbandName)}${line("Mother's Maiden Name", rec.motherMaidenName)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 E. Address}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${line("Current Address", addrStr(rec.currentAddress))}${line("Permanent Address", permanentBlock)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 F. Minor & Nominee}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${line("Is Minor", rec.isMinor)}${rec.isMinor === "yes" ? line("Guardian Contact No", rec.guardianContactNo) : ""}${line("Nominee Name", rec.nomineeName)}${line("Nominee DOB", rec.nomineeDob)}${line("Relationship to Nominee", rec.nomineeRelationship)}}\\par`,
+    "\\pard\\ql{\\f1\\b\\fs20 G. Occupation}\\par",
+    `\\pard\\ql{\\f1\\fs18 ${line("Occupation", rec.occupation)}}\\par\\par`,
+    // Signature lines
+    "\\pard\\qj{\\f1\\fs20 \\ul                                        \\ulnone                               \\ul                                        \\ulnone}\\par",
+    "\\pard\\qj{\\f1\\fs16 Signature of Applicant                                                     Signature of Nominee}\\par\\par\\par",
+    // Bank use only
+    "\\pard\\qj{\\f1\\b\\fs18 \\highlight2 --------- FOR BANK USE ONLY ---------}\\par",
+    `\\pard\\ql{\\f1\\b\\fs18\\cf2 ${line("Customer ID", rec.bankCustomerId)}}\\par`,
+    `\\pard\\ql{\\f1\\b\\fs18\\cf2 ${line("Account No", rec.bankAccountNo)}}\\par\\par`,
+    "\\pard\\qr{\\f1\\fs18 \\ul                                        \\ulnone}\\par",
+    "\\pard\\qr{\\f1\\fs16 Signature of Bank DbrM / Manager}\\par",
+    "}"
+  ].join("\n");
+}
+function AddressFields({
+  prefix: prefix2,
+  data,
+  onChange
+}) {
+  const f2 = (field, val) => onChange({ ...data, [field]: val });
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: `${prefix2}-village`, className: "text-xs", children: "Village / Town Name" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          id: `${prefix2}-village`,
+          value: data.village,
+          onChange: (e3) => f2("village", e3.target.value),
+          placeholder: "Village or Town",
+          className: "h-8 text-sm"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: `${prefix2}-po`, className: "text-xs", children: "Post Office" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          id: `${prefix2}-po`,
+          value: data.postOffice,
+          onChange: (e3) => f2("postOffice", e3.target.value),
+          placeholder: "Post Office",
+          className: "h-8 text-sm"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: `${prefix2}-subdistrict`, className: "text-xs", children: "Sub-District" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          id: `${prefix2}-subdistrict`,
+          value: data.subDistrict,
+          onChange: (e3) => f2("subDistrict", e3.target.value),
+          placeholder: "Sub-District",
+          className: "h-8 text-sm"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: `${prefix2}-district`, className: "text-xs", children: "District" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          id: `${prefix2}-district`,
+          value: data.district,
+          onChange: (e3) => f2("district", e3.target.value),
+          placeholder: "District",
+          className: "h-8 text-sm"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: `${prefix2}-state`, className: "text-xs", children: "State" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          id: `${prefix2}-state`,
+          value: "Assam",
+          disabled: true,
+          className: "h-8 text-sm bg-muted"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: `${prefix2}-pin`, className: "text-xs", children: "Pin Code" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Input,
+        {
+          id: `${prefix2}-pin`,
+          value: data.pinCode,
+          onChange: (e3) => {
+            if (/^\d{0,6}$/.test(e3.target.value)) f2("pinCode", e3.target.value);
+          },
+          placeholder: "6-digit Pin Code",
+          maxLength: 6,
+          className: "h-8 text-sm"
+        }
+      )
+    ] })
+  ] });
+}
+function RadioGroup({
+  name,
+  value,
+  onChange,
+  options
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-4 flex-wrap", children: options.map((o) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "label",
+    {
+      className: "flex items-center gap-1.5 cursor-pointer text-sm",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "input",
+          {
+            type: "radio",
+            name,
+            value: o.value,
+            checked: value === o.value,
+            onChange: () => onChange(o.value),
+            className: "accent-[#462980]"
+          }
+        ),
+        o.label
+      ]
+    },
+    o.value
+  )) });
+}
+function FieldRow({
+  label,
+  required,
+  children
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Label$1, { className: "text-xs font-semibold text-foreground", children: [
+      label,
+      required && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-red-500 ml-0.5", children: "*" })
+    ] }),
+    children
+  ] });
+}
+function AccountOpeningForm({ onBack }) {
+  const { isManager } = useInventoryAuth();
+  const [tab, setTab] = reactExports.useState("new-entry");
+  const [search, setSearch] = reactExports.useState("");
+  const [editId, setEditId] = reactExports.useState(null);
+  const [records, setRecords] = reactExports.useState(
+    () => loadItems(RECORDS_KEY)
+  );
+  const [form, setForm] = reactExports.useState(getInitialForm());
+  const [errors, setErrors] = reactExports.useState({});
+  const previewReg = previewRegNumber(form.category);
+  const refreshRecords = () => setRecords(loadItems(RECORDS_KEY));
+  const setF = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
+  const setService = (key, val) => setF("services", { ...form.services, [key]: val });
+  const emailRequired = form.services.eStatement === "yes";
+  function validate() {
+    const errs = {};
+    if (!form.category) errs.category = "Select a category";
+    if (!form.accountType) errs.accountType = "Select account type";
+    if (!form.modeOfOperation)
+      errs.modeOfOperation = "Select mode of operation";
+    if (!form.aadharNo || !/^\d{12}$/.test(form.aadharNo))
+      errs.aadharNo = "Enter valid 12-digit Aadhar No";
+    if (!form.contactNo || !/^\d{10}$/.test(form.contactNo))
+      errs.contactNo = "Enter valid 10-digit contact number";
+    if (!form.applicantName.trim())
+      errs.applicantName = "Applicant name is required";
+    if (!form.dob) errs.dob = "Date of birth is required";
+    if (!form.fatherHusbandName.trim())
+      errs.fatherHusbandName = "Father/Husband name is required";
+    if (!form.currentAddress.village.trim())
+      errs["addr.village"] = "Village/Town is required";
+    if (!form.currentAddress.district.trim())
+      errs["addr.district"] = "District is required";
+    if (form.currentAddress.pinCode && !/^\d{6}$/.test(form.currentAddress.pinCode))
+      errs["addr.pin"] = "Pin Code must be 6 digits";
+    if (emailRequired && !form.email.trim())
+      errs.email = "Email is required when eStatement is Yes";
+    if (form.panAvailable === "yes" && !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(form.panNo))
+      errs.panNo = "PAN format: 5 letters + 4 digits + 1 letter (e.g. ABCDE1234F)";
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return false;
+    }
+    return true;
+  }
+  function handleSubmit() {
+    if (!validate()) {
+      ue.error("Please fix the errors before submitting.");
+      return;
+    }
+    const existing = loadItems(RECORDS_KEY);
+    if (editId !== null) {
+      const updated = existing.map(
+        (r2) => r2.id === editId ? { ...r2, ...form, category: form.category } : r2
+      );
+      saveItems(RECORDS_KEY, updated);
+      ue.success("Record updated successfully!");
+      setEditId(null);
+    } else {
+      const regNo = claimRegNumber(form.category);
+      const newRecord = {
+        ...form,
+        id: existing.length > 0 ? Math.max(...existing.map((r2) => r2.id)) + 1 : 1,
+        registrationNumber: regNo,
+        category: form.category,
+        submittedAt: (/* @__PURE__ */ new Date()).toISOString()
+      };
+      saveItems(RECORDS_KEY, [...existing, newRecord]);
+      ue.success(`Account opening form saved! Reg No: ${regNo}`);
+    }
+    refreshRecords();
+    setForm(getInitialForm());
+    setErrors({});
+    setTab("saved-records");
+  }
+  function handleDownload(rec) {
+    const rtf = generateDocx(rec);
+    const blob = new Blob([rtf], { type: "application/rtf" });
+    const url = URL.createObjectURL(blob);
+    const a2 = document.createElement("a");
+    a2.href = url;
+    a2.download = `AccountOpening_${rec.registrationNumber.replace(/\//g, "_")}.rtf`;
+    a2.click();
+    URL.revokeObjectURL(url);
+    ue.success("Form downloaded successfully");
+  }
+  function handleDownloadCurrent() {
+    if (!validate()) {
+      ue.error("Please fill required fields before downloading.");
+      return;
+    }
+    const tempRec = {
+      ...form,
+      registrationNumber: previewReg,
+      category: form.category,
+      submittedAt: (/* @__PURE__ */ new Date()).toISOString()
+    };
+    handleDownload(tempRec);
+  }
+  function handleEdit(rec) {
+    const { id: id2, registrationNumber, category, submittedAt, ...rest } = rec;
+    setForm({ ...rest, category });
+    setEditId(id2);
+    setErrors({});
+    setTab("new-entry");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function handleDelete(id2) {
+    if (!window.confirm("Delete this record permanently?")) return;
+    removeItem(RECORDS_KEY, id2);
+    refreshRecords();
+    ue.success("Record deleted");
+  }
+  const filtered = records.filter(
+    (r2) => !search || r2.registrationNumber.toLowerCase().includes(search.toLowerCase()) || r2.applicantName.toLowerCase().includes(search.toLowerCase())
+  );
+  const err = (key) => errors[key] ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-red-500 mt-0.5", children: errors[key] }) : null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "account_opening.page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          variant: "ghost",
+          size: "sm",
+          onClick: onBack,
+          className: "gap-1 text-xs",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-3.5 h-3.5" }),
+            " Customer Services"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            className: "w-7 h-7 rounded-lg flex items-center justify-center text-white",
+            style: { backgroundColor: "#462980" },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-4 h-4" })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-base font-bold text-foreground", children: "Account Opening Form" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Fino Bank Doolahat & CSP Accounts" })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Tabs, { value: tab, onValueChange: setTab, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(TabsList, { className: "mb-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TabsTrigger,
+          {
+            value: "new-entry",
+            "data-ocid": "account_opening.new_entry.tab",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-3.5 h-3.5 mr-1" }),
+              editId ? "Edit Record" : "New Entry"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TabsTrigger,
+          {
+            value: "saved-records",
+            "data-ocid": "account_opening.saved_records.tab",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-3.5 h-3.5 mr-1" }),
+              "Saved Records",
+              records.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  className: "ml-1.5 text-[10px] px-1 py-0 h-4",
+                  style: { backgroundColor: "#462980", color: "#fff" },
+                  children: records.length
+                }
+              )
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContent, { value: "new-entry", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          CardHeader,
+          {
+            className: "pb-3 border-b",
+            style: { backgroundColor: "#f5f0ff" },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                CardTitle,
+                {
+                  className: "text-xl font-bold tracking-widest uppercase",
+                  style: { color: "#462980" },
+                  children: "ACCOUNT OPENING FORM"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold text-muted-foreground mt-1", children: "MINOR | SAVINGS | CURRENT ACCOUNT" })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-5 space-y-6", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-4 items-start justify-between", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Category", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Select,
+                  {
+                    value: form.category,
+                    onValueChange: (v2) => setF("category", v2),
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        SelectTrigger,
+                        {
+                          className: "h-8 text-sm",
+                          "data-ocid": "account_opening.category.select",
+                          children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select category..." })
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "fino", children: "Fino Bank Doolahat Account" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "csp", children: "CSP Accounts" })
+                      ] })
+                    ]
+                  }
+                ),
+                err("category")
+              ] }),
+              form.category && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground", children: "Registration No (preview):" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Badge,
+                  {
+                    variant: "outline",
+                    className: "text-xs font-mono border-[#462980]/30 text-[#462980]",
+                    children: previewReg
+                  }
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "flex-shrink-0 flex items-center justify-center border-2 border-dashed rounded",
+                style: {
+                  width: 120,
+                  height: 150,
+                  borderColor: "#462980",
+                  color: "#462980"
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: "text-[10px] text-center leading-tight px-2 font-medium",
+                    style: { color: "#462980" },
+                    children: "Paste Photo Here"
+                  }
+                )
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "A. Type of Account" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Account Type", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Select,
+                {
+                  value: form.accountType,
+                  onValueChange: (v2) => setF("accountType", v2),
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      SelectTrigger,
+                      {
+                        className: "h-8 text-sm",
+                        "data-ocid": "account_opening.account_type.select",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select account type..." })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: ACCOUNT_TYPES.map((t2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: t2, children: t2 }, t2)) })
+                  ]
+                }
+              ),
+              err("accountType")
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "B. Mode of Operation" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "Mode", required: true, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                RadioGroup,
+                {
+                  name: "modeOfOperation",
+                  value: form.modeOfOperation,
+                  onChange: (v2) => setF("modeOfOperation", v2),
+                  options: [
+                    { label: "Self", value: "Self" },
+                    { label: "Joint", value: "Joint" }
+                  ]
+                }
+              ),
+              err("modeOfOperation")
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "C. Additional Service Request" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-2", children: SERVICE_ITEMS.map((svc) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                className: "flex items-center justify-between gap-4 py-1 border-b border-border/40 last:border-0",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm", children: svc.label }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    RadioGroup,
+                    {
+                      name: `svc-${svc.key}`,
+                      value: form.services[svc.key] ?? "",
+                      onChange: (v2) => setService(svc.key, v2),
+                      options: [
+                        { label: "Yes", value: "yes" },
+                        { label: "No", value: "no" }
+                      ]
+                    }
+                  )
+                ]
+              },
+              svc.key
+            )) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "D. Education Qualification" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Qualification", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.eduQualification,
+                onValueChange: (v2) => setF("eduQualification", v2),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    SelectTrigger,
+                    {
+                      className: "h-8 text-sm",
+                      "data-ocid": "account_opening.edu.select",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select qualification..." })
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: EDU_QUALIFICATIONS.map((q2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: q2, children: q2 }, q2)) })
+                ]
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "E. PAN Available?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              RadioGroup,
+              {
+                name: "panAvailable",
+                value: form.panAvailable,
+                onChange: (v2) => setF("panAvailable", v2),
+                options: [
+                  { label: "Yes", value: "yes" },
+                  { label: "No", value: "no" }
+                ]
+              }
+            ),
+            form.panAvailable === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pl-2 mt-2 space-y-1", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "PAN Number (ABCDE1234F format)", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  value: form.panNo,
+                  onChange: (e3) => setF(
+                    "panNo",
+                    e3.target.value.toUpperCase().slice(0, 10)
+                  ),
+                  placeholder: "ABCDE1234F",
+                  maxLength: 10,
+                  className: "h-8 text-sm font-mono uppercase",
+                  "data-ocid": "account_opening.pan_no.input"
+                }
+              ),
+              err("panNo")
+            ] }) }),
+            form.panAvailable === "no" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border rounded-lg p-4 bg-amber-50/50 border-amber-200 mt-2 space-y-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-bold text-amber-700", children: "Form 60 Details" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "1. Amount of Transaction (Rs.)" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      value: form.form60.txnAmount,
+                      onChange: (e3) => setF("form60", {
+                        ...form.form60,
+                        txnAmount: e3.target.value
+                      }),
+                      placeholder: "Amount",
+                      className: "h-8 text-sm"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "2. Date of Transaction" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      type: "date",
+                      value: form.form60.txnDate,
+                      onChange: (e3) => setF("form60", {
+                        ...form.form60,
+                        txnDate: e3.target.value
+                      }),
+                      className: "h-8 text-sm"
+                    }
+                  )
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "3. PAN Applied?" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  RadioGroup,
+                  {
+                    name: "panApplied",
+                    value: form.form60.panApplied,
+                    onChange: (v2) => setF("form60", {
+                      ...form.form60,
+                      panApplied: v2
+                    }),
+                    options: [
+                      { label: "Yes", value: "yes" },
+                      { label: "No", value: "no" }
+                    ]
+                  }
+                )
+              ] }),
+              form.form60.panApplied === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3 pl-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "a. Date of Application" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      type: "date",
+                      value: form.form60.panApplicationDate,
+                      onChange: (e3) => setF("form60", {
+                        ...form.form60,
+                        panApplicationDate: e3.target.value
+                      }),
+                      className: "h-8 text-sm"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "b. Acknowledgement No" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      value: form.form60.panAcknowledgementNo,
+                      onChange: (e3) => setF("form60", {
+                        ...form.form60,
+                        panAcknowledgementNo: e3.target.value
+                      }),
+                      placeholder: "Ack No",
+                      className: "h-8 text-sm"
+                    }
+                  )
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "4a. Agricultural Income (Rs.)" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      value: form.form60.agriIncome,
+                      onChange: (e3) => setF("form60", {
+                        ...form.form60,
+                        agriIncome: e3.target.value
+                      }),
+                      placeholder: "0.00",
+                      className: "h-8 text-sm"
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { className: "text-xs", children: "4b. Other than Agricultural Income (Rs.)" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      value: form.form60.otherIncome,
+                      onChange: (e3) => setF("form60", {
+                        ...form.form60,
+                        otherIncome: e3.target.value
+                      }),
+                      placeholder: "0.00",
+                      className: "h-8 text-sm"
+                    }
+                  )
+                ] })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "F–I. Contact & Identity Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "F. Aadhar No (12 digits)", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.aadharNo,
+                    onChange: (e3) => {
+                      if (/^\d{0,12}$/.test(e3.target.value))
+                        setF("aadharNo", e3.target.value);
+                    },
+                    placeholder: "123456789012",
+                    maxLength: 12,
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_opening.aadhar.input"
+                  }
+                ),
+                err("aadharNo")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "G. Contact No (10 digits)", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.contactNo,
+                    onChange: (e3) => {
+                      if (/^\d{0,10}$/.test(e3.target.value))
+                        setF("contactNo", e3.target.value);
+                    },
+                    placeholder: "9876543210",
+                    maxLength: 10,
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_opening.contact.input"
+                  }
+                ),
+                err("contactNo")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "H. Initial Deposit Amount (Rs.)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-flex items-center px-2 border border-r-0 rounded-l-md bg-muted text-sm text-muted-foreground", children: "₹" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.initialDeposit,
+                    onChange: (e3) => setF("initialDeposit", e3.target.value),
+                    placeholder: "0.00",
+                    className: "h-8 text-sm rounded-l-none"
+                  }
+                )
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                FieldRow,
+                {
+                  label: `I. Email ID${emailRequired ? " *" : " (optional)"}`,
+                  required: emailRequired,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        type: "email",
+                        value: form.email,
+                        onChange: (e3) => setF("email", e3.target.value),
+                        placeholder: "email@example.com",
+                        className: "h-8 text-sm",
+                        "data-ocid": "account_opening.email.input"
+                      }
+                    ),
+                    emailRequired && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-amber-600", children: "Required because eStatement is Yes" }),
+                    err("email")
+                  ]
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "J–M. Applicant Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                FieldRow,
+                {
+                  label: "J. Applicant's Name (Block Letters)",
+                  required: true,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        value: form.applicantName,
+                        onChange: (e3) => setF("applicantName", e3.target.value.toUpperCase()),
+                        placeholder: "IN BLOCK LETTERS",
+                        className: "h-8 text-sm uppercase font-semibold tracking-wide",
+                        "data-ocid": "account_opening.applicant_name.input"
+                      }
+                    ),
+                    err("applicantName")
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "K. Date of Birth", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    type: "date",
+                    value: form.dob,
+                    onChange: (e3) => setF("dob", e3.target.value),
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_opening.dob.input"
+                  }
+                ),
+                err("dob")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "L. Father / Husband Name", required: true, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input,
+                  {
+                    value: form.fatherHusbandName,
+                    onChange: (e3) => setF("fatherHusbandName", e3.target.value),
+                    placeholder: "Father or Husband Name",
+                    className: "h-8 text-sm",
+                    "data-ocid": "account_opening.father.input"
+                  }
+                ),
+                err("fatherHusbandName")
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "M. Mother's Maiden Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  value: form.motherMaidenName,
+                  onChange: (e3) => setF("motherMaidenName", e3.target.value),
+                  placeholder: "Mother's Maiden Name",
+                  className: "h-8 text-sm"
+                }
+              ) })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "N. Current Address" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AddressFields,
+              {
+                prefix: "curr",
+                data: form.currentAddress,
+                onChange: (d2) => setF("currentAddress", d2)
+              }
+            ),
+            err("addr.village"),
+            err("addr.district"),
+            err("addr.pin")
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "O. Permanent Address" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Same as Current Address?", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              RadioGroup,
+              {
+                name: "permanentSame",
+                value: form.permanentSameAsCurrent,
+                onChange: (v2) => setF("permanentSameAsCurrent", v2),
+                options: [
+                  { label: "Yes", value: "yes" },
+                  { label: "No", value: "no" }
+                ]
+              }
+            ) }),
+            form.permanentSameAsCurrent === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 p-2 rounded bg-green-50 border border-green-200 text-green-700 text-sm", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "✔" }),
+              " Same as Current Address"
+            ] }),
+            form.permanentSameAsCurrent === "no" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              AddressFields,
+              {
+                prefix: "perm",
+                data: form.permanentAddress,
+                onChange: (d2) => setF("permanentAddress", d2)
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "P. Is Applicant a Minor?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              RadioGroup,
+              {
+                name: "isMinor",
+                value: form.isMinor,
+                onChange: (v2) => setF("isMinor", v2),
+                options: [
+                  { label: "Yes", value: "yes" },
+                  { label: "No", value: "no" }
+                ]
+              }
+            ),
+            form.isMinor === "yes" && /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Guardian Contact No", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: form.guardianContactNo,
+                onChange: (e3) => {
+                  if (/^\d{0,10}$/.test(e3.target.value))
+                    setF("guardianContactNo", e3.target.value);
+                },
+                placeholder: "10-digit contact number",
+                maxLength: 10,
+                className: "h-8 text-sm",
+                "data-ocid": "account_opening.guardian.input"
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "Q. Nominee Details" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-3 gap-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "a. Nominee Name", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  value: form.nomineeName,
+                  onChange: (e3) => setF("nomineeName", e3.target.value),
+                  placeholder: "Nominee Name",
+                  className: "h-8 text-sm",
+                  "data-ocid": "account_opening.nominee_name.input"
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "b. Nominee Date of Birth", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input,
+                {
+                  type: "date",
+                  value: form.nomineeDob,
+                  onChange: (e3) => setF("nomineeDob", e3.target.value),
+                  className: "h-8 text-sm"
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "c. Relationship to Nominee", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Select,
+                {
+                  value: form.nomineeRelationship,
+                  onValueChange: (v2) => setF("nomineeRelationship", v2),
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      SelectTrigger,
+                      {
+                        className: "h-8 text-sm",
+                        "data-ocid": "account_opening.nominee_rel.select",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select..." })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: NOMINEE_RELATIONSHIPS.map((r2) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: r2, children: r2 }, r2)) })
+                  ]
+                }
+              ) })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "R. Applicant's Occupation" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "Occupation", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.occupation,
+                onValueChange: (v2) => setF("occupation", v2),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    SelectTrigger,
+                    {
+                      className: "h-8 text-sm",
+                      "data-ocid": "account_opening.occupation.select",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, { placeholder: "Select occupation..." })
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { children: OCCUPATIONS.map((o) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: o, children: o }, o)) })
+                ]
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-bold", style: { color: "#462980" }, children: "S. Signatures" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-8 mt-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground h-8 mb-1" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Applicant" })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground h-8 mb-1" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Nominee" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              className: "rounded-lg border border-border/60 p-4 space-y-3",
+              style: { backgroundColor: "#f9f9f9" },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
+                  {
+                    className: "text-xs font-bold uppercase tracking-widest",
+                    style: { color: "#b91c1c" },
+                    children: "For Bank Use Only"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 sm:grid-cols-2 gap-4", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(FieldRow, { label: "a. Customer ID", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input,
+                      {
+                        value: form.bankCustomerId,
+                        onChange: (e3) => setF("bankCustomerId", e3.target.value),
+                        placeholder: "Customer ID",
+                        disabled: !isManager,
+                        className: "h-8 text-sm font-bold",
+                        style: { color: "#b91c1c" },
+                        "data-ocid": "account_opening.bank_customer_id.input"
+                      }
+                    ),
+                    !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-[10px] text-muted-foreground", children: "Manager access required" })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(FieldRow, { label: "b. Account No", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input,
+                    {
+                      value: form.bankAccountNo,
+                      onChange: (e3) => setF("bankAccountNo", e3.target.value),
+                      placeholder: "Account No",
+                      disabled: !isManager,
+                      className: "h-8 text-sm font-bold",
+                      style: { color: "#b91c1c" },
+                      "data-ocid": "account_opening.bank_account_no.input"
+                    }
+                  ) })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-end mt-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "border-b-2 border-foreground w-48 h-8 mb-1" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Signature of Bank DbrM / Manager" })
+                ] }) })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 pt-2 flex-wrap", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                onClick: handleSubmit,
+                className: "text-white",
+                style: { backgroundColor: "#462980" },
+                "data-ocid": "account_opening.submit.button",
+                children: editId ? "Update Record" : "Submit & Save"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Button,
+              {
+                variant: "outline",
+                onClick: handleDownloadCurrent,
+                className: "gap-1.5",
+                "data-ocid": "account_opening.download.button",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { className: "w-4 h-4" }),
+                  " Download (.rtf)"
+                ]
+              }
+            ),
+            editId && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button,
+              {
+                variant: "ghost",
+                onClick: () => {
+                  setEditId(null);
+                  setForm(getInitialForm());
+                  setErrors({});
+                },
+                children: "Cancel Edit"
+              }
+            )
+          ] })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContent, { value: "saved-records", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3 border-b", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-3 flex-wrap", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CardTitle, { className: "text-base", children: "Saved Records" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                value: search,
+                onChange: (e3) => setSearch(e3.target.value),
+                placeholder: "Search by Reg No or Name...",
+                className: "pl-8 h-8 text-sm w-56",
+                "data-ocid": "account_opening.search.input"
+              }
+            )
+          ] }) })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "p-0", children: filtered.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "py-12 text-center text-muted-foreground",
+            "data-ocid": "account_opening.empty_state",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "w-8 h-8 mx-auto mb-2 opacity-30" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: search ? "No records match your search" : "No records yet. Fill the form to add one." })
+            ]
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: "w-full text-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: "border-b bg-muted/40", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Reg No" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Applicant Name" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Category" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Account Type" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Contact" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-left px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Date" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("th", { className: "text-right px-4 py-2.5 text-xs font-semibold text-muted-foreground", children: "Actions" })
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: filtered.map((rec) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "tr",
+            {
+              className: "border-b hover:bg-muted/20 transition-colors",
+              "data-ocid": `account_opening.record_row.${rec.id}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "td",
+                  {
+                    className: "px-4 py-2.5 font-mono text-xs font-semibold",
+                    style: { color: "#462980" },
+                    children: rec.registrationNumber
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 font-medium text-xs", children: rec.applicantName }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "outline", className: "text-[10px]", children: rec.category === "fino" ? "Fino Bank" : "CSP" }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: rec.accountType || "—" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: rec.contactNo }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5 text-xs text-muted-foreground", children: new Date(rec.submittedAt).toLocaleDateString(
+                  "en-IN"
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: "px-4 py-2.5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 justify-end", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Button,
+                    {
+                      size: "sm",
+                      variant: "outline",
+                      onClick: () => handleDownload(rec),
+                      className: "h-7 text-xs gap-1 px-2",
+                      "data-ocid": `account_opening.download_record.${rec.id}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { className: "w-3 h-3" }),
+                        " .rtf"
+                      ]
+                    }
+                  ),
+                  isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "outline",
+                        onClick: () => handleEdit(rec),
+                        className: "h-7 text-xs gap-1 px-2",
+                        "data-ocid": `account_opening.edit_record.${rec.id}`,
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Pen, { className: "w-3 h-3" }),
+                          " Edit"
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      Button,
+                      {
+                        size: "sm",
+                        variant: "outline",
+                        onClick: () => handleDelete(rec.id),
+                        className: "h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200",
+                        "data-ocid": `account_opening.delete_record.${rec.id}`,
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-3 h-3" }),
+                          " Del"
+                        ]
+                      }
+                    )
+                  ] })
+                ] }) })
+              ]
+            },
+            rec.id
+          )) })
+        ] }) }) })
+      ] }) })
+    ] })
+  ] });
+}
+const services = [
+  {
+    id: "account-opening",
+    no: "1",
+    icon: FileText,
+    title: "Account Opening Form",
+    desc: "Generate and download account opening forms for Fino Bank Doolahat and CSP accounts with unique registration numbers.",
+    available: true,
+    staffAllowed: true
+  },
+  {
+    id: "account-transfer",
+    no: "2",
+    icon: FolderOpen,
+    title: "Bank Account Transfer Form",
+    desc: "Branch-to-branch account transfer form. Transfer fee: ₹236.00 (including GST). Manager access required.",
+    available: false,
+    staffAllowed: false
+  },
+  {
+    id: "account-closure",
+    no: "3",
+    icon: ClipboardList,
+    title: "Account Closure Form",
+    desc: "Initiate account closure for bank customers with all required documentation. Manager access required.",
+    available: false,
+    staffAllowed: false
+  }
+];
+function CustomerServices() {
+  const { isManager } = useInventoryAuth();
+  const [active, setActive] = reactExports.useState("menu");
+  if (active === "account-opening") {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(AccountOpeningForm, { onBack: () => setActive("menu") });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "customer_services.page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: "w-8 h-8 rounded-lg flex items-center justify-center text-white",
+          style: { backgroundColor: "#462980" },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ClipboardList, { className: "w-4 h-4" })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-lg font-bold text-foreground", children: "Customer Services" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Manage account opening, transfer, and closure forms for bank customers" })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-4", children: services.map((svc) => {
+      const Icon2 = svc.icon;
+      const canAccess = svc.available && (svc.staffAllowed || isManager);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Card,
+        {
+          className: `border transition-all ${canAccess ? "hover:shadow-md cursor-pointer hover:border-[#462980]/40" : "opacity-70 cursor-not-allowed"}`,
+          onClick: () => canAccess && setActive(svc.id),
+          "data-ocid": `customer_services.${svc.id}.card`,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "p-5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3 mb-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: "w-9 h-9 rounded-lg flex items-center justify-center text-white shrink-0",
+                  style: {
+                    backgroundColor: canAccess ? "#462980" : "#9ca3af"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "w-4 h-4" })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 min-w-0", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    className: "text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center text-white shrink-0",
+                    style: { backgroundColor: "#462980" },
+                    children: svc.no
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-foreground leading-tight", children: svc.title })
+              ] }) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground leading-relaxed mb-3", children: svc.desc }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
+              svc.available ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  className: "text-[10px] px-1.5 py-0.5",
+                  style: { backgroundColor: "#462980", color: "#fff" },
+                  children: "Available"
+                }
+              ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "secondary",
+                  className: "text-[10px] px-1.5 py-0.5",
+                  children: "Coming Soon"
+                }
+              ),
+              !svc.staffAllowed && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "outline",
+                  className: "text-[10px] px-1.5 py-0.5 text-amber-700 border-amber-300 bg-amber-50",
+                  children: "Manager Only"
+                }
+              ),
+              svc.staffAllowed && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Badge,
+                {
+                  variant: "outline",
+                  className: "text-[10px] px-1.5 py-0.5 text-green-700 border-green-300 bg-green-50",
+                  children: "Staff + Manager"
+                }
+              )
+            ] })
+          ] })
+        },
+        svc.id
+      );
+    }) })
+  ] });
+}
 var ROOT_NAME = "AlertDialog";
 var [createAlertDialogContext] = createContextScope(ROOT_NAME, [
   createDialogScope
@@ -63254,7 +64968,7 @@ var AlertDialog$1 = (props) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$6, { ...dialogScope, ...alertDialogProps, modal: true });
 };
 AlertDialog$1.displayName = ROOT_NAME;
-var TRIGGER_NAME$2 = "AlertDialogTrigger";
+var TRIGGER_NAME$1 = "AlertDialogTrigger";
 var AlertDialogTrigger$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeAlertDialog, ...triggerProps } = props;
@@ -63262,7 +64976,7 @@ var AlertDialogTrigger$1 = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Trigger$4, { ...dialogScope, ...triggerProps, ref: forwardedRef });
   }
 );
-AlertDialogTrigger$1.displayName = TRIGGER_NAME$2;
+AlertDialogTrigger$1.displayName = TRIGGER_NAME$1;
 var PORTAL_NAME = "AlertDialogPortal";
 var AlertDialogPortal$1 = (props) => {
   const { __scopeAlertDialog, ...portalProps } = props;
@@ -63279,8 +64993,8 @@ var AlertDialogOverlay$1 = reactExports.forwardRef(
   }
 );
 AlertDialogOverlay$1.displayName = OVERLAY_NAME;
-var CONTENT_NAME$1 = "AlertDialogContent";
-var [AlertDialogContentProvider, useAlertDialogContentContext] = createAlertDialogContext(CONTENT_NAME$1);
+var CONTENT_NAME = "AlertDialogContent";
+var [AlertDialogContentProvider, useAlertDialogContentContext] = createAlertDialogContext(CONTENT_NAME);
 var Slottable = /* @__PURE__ */ createSlottable("AlertDialogContent");
 var AlertDialogContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -63292,7 +65006,7 @@ var AlertDialogContent$1 = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       WarningProvider,
       {
-        contentName: CONTENT_NAME$1,
+        contentName: CONTENT_NAME,
         titleName: TITLE_NAME,
         docsSlug: "alert-dialog",
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogContentProvider, { scope: __scopeAlertDialog, cancelRef, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -63319,7 +65033,7 @@ var AlertDialogContent$1 = reactExports.forwardRef(
     );
   }
 );
-AlertDialogContent$1.displayName = CONTENT_NAME$1;
+AlertDialogContent$1.displayName = CONTENT_NAME;
 var TITLE_NAME = "AlertDialogTitle";
 var AlertDialogTitle$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -63357,11 +65071,11 @@ var AlertDialogCancel$1 = reactExports.forwardRef(
 );
 AlertDialogCancel$1.displayName = CANCEL_NAME;
 var DescriptionWarning = ({ contentRef }) => {
-  const MESSAGE = `\`${CONTENT_NAME$1}\` requires a description for the component to be accessible for screen reader users.
+  const MESSAGE = `\`${CONTENT_NAME}\` requires a description for the component to be accessible for screen reader users.
 
-You can add a description to the \`${CONTENT_NAME$1}\` by passing a \`${DESCRIPTION_NAME}\` component as a child, which also benefits sighted users by adding visible context to the dialog.
+You can add a description to the \`${CONTENT_NAME}\` by passing a \`${DESCRIPTION_NAME}\` component as a child, which also benefits sighted users by adding visible context to the dialog.
 
-Alternatively, you can use your own component as a description by assigning it an \`id\` and passing the same value to the \`aria-describedby\` prop in \`${CONTENT_NAME$1}\`. If the description is confusing or duplicative for sighted users, you can use the \`@radix-ui/react-visually-hidden\` primitive as a wrapper around your description component.
+Alternatively, you can use your own component as a description by assigning it an \`id\` and passing the same value to the \`aria-describedby\` prop in \`${CONTENT_NAME}\`. If the description is confusing or duplicative for sighted users, you can use the \`@radix-ui/react-visually-hidden\` primitive as a wrapper around your description component.
 
 For more information, see https://radix-ui.com/primitives/docs/components/alert-dialog`;
   reactExports.useEffect(() => {
@@ -63373,7 +65087,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/alert-
   }, [MESSAGE, contentRef]);
   return null;
 };
-var Root2$1 = AlertDialog$1;
+var Root2 = AlertDialog$1;
 var Trigger2 = AlertDialogTrigger$1;
 var Portal2 = AlertDialogPortal$1;
 var Overlay2 = AlertDialogOverlay$1;
@@ -63385,7 +65099,7 @@ var Description2 = AlertDialogDescription$1;
 function AlertDialog({
   ...props
 }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$1, { "data-slot": "alert-dialog", ...props });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2, { "data-slot": "alert-dialog", ...props });
 }
 function AlertDialogTrigger({
   ...props
@@ -65911,7 +67625,7 @@ function CheckboxProvider(props) {
     }
   );
 }
-var TRIGGER_NAME$1 = "CheckboxTrigger";
+var TRIGGER_NAME = "CheckboxTrigger";
 var CheckboxTrigger = reactExports.forwardRef(
   ({ __scopeCheckbox, onKeyDown, onClick, ...checkboxProps }, forwardedRef) => {
     const {
@@ -65925,7 +67639,7 @@ var CheckboxTrigger = reactExports.forwardRef(
       hasConsumerStoppedPropagationRef,
       isFormControl,
       bubbleInput
-    } = useCheckboxContext(TRIGGER_NAME$1, __scopeCheckbox);
+    } = useCheckboxContext(TRIGGER_NAME, __scopeCheckbox);
     const composedRefs = useComposedRefs$1(forwardedRef, setControl);
     const initialCheckedStateRef = reactExports.useRef(checked);
     reactExports.useEffect(() => {
@@ -65963,7 +67677,7 @@ var CheckboxTrigger = reactExports.forwardRef(
     );
   }
 );
-CheckboxTrigger.displayName = TRIGGER_NAME$1;
+CheckboxTrigger.displayName = TRIGGER_NAME;
 var Checkbox$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const {
@@ -66491,7 +68205,7 @@ function AddProductModal({
         setLoading(false);
       }
     } else {
-      if (staffId !== STAFF_ID || staffPw !== STAFF_PASSWORD) {
+      if (!STAFF_IDS.includes(staffId) || staffPw !== STAFF_PASSWORD) {
         setAuthError("Invalid Staff User ID or Password");
         return;
       }
@@ -68030,238 +69744,6 @@ function Inventory() {
       }
     )
   ] });
-}
-var TABS_NAME = "Tabs";
-var [createTabsContext] = createContextScope(TABS_NAME, [
-  createRovingFocusGroupScope
-]);
-var useRovingFocusGroupScope = createRovingFocusGroupScope();
-var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
-var Tabs$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      __scopeTabs,
-      value: valueProp,
-      onValueChange,
-      defaultValue,
-      orientation = "horizontal",
-      dir,
-      activationMode = "automatic",
-      ...tabsProps
-    } = props;
-    const direction = useDirection(dir);
-    const [value, setValue] = useControllableState({
-      prop: valueProp,
-      onChange: onValueChange,
-      defaultProp: defaultValue ?? "",
-      caller: TABS_NAME
-    });
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      TabsProvider,
-      {
-        scope: __scopeTabs,
-        baseId: useId(),
-        value,
-        onValueChange: setValue,
-        orientation,
-        dir: direction,
-        activationMode,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive$1.div,
-          {
-            dir: direction,
-            "data-orientation": orientation,
-            ...tabsProps,
-            ref: forwardedRef
-          }
-        )
-      }
-    );
-  }
-);
-Tabs$1.displayName = TABS_NAME;
-var TAB_LIST_NAME = "TabsList";
-var TabsList$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeTabs, loop = true, ...listProps } = props;
-    const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
-    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Root$4,
-      {
-        asChild: true,
-        ...rovingFocusGroupScope,
-        orientation: context.orientation,
-        dir: context.dir,
-        loop,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive$1.div,
-          {
-            role: "tablist",
-            "aria-orientation": context.orientation,
-            ...listProps,
-            ref: forwardedRef
-          }
-        )
-      }
-    );
-  }
-);
-TabsList$1.displayName = TAB_LIST_NAME;
-var TRIGGER_NAME = "TabsTrigger";
-var TabsTrigger$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
-    const context = useTabsContext(TRIGGER_NAME, __scopeTabs);
-    const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
-    const triggerId = makeTriggerId(context.baseId, value);
-    const contentId = makeContentId(context.baseId, value);
-    const isSelected = value === context.value;
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Item$1,
-      {
-        asChild: true,
-        ...rovingFocusGroupScope,
-        focusable: !disabled,
-        active: isSelected,
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Primitive$1.button,
-          {
-            type: "button",
-            role: "tab",
-            "aria-selected": isSelected,
-            "aria-controls": contentId,
-            "data-state": isSelected ? "active" : "inactive",
-            "data-disabled": disabled ? "" : void 0,
-            disabled,
-            id: triggerId,
-            ...triggerProps,
-            ref: forwardedRef,
-            onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
-              if (!disabled && event.button === 0 && event.ctrlKey === false) {
-                context.onValueChange(value);
-              } else {
-                event.preventDefault();
-              }
-            }),
-            onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
-              if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
-            }),
-            onFocus: composeEventHandlers(props.onFocus, () => {
-              const isAutomaticActivation = context.activationMode !== "manual";
-              if (!isSelected && !disabled && isAutomaticActivation) {
-                context.onValueChange(value);
-              }
-            })
-          }
-        )
-      }
-    );
-  }
-);
-TabsTrigger$1.displayName = TRIGGER_NAME;
-var CONTENT_NAME = "TabsContent";
-var TabsContent$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
-    const context = useTabsContext(CONTENT_NAME, __scopeTabs);
-    const triggerId = makeTriggerId(context.baseId, value);
-    const contentId = makeContentId(context.baseId, value);
-    const isSelected = value === context.value;
-    const isMountAnimationPreventedRef = reactExports.useRef(isSelected);
-    reactExports.useEffect(() => {
-      const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
-      return () => cancelAnimationFrame(rAF);
-    }, []);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isSelected, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive$1.div,
-      {
-        "data-state": isSelected ? "active" : "inactive",
-        "data-orientation": context.orientation,
-        role: "tabpanel",
-        "aria-labelledby": triggerId,
-        hidden: !present,
-        id: contentId,
-        tabIndex: 0,
-        ...contentProps,
-        ref: forwardedRef,
-        style: {
-          ...props.style,
-          animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
-        },
-        children: present && children
-      }
-    ) });
-  }
-);
-TabsContent$1.displayName = CONTENT_NAME;
-function makeTriggerId(baseId, value) {
-  return `${baseId}-trigger-${value}`;
-}
-function makeContentId(baseId, value) {
-  return `${baseId}-content-${value}`;
-}
-var Root2 = Tabs$1;
-var List = TabsList$1;
-var Trigger = TabsTrigger$1;
-var Content = TabsContent$1;
-function Tabs({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Root2,
-    {
-      "data-slot": "tabs",
-      className: cn("flex flex-col gap-2", className),
-      ...props
-    }
-  );
-}
-function TabsList({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    List,
-    {
-      "data-slot": "tabs-list",
-      className: cn(
-        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function TabsTrigger({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Trigger,
-    {
-      "data-slot": "tabs-trigger",
-      className: cn(
-        "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className
-      ),
-      ...props
-    }
-  );
-}
-function TabsContent({
-  className,
-  ...props
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Content,
-    {
-      "data-slot": "tabs-content",
-      className: cn("flex-1 outline-none", className),
-      ...props
-    }
-  );
 }
 const ACCOUNTS_KEY = "fino_lien_accounts";
 function loadAccounts() {
@@ -72036,7 +73518,7 @@ function TxForm({
       return;
     }
     if (role !== "manager") {
-      if (staffUserId !== "156399746" || staffPassword !== "156399746") {
+      if (!["156399746", "332"].includes(staffUserId) || staffPassword !== "156399746") {
         setStaffError(
           "Invalid Staff User ID or Password. Please check and retry."
         );
@@ -73142,6 +74624,8 @@ function App() {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Loans, {});
       case "lien-transaction":
         return /* @__PURE__ */ jsxRuntimeExports.jsx(LienTransactionPage, {});
+      case "customer-services":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(CustomerServices, {});
       default:
         return /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, { onNavigate: setActiveTab });
     }
@@ -73204,7 +74688,8 @@ function App() {
                   ["inventory", "Inventory"],
                   ["complaints", "Complaints"],
                   ["loans", "Loans"],
-                  ["lien-transaction", "Lien Transaction"]
+                  ["lien-transaction", "Lien Transaction"],
+                  ["customer-services", "Customer Services"]
                 ].map(([tab, label]) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "button",
                   {

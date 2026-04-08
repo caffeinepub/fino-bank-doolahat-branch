@@ -20,6 +20,7 @@ interface InventoryAuthContextValue {
 // ── Constants ────────────────────────────────────────────────────────────────
 
 export const STAFF_ID = "156399746";
+export const STAFF_IDS = ["156399746", "332"];
 export const STAFF_PASSWORD = "156399746";
 export const MANAGER_PASSWORD = "Ratulcc143@";
 export const SECURITY_ANSWER = "Pulak";

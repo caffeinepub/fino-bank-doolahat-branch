@@ -173,7 +173,10 @@ function TxForm({
 
     if (role !== "manager") {
       // Staff mode: validate credentials then queue for approval
-      if (staffUserId !== "156399746" || staffPassword !== "156399746") {
+      if (
+        !["156399746", "332"].includes(staffUserId) ||
+        staffPassword !== "156399746"
+      ) {
         setStaffError(
           "Invalid Staff User ID or Password. Please check and retry.",
         );

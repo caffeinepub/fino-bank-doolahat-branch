@@ -18,6 +18,7 @@ const tabs: { id: TabId; label: string; external?: boolean }[] = [
   { id: "complaints", label: "Complaints" },
   { id: "loans", label: "Loans" },
   { id: "lien-transaction", label: "Lien Transaction" },
+  { id: "customer-services", label: "Customer Services" },
   { id: "upi-collection", label: "UPI Collection", external: true },
 ];
 

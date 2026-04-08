@@ -49,7 +49,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import {
-  STAFF_ID,
+  STAFF_IDS,
   STAFF_PASSWORD,
   useInventoryAuth,
 } from "../context/InventoryAuthContext";
@@ -457,7 +457,7 @@ function AddProductModal({
       }
     } else {
       // Staff: validate credentials
-      if (staffId !== STAFF_ID || staffPw !== STAFF_PASSWORD) {
+      if (!STAFF_IDS.includes(staffId) || staffPw !== STAFF_PASSWORD) {
         setAuthError("Invalid Staff User ID or Password");
         return;
       }
