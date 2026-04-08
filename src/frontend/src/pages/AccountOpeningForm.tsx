@@ -264,81 +264,164 @@ function claimRegNumber(category: Category): string {
   return "";
 }
 
-// ── .docx / RTF generator ───────────────────────────────────────────────────
+// ── Excel utilities ──────────────────────────────────────────────────────────
 
-function line(label: string, value: string): string {
-  const safe = (v: string) => v.replace(/[\\{}]/g, "");
-  return `{\\b ${safe(label)}:} ${safe(value || "—")}\\line `;
+async function getXLSX(): Promise<any> {
+  if (typeof window !== "undefined" && (window as any).XLSX) {
+    return (window as any).XLSX;
+  }
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+    script.onload = () => resolve((window as any).XLSX);
+    script.onerror = () => reject(new Error("Failed to load xlsx from CDN"));
+    document.head.appendChild(script);
+  });
 }
 
-function generateDocx(rec: AccountOpeningRecord): string {
-  const svcLines = SERVICE_ITEMS.map(
-    (s) => `${s.label}: ${rec.services[s.key] || "—"}`,
-  ).join(" | ");
+function addrStr(a: AddressData): string {
+  return [
+    a.village,
+    a.postOffice ? `P.O: ${a.postOffice}` : "",
+    a.subDistrict ? `Sub-Dist: ${a.subDistrict}` : "",
+    a.district ? `Dist: ${a.district}` : "",
+    `${a.state}${a.pinCode ? ` - ${a.pinCode}` : ""}`,
+  ]
+    .filter(Boolean)
+    .join(", ");
+}
 
-  const addrStr = (a: AddressData) =>
-    `${a.village}, P.O: ${a.postOffice}, Sub-Dist: ${a.subDistrict}, Dist: ${a.district}, ${a.state} - ${a.pinCode}`;
+async function generateExcel(rec: AccountOpeningRecord): Promise<void> {
+  const XLSX = await getXLSX();
+  const categoryLabel =
+    rec.category === "fino" ? "Fino Bank Doolahat Account" : "CSP Account";
+  const submittedDate = new Date(rec.submittedAt).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 
-  const permanentBlock =
+  const yesNo = (v: string) => (v === "yes" ? "Yes" : v === "no" ? "No" : "—");
+
+  const permanentAddr =
     rec.permanentSameAsCurrent === "yes"
       ? "Same as Current Address"
       : addrStr(rec.permanentAddress);
 
-  const panBlock =
-    rec.panAvailable === "yes"
-      ? `PAN No: ${rec.panNo}`
+  const rows: (string | number)[][] = [
+    ["ACCOUNT OPENING FORM"],
+    ["MINOR, SAVINGS, CURRENT ACCOUNT"],
+    ["Fino Small Finance Bank – Doolahat Branch"],
+    [],
+    ["Registration No", rec.registrationNumber],
+    ["Category", categoryLabel],
+    ["Date", submittedDate],
+    [],
+    ["PASSPORT SIZE PHOTO", "(Paste photo manually on printed form)"],
+    [],
+    ["A. TYPE OF ACCOUNT"],
+    ["Type of Account", rec.accountType || "—"],
+    ["Mode of Operation", rec.modeOfOperation || "—"],
+    [],
+    ["C. ADDITIONAL SERVICE REQUEST"],
+    ...SERVICE_ITEMS.map((s) => [s.label, yesNo(rec.services[s.key] ?? "")]),
+    [],
+    ["D. EDUCATION QUALIFICATION"],
+    ["Education Qualification", rec.eduQualification || "—"],
+    [],
+    ["E. PAN DETAILS"],
+    ["PAN Available", yesNo(rec.panAvailable)],
+    ...(rec.panAvailable === "yes"
+      ? [["PAN Number", rec.panNo || "—"]]
       : [
-          `Form 60 — Amount: ${rec.form60.txnAmount}, Date: ${rec.form60.txnDate}`,
-          `PAN Applied: ${rec.form60.panApplied}`,
-          rec.form60.panApplied === "yes"
-            ? `App Date: ${rec.form60.panApplicationDate}, Ack No: ${rec.form60.panAcknowledgementNo}`
-            : "",
-          `Agri Income: ${rec.form60.agriIncome}, Other Income: ${rec.form60.otherIncome}`,
-        ]
-          .filter(Boolean)
-          .join("\\line ");
+          ["Form 60 — Txn Amount (Rs.)", rec.form60.txnAmount || "—"],
+          ["Form 60 — Txn Date", rec.form60.txnDate || "—"],
+          ["Form 60 — PAN Applied", yesNo(rec.form60.panApplied)],
+          ...(rec.form60.panApplied === "yes"
+            ? [
+                [
+                  "Form 60 — PAN Application Date",
+                  rec.form60.panApplicationDate || "—",
+                ],
+                [
+                  "Form 60 — PAN Acknowledgement No",
+                  rec.form60.panAcknowledgementNo || "—",
+                ],
+              ]
+            : []),
+          ["Form 60 — Agricultural Income (Rs.)", rec.form60.agriIncome || "—"],
+          ["Form 60 — Other Income (Rs.)", rec.form60.otherIncome || "—"],
+        ]),
+    [],
+    ["F–I. CONTACT & IDENTITY DETAILS"],
+    ["F. Aadhar No", rec.aadharNo || "—"],
+    ["G. Contact No", rec.contactNo || "—"],
+    [
+      "H. Initial Deposit (Rs.)",
+      rec.initialDeposit ? `Rs. ${rec.initialDeposit}` : "—",
+    ],
+    ["I. Email ID", rec.email || "—"],
+    [],
+    ["J–M. APPLICANT DETAILS"],
+    ["J. Applicant's Name", rec.applicantName || "—"],
+    ["K. Date of Birth", rec.dob || "—"],
+    ["L. Father / Husband Name", rec.fatherHusbandName || "—"],
+    ["M. Mother's Maiden Name", rec.motherMaidenName || "—"],
+    [],
+    ["N. CURRENT ADDRESS"],
+    ["Village / Town", rec.currentAddress.village || "—"],
+    ["Post Office", rec.currentAddress.postOffice || "—"],
+    ["Sub-District", rec.currentAddress.subDistrict || "—"],
+    ["District", rec.currentAddress.district || "—"],
+    ["State", rec.currentAddress.state],
+    ["Pin Code", rec.currentAddress.pinCode || "—"],
+    [],
+    ["O. PERMANENT ADDRESS"],
+    ...(rec.permanentSameAsCurrent === "yes"
+      ? [["Permanent Address", permanentAddr]]
+      : [
+          ["Village / Town", rec.permanentAddress.village || "—"],
+          ["Post Office", rec.permanentAddress.postOffice || "—"],
+          ["Sub-District", rec.permanentAddress.subDistrict || "—"],
+          ["District", rec.permanentAddress.district || "—"],
+          ["State", rec.permanentAddress.state],
+          ["Pin Code", rec.permanentAddress.pinCode || "—"],
+        ]),
+    [],
+    ["P. MINOR STATUS"],
+    ["Is Applicant a Minor?", yesNo(rec.isMinor)],
+    ...(rec.isMinor === "yes"
+      ? [["Guardian Contact No", rec.guardianContactNo || "—"]]
+      : []),
+    [],
+    ["Q. NOMINEE DETAILS"],
+    ["a. Nominee Name", rec.nomineeName || "—"],
+    ["b. Nominee Date of Birth", rec.nomineeDob || "—"],
+    ["c. Relationship to Nominee", rec.nomineeRelationship || "—"],
+    [],
+    ["R. APPLICANT'S OCCUPATION"],
+    ["Occupation", rec.occupation || "—"],
+    [],
+    ["S. SIGNATURES"],
+    ["Signature of Applicant", "_________________________________"],
+    ["Signature of Nominee", "_________________________________"],
+    [],
+    ["——————————— FOR BANK USE ONLY ———————————"],
+    ["a. Customer ID", rec.bankCustomerId || "—"],
+    ["b. Account No", rec.bankAccountNo || "—"],
+    [],
+    ["Signature of Bank DbrM / Manager", "_________________________________"],
+  ];
 
-  // Use RTF format (opens in Word) — same as LienTransaction approach
-  return [
-    "{\\rtf1\\ansi\\deff0",
-    "{\\fonttbl{\\f0\\froman Times New Roman;}{\\f1\\fswiss Arial;}}",
-    "{\\colortbl ;\\red70\\green41\\blue128;\\red180\\green0\\blue0;}",
-    "\\paperw11907\\paperh16838\\margl1440\\margr1440\\margt1440\\margb1440",
-    // Heading
-    "\\pard\\qc{\\f1\\b\\fs32\\cf1 ACCOUNT OPENING FORM}\\par",
-    "\\pard\\qc{\\f1\\b\\fs22 MINOR | SAVINGS | CURRENT ACCOUNT}\\par\\par",
-    // Reg No
-    `\\pard\\ql{\\f1\\b\\fs22 Registration No: ${rec.registrationNumber}}\\par`,
-    `\\pard\\ql{\\f1\\fs18 Category: ${rec.category === "fino" ? "Fino Bank Doolahat Account" : "CSP Account"}}\\par`,
-    `\\pard\\ql{\\f1\\fs18 Date: ${new Date(rec.submittedAt).toLocaleDateString("en-IN")}}\\par`,
-    // Photo box
-    "\\pard\\qr{\\f1\\fs18 \\box\\brdrs\\brdrw15\\brdrsp20 \\pard\\qc\\f1\\fs16 [Paste Photo Here] }\\par\\par",
-    // Fields
-    "\\pard\\ql{\\f1\\b\\fs20 A. Account Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${line("Type of Account", rec.accountType)}${line("Mode of Operation", rec.modeOfOperation)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 B. Additional Services}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${svcLines}}\\par\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 C. Personal Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${line("Education Qualification", rec.eduQualification)}${line("PAN Available", rec.panAvailable)}${panBlock}\\line ${line("Aadhar No", rec.aadharNo)}${line("Contact No", rec.contactNo)}${line("Initial Deposit (Rs.)", rec.initialDeposit)}${line("Email ID", rec.email)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 D. Applicant Information}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${line("Applicant Name", rec.applicantName)}${line("Date of Birth", rec.dob)}${line("Father / Husband Name", rec.fatherHusbandName)}${line("Mother's Maiden Name", rec.motherMaidenName)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 E. Address}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${line("Current Address", addrStr(rec.currentAddress))}${line("Permanent Address", permanentBlock)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 F. Minor & Nominee}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${line("Is Minor", rec.isMinor)}${rec.isMinor === "yes" ? line("Guardian Contact No", rec.guardianContactNo) : ""}${line("Nominee Name", rec.nomineeName)}${line("Nominee DOB", rec.nomineeDob)}${line("Relationship to Nominee", rec.nomineeRelationship)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 G. Occupation}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${line("Occupation", rec.occupation)}}\\par\\par`,
-    // Signature lines
-    "\\pard\\qj{\\f1\\fs20 \\ul                                        \\ulnone                               \\ul                                        \\ulnone}\\par",
-    "\\pard\\qj{\\f1\\fs16 Signature of Applicant                                                     Signature of Nominee}\\par\\par\\par",
-    // Bank use only
-    "\\pard\\qj{\\f1\\b\\fs18 \\highlight2 --------- FOR BANK USE ONLY ---------}\\par",
-    `\\pard\\ql{\\f1\\b\\fs18\\cf2 ${line("Customer ID", rec.bankCustomerId)}}\\par`,
-    `\\pard\\ql{\\f1\\b\\fs18\\cf2 ${line("Account No", rec.bankAccountNo)}}\\par\\par`,
-    "\\pard\\qr{\\f1\\fs18 \\ul                                        \\ulnone}\\par",
-    "\\pard\\qr{\\f1\\fs16 Signature of Bank DbrM / Manager}\\par",
-    "}",
-  ].join("\n");
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"] = [{ wch: 38 }, { wch: 42 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Account Opening Form");
+  XLSX.writeFile(
+    wb,
+    `${rec.registrationNumber.replace(/\//g, "_")}_AccountOpeningForm.xlsx`,
+  );
 }
 
 // ── Address sub-form ──────────────────────────────────────────────────────
@@ -602,19 +685,17 @@ export default function AccountOpeningForm({ onBack }: Props) {
   }
 
   // ── Download ──────────────────────────────────────────────────────────
-  function handleDownload(rec: AccountOpeningRecord) {
-    const rtf = generateDocx(rec);
-    const blob = new Blob([rtf], { type: "application/rtf" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `AccountOpening_${rec.registrationNumber.replace(/\//g, "_")}.rtf`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("Form downloaded successfully");
+  async function handleDownload(rec: AccountOpeningRecord) {
+    try {
+      toast.info("Downloading Excel...");
+      await generateExcel(rec);
+      toast.success("Form downloaded as Excel (.xlsx)");
+    } catch {
+      toast.error("Failed to generate Excel. Please try again.");
+    }
   }
 
-  function handleDownloadCurrent() {
+  async function handleDownloadCurrent() {
     if (!validate()) {
       toast.error("Please fill required fields before downloading.");
       return;
@@ -626,7 +707,7 @@ export default function AccountOpeningForm({ onBack }: Props) {
       category: form.category as Category,
       submittedAt: new Date().toISOString(),
     };
-    handleDownload(tempRec);
+    await handleDownload(tempRec);
   }
 
   // ── Edit ──────────────────────────────────────────────────────────────
@@ -1420,7 +1501,7 @@ export default function AccountOpeningForm({ onBack }: Props) {
                   className="gap-1.5"
                   data-ocid="account_opening.download.button"
                 >
-                  <Download className="w-4 h-4" /> Download (.rtf)
+                  <Download className="w-4 h-4" /> Download (.xlsx)
                 </Button>
                 {editId && (
                   <Button
@@ -1541,7 +1622,7 @@ export default function AccountOpeningForm({ onBack }: Props) {
                                 className="h-7 text-xs gap-1 px-2"
                                 data-ocid={`account_opening.download_record.${rec.id}`}
                               >
-                                <Download className="w-3 h-3" /> .rtf
+                                <Download className="w-3 h-3" /> .xlsx
                               </Button>
                               {isManager && (
                                 <>

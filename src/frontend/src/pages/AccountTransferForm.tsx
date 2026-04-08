@@ -75,32 +75,70 @@ function getInitialForm() {
   };
 }
 
-// ── RTF Generator ──────────────────────────────────────────────────────────
+// ── Excel Generator ────────────────────────────────────────────────────────
 
-function generateRTF(rec: AccountTransferRecord): string {
-  const safe = (v: string) => (v || "—").replace(/[\\{}]/g, "");
-  const field = (label: string, value: string) =>
-    `{\\b ${safe(label)}:} ${safe(value)}\\line `;
+async function getXLSX(): Promise<any> {
+  if (typeof window !== "undefined" && (window as any).XLSX) {
+    return (window as any).XLSX;
+  }
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+    script.onload = () => resolve((window as any).XLSX);
+    script.onerror = () => reject(new Error("Failed to load xlsx from CDN"));
+    document.head.appendChild(script);
+  });
+}
 
-  return [
-    "{\\rtf1\\ansi\\deff0",
-    "{\\fonttbl{\\f0\\froman Times New Roman;}{\\f1\\fswiss Arial;}}",
-    "{\\colortbl ;\\red70\\green41\\blue128;\\red180\\green0\\blue0;}",
-    "\\paperw11907\\paperh16838\\margl1440\\margr1440\\margt1440\\margb1440",
-    "\\pard\\qc{\\f1\\b\\fs32\\cf1 BANK ACCOUNT TRANSFER FORM}\\par",
-    "\\pard\\qc{\\f1\\b\\fs20 Fino Small Finance Bank — Doolahat Branch}\\par\\par",
-    `\\pard\\ql{\\f1\\b\\fs22 Reference No: ${safe(rec.referenceNo)}}\\par`,
-    `\\pard\\ql{\\f1\\fs18 Application Date: ${safe(rec.applicationDate)}}\\par\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 Customer Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${field("Account No", rec.accountNo)}${field("Customer Name", rec.customerName)}${field("Father / Husband Name", rec.fatherHusbandName)}${field("Contact No", rec.contactNo)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 Transfer Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${field("From Branch", rec.fromBranch)}${field("To Branch", rec.toBranch)}${field("Transfer Reason", rec.transferReason)}}\\par`,
-    `\\pard\\ql{\\f1\\b\\fs20\\cf2 Transfer Fee: ${TRANSFER_FEE}}\\par\\par`,
-    `\\pard\\ql{\\f1\\fs18 ${field("Remarks", rec.remarks)}}\\par\\par`,
-    "\\pard\\qj{\\f1\\fs20 \\ul                                        \\ulnone                               \\ul                                        \\ulnone}\\par",
-    "\\pard\\qj{\\f1\\fs16 Signature of Account Holder                                          Signature of Branch Manager}\\par",
-    "}",
-  ].join("\n");
+async function generateExcel(rec: AccountTransferRecord): Promise<void> {
+  const XLSX = await getXLSX();
+  const dateFormatted = rec.applicationDate
+    ? new Date(rec.applicationDate).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "—";
+
+  const rows: (string | number)[][] = [
+    ["BANK ACCOUNT TRANSFER REQUEST FORM"],
+    ["Fino Small Finance Bank – Doolahat Branch"],
+    ["Transfer Fee: Rs. 236.00 (Including GST)"],
+    [],
+    ["Reference No", rec.referenceNo],
+    ["Application Date", dateFormatted],
+    [],
+    ["CUSTOMER DETAILS"],
+    ["Account No", rec.accountNo],
+    ["Customer Name", rec.customerName],
+    ["Father / Husband Name", rec.fatherHusbandName],
+    ["Contact No", rec.contactNo],
+    [],
+    ["TRANSFER DETAILS"],
+    ["Current Branch", rec.fromBranch],
+    ["Transfer To Branch", rec.toBranch],
+    ["Reason for Transfer", rec.transferReason || "—"],
+    ["Remarks", rec.remarks || "—"],
+    [],
+    ["SIGNATURES"],
+    ["Signature of Account Holder", "_________________________________"],
+    ["Branch Manager / DbrM Signature", "_________________________________"],
+    [],
+    ["——————————— FOR BANK USE ONLY ———————————"],
+    ["Verified By", ""],
+    ["Date of Transfer", ""],
+    ["Remarks (Bank)", ""],
+  ];
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"] = [{ wch: 36 }, { wch: 42 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Account Transfer Form");
+  XLSX.writeFile(
+    wb,
+    `Account_Transfer_${rec.referenceNo.replace(/\//g, "_")}.xlsx`,
+  );
 }
 
 // ── Field helpers ──────────────────────────────────────────────────────────
@@ -204,23 +242,21 @@ export default function AccountTransferForm({ onBack }: Props) {
   }
 
   // ── Download ───────────────────────────────────────────────────────────
-  function handleDownload(rec: AccountTransferRecord) {
-    const rtf = generateRTF(rec);
-    const blob = new Blob([rtf], { type: "application/rtf" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `AccountTransfer_${rec.referenceNo.replace(/\//g, "_")}.rtf`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("Transfer form downloaded");
+  async function handleDownload(rec: AccountTransferRecord) {
+    try {
+      toast.info("Downloading Excel...");
+      await generateExcel(rec);
+      toast.success("Transfer form downloaded as Excel (.xlsx)");
+    } catch {
+      toast.error("Failed to generate Excel. Please try again.");
+    }
   }
 
   // ── Edit ───────────────────────────────────────────────────────────────
   function handleEdit(rec: AccountTransferRecord) {
-    const { id, referenceNo, submittedAt, ...rest } = rec;
+    const { id: _id, referenceNo: _ref, submittedAt: _sat, ...rest } = rec;
     setForm(rest);
-    setEditId(id);
+    setEditId(rec.id);
     setErrors({});
     setTab("new-entry");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -639,26 +675,30 @@ export default function AccountTransferForm({ onBack }: Props) {
                                 className="h-7 text-xs gap-1 px-2"
                                 data-ocid={`account_transfer.download_record.${rec.id}`}
                               >
-                                <Download className="w-3 h-3" /> .rtf
+                                <Download className="w-3 h-3" /> .xlsx
                               </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleEdit(rec)}
-                                className="h-7 text-xs gap-1 px-2"
-                                data-ocid={`account_transfer.edit_record.${rec.id}`}
-                              >
-                                <Edit2 className="w-3 h-3" /> Edit
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleDelete(rec.id)}
-                                className="h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200"
-                                data-ocid={`account_transfer.delete_record.${rec.id}`}
-                              >
-                                <Trash2 className="w-3 h-3" /> Del
-                              </Button>
+                              {isManager && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleEdit(rec)}
+                                    className="h-7 text-xs gap-1 px-2"
+                                    data-ocid={`account_transfer.edit_record.${rec.id}`}
+                                  >
+                                    <Edit2 className="w-3 h-3" /> Edit
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleDelete(rec.id)}
+                                    className="h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200"
+                                    data-ocid={`account_transfer.delete_record.${rec.id}`}
+                                  >
+                                    <Trash2 className="w-3 h-3" /> Del
+                                  </Button>
+                                </>
+                              )}
                             </div>
                           </td>
                         </tr>

@@ -111,44 +111,97 @@ function getInitialForm() {
   };
 }
 
-// ── RTF Generator ──────────────────────────────────────────────────────────
+// ── Excel Generator ────────────────────────────────────────────────────────
 
-function generateRTF(rec: AccountClosureRecord): string {
-  const safe = (v: string) => (v || "—").replace(/[\\{}]/g, "");
-  const field = (label: string, value: string) =>
-    `{\\b ${safe(label)}:} ${safe(value)}\\line `;
+async function getXLSX(): Promise<any> {
+  if (typeof window !== "undefined" && (window as any).XLSX) {
+    return (window as any).XLSX;
+  }
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+    script.onload = () => resolve((window as any).XLSX);
+    script.onerror = () => reject(new Error("Failed to load xlsx from CDN"));
+    document.head.appendChild(script);
+  });
+}
+
+async function generateExcel(rec: AccountClosureRecord): Promise<void> {
+  const XLSX = await getXLSX();
 
   const reasonDisplay =
     rec.reasonForClosure === "Other" && rec.otherReason
       ? `Other — ${rec.otherReason}`
       : rec.reasonForClosure;
 
-  const settlementBlock =
+  const settlementDisplay =
     rec.modeOfSettlement === "Transfer to Another Account" &&
     rec.settlementAccountNo
       ? `${rec.modeOfSettlement} (A/c: ${rec.settlementAccountNo})`
       : rec.modeOfSettlement;
 
-  return [
-    "{\\rtf1\\ansi\\deff0",
-    "{\\fonttbl{\\f0\\froman Times New Roman;}{\\f1\\fswiss Arial;}}",
-    "{\\colortbl ;\\red70\\green41\\blue128;\\red180\\green0\\blue0;}",
-    "\\paperw11907\\paperh16838\\margl1440\\margr1440\\margt1440\\margb1440",
-    "\\pard\\qc{\\f1\\b\\fs32\\cf1 ACCOUNT CLOSURE FORM}\\par",
-    `\\pard\\qc{\\f1\\b\\fs20 ${BANK_NAME} — ${BRANCH_NAME}}\\par\\par`,
-    `\\pard\\ql{\\f1\\b\\fs22 Reference No: ${safe(rec.referenceNo)}}\\par`,
-    `\\pard\\ql{\\f1\\fs18 Closure Request Date: ${safe(rec.dateOfClosureRequest)}}\\par`,
-    `\\pard\\ql{\\f1\\b\\fs18\\cf2 Status: ${safe(rec.status)}}\\par\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 Customer Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${field("Account No", rec.accountNo)}${field("Customer Name", rec.customerName)}${field("Father / Husband Name", rec.fatherHusbandName)}${field("Contact No", rec.contactNo)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 Account Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${field("Account Type", rec.accountType)}${field("Date of Opening", rec.dateOfOpening)}${field("Outstanding Balance (Rs.)", rec.outstandingBalance)}}\\par`,
-    "\\pard\\ql{\\f1\\b\\fs20 Closure Details}\\par",
-    `\\pard\\ql{\\f1\\fs18 ${field("Reason for Closure", reasonDisplay)}${field("Mode of Settlement", settlementBlock)}${field("Remarks", rec.remarks)}}\\par\\par`,
-    "\\pard\\qj{\\f1\\fs20 \\ul                                        \\ulnone                               \\ul                                        \\ulnone}\\par",
-    "\\pard\\qj{\\f1\\fs16 Signature of Account Holder                                          Signature of Branch Manager}\\par",
-    "}",
-  ].join("\n");
+  const closureDateFormatted = rec.dateOfClosureRequest
+    ? new Date(rec.dateOfClosureRequest).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "—";
+
+  const openingDateFormatted = rec.dateOfOpening
+    ? new Date(rec.dateOfOpening).toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })
+    : "—";
+
+  const rows: (string | number)[][] = [
+    ["ACCOUNT CLOSURE REQUEST FORM"],
+    [`${BANK_NAME} – ${BRANCH_NAME}`],
+    [],
+    ["Reference No", rec.referenceNo],
+    ["Closure Request Date", closureDateFormatted],
+    ["Status", rec.status],
+    [],
+    ["CUSTOMER DETAILS"],
+    ["Account No", rec.accountNo],
+    ["Customer Name", rec.customerName],
+    ["Father / Husband Name", rec.fatherHusbandName],
+    ["Contact No", rec.contactNo],
+    [],
+    ["ACCOUNT DETAILS"],
+    ["Account Type", rec.accountType],
+    ["Date of Opening", openingDateFormatted],
+    [
+      "Outstanding Balance (Rs.)",
+      rec.outstandingBalance ? `Rs. ${rec.outstandingBalance}` : "—",
+    ],
+    [],
+    ["CLOSURE DETAILS"],
+    ["Reason for Closure", reasonDisplay || "—"],
+    ["Mode of Settlement", settlementDisplay || "—"],
+    ["Remarks", rec.remarks || "—"],
+    [],
+    ["SIGNATURES"],
+    ["Signature of Account Holder", "_________________________________"],
+    ["Branch Manager / DbrM Signature", "_________________________________"],
+    [],
+    ["——————————— FOR BANK USE ONLY ———————————"],
+    ["Processed By", ""],
+    ["Date of Processing", ""],
+    ["Remarks (Bank)", ""],
+  ];
+
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"] = [{ wch: 36 }, { wch: 42 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Account Closure Form");
+  XLSX.writeFile(
+    wb,
+    `Account_Closure_${rec.referenceNo.replace(/\//g, "_")}.xlsx`,
+  );
 }
 
 // ── Field helpers ──────────────────────────────────────────────────────────
@@ -282,23 +335,27 @@ export default function AccountClosureForm({ onBack }: Props) {
   }
 
   // ── Download ───────────────────────────────────────────────────────────
-  function handleDownload(rec: AccountClosureRecord) {
-    const rtf = generateRTF(rec);
-    const blob = new Blob([rtf], { type: "application/rtf" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `AccountClosure_${rec.referenceNo.replace(/\//g, "_")}.rtf`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("Closure form downloaded");
+  async function handleDownload(rec: AccountClosureRecord) {
+    try {
+      toast.info("Downloading Excel...");
+      await generateExcel(rec);
+      toast.success("Closure form downloaded as Excel (.xlsx)");
+    } catch {
+      toast.error("Failed to generate Excel. Please try again.");
+    }
   }
 
   // ── Edit ───────────────────────────────────────────────────────────────
   function handleEdit(rec: AccountClosureRecord) {
-    const { id, referenceNo, status, submittedAt, ...rest } = rec;
+    const {
+      id: _id,
+      referenceNo: _ref,
+      status: _st,
+      submittedAt: _sat,
+      ...rest
+    } = rec;
     setForm(rest);
-    setEditId(id);
+    setEditId(rec.id);
     setErrors({});
     setTab("new-entry");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -842,26 +899,30 @@ export default function AccountClosureForm({ onBack }: Props) {
                                 className="h-7 text-xs gap-1 px-2"
                                 data-ocid={`account_closure.download_record.${rec.id}`}
                               >
-                                <Download className="w-3 h-3" /> .rtf
+                                <Download className="w-3 h-3" /> .xlsx
                               </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleEdit(rec)}
-                                className="h-7 text-xs gap-1 px-2"
-                                data-ocid={`account_closure.edit_record.${rec.id}`}
-                              >
-                                <Edit2 className="w-3 h-3" /> Edit
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleDelete(rec.id)}
-                                className="h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200"
-                                data-ocid={`account_closure.delete_record.${rec.id}`}
-                              >
-                                <Trash2 className="w-3 h-3" /> Del
-                              </Button>
+                              {isManager && (
+                                <>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleEdit(rec)}
+                                    className="h-7 text-xs gap-1 px-2"
+                                    data-ocid={`account_closure.edit_record.${rec.id}`}
+                                  >
+                                    <Edit2 className="w-3 h-3" /> Edit
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    onClick={() => handleDelete(rec.id)}
+                                    className="h-7 text-xs gap-1 px-2 text-red-600 hover:bg-red-50 border-red-200"
+                                    data-ocid={`account_closure.delete_record.${rec.id}`}
+                                  >
+                                    <Trash2 className="w-3 h-3" /> Del
+                                  </Button>
+                                </>
+                              )}
                             </div>
                           </td>
                         </tr>
