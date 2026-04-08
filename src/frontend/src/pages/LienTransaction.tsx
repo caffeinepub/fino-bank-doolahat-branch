@@ -31,12 +31,17 @@ import {
   AlertCircle,
   ArrowDownCircle,
   ArrowUpCircle,
+  ChevronLeft,
   Clock,
   Download,
+  Eye,
   History,
   Info,
+  List,
+  Plus,
   Printer,
   Save,
+  Search,
   Trash2,
   User,
 } from "lucide-react";
@@ -45,10 +50,12 @@ import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import RoleSwitcherBar from "../components/RoleSwitcherBar";
 import { useInventoryAuth } from "../context/InventoryAuthContext";
+import { addItem, loadItems, saveItems, updateItem } from "../utils/localStore";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
 interface LienAccount {
+  id: number;
   cifNo: string;
   customerName: string;
   startDate: string;
@@ -56,8 +63,8 @@ interface LienAccount {
   aadharNo: string;
   panNo: string;
   accountNo: string;
-  accountType: string;
-  accountStatus: string;
+  accountType: "Savings" | "Current" | "Salary" | "OD";
+  accountStatus: "Active" | "Inactive" | "Dormant" | "Frozen";
   balance: number;
 }
 
@@ -74,53 +81,48 @@ interface LienTransaction {
 
 // ── Storage helpers ────────────────────────────────────────────────────────
 
-const ACCOUNT_KEY = "fino_lien_account";
-const TXNS_KEY = "fino_lien_transactions";
+const ACCOUNTS_KEY = "fino_lien_accounts";
 
-function loadAccount(): LienAccount | null {
+function loadAccounts(): LienAccount[] {
+  return loadItems<LienAccount>(ACCOUNTS_KEY);
+}
+
+function loadAccountTxns(accountId: number): LienTransaction[] {
+  return loadItems<LienTransaction>(`fino_lien_txns_${accountId}`);
+}
+
+function saveAccountTxns(accountId: number, txns: LienTransaction[]) {
+  saveItems(`fino_lien_txns_${accountId}`, txns);
+}
+
+// ── Migration ──────────────────────────────────────────────────────────────
+
+function migrateOldData() {
   try {
-    const raw = localStorage.getItem(ACCOUNT_KEY);
-    return raw ? (JSON.parse(raw) as LienAccount) : null;
+    const oldAccount = localStorage.getItem("fino_lien_account");
+    const newAccounts = localStorage.getItem(ACCOUNTS_KEY);
+    if (oldAccount && !newAccounts) {
+      const parsed = JSON.parse(oldAccount) as Omit<LienAccount, "id">;
+      const migrated: LienAccount = { ...parsed, id: 1 } as LienAccount;
+      saveItems(ACCOUNTS_KEY, [migrated]);
+      const oldTxns = localStorage.getItem("fino_lien_transactions");
+      if (oldTxns) {
+        localStorage.setItem("fino_lien_txns_1", oldTxns);
+      }
+      localStorage.removeItem("fino_lien_account");
+      localStorage.removeItem("fino_lien_transactions");
+    }
   } catch {
-    return null;
+    // ignore migration errors
   }
-}
-
-function saveAccount(acc: LienAccount) {
-  localStorage.setItem(ACCOUNT_KEY, JSON.stringify(acc));
-}
-
-function loadTransactions(): LienTransaction[] {
-  try {
-    const raw = localStorage.getItem(TXNS_KEY);
-    return raw ? (JSON.parse(raw) as LienTransaction[]) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveTransactions(txns: LienTransaction[]) {
-  localStorage.setItem(TXNS_KEY, JSON.stringify(txns));
 }
 
 // ── Masking helper ─────────────────────────────────────────────────────────
 
-/**
- * For staff: show only the last 4 characters of the value, prefixed with "••••".
- * Start Date is NEVER masked.
- * Manager always sees the full value.
- */
-function maskField(
-  value: string | undefined,
-  isManager: boolean,
-  fieldName?: string,
-): string {
+function maskField(value: string | undefined, visibleCount = 4): string {
   if (!value) return "—";
-  if (isManager) return value;
-  if (fieldName === "startDate") return value;
-  // Show last 4 chars only
-  if (value.length <= 4) return "••••";
-  return `••••${value.slice(-4)}`;
+  if (value.length <= visibleCount) return value;
+  return "•".repeat(value.length - visibleCount) + value.slice(-visibleCount);
 }
 
 // ── Utility helpers ────────────────────────────────────────────────────────
@@ -153,25 +155,24 @@ function formatDate(isoString: string): string {
 }
 
 function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
+  return `Rs. ${amount.toLocaleString("en-IN", {
     minimumFractionDigits: 2,
-  }).format(amount);
+    maximumFractionDigits: 2,
+  })}`;
 }
 
-function statusStyle(status: string): React.CSSProperties {
+function statusBadgeClass(status: string): string {
   switch (status) {
     case "Active":
-      return { backgroundColor: "#16a34a", color: "white" };
+      return "bg-green-100 text-green-800 border-green-300";
     case "Inactive":
-      return { backgroundColor: "#dc2626", color: "white" };
+      return "bg-yellow-100 text-yellow-800 border-yellow-300";
     case "Dormant":
-      return { backgroundColor: "#ea580c", color: "white" };
+      return "bg-orange-100 text-orange-800 border-orange-300";
     case "Frozen":
-      return { backgroundColor: "#2563eb", color: "white" };
+      return "bg-red-100 text-red-800 border-red-300";
     default:
-      return {};
+      return "bg-muted text-muted-foreground border-border";
   }
 }
 
@@ -192,7 +193,6 @@ function generateRTF(
   const sorted = [...transactions].sort(
     (a, b) => new Date(a.txnDate).getTime() - new Date(b.txnDate).getTime(),
   );
-
   const firstDate =
     sorted.length > 0 ? formatDate(sorted[0].txnDate).split(" ")[0] : "N/A";
   const lastDate =
@@ -211,7 +211,6 @@ function generateRTF(
     ],
     true,
   );
-
   const txnRows = sorted
     .map((t) => {
       const debit = t.type === "debit" ? formatCurrency(t.amount) : "";
@@ -252,13 +251,13 @@ function generateRTF(
     headerRow,
     txnRows,
     "\\par\\par",
-    "\\pard\\qc{\\f1\\fs16 Fino Small Finance Bank \u2013 Doolahat Branch | IFSC: FINO0001599}\\par",
+    "\\pard\\qc{\\f1\\fs16 Fino Small Finance Bank \\endash  Doolahat Branch | IFSC: FINO0001599}\\par",
     "\\pard\\qc{\\f1\\fs16 Helpline: 91938-7411-594 | Email: customercare@finobankpartner.com}\\par",
     "}",
   ].join("\n");
 }
 
-// ── DetailCell ─────────────────────────────────────────────────────────────
+// ── Shared small components ────────────────────────────────────────────────
 
 function DetailCell({
   label,
@@ -275,9 +274,7 @@ function DetailCell({
         {label}
       </span>
       <span
-        className={`text-sm font-semibold truncate ${
-          highlight ? "text-green-600" : "text-foreground"
-        }`}
+        className={`text-sm font-semibold truncate ${highlight ? "text-green-700" : "text-foreground"}`}
       >
         {value || "—"}
       </span>
@@ -285,97 +282,326 @@ function DetailCell({
   );
 }
 
-// ── AccountDetailsCard ─────────────────────────────────────────────────────
+function ReadonlyField({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="space-y-1">
+      <span className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium">
+        {label}
+      </span>
+      <p className="text-sm font-medium text-foreground border border-border rounded-md px-3 py-2 bg-muted/30 truncate">
+        {value || "—"}
+      </p>
+    </div>
+  );
+}
+
+// ── STATE 1: Search/Landing ─────────────────────────────────────────────────
+
+function SearchPanel({
+  isManager,
+  allAccounts,
+  onFound,
+  onNotFound,
+  onAddNew,
+  onViewAccount,
+}: {
+  isManager: boolean;
+  allAccounts: LienAccount[];
+  onFound: (account: LienAccount) => void;
+  onNotFound: (query: string) => void;
+  onAddNew: () => void;
+  onViewAccount: (account: LienAccount) => void;
+}) {
+  const [query, setQuery] = useState("");
+  const [searchResult, setSearchResult] = useState<"idle" | "not-found">(
+    "idle",
+  );
+  const [notFoundQuery, setNotFoundQuery] = useState("");
+
+  const handleSearch = () => {
+    const q = query.trim().toLowerCase();
+    if (!q) {
+      toast.error("Please enter an Account No or Mobile No to search");
+      return;
+    }
+    const found = allAccounts.find(
+      (a) =>
+        a.accountNo.toLowerCase().includes(q) ||
+        a.mobileNo.toLowerCase().includes(q),
+    );
+    if (found) {
+      setSearchResult("idle");
+      onFound(found);
+    } else {
+      setNotFoundQuery(query.trim());
+      setSearchResult("not-found");
+      onNotFound(query.trim());
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") handleSearch();
+  };
+
+  return (
+    <div className="space-y-6" data-ocid="lien.search.panel">
+      {/* Search card */}
+      <Card className="max-w-xl mx-auto shadow-md">
+        <CardHeader className="pb-3">
+          <CardTitle
+            className="text-base font-semibold flex items-center gap-2"
+            style={{ color: "#462980" }}
+          >
+            <Search className="w-4 h-4" />
+            Lien Transaction – Account Search
+          </CardTitle>
+          <p className="text-xs text-muted-foreground mt-1">
+            Search by Account No or Mobile No to access account details
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex gap-2">
+            <Input
+              placeholder="Enter Account No or Mobile No"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setSearchResult("idle");
+              }}
+              onKeyDown={handleKeyDown}
+              className="flex-1"
+              data-ocid="lien.search.input"
+            />
+            <Button
+              onClick={handleSearch}
+              className="gap-2 text-white"
+              style={{ backgroundColor: "#462980" }}
+              data-ocid="lien.search.button"
+            >
+              <Search className="w-4 h-4" />
+              Search
+            </Button>
+          </div>
+
+          {searchResult === "not-found" && (
+            <div
+              className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 space-y-3"
+              data-ocid="lien.search.not_found"
+            >
+              <div className="flex items-center gap-2 text-amber-800 text-sm font-medium">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                No account found for &quot;{notFoundQuery}&quot;
+              </div>
+              {isManager ? (
+                <Button
+                  size="sm"
+                  onClick={onAddNew}
+                  className="gap-2 text-white"
+                  style={{ backgroundColor: "#462980" }}
+                  data-ocid="lien.search.add_new_button"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add New Account
+                </Button>
+              ) : (
+                <p className="text-xs text-amber-700">
+                  Account not found. Please contact your manager to add this
+                  account.
+                </p>
+              )}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Manager: All Accounts list */}
+      {isManager && (
+        <Card data-ocid="lien.all_accounts.card">
+          <CardHeader className="pb-3">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <CardTitle
+                className="text-base font-semibold flex items-center gap-2"
+                style={{ color: "#462980" }}
+              >
+                <List className="w-4 h-4" />
+                All Account Profiles
+                <Badge variant="secondary" className="text-xs">
+                  {allAccounts.length}
+                </Badge>
+              </CardTitle>
+              <Button
+                size="sm"
+                onClick={onAddNew}
+                className="gap-2 text-white"
+                style={{ backgroundColor: "#462980" }}
+                data-ocid="lien.all_accounts.add_button"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                Add New Account
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {allAccounts.length === 0 ? (
+              <div
+                className="flex flex-col items-center gap-2 py-10 text-muted-foreground"
+                data-ocid="lien.all_accounts.empty_state"
+              >
+                <User className="w-8 h-8 opacity-30" />
+                <p className="text-sm">No accounts added yet.</p>
+                <p className="text-xs">
+                  Use the search bar above to add the first account.
+                </p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto rounded-lg border border-border">
+                <Table data-ocid="lien.all_accounts.table">
+                  <TableHeader>
+                    <TableRow
+                      style={{ backgroundColor: "#462980" }}
+                      className="hover:bg-transparent"
+                    >
+                      <TableHead className="text-white font-semibold text-xs">
+                        CIF No
+                      </TableHead>
+                      <TableHead className="text-white font-semibold text-xs">
+                        Customer Name
+                      </TableHead>
+                      <TableHead className="text-white font-semibold text-xs">
+                        Account No
+                      </TableHead>
+                      <TableHead className="text-white font-semibold text-xs">
+                        Account Type
+                      </TableHead>
+                      <TableHead className="text-white font-semibold text-xs">
+                        Status
+                      </TableHead>
+                      <TableHead className="text-white font-semibold text-xs text-right">
+                        Balance
+                      </TableHead>
+                      <TableHead className="text-white font-semibold text-xs text-center">
+                        Action
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {allAccounts.map((acc, idx) => (
+                      <TableRow
+                        key={acc.id}
+                        className={`text-xs ${idx % 2 === 0 ? "" : "bg-muted/20"} hover:bg-muted/40 transition-colors`}
+                        data-ocid={`lien.all_accounts.row.${idx + 1}`}
+                      >
+                        <TableCell className="text-xs font-mono">
+                          {acc.cifNo || "—"}
+                        </TableCell>
+                        <TableCell className="text-xs font-medium">
+                          {acc.customerName}
+                        </TableCell>
+                        <TableCell className="text-xs font-mono">
+                          {acc.accountNo}
+                        </TableCell>
+                        <TableCell className="text-xs">
+                          {acc.accountType}
+                        </TableCell>
+                        <TableCell className="text-xs">
+                          <span
+                            className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border ${statusBadgeClass(acc.accountStatus)}`}
+                          >
+                            {acc.accountStatus}
+                          </span>
+                        </TableCell>
+                        <TableCell className="text-xs text-right font-semibold text-green-700">
+                          {formatCurrency(acc.balance)}
+                        </TableCell>
+                        <TableCell className="text-center">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => onViewAccount(acc)}
+                            className="gap-1.5 text-xs h-7"
+                            data-ocid={`lien.all_accounts.view_button.${idx + 1}`}
+                          >
+                            <Eye className="w-3 h-3" />
+                            View Data
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
+
+// ── Account Details Card ────────────────────────────────────────────────────
 
 function AccountDetailsCard({
   account,
   isManager,
 }: {
-  account: LienAccount | null;
+  account: LienAccount;
   isManager: boolean;
 }) {
-  if (!account) {
-    return (
-      <Card className="mb-6" data-ocid="lien.account_details.card">
-        <CardHeader className="pb-3">
-          <CardTitle
-            className="text-base font-semibold flex items-center gap-2"
-            style={{ color: "var(--brand-red)" }}
-          >
-            <User className="w-4 h-4" />
-            Account Details
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground py-4">
-            <Info className="w-4 h-4" />
-            No account profile found. Please set up via Account Profile tab.
-          </div>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  const m = (val: string | undefined, field?: string) =>
-    maskField(val, isManager, field);
+  const m = (val: string | undefined) =>
+    isManager ? val || "—" : maskField(val);
 
   return (
-    <Card className="mb-6" data-ocid="lien.account_details.card">
+    <Card className="mb-4" data-ocid="lien.account_details.card">
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <CardTitle
             className="text-base font-semibold flex items-center gap-2"
-            style={{ color: "var(--brand-red)" }}
+            style={{ color: "#462980" }}
           >
             <User className="w-4 h-4" />
             Account Details
           </CardTitle>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             {!isManager && (
-              <span className="text-[10px] text-muted-foreground bg-amber-50 border border-amber-200 rounded px-2 py-0.5">
+              <span className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-0.5">
                 Sensitive fields masked for staff
               </span>
             )}
-            <Badge style={statusStyle(account.accountStatus)}>
+            <span
+              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${statusBadgeClass(account.accountStatus)}`}
+            >
               {account.accountStatus}
-            </Badge>
+            </span>
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        {/* Row 1: Identity fields */}
+        {/* Row 1: CIF, Name, Start Date, Mobile */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
           <DetailCell label="CIF No" value={m(account.cifNo)} />
           <DetailCell
             label="Customer Name"
             value={account.customerName || "—"}
           />
-          <DetailCell
-            label="Start Date"
-            value={m(account.startDate, "startDate")}
-          />
+          <DetailCell label="Start Date" value={account.startDate || "—"} />
           <DetailCell label="Mobile No" value={m(account.mobileNo)} />
         </div>
-        {/* Row 2: Aadhar, PAN, Account No, Account Type — each separate column */}
+        {/* Row 2: Aadhar, PAN, Account No, Account Type — each own column */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
           <DetailCell label="Aadhar No" value={m(account.aadharNo)} />
           <DetailCell label="PAN No" value={m(account.panNo)} />
           <DetailCell label="Account No" value={m(account.accountNo)} />
           <DetailCell label="Account Type" value={account.accountType || "—"} />
         </div>
-        {/* Row 3: Account Status and Balance — each separate column */}
+        {/* Row 3: Account Status, Balance (always unmasked) */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <DetailCell
             label="Account Status"
             value={account.accountStatus || "—"}
           />
           <DetailCell
-            label="Balance (Rs.)"
-            value={
-              isManager
-                ? formatCurrency(account.balance)
-                : `••••${String(account.balance).slice(-4)}`
-            }
+            label="Balance"
+            value={formatCurrency(account.balance)}
             highlight
           />
         </div>
@@ -384,34 +610,21 @@ function AccountDetailsCard({
   );
 }
 
-// ── AccountProfileTab ──────────────────────────────────────────────────────
-
-const EMPTY_ACCOUNT: LienAccount = {
-  cifNo: "",
-  customerName: "",
-  startDate: "",
-  mobileNo: "",
-  aadharNo: "",
-  panNo: "",
-  accountNo: "",
-  accountType: "Savings",
-  accountStatus: "Active",
-  balance: 0,
-};
+// ── Account Profile Tab ─────────────────────────────────────────────────────
 
 function AccountProfileTab({
   account,
   onSave,
   isManager,
 }: {
-  account: LienAccount | null;
+  account: LienAccount;
   onSave: (acc: LienAccount) => void;
   isManager: boolean;
 }) {
-  const [form, setForm] = useState<LienAccount>(account ?? EMPTY_ACCOUNT);
+  const [form, setForm] = useState<LienAccount>(account);
 
   useEffect(() => {
-    setForm(account ?? EMPTY_ACCOUNT);
+    setForm(account);
   }, [account]);
 
   const setField = (field: keyof LienAccount, value: string | number) => {
@@ -432,14 +645,11 @@ function AccountProfileTab({
       return;
     }
     onSave(form);
-    toast.success("Account profile saved successfully");
+    toast.success("Account profile updated successfully");
   };
 
-  // Staff view: read-only with masking on all numerical fields
   if (!isManager) {
-    const m = (val: string | undefined, field?: string) =>
-      maskField(val, false, field);
-
+    const m = (val: string | undefined) => maskField(val);
     return (
       <div className="space-y-4" data-ocid="lien.account_profile.panel">
         <div
@@ -448,53 +658,36 @@ function AccountProfileTab({
           data-ocid="lien.account_profile.error_state"
         >
           <AlertCircle className="w-4 h-4 shrink-0" />
-          Account updates can only be done by the Manager. Switch to Manager
-          View to edit account details. Sensitive fields are masked below.
+          Account profile management is restricted to managers.
         </div>
-        {account ? (
-          <div className="space-y-4">
-            {/* Row 1 */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
-              <ReadonlyField label="CIF No" value={m(account.cifNo)} />
-              <ReadonlyField
-                label="Customer Name"
-                value={account.customerName}
-              />
-              <ReadonlyField
-                label="Start Date"
-                value={m(account.startDate, "startDate")}
-              />
-              <ReadonlyField label="Mobile No" value={m(account.mobileNo)} />
-            </div>
-            {/* Row 2 */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
-              <ReadonlyField label="Aadhar No" value={m(account.aadharNo)} />
-              <ReadonlyField label="PAN No" value={m(account.panNo)} />
-              <ReadonlyField label="Account No" value={m(account.accountNo)} />
-              <ReadonlyField label="Account Type" value={account.accountType} />
-            </div>
-            {/* Row 3 */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <ReadonlyField
-                label="Account Status"
-                value={account.accountStatus}
-              />
-              <ReadonlyField
-                label="Balance (Rs.)"
-                value={`••••${String(account.balance).slice(-4)}`}
-              />
-            </div>
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
+            <ReadonlyField label="CIF No" value={m(account.cifNo)} />
+            <ReadonlyField label="Customer Name" value={account.customerName} />
+            <ReadonlyField label="Start Date" value={account.startDate} />
+            <ReadonlyField label="Mobile No" value={m(account.mobileNo)} />
           </div>
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            No account profile set up yet.
-          </p>
-        )}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60">
+            <ReadonlyField label="Aadhar No" value={m(account.aadharNo)} />
+            <ReadonlyField label="PAN No" value={m(account.panNo)} />
+            <ReadonlyField label="Account No" value={m(account.accountNo)} />
+            <ReadonlyField label="Account Type" value={account.accountType} />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <ReadonlyField
+              label="Account Status"
+              value={account.accountStatus}
+            />
+            <ReadonlyField
+              label="Balance"
+              value={formatCurrency(account.balance)}
+            />
+          </div>
+        </div>
       </div>
     );
   }
 
-  // Manager view: full edit form
   return (
     <div className="space-y-5" data-ocid="lien.account_profile.panel">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
@@ -560,7 +753,7 @@ function AccountProfileTab({
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="panNo">PAN No</Label>
+            <Label htmlFor="panNo">PAN No (optional)</Label>
             <Input
               id="panNo"
               value={form.panNo}
@@ -572,7 +765,6 @@ function AccountProfileTab({
             />
           </div>
         </div>
-
         <div className="space-y-4">
           <div className="space-y-1.5">
             <Label htmlFor="accountNo">Account No *</Label>
@@ -634,12 +826,11 @@ function AccountProfileTab({
           </div>
         </div>
       </div>
-
       <div className="flex justify-end pt-2">
         <Button
           onClick={handleSave}
           className="gap-2 text-white"
-          style={{ backgroundColor: "var(--brand-red)" }}
+          style={{ backgroundColor: "#462980" }}
           data-ocid="lien.account_profile.save_button"
         >
           <Save className="w-4 h-4" />
@@ -650,20 +841,7 @@ function AccountProfileTab({
   );
 }
 
-function ReadonlyField({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="space-y-1">
-      <span className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium">
-        {label}
-      </span>
-      <p className="text-sm font-medium text-foreground border border-border rounded-md px-3 py-2 bg-muted/30 truncate">
-        {value || "—"}
-      </p>
-    </div>
-  );
-}
-
-// ── CashOperationTab ───────────────────────────────────────────────────────
+// ── Cash Operation Tab ──────────────────────────────────────────────────────
 
 function CashOperationTab({
   type,
@@ -671,7 +849,7 @@ function CashOperationTab({
   onComplete,
 }: {
   type: "deposit" | "withdrawal";
-  account: LienAccount | null;
+  account: LienAccount;
   onComplete: () => void;
 }) {
   const [amount, setAmount] = useState("");
@@ -690,22 +868,15 @@ function CashOperationTab({
       toast.error("Please enter a valid amount greater than 0");
       return;
     }
-    if (!account) {
-      toast.error(
-        "No account profile set up. Please configure Account Profile first.",
-      );
-      return;
-    }
     if (!isDeposit && amt > account.balance) {
       toast.error(
-        `Insufficient funds. Available balance: ${formatCurrency(account.balance)}`,
+        `Insufficient balance. Available: ${formatCurrency(account.balance)}`,
       );
       return;
     }
-
     setLoading(true);
     try {
-      const txns = loadTransactions();
+      const txns = loadAccountTxns(account.id);
       const newSerialNo = txns.length + 1;
       const now = new Date();
       const txnType = isDeposit ? "credit" : "debit";
@@ -724,17 +895,18 @@ function CashOperationTab({
         serialNo: newSerialNo,
       };
 
-      txns.push(newTxn);
-      saveTransactions(txns);
-      saveAccount({ ...account, balance: newBalance });
+      saveAccountTxns(account.id, [...txns, newTxn]);
+      updateItem<LienAccount>(ACCOUNTS_KEY, account.id, {
+        balance: newBalance,
+      });
 
       setAmount("");
       setRemarks("");
       onComplete();
       toast.success(
         isDeposit
-          ? `\u20b9${amt.toLocaleString("en-IN")} deposited successfully`
-          : `\u20b9${amt.toLocaleString("en-IN")} withdrawn successfully`,
+          ? `₹${amt.toLocaleString("en-IN")} deposited successfully`
+          : `₹${amt.toLocaleString("en-IN")} withdrawn successfully`,
       );
     } finally {
       setLoading(false);
@@ -744,25 +916,18 @@ function CashOperationTab({
   return (
     <div className="max-w-md space-y-5" data-ocid={`lien.${type}.panel`}>
       <div
-        className={`flex items-center gap-2 rounded-lg px-4 py-3 ${
-          isDeposit ? "bg-green-50" : "bg-red-50"
-        }`}
+        className={`flex items-center gap-2 rounded-lg px-4 py-3 ${isDeposit ? "bg-green-50" : "bg-red-50"}`}
       >
         <Icon className={`w-5 h-5 ${iconColor}`} />
         <span
-          className={`text-sm font-semibold ${
-            isDeposit ? "text-green-700" : "text-red-700"
-          }`}
+          className={`text-sm font-semibold ${isDeposit ? "text-green-700" : "text-red-700"}`}
         >
           {label}
         </span>
-        {account && (
-          <span className="ml-auto text-xs text-muted-foreground">
-            Available: {formatCurrency(account.balance)}
-          </span>
-        )}
+        <span className="ml-auto text-xs text-muted-foreground">
+          Available: {formatCurrency(account.balance)}
+        </span>
       </div>
-
       <div className="space-y-1.5">
         <Label htmlFor={`${type}-amount`}>Amount (Rs.) *</Label>
         <Input
@@ -775,7 +940,6 @@ function CashOperationTab({
           data-ocid={`lien.${type}_amount.input`}
         />
       </div>
-
       <div className="space-y-1.5">
         <Label htmlFor={`${type}-remarks`}>Remarks (optional)</Label>
         <Textarea
@@ -787,15 +951,10 @@ function CashOperationTab({
           data-ocid={`lien.${type}_remarks.textarea`}
         />
       </div>
-
       <Button
         onClick={handleSubmit}
         disabled={loading}
-        className={`gap-2 text-white ${
-          isDeposit
-            ? "bg-green-600 hover:bg-green-700"
-            : "bg-red-600 hover:bg-red-700"
-        }`}
+        className={`gap-2 text-white ${isDeposit ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700"}`}
         data-ocid={`lien.${type}.submit_button`}
       >
         <Icon className="w-4 h-4" />
@@ -805,7 +964,7 @@ function CashOperationTab({
   );
 }
 
-// ── TransactionHistoryTab ──────────────────────────────────────────────────
+// ── Transaction History Tab ─────────────────────────────────────────────────
 
 function TransactionHistoryTab({
   transactions,
@@ -814,7 +973,7 @@ function TransactionHistoryTab({
   onDelete,
 }: {
   transactions: LienTransaction[];
-  account: LienAccount | null;
+  account: LienAccount;
   isManager: boolean;
   onDelete: (id: string) => void;
 }) {
@@ -825,10 +984,6 @@ function TransactionHistoryTab({
   );
 
   const handlePrintStatement = useCallback(() => {
-    if (!account) {
-      toast.error("No account profile found. Please set up account first.");
-      return;
-    }
     if (transactions.length === 0) {
       toast.error("No transactions to export.");
       return;
@@ -838,7 +993,9 @@ function TransactionHistoryTab({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `statement_${account.accountNo}_${Date.now()}.rtf`;
+    const today = new Date();
+    const dateStr = `${String(today.getDate()).padStart(2, "0")}${String(today.getMonth() + 1).padStart(2, "0")}${today.getFullYear()}`;
+    a.download = `LienStatement_${account.accountNo}_${dateStr}.rtf`;
     a.click();
     URL.revokeObjectURL(url);
     toast.success("Statement downloaded successfully");
@@ -846,9 +1003,9 @@ function TransactionHistoryTab({
 
   return (
     <div className="space-y-4" data-ocid="lien.txn_history.panel">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
-          <History className="w-4 h-4" style={{ color: "var(--brand-red)" }} />
+          <History className="w-4 h-4" style={{ color: "#462980" }} />
           <span className="text-sm font-semibold text-foreground">
             Transaction History
           </span>
@@ -885,7 +1042,7 @@ function TransactionHistoryTab({
           <Table data-ocid="lien.txn_history.table">
             <TableHeader>
               <TableRow
-                style={{ backgroundColor: "var(--brand-red)" }}
+                style={{ backgroundColor: "#462980" }}
                 className="hover:bg-transparent"
               >
                 <TableHead className="text-white font-semibold text-xs">
@@ -917,9 +1074,7 @@ function TransactionHistoryTab({
               {sorted.map((txn, idx) => (
                 <TableRow
                   key={txn.id}
-                  className={`text-xs ${
-                    idx % 2 === 0 ? "bg-white" : "bg-muted/20"
-                  } hover:bg-muted/40 transition-colors`}
+                  className={`text-xs ${idx % 2 === 0 ? "" : "bg-muted/20"} hover:bg-muted/40 transition-colors`}
                   data-ocid={`lien.txn_history.row.${idx + 1}`}
                 >
                   <TableCell className="text-xs whitespace-nowrap">
@@ -930,18 +1085,14 @@ function TransactionHistoryTab({
                   </TableCell>
                   <TableCell className="text-xs">
                     <span
-                      className={`font-semibold ${
-                        txn.type === "credit"
-                          ? "text-green-700"
-                          : "text-red-700"
-                      }`}
+                      className={`font-semibold ${txn.type === "credit" ? "text-green-700" : "text-red-700"}`}
                     >
                       {txn.type === "credit" ? "Cr" : "Dr"}
                     </span>
                     {txn.remarks ? (
                       <span className="text-muted-foreground">
-                        {" - "}
-                        {txn.remarks}
+                        {" "}
+                        - {txn.remarks}
                       </span>
                     ) : null}
                   </TableCell>
@@ -1021,62 +1172,333 @@ function TransactionHistoryTab({
   );
 }
 
-// ── Main Page ──────────────────────────────────────────────────────────────
+// ── STATE 3: Add Account Form ───────────────────────────────────────────────
 
-export default function LienTransactionPage() {
-  const { isManager } = useInventoryAuth();
-  const [account, setAccount] = useState<LienAccount | null>(loadAccount);
-  const [transactions, setTransactions] =
-    useState<LienTransaction[]>(loadTransactions);
+const EMPTY_ACCOUNT_FORM = {
+  cifNo: "",
+  customerName: "",
+  startDate: "",
+  mobileNo: "",
+  aadharNo: "",
+  panNo: "",
+  accountNo: "",
+  accountType: "Savings" as const,
+  accountStatus: "Active" as const,
+  balance: 0,
+};
+
+function AddAccountForm({
+  isManager,
+  prefillAccountNo,
+  prefillMobileNo,
+  onSaved,
+  onBack,
+}: {
+  isManager: boolean;
+  prefillAccountNo?: string;
+  prefillMobileNo?: string;
+  onSaved: (account: LienAccount) => void;
+  onBack: () => void;
+}) {
+  const [form, setForm] = useState({
+    ...EMPTY_ACCOUNT_FORM,
+    accountNo: prefillAccountNo || "",
+    mobileNo: prefillMobileNo || "",
+  });
+
+  const setField = (
+    field: keyof typeof EMPTY_ACCOUNT_FORM,
+    value: string | number,
+  ) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSave = () => {
+    if (!form.accountNo.trim()) {
+      toast.error("Account No is required");
+      return;
+    }
+    if (!form.mobileNo.trim()) {
+      toast.error("Mobile No is required");
+      return;
+    }
+    if (!form.cifNo.trim()) {
+      toast.error("CIF No is required");
+      return;
+    }
+    if (!form.customerName.trim()) {
+      toast.error("Customer Name is required");
+      return;
+    }
+    if (!form.startDate) {
+      toast.error("Start Date is required");
+      return;
+    }
+    if (!form.aadharNo.trim()) {
+      toast.error("Aadhar No is required");
+      return;
+    }
+
+    const newAccount = addItem<LienAccount>(ACCOUNTS_KEY, form);
+    toast.success(`Account for ${form.customerName} added successfully`);
+    onSaved(newAccount);
+  };
+
+  return (
+    <div className="space-y-4" data-ocid="lien.add_account.panel">
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle
+            className="text-base font-semibold flex items-center gap-2"
+            style={{ color: "#462980" }}
+          >
+            <Plus className="w-4 h-4" />
+            Add New Account Profile
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {!isManager ? (
+            <div
+              className="flex items-center gap-3 rounded-lg px-4 py-5 text-sm"
+              style={{ backgroundColor: "#fef3c7", color: "#92400e" }}
+              data-ocid="lien.add_account.staff_notice"
+            >
+              <AlertCircle className="w-5 h-5 shrink-0" />
+              <div>
+                <p className="font-semibold">Manager Access Required</p>
+                <p className="text-xs mt-0.5">
+                  Account creation requires manager access. Please ask your
+                  manager to add this account.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-accountNo">Account No *</Label>
+                    <Input
+                      id="add-accountNo"
+                      value={form.accountNo}
+                      onChange={(e) => setField("accountNo", e.target.value)}
+                      placeholder="Enter account number"
+                      data-ocid="lien.add.account_no.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-mobileNo">
+                      Mobile No * (10 digits)
+                    </Label>
+                    <Input
+                      id="add-mobileNo"
+                      value={form.mobileNo}
+                      onChange={(e) =>
+                        setField(
+                          "mobileNo",
+                          e.target.value.replace(/\D/g, "").slice(0, 10),
+                        )
+                      }
+                      placeholder="10-digit mobile number"
+                      data-ocid="lien.add.mobile_no.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-cifNo">CIF No *</Label>
+                    <Input
+                      id="add-cifNo"
+                      value={form.cifNo}
+                      onChange={(e) => setField("cifNo", e.target.value)}
+                      placeholder="Enter CIF No"
+                      data-ocid="lien.add.cif_no.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-customerName">Customer Name *</Label>
+                    <Input
+                      id="add-customerName"
+                      value={form.customerName}
+                      onChange={(e) => setField("customerName", e.target.value)}
+                      placeholder="Enter customer name"
+                      data-ocid="lien.add.customer_name.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-startDate">Start Date *</Label>
+                    <Input
+                      id="add-startDate"
+                      type="date"
+                      value={form.startDate}
+                      onChange={(e) => setField("startDate", e.target.value)}
+                      data-ocid="lien.add.start_date.input"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-aadharNo">
+                      Aadhar No * (12 digits)
+                    </Label>
+                    <Input
+                      id="add-aadharNo"
+                      value={form.aadharNo}
+                      onChange={(e) =>
+                        setField(
+                          "aadharNo",
+                          e.target.value.replace(/\D/g, "").slice(0, 12),
+                        )
+                      }
+                      placeholder="12-digit Aadhar number"
+                      data-ocid="lien.add.aadhar_no.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-panNo">PAN No (optional)</Label>
+                    <Input
+                      id="add-panNo"
+                      value={form.panNo}
+                      onChange={(e) =>
+                        setField(
+                          "panNo",
+                          e.target.value.toUpperCase().slice(0, 10),
+                        )
+                      }
+                      placeholder="e.g. ABCDE1234F"
+                      data-ocid="lien.add.pan_no.input"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-accountType">Account Type</Label>
+                    <Select
+                      value={form.accountType}
+                      onValueChange={(v) => setField("accountType", v)}
+                    >
+                      <SelectTrigger data-ocid="lien.add.account_type.select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Savings">Savings</SelectItem>
+                        <SelectItem value="Current">Current</SelectItem>
+                        <SelectItem value="Salary">Salary</SelectItem>
+                        <SelectItem value="OD">OD</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-accountStatus">Account Status</Label>
+                    <Select
+                      value={form.accountStatus}
+                      onValueChange={(v) => setField("accountStatus", v)}
+                    >
+                      <SelectTrigger data-ocid="lien.add.account_status.select">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Active">Active</SelectItem>
+                        <SelectItem value="Inactive">Inactive</SelectItem>
+                        <SelectItem value="Dormant">Dormant</SelectItem>
+                        <SelectItem value="Frozen">Frozen</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="add-balance">Opening Balance (Rs.)</Label>
+                    <Input
+                      id="add-balance"
+                      type="number"
+                      min="0"
+                      value={form.balance}
+                      onChange={(e) =>
+                        setField(
+                          "balance",
+                          Number.parseFloat(e.target.value) || 0,
+                        )
+                      }
+                      placeholder="Enter opening balance"
+                      data-ocid="lien.add.balance.input"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-end gap-3 pt-2">
+                <Button variant="outline" onClick={onBack}>
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSave}
+                  className="gap-2 text-white"
+                  style={{ backgroundColor: "#462980" }}
+                  data-ocid="lien.add_account.save_button"
+                >
+                  <Save className="w-4 h-4" />
+                  Save Account
+                </Button>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// ── STATE 2: Account Detail View ────────────────────────────────────────────
+
+function AccountDetailView({
+  account: initialAccount,
+  isManager,
+  onBack,
+}: {
+  account: LienAccount;
+  isManager: boolean;
+  onBack: () => void;
+}) {
+  const [account, setAccount] = useState<LienAccount>(initialAccount);
+  const [transactions, setTransactions] = useState<LienTransaction[]>(() =>
+    loadAccountTxns(initialAccount.id),
+  );
   const [activeTab, setActiveTab] = useState("account-profile");
 
+  // Keep in sync if isManager changes (role switch)
+  useEffect(() => {
+    const fresh = loadItems<LienAccount>(ACCOUNTS_KEY).find(
+      (a) => a.id === account.id,
+    );
+    if (fresh) setAccount(fresh);
+  }, [account.id]);
+
   const handleSaveAccount = (acc: LienAccount) => {
-    saveAccount(acc);
+    updateItem<LienAccount>(ACCOUNTS_KEY, acc.id, acc);
     setAccount(acc);
   };
 
   const handleTransactionComplete = () => {
-    setAccount(loadAccount());
-    setTransactions(loadTransactions());
+    const fresh = loadItems<LienAccount>(ACCOUNTS_KEY).find(
+      (a) => a.id === account.id,
+    );
+    if (fresh) setAccount(fresh);
+    setTransactions(loadAccountTxns(account.id));
   };
 
   const handleDeleteTransaction = (id: string) => {
     const updated = transactions.filter((t) => t.id !== id);
-    saveTransactions(updated);
+    saveAccountTxns(account.id, updated);
     setTransactions(updated);
     toast.success("Transaction deleted");
   };
 
   return (
-    <div className="space-y-4" data-ocid="lien.page">
-      <RoleSwitcherBar />
-
-      <div className="flex items-center gap-3 mb-2">
-        <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
-          style={{ backgroundColor: "var(--brand-red)" }}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="w-4 h-4"
-            aria-hidden="true"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          </svg>
-        </div>
-        <div>
-          <h1 className="text-lg font-bold text-foreground">
-            Lien Transaction
-          </h1>
-          <p className="text-xs text-muted-foreground">
-            Manage account profile, deposits, withdrawals and transaction
-            history
-          </p>
-        </div>
-      </div>
+    <div className="space-y-4" data-ocid="lien.detail.panel">
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={onBack}
+        className="gap-2 -ml-1 text-muted-foreground hover:text-foreground"
+        data-ocid="lien.detail.back_button"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        Back to Search
+      </Button>
 
       <AccountDetailsCard account={account} isManager={isManager} />
 
@@ -1128,7 +1550,6 @@ export default function LienTransactionPage() {
                 isManager={isManager}
               />
             </TabsContent>
-
             <TabsContent value="cash-deposit">
               <CashOperationTab
                 type="deposit"
@@ -1136,7 +1557,6 @@ export default function LienTransactionPage() {
                 onComplete={handleTransactionComplete}
               />
             </TabsContent>
-
             <TabsContent value="cash-withdrawal">
               <CashOperationTab
                 type="withdrawal"
@@ -1144,7 +1564,6 @@ export default function LienTransactionPage() {
                 onComplete={handleTransactionComplete}
               />
             </TabsContent>
-
             <TabsContent value="txn-history">
               <TransactionHistoryTab
                 transactions={transactions}
@@ -1156,6 +1575,130 @@ export default function LienTransactionPage() {
           </Tabs>
         </CardContent>
       </Card>
+    </div>
+  );
+}
+
+// ── Main Page ──────────────────────────────────────────────────────────────
+
+type PageState = "search" | "detail" | "add";
+
+export default function LienTransactionPage() {
+  const { isManager } = useInventoryAuth();
+  const [pageState, setPageState] = useState<PageState>("search");
+  const [selectedAccount, setSelectedAccount] = useState<LienAccount | null>(
+    null,
+  );
+  const [allAccounts, setAllAccounts] = useState<LienAccount[]>([]);
+  const [prefillAccountNo, setPrefillAccountNo] = useState("");
+  const [prefillMobileNo, setPrefillMobileNo] = useState("");
+
+  // Run migration on mount, then load accounts
+  useEffect(() => {
+    migrateOldData();
+    setAllAccounts(loadAccounts());
+  }, []);
+
+  // Reload accounts whenever we return to search state
+  useEffect(() => {
+    if (pageState === "search") {
+      setAllAccounts(loadAccounts());
+    }
+  }, [pageState]);
+
+  const handleFound = (account: LienAccount) => {
+    setSelectedAccount(account);
+    setPageState("detail");
+  };
+
+  const handleNotFound = (query: string) => {
+    // Detect whether it looks like an account no or mobile no
+    const isLikelyMobile = /^\d{10}$/.test(query);
+    if (isLikelyMobile) {
+      setPrefillMobileNo(query);
+      setPrefillAccountNo("");
+    } else {
+      setPrefillAccountNo(query);
+      setPrefillMobileNo("");
+    }
+  };
+
+  const handleAddNew = () => {
+    setPageState("add");
+  };
+
+  const handleAccountSaved = (account: LienAccount) => {
+    setAllAccounts(loadAccounts());
+    setSelectedAccount(account);
+    setPageState("detail");
+  };
+
+  const handleBack = () => {
+    setSelectedAccount(null);
+    setPrefillAccountNo("");
+    setPrefillMobileNo("");
+    setPageState("search");
+  };
+
+  return (
+    <div className="space-y-4" data-ocid="lien.page">
+      <RoleSwitcherBar />
+
+      <div className="flex items-center gap-3 mb-2">
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
+          style={{ backgroundColor: "#462980" }}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="w-4 h-4"
+            aria-hidden="true"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <div>
+          <h1 className="text-lg font-bold text-foreground">
+            Lien Transaction
+          </h1>
+          <p className="text-xs text-muted-foreground">
+            Search account by Account No or Mobile No to manage deposits,
+            withdrawals and history
+          </p>
+        </div>
+      </div>
+
+      {pageState === "search" && (
+        <SearchPanel
+          isManager={isManager}
+          allAccounts={allAccounts}
+          onFound={handleFound}
+          onNotFound={handleNotFound}
+          onAddNew={handleAddNew}
+          onViewAccount={handleFound}
+        />
+      )}
+
+      {pageState === "detail" && selectedAccount && (
+        <AccountDetailView
+          account={selectedAccount}
+          isManager={isManager}
+          onBack={handleBack}
+        />
+      )}
+
+      {pageState === "add" && (
+        <AddAccountForm
+          isManager={isManager}
+          prefillAccountNo={prefillAccountNo}
+          prefillMobileNo={prefillMobileNo}
+          onSaved={handleAccountSaved}
+          onBack={handleBack}
+        />
+      )}
     </div>
   );
 }

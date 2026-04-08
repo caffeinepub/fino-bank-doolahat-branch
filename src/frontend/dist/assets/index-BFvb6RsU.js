@@ -22323,29 +22323,29 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$M = [
+const __iconNode$P = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$M);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$P);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$L = [
+const __iconNode$O = [
   ["path", { d: "M5 12h14", key: "1ays0h" }],
   ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
 ];
-const ArrowRight = createLucideIcon("arrow-right", __iconNode$L);
+const ArrowRight = createLucideIcon("arrow-right", __iconNode$O);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$K = [
+const __iconNode$N = [
   [
     "path",
     {
@@ -22357,14 +22357,14 @@ const __iconNode$K = [
   ["path", { d: "M8 12h8", key: "1wcyev" }],
   ["path", { d: "m13 17-5-1h1a4 4 0 0 0 0-8", key: "nu2bwa" }]
 ];
-const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$K);
+const BadgeIndianRupee = createLucideIcon("badge-indian-rupee", __iconNode$N);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$J = [
+const __iconNode$M = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -22374,14 +22374,14 @@ const __iconNode$J = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$J);
+const Bell = createLucideIcon("bell", __iconNode$M);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$I = [
+const __iconNode$L = [
   ["rect", { width: "16", height: "20", x: "4", y: "2", rx: "2", key: "1nb95v" }],
   ["line", { x1: "8", x2: "16", y1: "6", y2: "6", key: "x4nwl0" }],
   ["line", { x1: "16", x2: "16", y1: "14", y2: "18", key: "wjye3r" }],
@@ -22393,14 +22393,14 @@ const __iconNode$I = [
   ["path", { d: "M12 18h.01", key: "mhygvu" }],
   ["path", { d: "M8 18h.01", key: "lrp35t" }]
 ];
-const Calculator = createLucideIcon("calculator", __iconNode$I);
+const Calculator = createLucideIcon("calculator", __iconNode$L);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$H = [
+const __iconNode$K = [
   ["path", { d: "M8 2v4", key: "1cmpym" }],
   ["path", { d: "M16 2v4", key: "4m81vk" }],
   ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
@@ -22412,31 +22412,63 @@ const __iconNode$H = [
   ["path", { d: "M12 18h.01", key: "mhygvu" }],
   ["path", { d: "M16 18h.01", key: "kzsmim" }]
 ];
-const CalendarDays = createLucideIcon("calendar-days", __iconNode$H);
+const CalendarDays = createLucideIcon("calendar-days", __iconNode$K);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$G = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$G);
+const __iconNode$J = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$J);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$F = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
-const ChevronDown = createLucideIcon("chevron-down", __iconNode$F);
+const __iconNode$I = [["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]];
+const ChevronDown = createLucideIcon("chevron-down", __iconNode$I);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$E = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$E);
+const __iconNode$H = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$H);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$G = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$G);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$F = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$F);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$E = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }],
+  ["path", { d: "m8 12 4 4 4-4", key: "k98ssh" }]
+];
+const CircleArrowDown = createLucideIcon("circle-arrow-down", __iconNode$E);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22445,10 +22477,10 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$E);
  */
 const __iconNode$D = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+  ["path", { d: "m16 12-4-4-4 4", key: "177agl" }],
+  ["path", { d: "M12 16V8", key: "1sbj14" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$D);
+const CircleArrowUp = createLucideIcon("circle-arrow-up", __iconNode$D);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22456,11 +22488,10 @@ const CircleAlert = createLucideIcon("circle-alert", __iconNode$D);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$C = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }],
-  ["path", { d: "m8 12 4 4 4-4", key: "k98ssh" }]
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
 ];
-const CircleArrowDown = createLucideIcon("circle-arrow-down", __iconNode$C);
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$C);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22469,10 +22500,9 @@ const CircleArrowDown = createLucideIcon("circle-arrow-down", __iconNode$C);
  */
 const __iconNode$B = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m16 12-4-4-4 4", key: "177agl" }],
-  ["path", { d: "M12 16V8", key: "1sbj14" }]
+  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const CircleArrowUp = createLucideIcon("circle-arrow-up", __iconNode$B);
+const CircleCheck = createLucideIcon("circle-check", __iconNode$B);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22480,10 +22510,11 @@ const CircleArrowUp = createLucideIcon("circle-arrow-up", __iconNode$B);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$A = [
-  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
-  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
+  ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$A);
+const CircleHelp = createLucideIcon("circle-help", __iconNode$A);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22492,9 +22523,10 @@ const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$A);
  */
 const __iconNode$z = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
+  ["path", { d: "M8 12h8", key: "1wcyev" }],
+  ["path", { d: "M12 8v8", key: "napkw2" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$z);
+const CirclePlus = createLucideIcon("circle-plus", __iconNode$z);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22503,10 +22535,10 @@ const CircleCheck = createLucideIcon("circle-check", __iconNode$z);
  */
 const __iconNode$y = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
-  ["path", { d: "M12 17h.01", key: "p32p05" }]
+  ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
+  ["path", { d: "m9 9 6 6", key: "z0biqf" }]
 ];
-const CircleHelp = createLucideIcon("circle-help", __iconNode$y);
+const CircleX = createLucideIcon("circle-x", __iconNode$y);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22514,30 +22546,6 @@ const CircleHelp = createLucideIcon("circle-help", __iconNode$y);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$x = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M8 12h8", key: "1wcyev" }],
-  ["path", { d: "M12 8v8", key: "napkw2" }]
-];
-const CirclePlus = createLucideIcon("circle-plus", __iconNode$x);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$w = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
-  ["path", { d: "m9 9 6 6", key: "z0biqf" }]
-];
-const CircleX = createLucideIcon("circle-x", __iconNode$w);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$v = [
   ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
   [
     "path",
@@ -22551,7 +22559,29 @@ const __iconNode$v = [
   ["path", { d: "M8 11h.01", key: "1dfujw" }],
   ["path", { d: "M8 16h.01", key: "18s6g9" }]
 ];
-const ClipboardList = createLucideIcon("clipboard-list", __iconNode$v);
+const ClipboardList = createLucideIcon("clipboard-list", __iconNode$x);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$w = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+];
+const Clock = createLucideIcon("clock", __iconNode$w);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$v = [
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+];
+const CreditCard = createLucideIcon("credit-card", __iconNode$v);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22559,10 +22589,11 @@ const ClipboardList = createLucideIcon("clipboard-list", __iconNode$v);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$u = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$u);
+const Download = createLucideIcon("download", __iconNode$u);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22570,10 +22601,11 @@ const Clock = createLucideIcon("clock", __iconNode$u);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$t = [
-  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
-  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const CreditCard = createLucideIcon("credit-card", __iconNode$t);
+const ExternalLink = createLucideIcon("external-link", __iconNode$t);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22581,11 +22613,16 @@ const CreditCard = createLucideIcon("credit-card", __iconNode$t);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$s = [
-  ["path", { d: "M12 15V3", key: "m9g1x1" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
+  [
+    "path",
+    {
+      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
+      key: "1nclc0"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Download = createLucideIcon("download", __iconNode$s);
+const Eye = createLucideIcon("eye", __iconNode$s);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22593,11 +22630,13 @@ const Download = createLucideIcon("download", __iconNode$s);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$r = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$r);
+const FileText = createLucideIcon("file-text", __iconNode$r);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22605,20 +22644,6 @@ const ExternalLink = createLucideIcon("external-link", __iconNode$r);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$q = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$q);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$p = [
   [
     "path",
     {
@@ -22627,7 +22652,19 @@ const __iconNode$p = [
     }
   ]
 ];
-const Funnel = createLucideIcon("funnel", __iconNode$p);
+const Funnel = createLucideIcon("funnel", __iconNode$q);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$p = [
+  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+  ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
+  ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
+];
+const History = createLucideIcon("history", __iconNode$p);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22635,11 +22672,11 @@ const Funnel = createLucideIcon("funnel", __iconNode$p);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$o = [
-  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
-  ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
-  ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M12 16v-4", key: "1dtifu" }],
+  ["path", { d: "M12 8h.01", key: "e9boi3" }]
 ];
-const History = createLucideIcon("history", __iconNode$o);
+const Info = createLucideIcon("info", __iconNode$o);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -22647,18 +22684,6 @@ const History = createLucideIcon("history", __iconNode$o);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$n = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M12 16v-4", key: "1dtifu" }],
-  ["path", { d: "M12 8h.01", key: "e9boi3" }]
-];
-const Info = createLucideIcon("info", __iconNode$n);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$m = [
   ["path", { d: "M10 18v-7", key: "wt116b" }],
   [
     "path",
@@ -22672,7 +22697,22 @@ const __iconNode$m = [
   ["path", { d: "M3 22h18", key: "8prr45" }],
   ["path", { d: "M6 18v-7", key: "1ivflk" }]
 ];
-const Landmark = createLucideIcon("landmark", __iconNode$m);
+const Landmark = createLucideIcon("landmark", __iconNode$n);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [
+  ["path", { d: "M3 12h.01", key: "nlz23k" }],
+  ["path", { d: "M3 18h.01", key: "1tta3j" }],
+  ["path", { d: "M3 6h.01", key: "1rqtza" }],
+  ["path", { d: "M8 12h13", key: "1za7za" }],
+  ["path", { d: "M8 18h13", key: "1lx6n3" }],
+  ["path", { d: "M8 6h13", key: "ik3vkj" }]
+];
+const List$1 = createLucideIcon("list", __iconNode$m);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -68223,36 +68263,38 @@ function TabsContent({
     }
   );
 }
-const ACCOUNT_KEY = "fino_lien_account";
-const TXNS_KEY = "fino_lien_transactions";
-function loadAccount() {
+const ACCOUNTS_KEY = "fino_lien_accounts";
+function loadAccounts() {
+  return loadItems(ACCOUNTS_KEY);
+}
+function loadAccountTxns(accountId) {
+  return loadItems(`fino_lien_txns_${accountId}`);
+}
+function saveAccountTxns(accountId, txns) {
+  saveItems(`fino_lien_txns_${accountId}`, txns);
+}
+function migrateOldData() {
   try {
-    const raw = localStorage.getItem(ACCOUNT_KEY);
-    return raw ? JSON.parse(raw) : null;
+    const oldAccount = localStorage.getItem("fino_lien_account");
+    const newAccounts = localStorage.getItem(ACCOUNTS_KEY);
+    if (oldAccount && !newAccounts) {
+      const parsed = JSON.parse(oldAccount);
+      const migrated = { ...parsed, id: 1 };
+      saveItems(ACCOUNTS_KEY, [migrated]);
+      const oldTxns = localStorage.getItem("fino_lien_transactions");
+      if (oldTxns) {
+        localStorage.setItem("fino_lien_txns_1", oldTxns);
+      }
+      localStorage.removeItem("fino_lien_account");
+      localStorage.removeItem("fino_lien_transactions");
+    }
   } catch {
-    return null;
   }
 }
-function saveAccount(acc) {
-  localStorage.setItem(ACCOUNT_KEY, JSON.stringify(acc));
-}
-function loadTransactions() {
-  try {
-    const raw = localStorage.getItem(TXNS_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-}
-function saveTransactions(txns) {
-  localStorage.setItem(TXNS_KEY, JSON.stringify(txns));
-}
-function maskField(value, isManager, fieldName) {
+function maskField(value, visibleCount = 4) {
   if (!value) return "—";
-  if (isManager) return value;
-  if (fieldName === "startDate") return value;
-  if (value.length <= 4) return "••••";
-  return `••••${value.slice(-4)}`;
+  if (value.length <= visibleCount) return value;
+  return "•".repeat(value.length - visibleCount) + value.slice(-visibleCount);
 }
 function generateRefNo(accountNo, type, date2, serialNo) {
   const last4 = accountNo.slice(-4).padStart(4, "0");
@@ -68275,24 +68317,23 @@ function formatDate(isoString) {
   return `${dd}/${mm}/${yyyy} ${hh}:${min2}`;
 }
 function formatCurrency(amount) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    minimumFractionDigits: 2
-  }).format(amount);
+  return `Rs. ${amount.toLocaleString("en-IN", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })}`;
 }
-function statusStyle(status) {
+function statusBadgeClass(status) {
   switch (status) {
     case "Active":
-      return { backgroundColor: "#16a34a", color: "white" };
+      return "bg-green-100 text-green-800 border-green-300";
     case "Inactive":
-      return { backgroundColor: "#dc2626", color: "white" };
+      return "bg-yellow-100 text-yellow-800 border-yellow-300";
     case "Dormant":
-      return { backgroundColor: "#ea580c", color: "white" };
+      return "bg-orange-100 text-orange-800 border-orange-300";
     case "Frozen":
-      return { backgroundColor: "#2563eb", color: "white" };
+      return "bg-red-100 text-red-800 border-red-300";
     default:
-      return {};
+      return "bg-muted text-muted-foreground border-border";
   }
 }
 function buildRtfRow(cells, bold = false) {
@@ -68355,7 +68396,7 @@ function generateRTF(account, transactions) {
     headerRow,
     txnRows,
     "\\par\\par",
-    "\\pard\\qc{\\f1\\fs16 Fino Small Finance Bank – Doolahat Branch | IFSC: FINO0001599}\\par",
+    "\\pard\\qc{\\f1\\fs16 Fino Small Finance Bank \\endash  Doolahat Branch | IFSC: FINO0001599}\\par",
     "\\pard\\qc{\\f1\\fs16 Helpline: 91938-7411-594 | Email: customercare@finobankpartner.com}\\par",
     "}"
   ].join("\n");
@@ -68370,52 +68411,253 @@ function DetailCell({
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "span",
       {
-        className: `text-sm font-semibold truncate ${highlight ? "text-green-600" : "text-foreground"}`,
+        className: `text-sm font-semibold truncate ${highlight ? "text-green-700" : "text-foreground"}`,
         children: value || "—"
       }
     )
+  ] });
+}
+function ReadonlyField({ label, value }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] uppercase tracking-wide text-muted-foreground font-medium", children: label }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium text-foreground border border-border rounded-md px-3 py-2 bg-muted/30 truncate", children: value || "—" })
+  ] });
+}
+function SearchPanel({
+  isManager,
+  allAccounts,
+  onFound,
+  onNotFound,
+  onAddNew,
+  onViewAccount
+}) {
+  const [query, setQuery] = reactExports.useState("");
+  const [searchResult, setSearchResult] = reactExports.useState(
+    "idle"
+  );
+  const [notFoundQuery, setNotFoundQuery] = reactExports.useState("");
+  const handleSearch = () => {
+    const q2 = query.trim().toLowerCase();
+    if (!q2) {
+      ue.error("Please enter an Account No or Mobile No to search");
+      return;
+    }
+    const found = allAccounts.find(
+      (a2) => a2.accountNo.toLowerCase().includes(q2) || a2.mobileNo.toLowerCase().includes(q2)
+    );
+    if (found) {
+      setSearchResult("idle");
+      onFound(found);
+    } else {
+      setNotFoundQuery(query.trim());
+      setSearchResult("not-found");
+      onNotFound(query.trim());
+    }
+  };
+  const handleKeyDown = (e3) => {
+    if (e3.key === "Enter") handleSearch();
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6", "data-ocid": "lien.search.panel", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "max-w-xl mx-auto shadow-md", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardHeader, { className: "pb-3", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          CardTitle,
+          {
+            className: "text-base font-semibold flex items-center gap-2",
+            style: { color: "#462980" },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "w-4 h-4" }),
+              "Lien Transaction – Account Search"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground mt-1", children: "Search by Account No or Mobile No to access account details" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              placeholder: "Enter Account No or Mobile No",
+              value: query,
+              onChange: (e3) => {
+                setQuery(e3.target.value);
+                setSearchResult("idle");
+              },
+              onKeyDown: handleKeyDown,
+              className: "flex-1",
+              "data-ocid": "lien.search.input"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              onClick: handleSearch,
+              className: "gap-2 text-white",
+              style: { backgroundColor: "#462980" },
+              "data-ocid": "lien.search.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { className: "w-4 h-4" }),
+                "Search"
+              ]
+            }
+          )
+        ] }),
+        searchResult === "not-found" && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 space-y-3",
+            "data-ocid": "lien.search.not_found",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 text-amber-800 text-sm font-medium", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-4 h-4 shrink-0" }),
+                'No account found for "',
+                notFoundQuery,
+                '"'
+              ] }),
+              isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  size: "sm",
+                  onClick: onAddNew,
+                  className: "gap-2 text-white",
+                  style: { backgroundColor: "#462980" },
+                  "data-ocid": "lien.search.add_new_button",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-3.5 h-3.5" }),
+                    "Add New Account"
+                  ]
+                }
+              ) : /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-amber-700", children: "Account not found. Please contact your manager to add this account." })
+            ]
+          }
+        )
+      ] })
+    ] }),
+    isManager && /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { "data-ocid": "lien.all_accounts.card", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          CardTitle,
+          {
+            className: "text-base font-semibold flex items-center gap-2",
+            style: { color: "#462980" },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(List$1, { className: "w-4 h-4" }),
+              "All Account Profiles",
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { variant: "secondary", className: "text-xs", children: allAccounts.length })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            size: "sm",
+            onClick: onAddNew,
+            className: "gap-2 text-white",
+            style: { backgroundColor: "#462980" },
+            "data-ocid": "lien.all_accounts.add_button",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-3.5 h-3.5" }),
+              "Add New Account"
+            ]
+          }
+        )
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: allAccounts.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "flex flex-col items-center gap-2 py-10 text-muted-foreground",
+          "data-ocid": "lien.all_accounts.empty_state",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(User, { className: "w-8 h-8 opacity-30" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm", children: "No accounts added yet." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs", children: "Use the search bar above to add the first account." })
+          ]
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-x-auto rounded-lg border border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Table, { "data-ocid": "lien.all_accounts.table", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TableRow,
+          {
+            style: { backgroundColor: "#462980" },
+            className: "hover:bg-transparent",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs", children: "CIF No" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs", children: "Customer Name" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs", children: "Account No" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs", children: "Account Type" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs", children: "Status" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs text-right", children: "Balance" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs text-center", children: "Action" })
+            ]
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: allAccounts.map((acc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          TableRow,
+          {
+            className: `text-xs ${idx % 2 === 0 ? "" : "bg-muted/20"} hover:bg-muted/40 transition-colors`,
+            "data-ocid": `lien.all_accounts.row.${idx + 1}`,
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-mono", children: acc.cifNo || "—" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-medium", children: acc.customerName }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs font-mono", children: acc.accountNo }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: acc.accountType }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "span",
+                {
+                  className: `inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border ${statusBadgeClass(acc.accountStatus)}`,
+                  children: acc.accountStatus
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs text-right font-semibold text-green-700", children: formatCurrency(acc.balance) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Button,
+                {
+                  variant: "outline",
+                  size: "sm",
+                  onClick: () => onViewAccount(acc),
+                  className: "gap-1.5 text-xs h-7",
+                  "data-ocid": `lien.all_accounts.view_button.${idx + 1}`,
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Eye, { className: "w-3 h-3" }),
+                    "View Data"
+                  ]
+                }
+              ) })
+            ]
+          },
+          acc.id
+        )) })
+      ] }) }) })
+    ] })
   ] });
 }
 function AccountDetailsCard({
   account,
   isManager
 }) {
-  if (!account) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "mb-6", "data-ocid": "lien.account_details.card", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        CardTitle,
-        {
-          className: "text-base font-semibold flex items-center gap-2",
-          style: { color: "var(--brand-red)" },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(User, { className: "w-4 h-4" }),
-            "Account Details"
-          ]
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 text-sm text-muted-foreground py-4", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Info, { className: "w-4 h-4" }),
-        "No account profile found. Please set up via Account Profile tab."
-      ] }) })
-    ] });
-  }
-  const m2 = (val, field) => maskField(val, isManager, field);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "mb-6", "data-ocid": "lien.account_details.card", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+  const m2 = (val) => isManager ? val || "—" : maskField(val);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { className: "mb-4", "data-ocid": "lien.account_details.card", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-2", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         CardTitle,
         {
           className: "text-base font-semibold flex items-center gap-2",
-          style: { color: "var(--brand-red)" },
+          style: { color: "#462980" },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(User, { className: "w-4 h-4" }),
             "Account Details"
           ]
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-        !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] text-muted-foreground bg-amber-50 border border-amber-200 rounded px-2 py-0.5", children: "Sensitive fields masked for staff" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Badge, { style: statusStyle(account.accountStatus), children: account.accountStatus })
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 flex-wrap", children: [
+        !isManager && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-0.5", children: "Sensitive fields masked for staff" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            className: `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${statusBadgeClass(account.accountStatus)}`,
+            children: account.accountStatus
+          }
+        )
       ] })
     ] }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(CardContent, { className: "space-y-4", children: [
@@ -68428,13 +68670,7 @@ function AccountDetailsCard({
             value: account.customerName || "—"
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          DetailCell,
-          {
-            label: "Start Date",
-            value: m2(account.startDate, "startDate")
-          }
-        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DetailCell, { label: "Start Date", value: account.startDate || "—" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(DetailCell, { label: "Mobile No", value: m2(account.mobileNo) })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60", children: [
@@ -68454,8 +68690,8 @@ function AccountDetailsCard({
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           DetailCell,
           {
-            label: "Balance (Rs.)",
-            value: isManager ? formatCurrency(account.balance) : `••••${String(account.balance).slice(-4)}`,
+            label: "Balance",
+            value: formatCurrency(account.balance),
             highlight: true
           }
         )
@@ -68463,26 +68699,14 @@ function AccountDetailsCard({
     ] })
   ] });
 }
-const EMPTY_ACCOUNT = {
-  cifNo: "",
-  customerName: "",
-  startDate: "",
-  mobileNo: "",
-  aadharNo: "",
-  panNo: "",
-  accountNo: "",
-  accountType: "Savings",
-  accountStatus: "Active",
-  balance: 0
-};
 function AccountProfileTab({
   account,
   onSave,
   isManager
 }) {
-  const [form, setForm] = reactExports.useState(account ?? EMPTY_ACCOUNT);
+  const [form, setForm] = reactExports.useState(account);
   reactExports.useEffect(() => {
-    setForm(account ?? EMPTY_ACCOUNT);
+    setForm(account);
   }, [account]);
   const setField = (field, value) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -68501,10 +68725,10 @@ function AccountProfileTab({
       return;
     }
     onSave(form);
-    ue.success("Account profile saved successfully");
+    ue.success("Account profile updated successfully");
   };
   if (!isManager) {
-    const m2 = (val, field) => maskField(val, false, field);
+    const m2 = (val) => maskField(val);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "lien.account_profile.panel", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -68514,27 +68738,15 @@ function AccountProfileTab({
           "data-ocid": "lien.account_profile.error_state",
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-4 h-4 shrink-0" }),
-            "Account updates can only be done by the Manager. Switch to Manager View to edit account details. Sensitive fields are masked below."
+            "Account profile management is restricted to managers."
           ]
         }
       ),
-      account ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(ReadonlyField, { label: "CIF No", value: m2(account.cifNo) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            ReadonlyField,
-            {
-              label: "Customer Name",
-              value: account.customerName
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            ReadonlyField,
-            {
-              label: "Start Date",
-              value: m2(account.startDate, "startDate")
-            }
-          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ReadonlyField, { label: "Customer Name", value: account.customerName }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ReadonlyField, { label: "Start Date", value: account.startDate }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(ReadonlyField, { label: "Mobile No", value: m2(account.mobileNo) })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 sm:grid-cols-4 gap-4 pb-3 border-b border-border/60", children: [
@@ -68554,12 +68766,12 @@ function AccountProfileTab({
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             ReadonlyField,
             {
-              label: "Balance (Rs.)",
-              value: `••••${String(account.balance).slice(-4)}`
+              label: "Balance",
+              value: formatCurrency(account.balance)
             }
           )
         ] })
-      ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "No account profile set up yet." })
+      ] })
     ] });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-5", "data-ocid": "lien.account_profile.panel", children: [
@@ -68637,7 +68849,7 @@ function AccountProfileTab({
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "panNo", children: "PAN No" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "panNo", children: "PAN No (optional)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Input,
             {
@@ -68724,7 +68936,7 @@ function AccountProfileTab({
       {
         onClick: handleSave,
         className: "gap-2 text-white",
-        style: { backgroundColor: "var(--brand-red)" },
+        style: { backgroundColor: "#462980" },
         "data-ocid": "lien.account_profile.save_button",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4" }),
@@ -68732,12 +68944,6 @@ function AccountProfileTab({
         ]
       }
     ) })
-  ] });
-}
-function ReadonlyField({ label, value }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[10px] uppercase tracking-wide text-muted-foreground font-medium", children: label }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-medium text-foreground border border-border rounded-md px-3 py-2 bg-muted/30 truncate", children: value || "—" })
   ] });
 }
 function CashOperationTab({
@@ -68759,21 +68965,15 @@ function CashOperationTab({
       ue.error("Please enter a valid amount greater than 0");
       return;
     }
-    if (!account) {
-      ue.error(
-        "No account profile set up. Please configure Account Profile first."
-      );
-      return;
-    }
     if (!isDeposit && amt > account.balance) {
       ue.error(
-        `Insufficient funds. Available balance: ${formatCurrency(account.balance)}`
+        `Insufficient balance. Available: ${formatCurrency(account.balance)}`
       );
       return;
     }
     setLoading(true);
     try {
-      const txns = loadTransactions();
+      const txns = loadAccountTxns(account.id);
       const newSerialNo = txns.length + 1;
       const now2 = /* @__PURE__ */ new Date();
       const txnType = isDeposit ? "credit" : "debit";
@@ -68788,9 +68988,10 @@ function CashOperationTab({
         balanceAfter: newBalance,
         serialNo: newSerialNo
       };
-      txns.push(newTxn);
-      saveTransactions(txns);
-      saveAccount({ ...account, balance: newBalance });
+      saveAccountTxns(account.id, [...txns, newTxn]);
+      updateItem(ACCOUNTS_KEY, account.id, {
+        balance: newBalance
+      });
       setAmount("");
       setRemarks("");
       onComplete();
@@ -68815,7 +69016,7 @@ function CashOperationTab({
               children: label
             }
           ),
-          account && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-auto text-xs text-muted-foreground", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-auto text-xs text-muted-foreground", children: [
             "Available: ",
             formatCurrency(account.balance)
           ] })
@@ -68877,10 +69078,6 @@ function TransactionHistoryTab({
     (a2, b2) => new Date(b2.txnDate).getTime() - new Date(a2.txnDate).getTime()
   );
   const handlePrintStatement = reactExports.useCallback(() => {
-    if (!account) {
-      ue.error("No account profile found. Please set up account first.");
-      return;
-    }
     if (transactions.length === 0) {
       ue.error("No transactions to export.");
       return;
@@ -68890,15 +69087,17 @@ function TransactionHistoryTab({
     const url = URL.createObjectURL(blob);
     const a2 = document.createElement("a");
     a2.href = url;
-    a2.download = `statement_${account.accountNo}_${Date.now()}.rtf`;
+    const today = /* @__PURE__ */ new Date();
+    const dateStr = `${String(today.getDate()).padStart(2, "0")}${String(today.getMonth() + 1).padStart(2, "0")}${today.getFullYear()}`;
+    a2.download = `LienStatement_${account.accountNo}_${dateStr}.rtf`;
     a2.click();
     URL.revokeObjectURL(url);
     ue.success("Statement downloaded successfully");
   }, [account, transactions]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "lien.txn_history.panel", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between flex-wrap gap-2", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(History, { className: "w-4 h-4", style: { color: "var(--brand-red)" } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(History, { className: "w-4 h-4", style: { color: "#462980" } }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-foreground", children: "Transaction History" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Badge, { variant: "secondary", className: "text-xs", children: [
           transactions.length,
@@ -68937,7 +69136,7 @@ function TransactionHistoryTab({
       /* @__PURE__ */ jsxRuntimeExports.jsx(TableHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         TableRow,
         {
-          style: { backgroundColor: "var(--brand-red)" },
+          style: { backgroundColor: "#462980" },
           className: "hover:bg-transparent",
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(TableHead, { className: "text-white font-semibold text-xs", children: "Txn Date" }),
@@ -68953,7 +69152,7 @@ function TransactionHistoryTab({
       /* @__PURE__ */ jsxRuntimeExports.jsx(TableBody, { children: sorted.map((txn, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
         TableRow,
         {
-          className: `text-xs ${idx % 2 === 0 ? "bg-white" : "bg-muted/20"} hover:bg-muted/40 transition-colors`,
+          className: `text-xs ${idx % 2 === 0 ? "" : "bg-muted/20"} hover:bg-muted/40 transition-colors`,
           "data-ocid": `lien.txn_history.row.${idx + 1}`,
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(TableCell, { className: "text-xs whitespace-nowrap", children: formatDate(txn.txnDate) }),
@@ -68967,7 +69166,8 @@ function TransactionHistoryTab({
                 }
               ),
               txn.remarks ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-muted-foreground", children: [
-                " - ",
+                " ",
+                "- ",
                 txn.remarks
               ] }) : null
             ] }),
@@ -69040,52 +69240,318 @@ function TransactionHistoryTab({
     )
   ] });
 }
-function LienTransactionPage() {
-  const { isManager } = useInventoryAuth();
-  const [account, setAccount] = reactExports.useState(loadAccount);
-  const [transactions, setTransactions] = reactExports.useState(loadTransactions);
+const EMPTY_ACCOUNT_FORM = {
+  cifNo: "",
+  customerName: "",
+  startDate: "",
+  mobileNo: "",
+  aadharNo: "",
+  panNo: "",
+  accountNo: "",
+  accountType: "Savings",
+  accountStatus: "Active",
+  balance: 0
+};
+function AddAccountForm({
+  isManager,
+  prefillAccountNo,
+  prefillMobileNo,
+  onSaved,
+  onBack
+}) {
+  const [form, setForm] = reactExports.useState({
+    ...EMPTY_ACCOUNT_FORM,
+    accountNo: prefillAccountNo || "",
+    mobileNo: prefillMobileNo || ""
+  });
+  const setField = (field, value) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+  const handleSave = () => {
+    if (!form.accountNo.trim()) {
+      ue.error("Account No is required");
+      return;
+    }
+    if (!form.mobileNo.trim()) {
+      ue.error("Mobile No is required");
+      return;
+    }
+    if (!form.cifNo.trim()) {
+      ue.error("CIF No is required");
+      return;
+    }
+    if (!form.customerName.trim()) {
+      ue.error("Customer Name is required");
+      return;
+    }
+    if (!form.startDate) {
+      ue.error("Start Date is required");
+      return;
+    }
+    if (!form.aadharNo.trim()) {
+      ue.error("Aadhar No is required");
+      return;
+    }
+    const newAccount = addItem(ACCOUNTS_KEY, form);
+    ue.success(`Account for ${form.customerName} added successfully`);
+    onSaved(newAccount);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-4", "data-ocid": "lien.add_account.panel", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CardHeader, { className: "pb-3", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      CardTitle,
+      {
+        className: "text-base font-semibold flex items-center gap-2",
+        style: { color: "#462980" },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "w-4 h-4" }),
+          "Add New Account Profile"
+        ]
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { children: !isManager ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        className: "flex items-center gap-3 rounded-lg px-4 py-5 text-sm",
+        style: { backgroundColor: "#fef3c7", color: "#92400e" },
+        "data-ocid": "lien.add_account.staff_notice",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { className: "w-5 h-5 shrink-0" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-semibold", children: "Manager Access Required" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs mt-0.5", children: "Account creation requires manager access. Please ask your manager to add this account." })
+          ] })
+        ]
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-5", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-accountNo", children: "Account No *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-accountNo",
+                value: form.accountNo,
+                onChange: (e3) => setField("accountNo", e3.target.value),
+                placeholder: "Enter account number",
+                "data-ocid": "lien.add.account_no.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-mobileNo", children: "Mobile No * (10 digits)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-mobileNo",
+                value: form.mobileNo,
+                onChange: (e3) => setField(
+                  "mobileNo",
+                  e3.target.value.replace(/\D/g, "").slice(0, 10)
+                ),
+                placeholder: "10-digit mobile number",
+                "data-ocid": "lien.add.mobile_no.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-cifNo", children: "CIF No *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-cifNo",
+                value: form.cifNo,
+                onChange: (e3) => setField("cifNo", e3.target.value),
+                placeholder: "Enter CIF No",
+                "data-ocid": "lien.add.cif_no.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-customerName", children: "Customer Name *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-customerName",
+                value: form.customerName,
+                onChange: (e3) => setField("customerName", e3.target.value),
+                placeholder: "Enter customer name",
+                "data-ocid": "lien.add.customer_name.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-startDate", children: "Start Date *" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-startDate",
+                type: "date",
+                value: form.startDate,
+                onChange: (e3) => setField("startDate", e3.target.value),
+                "data-ocid": "lien.add.start_date.input"
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-aadharNo", children: "Aadhar No * (12 digits)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-aadharNo",
+                value: form.aadharNo,
+                onChange: (e3) => setField(
+                  "aadharNo",
+                  e3.target.value.replace(/\D/g, "").slice(0, 12)
+                ),
+                placeholder: "12-digit Aadhar number",
+                "data-ocid": "lien.add.aadhar_no.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-panNo", children: "PAN No (optional)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-panNo",
+                value: form.panNo,
+                onChange: (e3) => setField(
+                  "panNo",
+                  e3.target.value.toUpperCase().slice(0, 10)
+                ),
+                placeholder: "e.g. ABCDE1234F",
+                "data-ocid": "lien.add.pan_no.input"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-accountType", children: "Account Type" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.accountType,
+                onValueChange: (v2) => setField("accountType", v2),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "lien.add.account_type.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Savings", children: "Savings" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Current", children: "Current" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Salary", children: "Salary" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "OD", children: "OD" })
+                  ] })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-accountStatus", children: "Account Status" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Select,
+              {
+                value: form.accountStatus,
+                onValueChange: (v2) => setField("accountStatus", v2),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(SelectTrigger, { "data-ocid": "lien.add.account_status.select", children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {}) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(SelectContent, { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Active", children: "Active" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Inactive", children: "Inactive" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Dormant", children: "Dormant" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: "Frozen", children: "Frozen" })
+                  ] })
+                ]
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1.5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Label$1, { htmlFor: "add-balance", children: "Opening Balance (Rs.)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input,
+              {
+                id: "add-balance",
+                type: "number",
+                min: "0",
+                value: form.balance,
+                onChange: (e3) => setField(
+                  "balance",
+                  Number.parseFloat(e3.target.value) || 0
+                ),
+                placeholder: "Enter opening balance",
+                "data-ocid": "lien.add.balance.input"
+              }
+            )
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-3 pt-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "outline", onClick: onBack, children: "Cancel" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Button,
+          {
+            onClick: handleSave,
+            className: "gap-2 text-white",
+            style: { backgroundColor: "#462980" },
+            "data-ocid": "lien.add_account.save_button",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { className: "w-4 h-4" }),
+              "Save Account"
+            ]
+          }
+        )
+      ] })
+    ] }) })
+  ] }) });
+}
+function AccountDetailView({
+  account: initialAccount,
+  isManager,
+  onBack
+}) {
+  const [account, setAccount] = reactExports.useState(initialAccount);
+  const [transactions, setTransactions] = reactExports.useState(
+    () => loadAccountTxns(initialAccount.id)
+  );
   const [activeTab, setActiveTab] = reactExports.useState("account-profile");
+  reactExports.useEffect(() => {
+    const fresh = loadItems(ACCOUNTS_KEY).find(
+      (a2) => a2.id === account.id
+    );
+    if (fresh) setAccount(fresh);
+  }, [account.id]);
   const handleSaveAccount = (acc) => {
-    saveAccount(acc);
+    updateItem(ACCOUNTS_KEY, acc.id, acc);
     setAccount(acc);
   };
   const handleTransactionComplete = () => {
-    setAccount(loadAccount());
-    setTransactions(loadTransactions());
+    const fresh = loadItems(ACCOUNTS_KEY).find(
+      (a2) => a2.id === account.id
+    );
+    if (fresh) setAccount(fresh);
+    setTransactions(loadAccountTxns(account.id));
   };
   const handleDeleteTransaction = (id2) => {
     const updated = transactions.filter((t2) => t2.id !== id2);
-    saveTransactions(updated);
+    saveAccountTxns(account.id, updated);
     setTransactions(updated);
     ue.success("Transaction deleted");
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "lien.page", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          className: "w-8 h-8 rounded-lg flex items-center justify-center text-white",
-          style: { backgroundColor: "var(--brand-red)" },
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "svg",
-            {
-              viewBox: "0 0 24 24",
-              fill: "none",
-              stroke: "currentColor",
-              strokeWidth: "2",
-              className: "w-4 h-4",
-              "aria-hidden": "true",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" })
-            }
-          )
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-lg font-bold text-foreground", children: "Lien Transaction" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Manage account profile, deposits, withdrawals and transaction history" })
-      ] })
-    ] }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "lien.detail.panel", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Button,
+      {
+        variant: "ghost",
+        size: "sm",
+        onClick: onBack,
+        className: "gap-2 -ml-1 text-muted-foreground hover:text-foreground",
+        "data-ocid": "lien.detail.back_button",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-4 h-4" }),
+          "Back to Search"
+        ]
+      }
+    ),
     /* @__PURE__ */ jsxRuntimeExports.jsx(AccountDetailsCard, { account, isManager }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Card, { "data-ocid": "lien.operations.panel", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardContent, { className: "pt-5", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Tabs, { value: activeTab, onValueChange: setActiveTab, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -69179,6 +69645,110 @@ function LienTransactionPage() {
         }
       ) })
     ] }) }) })
+  ] });
+}
+function LienTransactionPage() {
+  const { isManager } = useInventoryAuth();
+  const [pageState, setPageState] = reactExports.useState("search");
+  const [selectedAccount, setSelectedAccount] = reactExports.useState(
+    null
+  );
+  const [allAccounts, setAllAccounts] = reactExports.useState([]);
+  const [prefillAccountNo, setPrefillAccountNo] = reactExports.useState("");
+  const [prefillMobileNo, setPrefillMobileNo] = reactExports.useState("");
+  reactExports.useEffect(() => {
+    migrateOldData();
+    setAllAccounts(loadAccounts());
+  }, []);
+  reactExports.useEffect(() => {
+    if (pageState === "search") {
+      setAllAccounts(loadAccounts());
+    }
+  }, [pageState]);
+  const handleFound = (account) => {
+    setSelectedAccount(account);
+    setPageState("detail");
+  };
+  const handleNotFound = (query) => {
+    const isLikelyMobile = /^\d{10}$/.test(query);
+    if (isLikelyMobile) {
+      setPrefillMobileNo(query);
+      setPrefillAccountNo("");
+    } else {
+      setPrefillAccountNo(query);
+      setPrefillMobileNo("");
+    }
+  };
+  const handleAddNew = () => {
+    setPageState("add");
+  };
+  const handleAccountSaved = (account) => {
+    setAllAccounts(loadAccounts());
+    setSelectedAccount(account);
+    setPageState("detail");
+  };
+  const handleBack = () => {
+    setSelectedAccount(null);
+    setPrefillAccountNo("");
+    setPrefillMobileNo("");
+    setPageState("search");
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", "data-ocid": "lien.page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(RoleSwitcherBar, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mb-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: "w-8 h-8 rounded-lg flex items-center justify-center text-white",
+          style: { backgroundColor: "#462980" },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "svg",
+            {
+              viewBox: "0 0 24 24",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: "2",
+              className: "w-4 h-4",
+              "aria-hidden": "true",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" })
+            }
+          )
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-lg font-bold text-foreground", children: "Lien Transaction" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: "Search account by Account No or Mobile No to manage deposits, withdrawals and history" })
+      ] })
+    ] }),
+    pageState === "search" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      SearchPanel,
+      {
+        isManager,
+        allAccounts,
+        onFound: handleFound,
+        onNotFound: handleNotFound,
+        onAddNew: handleAddNew,
+        onViewAccount: handleFound
+      }
+    ),
+    pageState === "detail" && selectedAccount && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AccountDetailView,
+      {
+        account: selectedAccount,
+        isManager,
+        onBack: handleBack
+      }
+    ),
+    pageState === "add" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AddAccountForm,
+      {
+        isManager,
+        prefillAccountNo,
+        prefillMobileNo,
+        onSaved: handleAccountSaved,
+        onBack: handleBack
+      }
+    )
   ] });
 }
 var NAME = "Separator";

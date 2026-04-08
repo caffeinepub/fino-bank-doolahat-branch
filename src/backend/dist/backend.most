@@ -1,4 +1,4 @@
-// Version: 3.0.0
+// Version: 1.0.0
 type Complaint__548743374 =
   {
     aadharNo : Text;
@@ -90,11 +90,6 @@ type Nat__490723111 = Nat__920180692;
 type Nat__920180692 = Nat;
 type Node__46230540<K, V> =
   {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
-type OldAccessControlState__841599830 =
-  {
-    var adminAssigned : Bool;
-    userRoles : Map__605269027<Principal, UserRole__717262347>
-  };
 type PaymentHead__1014555176 =
   {headType : Text; id : Nat; isDefault : Bool; name : Text};
 type StockTransaction__664879671 =
@@ -125,63 +120,7 @@ type Transaction__865268250 =
   };
 type UserProfile__491224006 = {name : Text};
 type UserRole__521596351 = {#admin; #guest; #user};
-type UserRole__717262347 = {#admin; #guest; #user};
-actor ({
-  in accessControlState : OldAccessControlState__841599830;
-  stable complaints :
-    {
-      var root : Node__46230540<Nat, Complaint__548743374>;
-      var size : Nat__490723111
-    };
-  stable dailyPLs :
-    {
-      var root : Node__46230540<Nat, DailyPL__454727901>;
-      var size : Nat__490723111
-    };
-  stable fixedDeposits :
-    {
-      var root : Node__46230540<Nat, FixedDeposit__569757724>;
-      var size : Nat__490723111
-    };
-  stable inventoryProducts :
-    {
-      var root : Node__46230540<Nat, InventoryProduct__31742920>;
-      var size : Nat__490723111
-    };
-  stable loans :
-    {
-      var root : Node__46230540<Nat, Loan__728552456>;
-      var size : Nat__490723111
-    };
-  stable var nextComplaintId : Nat;
-  stable var nextFDId : Nat;
-  stable var nextHeadId : Nat;
-  stable var nextLoanId : Nat;
-  stable var nextPLId : Nat;
-  stable var nextProductId : Nat;
-  stable var nextStockTxId : Nat;
-  stable var nextTxId : Nat;
-  stable paymentHeads :
-    {
-      var root : Node__46230540<Nat, PaymentHead__1014555176>;
-      var size : Nat__490723111
-    };
-  stable stockTransactions :
-    {
-      var root : Node__46230540<Nat, StockTransaction__664879671>;
-      var size : Nat__490723111
-    };
-  stable transactions :
-    {
-      var root : Node__46230540<Nat, Transaction__865268250>;
-      var size : Nat__490723111
-    };
-  stable userProfiles :
-    {
-      var root : Node__46230540<Principal, UserProfile__491224006>;
-      var size : Nat__490723111
-    }
-}, {
+actor {
   stable accessControlState :
     {userRoles : Map__605269027<Principal, UserRole__521596351>};
   stable complaints :
@@ -237,4 +176,4 @@ actor ({
       var root : Node__46230540<Principal, UserProfile__491224006>;
       var size : Nat__490723111
     }
-}) ;
+};
